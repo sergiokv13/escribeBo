@@ -1,6 +1,12 @@
 class AdminControllerController < ApplicationController
 
 	def newUser
+		@paraOficialEjecutivo = [['Oficial Ejecutivo', 'Oficial Ejecutivo'], ['Diputado', 'Diputado'], ['Delegado Regional', 'Delegado Regional'], ['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
+		@paraDiputado = [['Delegado Regional', 'Delegado Regional'], ['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
+		@paraDelegadoRegional = [['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
+		@paraPresidenteConsejoConsultivo = [['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
+		@paraConsultor = [['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
+		@paraMaestroConsejero = [['Demolay', 'Demolay']]
 	end
 
 	def createUser

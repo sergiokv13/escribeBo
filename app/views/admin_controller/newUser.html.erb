@@ -21,7 +21,31 @@
 
   <div class="field">
     <%= label_tag :role %><br />
-    <%= text_field_tag :role%>
+
+    <%if current_user.role == "Oficial Ejecutivo"%>
+      <%= select_tag(:role, options_for_select(@paraOficialEjecutivo)) %>
+    <%end%>
+
+    <%if current_user.role == "Diputado"%>
+      <%= select_tag(:role, options_for_select(@paraDiputado)) %>
+    <%end%>
+
+    <%if current_user.role == "Delegado Regional"%>
+      <%= select_tag(:role, options_for_select(@paraDelegadoRegional)) %>
+    <%end%>
+
+    <%if current_user.role == "Presidente Consejo Consultivo"%>
+      <%= select_tag(:role, options_for_select(@paraPresidenteConsejoConsultivo)) %>
+    <%end%>
+
+    <%if current_user.role == "Consultor"%>
+      <%= select_tag(:role, options_for_select(@paraConsultor)) %>
+    <%end%>
+
+    <%if current_user.role == "Maestro Consejero"%>
+      <%= select_tag(:role, options_for_select(@paraMaestroConsejero)) %>
+    <%end%>
+
   </div>
 
   <div class="actions">
