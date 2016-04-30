@@ -7,7 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-Usuario : <%=current_user.email%><br>
+<% if user_signed_in? %>
+  Usuario : <%=current_user.email%><br>
+  <%= link_to('Cerrar Sesion', destroy_user_session_path, :method => :delete) %>
+<% end %>
 <%= yield %>
 
 </body>

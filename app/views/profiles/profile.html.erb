@@ -1,0 +1,23 @@
+<h1>Perfil</h1>
+<h2>Nombre</h2>
+<%= @user.name %>
+<h2>Apellidos</h2>
+<%= @user.lastname %>
+<h2>Demolay ID</h2>
+<%= @user.demolayID %>
+<h2>Rol</h2>
+<%= @user.role %>
+<h2>Carnet de Identidad</h2>
+<%= @user.ci %>
+<h2>Grados</h2>
+<% @user.charges.each do |charge| %>
+  <%= charge.title %><br>
+<% end %>
+<br>
+<% if @user.role == "Demolay" %>
+  <%= link_to "Asignar Maestro Consejero", {:controller => "profiles", :action => "asignar_maestro_consejero", :id => @user.id} %>
+  <%= link_to "Asignar Ilustre Comendador Caballero", {:controller => "profiles", :action => "asignar_comendador", :id => @user.id} %>
+  <%= link_to "Asignar Chevallier", {:controller => "profiles", :action => "asignar_chevallier", :id => @user.id} %>
+<% end %>
+
+

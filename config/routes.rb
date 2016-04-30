@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :degrees
+  resources :charges
+  resources :charges
+  resource :passwords
+
   get 'home/index'
 
   devise_for :users
@@ -19,6 +24,11 @@ Rails.application.routes.draw do
 
   get '/newUser' => "admin_controller#newUser"
   post '/createUser' => "admin_controller#createUser"
+
+  get '/profile/:id' => 'profiles#profile'
+  get '/asignar_maestro_consejero' => 'profiles#asignar_maestro_consejero'
+  get '/asignar_chevallier' => 'profiles#asignar_chevallier'
+  get '/asignar_comendador' => 'profiles#asignar_comendador'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

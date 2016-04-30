@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429213132) do
+ActiveRecord::Schema.define(version: 20160430191410) do
+
+  create_table "charges", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "charges", ["user_id"], name: "index_charges_on_user_id"
+
+  create_table "degrees", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "degrees", ["user_id"], name: "index_degrees_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160429213132) do
     t.string   "lastname"
     t.string   "demolayID"
     t.string   "role"
+    t.string   "ci"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end
