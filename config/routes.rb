@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
-end
+  end
 
+  get '/newUser' => "admin_controller#newUser"
+  post '/createUser' => "admin_controller#createUser"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

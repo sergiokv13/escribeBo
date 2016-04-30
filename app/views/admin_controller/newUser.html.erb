@@ -1,0 +1,31 @@
+<%= form_tag("/createUser",method:"post") do %>
+  <div class="field">
+    <%= label_tag :email %><br />
+    <%= email_field_tag :email%>
+  </div>
+
+  <div class="field">
+    <%= label_tag :name %><br />
+    <%= text_field_tag :name%>
+  </div>
+
+  <div class="field">
+    <%= label_tag :lastname %><br />
+    <%= text_field_tag :lastname%>
+  </div>
+
+  <div class="field">
+    <%= label_tag :demolayID %><br />
+    <%= text_field_tag :demolayID%>
+  </div>
+
+  <div class="field">
+    <%= label_tag :role %><br />
+    <%= text_field_tag :role%>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Sign up" %>
+  </div>
+
+<% end %>
