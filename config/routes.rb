@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '/newUser' => "admin_controller#newUser"
   post '/createUser' => "admin_controller#createUser"
+  get '/users' => "admin_controller#users"
 
   get '/profile/:id' => 'profiles#profile'
   get '/asignar_maestro_consejero' => 'profiles#asignar_maestro_consejero'
@@ -28,5 +29,8 @@ Rails.application.routes.draw do
   get '/asignar_comendador' => 'profiles#asignar_comendador'
 
   post '/addConsultant' => 'chapters#addConsultant'
+
+  post '/search' => 'admin_controller#search'
+
 
 end

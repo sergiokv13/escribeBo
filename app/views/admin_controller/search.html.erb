@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="center-title">Resultados de la búsqueda</h1>
+    <h3>Usuarios</h3>
+    <% @users.each do |user| %>
+      <%= link_to user.fullName, "/profile/"+user.id.to_s %><br>
+    <% end %>
+    <hr class="divider">
+    <h3>Entes</h3>
+    <% @entes.each do |ente| %>
+      <%= link_to ente.chapter_name, "/chapters/"+ente.id.to_s %><br>
+    <% end %>
+  </div>
+</div>
+

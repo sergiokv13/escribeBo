@@ -1,42 +1,46 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="jumbotron">
+    <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Chapter name:</strong>
-  <%= @chapter.chapter_name %>
-</p>
+    <p>
+      <h2>Nombre:</h2>
+      <%= @chapter.chapter_name %>
+    </p>
 
-<p>
-  <strong>Chapter type:</strong>
-  <%= @chapter.chapter_type %>
-</p>
+    <p>
+      <h2>Tipo:</h2>
+      <%= @chapter.chapter_type %>
+    </p>
 
-<p>
-  <strong>Chapter president:</strong>
-  <%= @chapter.chapter_president.name %> <%= @chapter.chapter_president.lastname %>
-</p>
+    <p>
+      <h2>Presidente Encargado:</h2>
+      <%= @chapter.chapter_president.name %> <%= @chapter.chapter_president.lastname %>
+    </p>
 
-<p>
-  <strong>Chapter DM in charge:</strong>
-  <%= @chapter.demolay_in_charge.name %> <%= @chapter.demolay_in_charge.lastname %>
-</p>
+    <p>
+      <h2>Demolay a Cargo:</h2>
+      <%= @chapter.demolay_in_charge.name %> <%= @chapter.demolay_in_charge.lastname %>
+    </p>
 
-<h1>Consultants</h1>
-<% @chapter.consultants.each do |consultant| %>
-  <%= consultant.fullName %><br>
-<% end %>
+    <h2>Consultores:</h2>
+    <% @chapter.consultants.each do |consultant| %>
+      <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
+    <% end %>
 
-<h1>Agregar consultor</h1>
-<%= form_tag("/addConsultant",method:"post") do %>
-  <div class="field">
-    <%= select_tag(:consultant, options_for_select(User.where(:role => 'Consultor').collect{ |c| [c.fullName, c.id] })) %>
+    <h1>Agregar consultor</h1>
+    <%= form_tag("/addConsultant",method:"post") do %>
+      <div class="field">
+        <%= select_tag(:consultant, options_for_select(User.where(:role => 'Consultor').collect{ |c| [c.fullName, c.id] }), class: "form-control") %>
+      </div>
+      <div class="field">
+        <%= hidden_field :chapter_id, @chapter.id %>
+      </div>
+      <br>
+      <div class="actions">
+        <%= submit_tag "Añadir Consultor", class: "btn btn-success" %>
+        <%= link_to 'Atrás', chapters_path, class: "btn btn-danger" %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= hidden_field :chapter_id, @chapter.id %>
-  </div>
-  <div class="actions">
-    <%= submit_tag "Add Consultant" %>
-  </div>
-<% end %>
-
-<%= link_to 'Edit', edit_chapter_path(@chapter) %> |
-<%= link_to 'Back', chapters_path %>
+</div>
+<br>

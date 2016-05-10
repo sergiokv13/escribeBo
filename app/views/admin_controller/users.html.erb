@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="center-title">Listado de usuarios</h1>
+  <div class="col-lg-1"></div>
+  <div class="col-lg-10">
+    <a href="/newUser" class="btn btn-success">Crear Usuario</a>
+    <br><br>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover table-striped">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Demolay ID</th>
+            <th>Rol</th>
+            <th>CI</th>
+            <th>Correo Electrónico</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.fullName %></td>
+              <td><%= user.demolayID %></td>
+              <td><%= user.role %></td>
+              <td><%= user.ci %></td>
+              <td><%= user.email %></td>
+              <td><%= link_to "Ver perfil", "/profile/"+user.id.to_s, class: "btn btn-primary" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

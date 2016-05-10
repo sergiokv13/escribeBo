@@ -1,4 +1,4 @@
-<%= form_for(@chapter) do |f| %>
+<%= bootstrap_form_for(@chapter) do |f| %>
   <% if @chapter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
@@ -12,22 +12,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :chapter_name %><br>
-    <%= f.text_field :chapter_name %>
+    <%= f.text_field :chapter_name, label: "Nombre" %>
   </div>
   <div class="field">
-    <%= f.label :chapter_type %><br>
-    <%=f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]) ) %>
+    <%= f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]), label: "Tipo") %>
   </div>
   <div class="field">
-    <%= f.label :chapter_president_id %><br>
-    <%= f.collection_select(:chapter_president_id, User.where(:role => "Presidente Consejo Consultivo"), :id, :fullName) %>
+    <%= f.collection_select(:chapter_president_id, User.where(:role => "Presidente Consejo Consultivo"), :id, :fullName, label: "Presidente") %>
   </div>
   <div class="field">
-    <%= f.label :demolay_in_charge_id %><br>
-    <%= f.collection_select(:demolay_in_charge_id, User.where(:role => "Maestro Consejero"), :id, :fullName) %>
+    <%= f.collection_select(:demolay_in_charge_id, User.all, :id, :fullName, label: "Demolay a Cargo") %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Crear", class: "btn btn-success" %>
+    <%= link_to 'Atrás', chapters_path, class: "btn btn-danger" %>
   </div>
 <% end %>
