@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chapter_name: MyString
+  chapter_type: MyString
+  chapter_president_id: 
+
+two:
+  chapter_name: MyString
+  chapter_type: MyString
+  chapter_president_id: 

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430191410) do
+ActiveRecord::Schema.define(version: 20160510154729) do
+
+  create_table "chapters", force: :cascade do |t|
+    t.string   "chapter_name"
+    t.string   "chapter_type"
+    t.integer  "chapter_president_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "demolay_in_charge_id"
+  end
+
+  add_index "chapters", ["chapter_president_id"], name: "index_chapters_on_chapter_president_id"
+  add_index "chapters", ["demolay_in_charge_id"], name: "index_chapters_on_demolay_in_charge_id"
 
   create_table "charges", force: :cascade do |t|
     t.string   "title"
@@ -49,8 +61,10 @@ ActiveRecord::Schema.define(version: 20160430191410) do
     t.string   "ci"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "chapter_consultant_id"
   end
 
+  add_index "users", ["chapter_consultant_id"], name: "index_users_on_chapter_consultant_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

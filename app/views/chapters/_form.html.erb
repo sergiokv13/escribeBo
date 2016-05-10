@@ -1,0 +1,33 @@
+<%= form_for(@chapter) do |f| %>
+  <% if @chapter.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
+
+      <ul>
+      <% @chapter.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :chapter_name %><br>
+    <%= f.text_field :chapter_name %>
+  </div>
+  <div class="field">
+    <%= f.label :chapter_type %><br>
+    <%=f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]) ) %>
+  </div>
+  <div class="field">
+    <%= f.label :chapter_president_id %><br>
+    <%= f.collection_select(:chapter_president_id, User.where(:role => "Presidente Consejo Consultivo"), :id, :fullName) %>
+  </div>
+  <div class="field">
+    <%= f.label :demolay_in_charge_id %><br>
+    <%= f.collection_select(:demolay_in_charge_id, User.where(:role => "Maestro Consejero"), :id, :fullName) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
