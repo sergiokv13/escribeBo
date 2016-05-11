@@ -15,6 +15,7 @@ class ChaptersController < ApplicationController
   # GET /chapters/new
   def new
     @chapter = Chapter.new
+    @campaments = [['Cochabamba','Cochabamba'],['La Paz','La Paz'],['Santa Cruz','Santa Cruz'],['Chuquisaca','Chuquisaca'],['Beni','Beni'],['Oruro','Oruro'],['Pando','Pando'],['Potosi','Potosi'],['Tarija','Tarija']]
   end
 
   # GET /chapters/1/edit
@@ -77,6 +78,6 @@ class ChaptersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chapter_params
-      params.require(:chapter).permit(:chapter_name, :chapter_type, :chapter_president_id, :demolay_in_charge_id)
+      params.require(:chapter).permit(:chapter_name, :chapter_type, :chapter_president_id, :demolay_in_charge_id, :campament)
     end
 end

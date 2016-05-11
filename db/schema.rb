@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20160510154729) do
   create_table "chapters", force: :cascade do |t|
     t.string   "chapter_name"
     t.string   "chapter_type"
+    t.string   "campament"
     t.integer  "chapter_president_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false

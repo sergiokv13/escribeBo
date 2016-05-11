@@ -11,14 +11,14 @@
     <strong>Carnet de Identidad:</strong>
     <%= @user.ci %><br><br>
     <strong>Grados</strong>
-    <% @user.charges.each do |charge| %>
-      <%= charge.title %><br>
+    <% @user.degrees.each do |degree| %>
+      <%= degree.title %><br>
     <% end %>
     <br>
     <% if @user.role == "Demolay" %>
-      <%= link_to "Asignar Maestro Consejero", {:controller => "profiles", :action => "asignar_maestro_consejero", :id => @user.id} %>
-      <%= link_to "Asignar Ilustre Comendador Caballero", {:controller => "profiles", :action => "asignar_comendador", :id => @user.id} %>
-      <%= link_to "Asignar Chevallier", {:controller => "profiles", :action => "asignar_chevallier", :id => @user.id} %>
+      <%= link_to "Asignar Grado Demolay", {:controller => "profiles", :action => "asignar_grado_demolay", :id => @user.id} %>
+      <%= link_to "Asignar Grado Caballero", {:controller => "profiles", :action => "asignar_grado_caballero", :id => @user.id} %>
+      <%= link_to "Asignar Grado Chevallier", {:controller => "profiles", :action => "asignar_grado_chevallier", :id => @user.id} %>
     <% end %>
     <br><br><br><br>
   </div>

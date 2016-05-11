@@ -24,9 +24,9 @@ Rails.application.routes.draw do
   get '/users' => "admin_controller#users"
 
   get '/profile/:id' => 'profiles#profile'
-  get '/asignar_maestro_consejero' => 'profiles#asignar_maestro_consejero'
-  get '/asignar_chevallier' => 'profiles#asignar_chevallier'
-  get '/asignar_comendador' => 'profiles#asignar_comendador'
+  get '/asignar_grado_demolay' => 'profiles#asignar_grado_demolay'
+  get '/asignar_grado_chevallier' => 'profiles#asignar_grado_chevallier'
+  get '/asignar_grado_caballero' => 'profiles#asignar_grado_caballero'
 
   post '/addConsultant' => 'chapters#addConsultant'
 
