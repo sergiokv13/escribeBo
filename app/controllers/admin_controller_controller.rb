@@ -27,4 +27,15 @@ class AdminControllerController < ApplicationController
 			redirect_to (:back)
 		end
 	end
+
+	def users
+		@users = User.all
+	end
+
+	def search
+		search = params[:search]
+		@users = User.where("name LIKE ?","%#{search}%")
+		@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
+	end
+
 end

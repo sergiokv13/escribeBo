@@ -24,6 +24,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string  :demolayID
       t.string  :role
       t.string  :ci
+      t.string :campament
       ## Confirmable
       # t.string   :confirmation_token
       # t.datetime :confirmed_at

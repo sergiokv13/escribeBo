@@ -1,23 +1,25 @@
-<h1>Perfil</h1>
-<h2>Nombre</h2>
-<%= @user.name %>
-<h2>Apellidos</h2>
-<%= @user.lastname %>
-<h2>Demolay ID</h2>
-<%= @user.demolayID %>
-<h2>Rol</h2>
-<%= @user.role %>
-<h2>Carnet de Identidad</h2>
-<%= @user.ci %>
-<h2>Grados</h2>
-<% @user.charges.each do |charge| %>
-  <%= charge.title %><br>
-<% end %>
-<br>
-<% if @user.role == "Demolay" %>
-  <%= link_to "Asignar Maestro Consejero", {:controller => "profiles", :action => "asignar_maestro_consejero", :id => @user.id} %>
-  <%= link_to "Asignar Ilustre Comendador Caballero", {:controller => "profiles", :action => "asignar_comendador", :id => @user.id} %>
-  <%= link_to "Asignar Chevallier", {:controller => "profiles", :action => "asignar_chevallier", :id => @user.id} %>
-<% end %>
-
-
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="center-title">Perfil de <%= @user.fullName %></h1>
+    <div class="col-lg-3">
+      <img src="/assets/user.png" class="img-responsive">
+    </div>
+    <strong>Demolay ID:</strong>
+    <%= @user.demolayID %><br><br>
+    <strong>Rol:</strong>
+    <%= @user.role %><br><br>
+    <strong>Carnet de Identidad:</strong>
+    <%= @user.ci %><br><br>
+    <strong>Grados</strong>
+    <% @user.degrees.each do |degree| %>
+      <%= degree.title %><br>
+    <% end %>
+    <br>
+    <% if @user.role == "Demolay" %>
+      <%= link_to "Asignar Grado Demolay", {:controller => "profiles", :action => "asignar_grado_demolay", :id => @user.id} %>
+      <%= link_to "Asignar Grado Caballero", {:controller => "profiles", :action => "asignar_grado_caballero", :id => @user.id} %>
+      <%= link_to "Asignar Grado Chevallier", {:controller => "profiles", :action => "asignar_grado_chevallier", :id => @user.id} %>
+    <% end %>
+    <br><br><br><br>
+  </div>
+</div>
