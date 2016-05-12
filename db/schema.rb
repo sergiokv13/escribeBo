@@ -20,11 +20,9 @@ ActiveRecord::Schema.define(version: 20160510154729) do
     t.integer  "chapter_president_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
-    t.integer  "demolay_in_charge_id"
   end
 
   add_index "chapters", ["chapter_president_id"], name: "index_chapters_on_chapter_president_id"
-  add_index "chapters", ["demolay_in_charge_id"], name: "index_chapters_on_demolay_in_charge_id"
 
   create_table "charges", force: :cascade do |t|
     t.string   "title"
@@ -60,6 +58,7 @@ ActiveRecord::Schema.define(version: 20160510154729) do
     t.string   "demolayID"
     t.string   "role"
     t.string   "ci"
+    t.string   "campament"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "chapter_consultant_id"
