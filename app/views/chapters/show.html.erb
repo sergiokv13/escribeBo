@@ -22,11 +22,6 @@
       <%= @chapter.chapter_president.name %> <%= @chapter.chapter_president.lastname %>
     </p>
 
-    <p>
-      <h2>Demolay a Cargo:</h2>
-      <%= @chapter.demolay_in_charge.name %> <%= @chapter.demolay_in_charge.lastname %>
-    </p>
-
     <h2>Consultores:</h2>
     <% @chapter.consultants.each do |consultant| %>
       <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>

@@ -23,7 +23,6 @@
               <td><%= chapter.chapter_name %></td>
               <td><%= chapter.chapter_type %></td>
               <td><%= chapter.chapter_president.name %> <%= chapter.chapter_president.lastname %></td>
-              <td><%= chapter.demolay_in_charge.name %> <%= chapter.demolay_in_charge.lastname %></td>
               <td><%= link_to 'Ver', chapter, class: "btn btn-primary" %></td>
               <td><%= link_to 'Editar', edit_chapter_path(chapter), class: "btn btn-warning" %></td>
               <td><%= link_to 'Borrar', chapter, class: "btn btn-danger", method: :delete, data: { confirm: 'Esta seguro que desea borrar este ente?' } %></td>

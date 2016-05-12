@@ -20,4 +20,4 @@ User.create(email:"consultor2@mail.com",password:'arsenal2012',name:'Consultor2'
 User.create(email:"consultor3@mail.com",password:'arsenal2012',name:'Consultor3',lastname:'Prueba',demolayID:'9',role:'Consultor',ci:'1236')
 
 #Chapters
-Chapter.create(chapter_name:"Capitulo 1",chapter_type:"Capitulo",campament:"Cochabamba",chapter_president_id:'4',demolay_in_charge_id:'7')
+Chapter.create(chapter_name:"Capitulo 1",chapter_type:"Capitulo",campament:"Cochabamba",chapter_president_id:'4')
