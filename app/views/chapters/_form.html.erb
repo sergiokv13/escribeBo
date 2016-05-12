@@ -15,13 +15,13 @@
     <%= f.text_field :chapter_name, label: "Nombre" %>
   </div>
   <div class="field">
+    <%= f.select(:campament, options_for_select(@campaments), label: "Campamento") %>
+  </div>
+  <div class="field">
     <%= f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]), label: "Tipo") %>
   </div>
   <div class="field">
     <%= f.collection_select(:chapter_president_id, User.where(:role => "Presidente Consejo Consultivo"), :id, :fullName, label: "Presidente") %>
-  </div>
-  <div class="field">
-    <%= f.collection_select(:demolay_in_charge_id, User.all, :id, :fullName, label: "Demolay a Cargo") %>
   </div>
   <div class="actions">
     <%= f.submit "Crear", class: "btn btn-success" %>
