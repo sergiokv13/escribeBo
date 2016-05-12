@@ -47,7 +47,7 @@
         <%= select_tag(:role, options_for_select(@paraPresidenteConsejoConsultivo), class: "form-control") %>
       <%end%>
 
-      <%if current_user.role == "Consultor"%>
+      <%if current_user.role == "Consultor" || current_user.charges.where(:title => "Maestro Consejero").size!=0 %>
         <%= select_tag(:role, options_for_select(@paraConsultor), class: "form-control") %>
       <%end%>
 

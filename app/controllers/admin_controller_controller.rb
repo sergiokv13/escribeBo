@@ -1,11 +1,15 @@
 class AdminControllerController < ApplicationController
 
 	def newUser
-		@paraOficialEjecutivo = [['Oficial Ejecutivo', 'Oficial Ejecutivo'], ['Diputado', 'Diputado'], ['Delegado Regional', 'Delegado Regional'], ['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
-		@paraDiputado = [['Delegado Regional', 'Delegado Regional'], ['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
-		@paraDelegadoRegional = [['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
-		@paraPresidenteConsejoConsultivo = [['Consultor', 'Consultor'], ['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
-		@paraConsultor = [['Maestro Consejero', 'Maestro Consejero'],['Demolay', 'Demolay']]
+		@paraOficialEjecutivo = [['Oficial Ejecutivo', 'Oficial Ejecutivo'], ['Diputado', 'Diputado'], ['Delegado Regional', 'Delegado Regional'], ['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor']
+		,['Demolay', 'Demolay']]
+		@paraDiputado = [['Delegado Regional', 'Delegado Regional'], ['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor']
+		,['Demolay', 'Demolay']]
+		@paraDelegadoRegional = [['Presidente Consejo Consultivo', 'Presidente Consejo Consultivo'], ['Consultor', 'Consultor']
+		,['Demolay', 'Demolay']]
+		@paraPresidenteConsejoConsultivo = [['Consultor', 'Consultor']
+		,['Demolay', 'Demolay']]
+		@paraConsultor = [['Demolay', 'Demolay']]
 		@paraMaestroConsejero = [['Demolay', 'Demolay']]
 	end
 
