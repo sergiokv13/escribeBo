@@ -24,6 +24,12 @@
     </div>
 
     <div class="form-group">
+      <%= label_tag :campament %>
+      <%= select_tag(:campament, options_for_select(@campaments), class: "form-control") %>
+    </div>
+
+
+    <div class="form-group">
       <%= label_tag :demolayID %>
       <%= text_field_tag :demolayID, nil, class: "form-control" %>
     </div>

@@ -7,6 +7,7 @@ class AdminControllerController < ApplicationController
 		@paraPresidenteConsejoConsultivo = [['Consultor', 'Consultor'],['Demolay', 'Demolay']]
 		@paraConsultor = [['Demolay', 'Demolay']]
 		@paraMaestroConsejero = [['Demolay', 'Demolay']]
+		@campaments = [['Cochabamba','Cochabamba'],['La Paz','La Paz'],['Santa Cruz','Santa Cruz'],['Chuquisaca','Chuquisaca'],['Beni','Beni'],['Oruro','Oruro'],['Pando','Pando'],['Potosi','Potosi'],['Tarija','Tarija']]
 	end
 
 	def createUser
