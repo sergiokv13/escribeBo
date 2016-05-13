@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_many :chapters_created, foreign_key: 'chapter_president_id', class_name: 'Chapter'
   #has_one :chapter_in_charge, foreign_key: 'demolay_in_charge_id', class_name: 'Chapter'
   belongs_to :chapter_consultant, class_name: 'Chapter'
+  belongs_to :chapter
+  belongs_to :priory, class_name: 'Chapter'
+  belongs_to :court, class_name: 'Chapter'
 
   after_create :set_first_degree
 
