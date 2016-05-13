@@ -17,6 +17,7 @@ class AdminControllerController < ApplicationController
 		@user.role = params[:role]
 		@user.demolayID = params[:demolayID]
 		@user.ci = params[:ci]
+		@user.chapter_id = params[:chapter_id]
 		@user.password = params[:ci]
 		@user.password_confirmation = params[:ci]
 		if @user.save
