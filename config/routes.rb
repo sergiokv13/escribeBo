@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :charges
   resource :passwords
 
+  get "/update_chapters" => "admin_controller#update_chapters"
+
   get 'home/index'
 
   devise_for :users

@@ -20,9 +20,6 @@
   <div class="field">
     <%= f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]), label: "Tipo") %>
   </div>
-  <div class="field">
-    <%= f.collection_select(:chapter_president_id, User.where(:role => "Presidente Consejo Consultivo"), :id, :fullName, label: "Presidente") %>
-  </div>
   <div class="actions">
     <%= f.submit "Crear", class: "btn btn-success" %>
     <%= link_to 'Atrás', chapters_path, class: "btn btn-danger" %>

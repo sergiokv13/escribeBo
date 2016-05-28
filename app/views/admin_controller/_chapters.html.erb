@@ -1,0 +1,2 @@
+<%= label_tag :capitulo %>
+<%= select_tag(:chapter_id, options_from_collection_for_select(chapters,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
