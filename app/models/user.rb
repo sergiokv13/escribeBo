@@ -64,22 +64,69 @@ class User < ActiveRecord::Base
   end
 
   def number_of_approvals
-    if role == "Presidente Consejo Consultivo"
+    if self.is_president
       User.where(president_aproved: [false, nil]).count
     end
-    if role == "Delegado Regional"
+    if self.is_deputy
       User.where(deputy_aproved: [false, nil], president_aproved: true).count
     end
-    if role == "Oficial Ejecutivo"
+    if self.is_oficial
       User.where(oficial_aproved: [false, nil], deputy_aproved: true, president_aproved: true).count
     end
   end
 
   def is_aprovator
-    if role == "Presidente Consejo Consultivo" or role == "Delegado Regional" or role == "Oficial Ejecutivo"
+    if self.is_president or self.is_deputy or self.is_oficial
       true
     else
       false
+    end
+  end
+
+  def is_oficial
+    if !self.charges.empty?
+      if self.charges.find_by(title: "Oficial Ejecutivo") != nil
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
+  def is_deputy
+    if !self.charges.empty?
+      if self.charges.find_by(title: "Delegado Regional") != nil
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
+  def is_president
+    if !self.charges.empty?
+      if self.charges.find_by(title: "Presidente Consejo Consultivo") != nil
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
+  def is_consultor
+    if !self.charges.empty?
+      if self.charges.find_by(title: "Consultor") != nil
+        true
+      else
+        false
+      end
+    else
     end
   end
 end

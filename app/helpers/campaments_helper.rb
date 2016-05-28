@@ -1,0 +1,2 @@
+module CampamentsHelper
+end

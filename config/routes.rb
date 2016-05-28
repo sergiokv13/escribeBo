@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :campaments
   resources :chapters
   resources :degrees
   resources :charges

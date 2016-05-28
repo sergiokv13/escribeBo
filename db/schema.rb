@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528035407) do
+ActiveRecord::Schema.define(version: 20160528070913) do
+
+  create_table "campaments", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "president_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "campaments", ["president_id"], name: "index_campaments_on_president_id"
 
   create_table "chapters", force: :cascade do |t|
     t.string   "chapter_name"
@@ -20,8 +29,10 @@ ActiveRecord::Schema.define(version: 20160528035407) do
     t.integer  "chapter_president_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.integer  "campament_id"
   end
 
+  add_index "chapters", ["campament_id"], name: "index_chapters_on_campament_id"
   add_index "chapters", ["chapter_president_id"], name: "index_chapters_on_chapter_president_id"
 
   create_table "charges", force: :cascade do |t|
@@ -68,8 +79,10 @@ ActiveRecord::Schema.define(version: 20160528035407) do
     t.boolean  "president_aproved"
     t.boolean  "deputy_aproved"
     t.boolean  "oficial_aproved"
+    t.integer  "campament_id"
   end
 
+  add_index "users", ["campament_id"], name: "index_users_on_campament_id"
   add_index "users", ["chapter_consultant_id"], name: "index_users_on_chapter_consultant_id"
   add_index "users", ["chapter_id"], name: "index_users_on_chapter_id"
   add_index "users", ["court_id"], name: "index_users_on_court_id"

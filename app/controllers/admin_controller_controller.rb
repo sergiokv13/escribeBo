@@ -2,12 +2,12 @@ class AdminControllerController < ApplicationController
 
 	def newUser
 		@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
-		@campaments = [['Cochabamba','Cochabamba'],['La Paz','La Paz'],['Santa Cruz','Santa Cruz'],['Chuquisaca','Chuquisaca'],['Beni','Beni'],['Oruro','Oruro'],['Pando','Pando'],['Potosi','Potosi'],['Tarija','Tarija']]
+		@campaments = Campament.all
 		@chapters = Chapter.where(:chapter_type =>"Capitulo").all
 	end
 
 	def update_chapters
-	  @chapters = Chapter.where(:campament => params[:campament]).where(:chapter_type =>"Capitulo").all
+	  @chapters = Chapter.where(:campament_id => params[:campament], :chapter_type =>"Capitulo")
 	  render :partial => "chapters", :object => @chapters
 	end
 
@@ -45,28 +45,26 @@ class AdminControllerController < ApplicationController
 	end
 
 	def approvals
-		role = current_user.role
-		if role == "Presidente Consejo Consultivo"
+		if current_user.is_president
 			@users_to_approve = User.where(president_aproved: [false, nil])
 		end
-		if role == "Delegado Regional"
+		if current_user.is_deputy
 			@users_to_approve = User.where(deputy_aproved: [false, nil], president_aproved: true)
 		end
-		if role == "Oficial Ejecutivo"
+		if current_user.is_oficial
 			@users_to_approve = User.where(oficial_aproved: [false, nil], deputy_aproved: true, president_aproved: true)
 		end
 	end
 
 	def approve
 		@user = User.find(params[:id])
-		role = current_user.role
-		if role == "Presidente Consejo Consultivo"
+		if current_user.is_president
 			@user.aprove_president
 		end
-		if role == "Delegado Regional"
+		if current_user.is_deputy
 			@user.aprove_deputy
 		end
-		if role == "Oficial Ejecutivo"
+		if current_user.is_oficial
 			@user.aprove_oficial
 		end
 		redirect_to '/approvals'

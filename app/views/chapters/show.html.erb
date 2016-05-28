@@ -14,7 +14,7 @@
 
     <p>
       <h2>Campamento:</h2>
-      <%= @chapter.campament %>
+      <%= @chapter.campament.name %>
     </p>
 
 
@@ -23,7 +23,7 @@
       <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
     <% end %>
 
-  
+
   </div>
 </div>
 <br>

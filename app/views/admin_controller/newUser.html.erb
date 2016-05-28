@@ -25,7 +25,7 @@
 
     <div class="form-group">
       <%= label_tag :campamento %>
-      <%= select_tag(:campament, options_for_select(@campaments), :onchange => "update_chapters_div(this.value)", class: "form-control",:prompt => "Seleccionar campamento") %>
+      <%= select_tag(:campament, options_from_collection_for_select(@campaments,'id', 'name'), :onchange => "update_chapters_div(this.value)", class: "form-control",:prompt => "Seleccionar campamento") %>
     </div>
 
     <div class="form-group" id="chapterDiv">
@@ -52,7 +52,7 @@
 
 <script type="text/javascript">
   alert("hola");
-  function update_chapters_div(campament) {  
+  function update_chapters_div(campament) {
     jQuery.ajax({
       url: "/update_chapters",
       type: "GET",

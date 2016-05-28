@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @campament.name %>
+</p>
+
+<p>
+  <strong>President:</strong>
+  <%= @campament.president %>
+</p>
+
+<%= link_to 'Edit', edit_campament_path(@campament) %> |
+<%= link_to 'Back', campaments_path %>
