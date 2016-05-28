@@ -1,4 +1,4 @@
-<%= form_for(@campament) do |f| %>
+<%= form_for @campament, html: { multipart: true } do |f| %>
   <% if @campament.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@campament.errors.count, "error") %> prohibited this campament from being saved:</h2>
@@ -15,10 +15,12 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
-    <%= f.label :president_id %><br>
-    <%= f.text_field :president_id %>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

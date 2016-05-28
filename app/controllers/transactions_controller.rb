@@ -1,5 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /transactions
   # GET /transactions.json
@@ -69,6 +70,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:name, :description, :mount)
+      params.require(:transaction).permit(:name, :description, :mount,:image)
     end
 end

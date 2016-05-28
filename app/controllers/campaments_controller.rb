@@ -86,6 +86,6 @@ class CampamentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def campament_params
-      params.require(:campament).permit(:name, :president_id)
+      params.require(:campament).permit(:name, :image)
     end
 end

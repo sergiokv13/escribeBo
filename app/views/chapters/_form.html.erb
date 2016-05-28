@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@chapter) do |f| %>
+<%= bootstrap_form_for @chapter, html: { multipart: true } do |f| %>
   <% if @chapter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@chapter.errors.count, "error") %> prohibited this chapter from being saved:</h2>
@@ -19,6 +19,11 @@
   </div>
   <div class="field">
     <%= f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]), label: "Tipo") %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
   </div>
   <div class="actions">
     <%= f.submit "Crear", class: "btn btn-success" %>

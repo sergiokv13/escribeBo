@@ -4,6 +4,7 @@
   <strong>Name:</strong>
   <%= @campament.name %>
 </p>
+    <%= image_tag @campament.image.url(:medium) %>
    <% if @campament.president!=nil%>
     <p>
 	  <strong>Delegado regional:</strong>

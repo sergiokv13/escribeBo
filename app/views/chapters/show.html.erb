@@ -6,7 +6,7 @@
       <h2>Nombre:</h2>
       <%= @chapter.chapter_name %>
     </p>
-
+     <%= image_tag @chapter.image.url(:medium) %>
     <p>
       <h2>Tipo:</h2>
       <%= @chapter.chapter_type %>
