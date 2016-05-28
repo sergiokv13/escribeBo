@@ -26,19 +26,21 @@ class ChaptersController < ApplicationController
   def gestion
     @chapter = Chapter.find(params[:id])
     @posibles_encargados =  Array.new
-    User.where(:role=>"Demolay").all.each do |user|
-      arr = Array.new
-      arr.push(user.fullName)
-      arr.push(user.id)
-      @posibles_encargados.push(arr)
-    end  
+    User.where(:chapter_id=>@chapter.id).all.each do |pos|
+      if pos.is_degree_demolay
+        @posibles_encargados.push(pos)
+      end
+    end
+    @posibles_presidente =  @chapter.consultants
   end
 
 
   def update_gestion
     @chapter = Chapter.find(params[:id])
     @user = User.find(params[:id_encargado])
+    @conPresident = User.find(params[:presidente_consejo_consultivo])
     @chapter.chapter_president = @user
+    @chapter.chapter_consultant_president = @conPresident
     @chapter.save
     @charge = Charge.new
     @charge.user = @user

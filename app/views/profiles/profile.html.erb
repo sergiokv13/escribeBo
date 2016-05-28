@@ -11,16 +11,19 @@
     <strong>Carnet de Identidad:</strong>
     <%= @user.ci %><br><br>
      <strong>Campamento:</strong>
-    <%= @user.campament %><br><br>
+    <%= @user.campament.name %><br><br>
     <strong>Grados</strong>
     <% @user.degrees.each do |degree| %>
       <%= degree.title %> en <%= degree.chapter.chapter_name %> <br>
     <% end %>
     <br>
-    <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s %>
-    <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s %>
-    <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s %>
-    <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s %>
+    <%if @user.role == "Demolay"%>
+      <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s %>
+      <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s %>
+      <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s %>
+    <%else%>
+      <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s %>
+    <%end%>
     <br><br><br><br>
   </div>
 </div>

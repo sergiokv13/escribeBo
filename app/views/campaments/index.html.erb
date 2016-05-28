@@ -15,9 +15,16 @@
     <% @campaments.each do |campament| %>
       <tr>
         <td><%= campament.name %></td>
-        <td><%= campament.president.fullName %></td>
+        <% if campament.president!=nil%>
+        <p>
+          <td><%= campament.president.fullName %></td>
+        </p>
+          <%else%>
+            <td>La gestion no fue actualizada</td>
+        <%end%>       
         <td><%= link_to 'Show', campament %></td>
         <td><%= link_to 'Edit', edit_campament_path(campament) %></td>
+        <td><%= link_to 'Gestion', "campaments/gestion/"+campament.id.to_s, class: "btn btn-primary" %></td>
         <td><%= link_to 'Destroy', campament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

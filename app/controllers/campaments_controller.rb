@@ -21,6 +21,23 @@ class CampamentsController < ApplicationController
   def edit
   end
 
+
+
+  def gestion
+    @campament = Campament.find(params[:id])
+    @posibles_delegados =  User.where(:role=>"No Demolay").all
+  end
+
+
+  def update_gestion
+    @campament = Campament.find(params[:id])
+    @user = User.find(params[:id_delegado])
+    @campament.president = @user
+    @campament.save
+    redirect_to "/campaments/"+@campament.id.to_s
+  end
+
+
   # POST /campaments
   # POST /campaments.json
   def create

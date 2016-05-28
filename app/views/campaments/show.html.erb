@@ -4,11 +4,16 @@
   <strong>Name:</strong>
   <%= @campament.name %>
 </p>
+   <% if @campament.president!=nil%>
+    <p>
+	  <strong>Delegado regional:</strong>
+	  <%= @campament.president.fullName %>
+	</p>
+    <%else%>
+    	<h3>La gestion no fue actualizada</h3>
+    <%end%>
 
-<p>
-  <strong>President:</strong>
-  <%= @campament.president %>
-</p>
+
 
 <%= link_to 'Edit', edit_campament_path(@campament) %> |
 <%= link_to 'Back', campaments_path %>

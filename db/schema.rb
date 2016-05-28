@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528071857) do
+ActiveRecord::Schema.define(version: 20160528082524) do
 
   create_table "campaments", force: :cascade do |t|
     t.string   "name"
@@ -27,12 +27,14 @@ ActiveRecord::Schema.define(version: 20160528071857) do
     t.string   "chapter_type"
     t.string   "campament"
     t.integer  "chapter_president_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "campament_id"
+    t.integer  "chapter_consultant_president_id"
   end
 
   add_index "chapters", ["campament_id"], name: "index_chapters_on_campament_id"
+  add_index "chapters", ["chapter_consultant_president_id"], name: "index_chapters_on_chapter_consultant_president_id"
   add_index "chapters", ["chapter_president_id"], name: "index_chapters_on_chapter_president_id"
 
   create_table "charges", force: :cascade do |t|
