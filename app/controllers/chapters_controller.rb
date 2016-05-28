@@ -20,9 +20,7 @@ class ChaptersController < ApplicationController
 
   # GET /chapters/1/edit
   def edit
-    @chapter = Chapter.find params[:id]
     @campaments = [['Cochabamba','Cochabamba'],['La Paz','La Paz'],['Santa Cruz','Santa Cruz'],['Chuquisaca','Chuquisaca'],['Beni','Beni'],['Oruro','Oruro'],['Pando','Pando'],['Potosi','Potosi'],['Tarija','Tarija']]
-
   end
 
   # POST /chapters
