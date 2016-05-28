@@ -57,9 +57,12 @@ ActiveRecord::Schema.define(version: 20160528101629) do
   create_table "degrees", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "chapter_id"
+    t.boolean  "president_aproved"
+    t.boolean  "deputy_aproved"
+    t.boolean  "oficial_aproved"
   end
 
   add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id"

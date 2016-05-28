@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
       degree.title = "Iniciatico"
       degree.user_id = id
       degree.chapter_id = self.chapter_id
+      degree.president_aproved = true
+      degree.deputy_aproved = true
+      degree.oficial_aproved = true
       degree.save
     end
   end

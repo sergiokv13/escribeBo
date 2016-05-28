@@ -44,5 +44,6 @@ Rails.application.routes.draw do
   post '/campaments/update_gestion/:id' => "campaments#update_gestion"
   get '/approvals' => 'admin_controller#approvals'
   get '/approve/:id' => 'admin_controller#approve'
+  get '/approve_degree/:id' => 'admin_controller#approve_degree'
 
 end

@@ -48,12 +48,15 @@ class AdminControllerController < ApplicationController
 	def approvals
 		if current_user.is_president
 			@users_to_approve = User.where(president_aproved: [false, nil])
+			@degrees_to_approve = Degree.for_president
 		end
 		if current_user.is_deputy
 			@users_to_approve = User.where(deputy_aproved: [false, nil], president_aproved: true)
+			@degrees_to_approve = Degree.for_deputy
 		end
 		if current_user.is_oficial
 			@users_to_approve = User.where(oficial_aproved: [false, nil], deputy_aproved: true, president_aproved: true)
+			@degrees_to_approve = Degree.for_oficial
 		end
 	end
 
@@ -67,6 +70,20 @@ class AdminControllerController < ApplicationController
 		end
 		if current_user.is_oficial
 			@user.aprove_oficial
+		end
+		redirect_to '/approvals'
+	end
+
+	def approve_degree
+		@degree = Degree.find(params[:id])
+		if current_user.is_president
+			@degree.aprove_president
+		end
+		if current_user.is_deputy
+			@degree.aprove_deputy
+		end
+		if current_user.is_oficial
+			@degree.aprove_oficial
 		end
 		redirect_to '/approvals'
 	end

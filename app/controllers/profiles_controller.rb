@@ -12,6 +12,9 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Demolay"
     @degree.chapter = Chapter.find(params[:chapter_id])
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
     @degree.user_id = params[:id]
     @degree.save
     redirect_to '/profile/'+params[:id]
@@ -27,6 +30,9 @@ class ProfilesController < ApplicationController
     @degree.title = "Caballero"
     @chapter = Chapter.find(params[:chapter_id])
     @degree.chapter = @chapter
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
     @chapter.knights.push(User.find(params[:id]))
     @degree.user_id = params[:id]
     @chapter.save
@@ -43,8 +49,11 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Chevallier"
     @chapter = Chapter.find(params[:chapter_id])
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
     @degree.chapter = @chapter
-    @chapter.chevalliers.push(User.find(params[:id]))    
+    @chapter.chevalliers.push(User.find(params[:id]))
     @degree.user_id = params[:id]
     @chapter.save
     @degree.save
@@ -61,6 +70,9 @@ class ProfilesController < ApplicationController
     @chapter =  Chapter.find(params[:chapter_id])
     @degree = Degree.new
     @degree.title = "Consultor"
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
     @degree.chapter = @chapter
     @chapter.consultants.push(@user)
     @chapter.save
