@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
       degree = Degree.new
       degree.title = "Iniciatico"
       degree.user_id = id
+      degree.chapter_id = self.chapter_id
       degree.save
     end
   end

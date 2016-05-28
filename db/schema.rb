@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(version: 20160528071857) do
     t.string   "demolayID"
     t.string   "role"
     t.string   "ci"
-    t.string   "campament"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.integer  "chapter_consultant_id"
