@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transactions
   resources :campaments
   resources :chapters
   resources :degrees
@@ -34,11 +35,13 @@ Rails.application.routes.draw do
   post '/update_asignar_grado_demolay/:id' => 'profiles#update_asignar_grado_demolay'
   post '/update_asignar_grado_caballero/:id' => 'profiles#update_asignar_grado_caballero'
   post '/update_asignar_grado_chevallier/:id' => 'profiles#update_asignar_grado_chevallier'
+  get 'campaments/gestion/:id' => "campaments#gestion"
+
   get '/gestion/:id' => 'chapters#gestion'
   get '/asignar_consultor/:id' => 'profiles#asignar_consultor'
   post '/update_asignar_consultor/:id' => 'profiles#update_asignar_consultor'
   post '/search' => 'admin_controller#search'
-
+  post '/campaments/update_gestion/:id' => "campaments#update_gestion"
   get '/approvals' => 'admin_controller#approvals'
   get '/approve/:id' => 'admin_controller#approve'
   get '/approve_degree/:id' => 'admin_controller#approve_degree'

@@ -134,4 +134,41 @@ class User < ActiveRecord::Base
     else
     end
   end
+
+  def is_degree_demolay
+    if !self.degrees.empty?
+      if self.degrees.find_by(title: "Demolay") != nil
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
+  def is_degree_caballero
+    if !self.degrees.empty?
+      if self.degrees.find_by(title: "Caballero") != nil
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
+  def is_degree_chevallier
+    if !self.degrees.empty?
+      if self.degrees.find_by(title: "Caballero") != nil
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
 end

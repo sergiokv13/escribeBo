@@ -14,19 +14,48 @@
 
     <p>
       <h2>Campamento:</h2>
-      <%= @chapter.campament.name %>
+      <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>
     </p>
+    <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil%>
+       <p>
+        <h2>Encargado:</h2>
+         <%= link_to @chapter.chapter_president.fullName, "/profile/"+@chapter.chapter_president.id.to_s %><br>
+      </p>
 
-     <p>
-      <h2>Encargado:</h2>
-      <%= @chapter.chapter_president.fullName %>
-    </p>
-
+      <p>
+        <h2>Presidente consejo consultivo</h2>
+        <%= link_to @chapter.chapter_consultant_president.fullName, "/profile/"+@chapter.chapter_consultant_president.id.to_s %><br>
+      </p>
+    <%else%>
+    <h3>La gestion no fue actualizada</h3>
+    <%end%>
 
     <h2>Consultores:</h2>
     <% @chapter.consultants.each do |consultant| %>
       <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
     <% end %>
+
+    <%if @chapter.chapter_type == "Capitulo"%>
+      <h2>Miembros:</h2>
+      <% @chapter.demolays.where(:role=>"Demolay").each do |demolay| %>
+        <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
+      <% end %>
+    <% end %>
+
+    <%if @chapter.chapter_type == "Priorato"%>
+      <h2>Caballeros:</h2>
+      <% @chapter.knights.where(:role=>"Demolay").each do |demolay| %>
+        <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
+      <% end %>
+    <% end %>
+
+    <%if @chapter.chapter_type == "Corte"%>
+      <h2>Chevalliers:</h2>
+      <% @chapter.chevalliers.each do |demolay| %>
+        <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
+      <% end %>
+    <% end %>
+
 
 
   </div>
