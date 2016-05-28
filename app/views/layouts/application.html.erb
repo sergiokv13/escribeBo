@@ -26,6 +26,9 @@
             <% if user_signed_in? %>
               <ul class="nav navbar-nav">
                 <li><a href="/users">Usuarios <span class="sr-only">(current)</span></a></li>
+                <% if current_user.is_aprovator %>
+                  <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
+                <% end %>
                 <li><a href="/chapters">Entes</a></li>
               </ul>
               <%= form_tag("/search", method:"post", class: "navbar-form navbar-left") do %>

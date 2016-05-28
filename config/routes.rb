@@ -32,5 +32,7 @@ Rails.application.routes.draw do
 
   post '/search' => 'admin_controller#search'
 
+  get '/approvals' => 'admin_controller#approvals'
+  get '/approve/:id' => 'admin_controller#approve'
 
 end

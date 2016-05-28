@@ -1,8 +1,7 @@
 <div class="container">
-  <h1 class="center-title">Listado de usuarios</h1>
+  <h1 class="center-title">Listado de usuarios a aprobar</h1>
   <div class="col-lg-1"></div>
   <div class="col-lg-10">
-    <a href="/newUser" class="btn btn-success">Crear Usuario</a>
     <br><br>
     <div class="table-responsive">
       <table class="table table-bordered table-hover table-striped">
@@ -15,11 +14,11 @@
             <th>Correo Electrónico</th>
             <th>Capitulo</th>
             <th>Estado</th>
-            <th>Opciones</th>
+            <th colspan="2">Opciones</th>
           </tr>
         </thead>
         <tbody>
-          <% @users.each do |user| %>
+          <% @users_to_approve.each do |user| %>
             <tr>
               <td><%= user.fullName %></td>
               <td><%= user.demolayID %></td>
@@ -28,6 +27,7 @@
               <td><%= user.email %></td>
               <td><%= user.chapter.chapter_name %></td>
               <td><%= user.status %></td>
+              <td><%= link_to "Aprobar", "/approve/"+user.id.to_s, class: "btn btn-success" %></td>
               <td><%= link_to "Ver perfil", "/profile/"+user.id.to_s, class: "btn btn-primary" %></td>
             </tr>
           <% end %>

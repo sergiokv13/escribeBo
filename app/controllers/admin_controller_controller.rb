@@ -21,6 +21,9 @@ class AdminControllerController < ApplicationController
 		@user.chapter_id = params[:chapter_id]
 		@user.password = params[:ci]
 		@user.password_confirmation = params[:ci]
+		@user.president_aproved = false
+		@user.deputy_aproved = false
+		@user.oficial_aproved = false
 		if @user.save
 			flash[:notice] = "El usuario fue creado correctamente."
 			redirect_to "/"
@@ -38,6 +41,34 @@ class AdminControllerController < ApplicationController
 		search = params[:search]
 		@users = User.where("name LIKE ?","%#{search}%")
 		@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
+	end
+
+	def approvals
+		role = current_user.role
+		if role == "Presidente Consejo Consultivo"
+			@users_to_approve = User.where(president_aproved: [false, nil])
+		end
+		if role == "Delegado Regional"
+			@users_to_approve = User.where(deputy_aproved: [false, nil], president_aproved: true)
+		end
+		if role == "Oficial Ejecutivo"
+			@users_to_approve = User.where(oficial_aproved: [false, nil], deputy_aproved: true, president_aproved: true)
+		end
+	end
+
+	def approve
+		@user = User.find(params[:id])
+		role = current_user.role
+		if role == "Presidente Consejo Consultivo"
+			@user.aprove_president
+		end
+		if role == "Delegado Regional"
+			@user.aprove_deputy
+		end
+		if role == "Oficial Ejecutivo"
+			@user.aprove_oficial
+		end
+		redirect_to '/approvals'
 	end
 
 end

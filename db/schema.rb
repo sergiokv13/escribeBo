@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513212026) do
+ActiveRecord::Schema.define(version: 20160528035407) do
 
   create_table "chapters", force: :cascade do |t|
     t.string   "chapter_name"
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20160513212026) do
     t.integer  "chapter_id"
     t.integer  "priory_id"
     t.integer  "court_id"
+    t.boolean  "president_aproved"
+    t.boolean  "deputy_aproved"
+    t.boolean  "oficial_aproved"
   end
 
   add_index "users", ["chapter_consultant_id"], name: "index_users_on_chapter_consultant_id"
