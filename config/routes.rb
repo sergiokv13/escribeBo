@@ -41,5 +41,6 @@ Rails.application.routes.draw do
 
   get '/approvals' => 'admin_controller#approvals'
   get '/approve/:id' => 'admin_controller#approve'
+  get '/approve_degree/:id' => 'admin_controller#approve_degree'
 
 end

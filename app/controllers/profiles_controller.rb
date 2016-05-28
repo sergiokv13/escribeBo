@@ -12,6 +12,9 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Demolay"
     @degree.chapter = Chapter.find(params[:chapter_id])
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
     @degree.user_id = params[:id]
     @degree.save
     redirect_to '/profile/'+params[:id]
@@ -26,6 +29,9 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Caballero"
     @degree.chapter = Chapter.find(params[:chapter_id])
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
     @degree.user_id = params[:id]
     @degree.save
     redirect_to '/profile/'+params[:id]
@@ -40,6 +46,9 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Chevallier"
     @degree.chapter = Chapter.find(params[:chapter_id])
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
     @degree.user_id = params[:id]
     @degree.save
     redirect_to '/profile/'+params[:id]
@@ -55,6 +64,9 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Consultor"
     @degree.chapter = Chapter.find(params[:chapter_id])
+   president_aprovede.ufalse
+   deputy_aprovede.ufalse
+   oficial_aprovede.ufalse
     @degree.user = @user
     @degree.save
     redirect_to "/profile/"+@user.id.to_s

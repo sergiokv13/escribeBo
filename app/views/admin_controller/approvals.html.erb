@@ -1,38 +1,82 @@
 <div class="container">
-  <h1 class="center-title">Listado de usuarios a aprobar</h1>
-  <div class="col-lg-1"></div>
-  <div class="col-lg-10">
-    <br><br>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Demolay ID</th>
-            <th>Rol</th>
-            <th>CI</th>
-            <th>Correo Electrónico</th>
-            <th>Capitulo</th>
-            <th>Estado</th>
-            <th colspan="2">Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users_to_approve.each do |user| %>
+  <div class="row">
+    <h1 class="center-title">Listado de usuarios a aprobar</h1>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <br><br>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
             <tr>
-              <td><%= user.fullName %></td>
-              <td><%= user.demolayID %></td>
-              <td><%= user.role %></td>
-              <td><%= user.ci %></td>
-              <td><%= user.email %></td>
-              <td><%= user.chapter.chapter_name %></td>
-              <td><%= user.status %></td>
-              <td><%= link_to "Aprobar", "/approve/"+user.id.to_s, class: "btn btn-success" %></td>
-              <td><%= link_to "Ver perfil", "/profile/"+user.id.to_s, class: "btn btn-primary" %></td>
+              <th>Nombre</th>
+              <th>Demolay ID</th>
+              <th>Rol</th>
+              <th>CI</th>
+              <th>Correo Electrónico</th>
+              <th>Capitulo</th>
+              <th>Estado</th>
+              <th colspan="2">Opciones</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <% @users_to_approve.each do |user| %>
+              <tr>
+                <td><%= user.fullName %></td>
+                <td><%= user.demolayID %></td>
+                <td><%= user.role %></td>
+                <td><%= user.ci %></td>
+                <td><%= user.email %></td>
+                <td><%= user.chapter.chapter_name %></td>
+                <td><%= user.status %></td>
+                <td><%= link_to "Aprobar", "/approve/"+user.id.to_s, class: "btn btn-success" %></td>
+                <td><%= link_to "Ver perfil", "/profile/"+user.id.to_s, class: "btn btn-primary" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h1 class="center-title">Listado de grados a aprobar</h1>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <br><br>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Titulo a aprobar</th>
+              <th>Capitulo</th>
+              <th>Usuario</th>
+              <th>Aprobado por</th>
+              <th colspan="2">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @degrees_to_approve.each do |degree| %>
+              <tr>
+                <td><%= degree.title %></td>
+                <td><%= degree.chapter.chapter_name %></td>
+                <td><%= degree.user.fullName %></td>
+                <% if current_user.is_deputy %>
+                  <td>
+                    <%= degree.chapter.chapter_president.fullName %><br>
+                  </td>
+                <% end %>
+                <% if current_user.is_oficial %>
+                  <td>
+                    <%= degree.chapter.chapter_president.fullName %><br>
+                    <%= degree.chapter.campament.president.fullName %><br>
+                  </td>
+                <% end %>
+                <td><%= link_to "Aprobar", "/approve_degree/"+degree.id.to_s, class: "btn btn-success" %></td>
+                <td><%= link_to "Ver perfil", "/profile/"+degree.id.to_s, class: "btn btn-primary" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -25,6 +25,9 @@ class DegreesController < ApplicationController
   # POST /degrees.json
   def create
     @degree = Degree.new(degree_params)
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
 
     respond_to do |format|
       if @degree.save
