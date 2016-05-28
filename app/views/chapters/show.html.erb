@@ -17,6 +17,11 @@
       <%= @chapter.campament.name %>
     </p>
 
+     <p>
+      <h2>Encargado:</h2>
+      <%= @chapter.chapter_president.fullName %>
+    </p>
+
 
     <h2>Consultores:</h2>
     <% @chapter.consultants.each do |consultant| %>

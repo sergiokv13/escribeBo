@@ -1,0 +1,19 @@
+<div class="row text-center">
+	<h1><%=@chapter.chapter_name%></h1>
+	<h2><%=@chapter.chapter_type%></h2>
+	<h3><%=@chapter.campament%></h3>
+	<hr class="divider">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+	<%= form_tag("/update_gestion/"+@chapter.id.to_s,method:"post") do %>
+		<div class="form-group">
+	      <%= label_tag :encargado %>
+	      <%= select_tag(:id_encargado, options_for_select(@posibles_encargados), class: "form-control",:prompt => "Seleccionar encargado") %>
+	   </div>
+	    <div class="actions">
+	      <%= submit_tag "Actualizar gestion", class: "btn btn-success" %>
+	      <%= link_to "Atrás", '/chapters', class: "btn btn-danger" %>
+	    </div>
+	<%end%>
+    </div>
+</div>

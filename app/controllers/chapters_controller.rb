@@ -23,6 +23,39 @@ class ChaptersController < ApplicationController
     @campaments = Campament.all
   end
 
+  def gestion
+    @chapter = Chapter.find(params[:id])
+    @posibles_encargados =  Array.new
+    User.where(:role=>"Demolay").all.each do |user|
+      arr = Array.new
+      arr.push(user.fullName)
+      arr.push(user.id)
+      @posibles_encargados.push(arr)
+    end  
+  end
+
+
+  def update_gestion
+    @chapter = Chapter.find(params[:id])
+    @user = User.find(params[:id_encargado])
+    @chapter.chapter_president = @user
+    @chapter.save
+    @charge = Charge.new
+    @charge.user = @user
+    if @chapter.chapter_type == "Capitulo"
+      @charge.title = "Maestro Consejero"
+    end
+    if @chapter.chapter_type == "Priorato"
+      @charge.title = "Ilustre Comendador Caballero"
+    end
+    if @chapter.chapter_type == "Corte"
+      @charge.title = "Gran Comendador Chevalier"
+    end
+    @charge.save
+
+    redirect_to "/chapters/"+@chapter.id.to_s
+  end
+
   # POST /chapters
   # POST /chapters.json
   def create
@@ -61,14 +94,6 @@ class ChaptersController < ApplicationController
       format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
       format.json { head :no_content }
     end
-  end
-
-  def addConsultant
-    @consultant = User.find(params[:consultant])
-    chapter_id = params[:chapter_id].first.first
-    @consultant.chapter_consultant_id = chapter_id
-    @consultant.save
-    redirect_to '/chapters/'+chapter_id
   end
 
   private
