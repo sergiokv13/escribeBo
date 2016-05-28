@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   belongs_to :chapter
   belongs_to :priory, class_name: 'Chapter'
   belongs_to :court, class_name: 'Chapter'
+  belongs_to :campament
 
   after_create :set_first_degree
 

@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
 
   def asignar_grado_demolay
     @user = User.find(params[:id])
-    @opciones_capitulo = Chapter.all.where(:campament=>@user.campament)
+    @opciones_capitulo = Chapter.all.where(:campament_id=>@user.campament.id)
   end
 
   def update_asignar_grado_demolay
@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
 
   def asignar_grado_caballero
     @user = User.find(params[:id])
-    @opciones_capitulo = Chapter.all.where(:campament=>@user.campament)
+    @opciones_capitulo = Chapter.all.where(:campament_id=>@user.campament.id)
   end
 
   def update_asignar_grado_caballero
@@ -33,7 +33,7 @@ class ProfilesController < ApplicationController
 
   def asignar_grado_chevallier
     @user = User.find(params[:id])
-    @opciones_capitulo = Chapter.all.where(:campament=>@user.campament)
+    @opciones_capitulo = Chapter.all.where(:campament_id=>@user.campament.id)
   end
 
   def update_asignar_grado_chevallier
@@ -47,7 +47,7 @@ class ProfilesController < ApplicationController
 
   def asignar_consultor
     @user = User.find(params[:id])
-    @opciones_capitulo = Chapter.all.where(:campament=>@user.campament)
+    @opciones_capitulo = Chapter.all.where(:campament_id=>@user.campament.id)
   end
 
   def update_asignar_consultor
