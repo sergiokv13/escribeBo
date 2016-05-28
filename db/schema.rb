@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513212026) do
+ActiveRecord::Schema.define(version: 20160528071857) do
 
   create_table "chapters", force: :cascade do |t|
     t.string   "chapter_name"
@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 20160513212026) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "chapter_id"
   end
 
+  add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id"
   add_index "degrees", ["user_id"], name: "index_degrees_on_user_id"
 
   create_table "users", force: :cascade do |t|

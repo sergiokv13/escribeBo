@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
       degree.save
     end
   end
+
+
   def fullName
     name+" "+lastname
   end

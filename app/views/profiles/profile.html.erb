@@ -10,16 +10,17 @@
     <%= @user.role %><br><br>
     <strong>Carnet de Identidad:</strong>
     <%= @user.ci %><br><br>
+     <strong>Campamento:</strong>
+    <%= @user.campament %><br><br>
     <strong>Grados</strong>
     <% @user.degrees.each do |degree| %>
-      <%= degree.title %><br>
+      <%= degree.title %> en <%= degree.chapter.chapter_name %> <br>
     <% end %>
     <br>
-    <% if @user.role == "Demolay" %>
-      <%= link_to "Asignar Grado Demolay", {:controller => "profiles", :action => "asignar_grado_demolay", :id => @user.id} %>
-      <%= link_to "Asignar Grado Caballero", {:controller => "profiles", :action => "asignar_grado_caballero", :id => @user.id} %>
-      <%= link_to "Asignar Grado Chevallier", {:controller => "profiles", :action => "asignar_grado_chevallier", :id => @user.id} %>
-    <% end %>
+    <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s %>
+    <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s %>
+    <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s %>
+    <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s %>
     <br><br><br><br>
   </div>
 </div>

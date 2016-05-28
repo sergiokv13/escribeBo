@@ -1,0 +1,17 @@
+<div class="row text-center">
+	<h1><%=@user.fullName%></h1>
+	<hr class="divider">
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+	<%= form_tag("/update_asignar_grado_caballero/"+@user.id.to_s,method:"post") do %>
+		<div class="form-group">
+	      <%= label_tag :capitulo %>
+	      <%= select_tag(:chapter_id, options_from_collection_for_select(@opciones_capitulo,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
+	   </div>
+	    <div class="actions">
+	      <%= submit_tag "Volver caballero al usuario", class: "btn btn-success" %>
+	      <%= link_to "Atrás", '/profile/'+@user.id.to_s, class: "btn btn-danger" %>
+	    </div>
+	<%end%>
+    </div>
+</div>
