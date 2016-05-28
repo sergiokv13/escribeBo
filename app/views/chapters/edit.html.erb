@@ -1,7 +1,12 @@
 <div class="container">
   <div class="col-lg-2"></div>
-  <div class="col-lg-8">
+  <div class="col-lg-8 text-center">
     <h1 class="center-title">Editar Ente</h1>
-    <%= render 'form' %>
+    <hr class="divider">
+    <h1><%=@chapter.chapter_name%></h1>
+  	<h2><%=@chapter.chapter_type%></h2>
+  	<h3><%=@chapter.campament%></h3>
+  	<hr class="divider">
+  	<%= render 'formedit' %>
   </div>
 </div>

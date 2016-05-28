@@ -17,30 +17,13 @@
       <%= @chapter.campament %>
     </p>
 
-    <p>
-      <h2>Presidente Encargado:</h2>
-      <%= @chapter.chapter_president.name %> <%= @chapter.chapter_president.lastname %>
-    </p>
 
     <h2>Consultores:</h2>
     <% @chapter.consultants.each do |consultant| %>
       <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
     <% end %>
 
-    <h1>Agregar consultor</h1>
-    <%= form_tag("/addConsultant",method:"post") do %>
-      <div class="field">
-        <%= select_tag(:consultant, options_for_select(User.where(:role => 'Consultor').collect{ |c| [c.fullName, c.id] }), class: "form-control") %>
-      </div>
-      <div class="field">
-        <%= hidden_field :chapter_id, @chapter.id %>
-      </div>
-      <br>
-      <div class="actions">
-        <%= submit_tag "Añadir Consultor", class: "btn btn-success" %>
-        <%= link_to 'Atrás', chapters_path, class: "btn btn-danger" %>
-      </div>
-    <% end %>
+  
   </div>
 </div>
 <br>

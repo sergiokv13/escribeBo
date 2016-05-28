@@ -5,7 +5,7 @@ class PasswordsController < ApplicationController
   def update
     if current_user.update_with_password(user_params)
       flash[:notice] = 'password update succeed..'
-      render :edit
+      redirect_to "/"
     else
       flash[:error] = 'password update failed.'
       render :edit
