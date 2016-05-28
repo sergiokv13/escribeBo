@@ -25,7 +25,6 @@ class DegreesController < ApplicationController
   # POST /degrees.json
   def create
     @degree = Degree.new(degree_params)
-
     respond_to do |format|
       if @degree.save
         format.html { redirect_to @degree, notice: 'Degree was successfully created.' }
