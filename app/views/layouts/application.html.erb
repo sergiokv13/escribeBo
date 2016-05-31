@@ -4,6 +4,7 @@
     <title>EscribeBo</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "https://www.google.com/jsapi" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -30,7 +31,14 @@
                   <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
                 <% end %>
                 <li><a href="/chapters">Entes</a></li>
-                <li><a href="/transactions">Transacciones</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transacciones<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/pendingTransactions">Pendientes</a></li>
+                    <li><a href="/aprovedTransactions">Archivadas</a></li>
+                    <li><a href="/reports">Reportes</a></li>
+                  </ul>
+                </li>
                 <li><a href="/campaments">Campamentos</a></li>
                 <li><a href="/announcements">Boletin</a></li>
               </ul>

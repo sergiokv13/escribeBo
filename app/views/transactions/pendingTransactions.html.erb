@@ -11,7 +11,7 @@
           <table class="table table-hover table-bordered table-striped">
             <thead>
               <tr>
-                <td>Tipo</td>
+                <th>Tipo</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Mount</th>
@@ -30,7 +30,7 @@
                   <td>Bs. <%= transaction.mount %></td>
                   <td><%= transaction.user.fullName %></td>
                   <td><%= transaction.status %></td>
-                  <% if current_user.is_oficial and !transaction.aproved? %>
+                  <% if current_user.is_oficial %>
                     <td><%= link_to 'Aprobar', '/aproveTransaction/' + transaction.id.to_s %></td>
                   <% else %>
                     <td></td>

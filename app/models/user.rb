@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   belongs_to :court, class_name: 'Chapter'
   belongs_to :campament
 
+  has_many :transactions
+
   after_create :set_first_degree
 
   def active_for_authentication?
@@ -169,6 +171,22 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def is_diputado
+    if self.charges.find_by(title: "Diputado") != nil
+      true
+    else
+      false
+    end
+  end
+
+  def pendingTransactions
+    self.transactions.where(aproved: false)
+  end
+
+  def aprovedTransactions
+    self.transactions.where(aproved: true)
   end
 
 end

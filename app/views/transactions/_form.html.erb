@@ -23,10 +23,14 @@
     <%= f.label :mount %><br>
     <%= f.number_field :mount %>
   </div>
-  
+
   <div class="field">
     <%= f.label :image %><br>
     <%= f.file_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.select :transaction_type, options_for_select(@types) %>
   </div>
   <div class="actions">
     <%= f.submit %>

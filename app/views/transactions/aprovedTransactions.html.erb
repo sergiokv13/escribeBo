@@ -7,17 +7,23 @@
 
         <h1>Listing Transactions</h1>
 
+        <% if current_user.is_oficial or current_user.is_diputado %>
+          <hr class="divider">
+          <h3>Balance hasta la fecha:</h3>
+          Bs. <%= @balance %>
+        <% end %>
+        <hr class="divider">
         <div class="table-responsive">
           <table class="table table-hover table-bordered table-striped">
             <thead>
               <tr>
-                <td>Tipo</td>
+                <th>Tipo</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Mount</th>
                 <th>Usuario</th>
                 <th>Estado</th>
-                <th colspan="4">Operaciones</th>
+                <th>Operaciones</th>
               </tr>
             </thead>
 
@@ -28,21 +34,9 @@
                   <td><%= transaction.name %></td>
                   <td><%= transaction.description %></td>
                   <td>Bs. <%= transaction.mount %></td>
-                  <td><%= transaction.user.fullName %></td>
+                  <td><%= link_to transaction.user.fullName, '/profile/'+transaction.user.id.to_s %></td>
                   <td><%= transaction.status %></td>
-                  <% if current_user.is_oficial and !transaction.aproved? %>
-                    <td><%= link_to 'Aprobar', '/aproveTransaction/' + transaction.id.to_s %></td>
-                  <% else %>
-                    <td></td>
-                  <% end %>
                   <td><%= link_to 'Ver detalle', transaction %></td>
-                  <% if !transaction.aproved? %>
-                    <td><%= link_to 'Editar', edit_transaction_path(transaction) %></td>
-                    <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% else %>
-                    <td></td>
-                    <td></td>
-                  <% end %>
                 </tr>
               <% end %>
             </tbody>
@@ -55,3 +49,4 @@
     </div>
   </div>
 </div>
+

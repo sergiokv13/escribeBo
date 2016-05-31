@@ -1,11 +1,15 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
-  
+
 
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    if current_user.is_oficial or current_user.is_diputado
+      @transactions = Transaction.all
+    else
+      @transactions = current_user.transactions
+    end
   end
 
   # GET /transactions/1
@@ -16,6 +20,7 @@ class TransactionsController < ApplicationController
   # GET /transactions/new
   def new
     @transaction = Transaction.new
+    @types = [['Ingreso', 'Ingreso'], ['Egreso', 'Egreso']]
   end
 
   # GET /transactions/1/edit
@@ -27,6 +32,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(transaction_params)
     @transaction.user_id = current_user.id
+    @transaction.aproved = false
     respond_to do |format|
       if @transaction.save
         format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
@@ -62,6 +68,42 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def aproveTransaction
+    if current_user.charges.find_by(title: "Oficial Ejecutivo").title == "Oficial Ejecutivo"
+      id = params[:id]
+      transaction = Transaction.find(id)
+      transaction.aprove
+      redirect_to '/pendingTransactions'
+    end
+  end
+
+  def pendingTransactions
+    if current_user.is_oficial or current_user.is_diputado
+      @transactions = Transaction.pendingTransactions
+    else
+      @transactions = current_user.pendingTransactions
+    end
+  end
+
+  def aprovedTransactions
+    if current_user.is_oficial or current_user.is_diputado
+      @transactions = Transaction.aprovedTransactions
+    else
+      @transactions = current_user.aprovedTransactions
+    end
+    @balance = Transaction.balance
+  end
+
+  def reports
+
+  end
+
+  def generateReport
+    @year = params[:date]["year"]
+    @month = params[:date]["month"]
+    @transactions = Transaction.this_month_results(@year, @month)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction
@@ -70,6 +112,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:name, :description, :mount,:image)
+      params.require(:transaction).permit(:name, :description, :mount, :image, :transaction_type)
     end
 end

@@ -46,5 +46,10 @@ Rails.application.routes.draw do
   get '/approvals' => 'admin_controller#approvals'
   get '/approve/:id' => 'admin_controller#approve'
   get '/approve_degree/:id' => 'admin_controller#approve_degree'
+  get '/aproveTransaction/:id' => 'transactions#aproveTransaction'
+  get '/pendingTransactions' => 'transactions#pendingTransactions'
+  get '/aprovedTransactions' => 'transactions#aprovedTransactions'
+  get '/reports' => 'transactions#reports'
+  post '/generateReport' => 'transactions#generateReport'
 
 end
