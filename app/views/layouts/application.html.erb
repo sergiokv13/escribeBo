@@ -9,7 +9,7 @@
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
@@ -30,7 +30,7 @@
                 <% if current_user.is_aprovator %>
                   <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
                 <% end %>
-                <li><a href="/chapters">Entes</a></li>
+
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transacciones<span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -39,7 +39,27 @@
                     <li><a href="/reports">Reportes</a></li>
                   </ul>
                 </li>
+
+                <% if !current_user.is_oficial%>
+
                 <li><a href="/campaments">Campamentos</a></li>
+                  <li><a href="/chapters">Cuerpos Demolay</a></li>
+                <%else%>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Campamentos <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/campaments">Campamentos</a></li>
+                        <li><a href="/campaments/new">Crear Campamento</a></li>
+                      </ul>
+                  </li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuerpos Demolay <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/chapters">Cuerpos DeMolay</a></li>
+                        <li><a href="/chapters/new">Crear Cuerpo</a></li>
+                      </ul>
+                  </li>
+                <%end%>
                 <li><a href="/announcements">Boletin</a></li>
                 <li><a href="/inboxes">Inbox(<%=current_user.get_not_seen%>)</a></li>
               </ul>

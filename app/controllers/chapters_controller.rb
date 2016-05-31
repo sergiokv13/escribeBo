@@ -5,6 +5,9 @@ class ChaptersController < ApplicationController
   # GET /chapters.json
   def index
     @chapters = Chapter.all
+    @capitulos = Chapter.where(:chapter_type => "Capitulo")
+    @prioratos = Chapter.where(:chapter_type => "Priorato")
+    @cortes = Chapter.where(:chapter_type => "Corte")
   end
 
   # GET /chapters/1

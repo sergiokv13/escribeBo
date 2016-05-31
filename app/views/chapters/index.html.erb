@@ -1,33 +1,37 @@
+<h1 class="text-center" style="margin-bottom:15px;">Cuerpos Demolay</h1>
 <div class="container">
-  <div class="col-lg-1"></div>
-  <div class="col-lg-10">
-    <p id="notice"><%= notice %></p>
-    <h1 class="center-title">Listado de Entes</h1>
-    <%= link_to 'Crear Ente', new_chapter_path, class: "btn btn-success" %>
-    <br><br>
-    <div class="table-responsive">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Tipo de Ente</th>
-            <th colspan="4">Opciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @chapters.each do |chapter| %>
-            <tr>
-              <td><%= chapter.chapter_name %></td>
-              <td><%= chapter.chapter_type %></td>
-              <td><%= link_to 'Ver', chapter, class: "btn btn-primary" %></td>
-              <td><%= link_to 'Gestion', "/gestion/"+chapter.id.to_s, class: "btn btn-primary" %></td>
-              <td><%= link_to 'Editar', edit_chapter_path(chapter), class: "btn btn-warning" %></td>
-              <td><%= link_to 'Borrar', chapter, class: "btn btn-danger", method: :delete, data: { confirm: 'Esta seguro que desea borrar este ente?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+  <h2>Capitulos</h2>
+  <% @capitulos.each do |chapter| %>
+    <div class="col-lg-4">
+      <a class="image_link" href="/chapter/<%=chapter.id%>">
+      <div class="image_name"><%=chapter.chapter_name%></div>
+        <img class="img-responsive" src="<%=chapter.image.url%>">
+      </a>
     </div>
-  </div>
+  <%end%>
 </div>
+
+<div class="container">
+  <h2>Prioratos</h2>
+  <% @prioratos.each do |chapter| %>
+    <div class="col-lg-4">
+      <a class="image_link" href="/chapter/<%=chapter.id%>">
+      <div class="image_name"><%=chapter.chapter_name%></div>
+        <img class="img-responsive" src="<%=chapter.image.url%>">
+      </a>
+    </div>
+  <%end%>
+</div>
+
+<div class="container">
+  <h2>Cortes</h2>
+  <% @cortes.each do |chapter| %>
+    <div class="col-lg-4">
+      <a class="image_link" href="/chapter/<%=chapter.id%>">
+      <div class="image_name"><%=chapter.chapter_name%></div>
+        <img class="img-responsive" src="<%=chapter.image.url%>">
+      </a>
+    </div>
+  <%end%>
+</div>
+
