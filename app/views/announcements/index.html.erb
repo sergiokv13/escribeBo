@@ -1,6 +1,29 @@
 <h1>NewsFeed</h1>
+
+
 <%@publicaciones_para_mostrar.each do |publicacion|%>
-  <%=publicacion.subject%>
-  <%=publicacion.content%>
-  <hr class="divider">
+	<div class="publicacion row">
+			<div class="col-lg-3"></div>
+			<div class="col-lg-6">
+				<div class="image col-lg-12">
+				  <div class="image col-lg-2">
+				  	<img src="<%=current_user.image%>" class="img-responsive">
+				  </div>
+				  <div class="name"> <a href="/profiles/<%=current_user.id%>"><%=current_user.fullName%></a></div>
+				  <div class="campament">  <a href="/campaments/<%=publicacion.campament.id%>"><%=publicacion.campament.name%></a>
+				  </div>
+				  <%if publicacion.chapter!=nil%>
+				  	<div class="chapter"><a href="/chapters/<%=publicacion.chapter.id%>"><%=publicacion.chapter.chapter_name%></a>
+				  	</div>
+				  <%end%>
+				  </div>
+				  <div class="col-lg-12" style="margin-top:5px;">
+				  	<strong><%=publicacion.subject%></strong><br>
+				  	<%=publicacion.content%>
+				  </div>
+			</div>
+			
+	</div>
+
 <%end%>
+

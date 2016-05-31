@@ -80,3 +80,15 @@ h2{
     color: white;
 }
 
+.campament{
+  font-size: 10px;
+}
+
+.chapter{
+  font-size: 10px;
+}
+
+.publicacion{
+  border-bottom:solid #777 1px;
+  padding: 5px;
+}
