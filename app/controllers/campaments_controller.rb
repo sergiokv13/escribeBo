@@ -10,6 +10,17 @@ class CampamentsController < ApplicationController
   # GET /campaments/1
   # GET /campaments/1.json
   def show
+    @publicaciones_para_mostrar = Array.new
+    publicaciones = @campament.announcements
+    if current_user.is_oficial
+      @publicaciones_para_mostrar = publicaciones
+    else
+      publicaciones.each do |publicacion|
+        if publicacion.aprobada(current_user)
+          @publicaciones_para_mostrar.push(publicacion)
+        end
+      end
+    end
   end
 
   # GET /campaments/new
@@ -26,13 +37,16 @@ class CampamentsController < ApplicationController
   def gestion
     @campament = Campament.find(params[:id])
     @posibles_delegados =  User.where(:role=>"No Demolay").all
+    @posibles_maestros =  User.where(:role=>"Demolay").all
   end
 
 
   def update_gestion
     @campament = Campament.find(params[:id])
     @user = User.find(params[:id_delegado])
+    @user2 = User.find(params[:id_maestro])
     @campament.president = @user
+    @campament.maestro_consejero = @user2
     @campament.save
     redirect_to "/campaments/"+@campament.id.to_s
   end

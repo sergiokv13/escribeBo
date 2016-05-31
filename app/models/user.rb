@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :charges
   has_many :degrees
+  has_many :inboxes, foreign_key: 'user2_id', class_name: 'Inbox'
+  has_many :sent, foreign_key: 'user1_id', class_name: 'Inbox'
   has_many :chapters_created, foreign_key: 'chapter_president_id', class_name: 'Chapter'
   #has_one :chapter_in_charge, foreign_key: 'demolay_in_charge_id', class_name: 'Chapter'
   belongs_to :chapter_consultant, class_name: 'Chapter'
@@ -33,6 +35,16 @@ class User < ActiveRecord::Base
       degree.oficial_aproved = true
       degree.save
     end
+  end
+
+  def get_not_seen
+    total = 0
+    self.inboxes.each do |inbox|
+      if !inbox.seen
+        total += 1
+      end
+    end
+    return total
   end
 
   def fullName
@@ -163,7 +175,7 @@ class User < ActiveRecord::Base
 
   def is_degree_chevallier
     if !self.degrees.empty?
-      if self.degrees.find_by(title: "Caballero") != nil
+      if self.degrees.find_by(title: "Chevallier") != nil
         true
       else
         false
@@ -173,11 +185,22 @@ class User < ActiveRecord::Base
     end
   end
 
+
   def is_diputado
     if self.charges.find_by(title: "Diputado") != nil
       true
     else
       false
+    end
+  end
+
+  def tiene_el_grado(x)
+    if !self.degrees.empty?
+      if self.degrees.find_by(title: x) != nil
+        true
+      else
+        false
+      end
     end
   end
 
@@ -187,6 +210,20 @@ class User < ActiveRecord::Base
 
   def aprovedTransactions
     self.transactions.where(aproved: true)
+  end
+
+
+
+  def tiene_el_cargo(x)
+    if !self.charges.empty?
+      if self.charges.find_by(title: x) != nil
+        true
+      else
+        false
+      end
+    else
+      false
+    end
   end
 
 end

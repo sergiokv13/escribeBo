@@ -2,10 +2,10 @@
   <div class="jumbotron">
     <p id="notice"><%= notice %></p>
 
-    <p>
-      <h2>Nombre:</h2>
-      <%= @chapter.chapter_name %>
-    </p>
+
+    <h2><%= @chapter.chapter_name %></h2>
+    <img src="/assets/dm.jpg" class="img-responsive">
+
      <%= image_tag @chapter.image.url(:medium) %>
     <p>
       <h2>Tipo:</h2>
@@ -56,7 +56,16 @@
       <% end %>
     <% end %>
 
+    <%=render "formCreateAnnouncement"%>
 
+
+
+
+    <h1>Publicaciones</h1>
+    <%  @publicaciones_para_mostrar.each do |an| %>
+      <%= an.subject%><br>
+      <%= an.content%><br>
+    <%end%>
 
   </div>
 </div>

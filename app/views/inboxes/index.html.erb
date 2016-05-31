@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Recibidos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Content</th>
+      <th>User1</th>
+      <th>User2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inboxes.each do |inbox| %>
+      <tr>
+        <td><%= inbox.subject %></td>
+        <td><%= inbox.content %></td>
+        <td><%= inbox.user1 %></td>
+        <td><%= inbox.user2 %></td>
+        <td><%= link_to 'Show', inbox %></td>
+        <td><%= link_to 'Edit', edit_inbox_path(inbox) %></td>
+        <td><%= link_to 'Destroy', inbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<h1>Enviados</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Subject</th>
+      <th>Content</th>
+      <th>User1</th>
+      <th>User2</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @enviados.each do |inbox| %>
+      <tr>
+        <td><%= inbox.subject %></td>
+        <td><%= inbox.content %></td>
+        <td><%= inbox.user1 %></td>
+        <td><%= inbox.user2 %></td>
+        <td><%= link_to 'Show', inbox %></td>
+        <td><%= link_to 'Edit', edit_inbox_path(inbox) %></td>
+        <td><%= link_to 'Destroy', inbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'New Inbox', new_inbox_path %>

@@ -7,7 +7,10 @@
 		<div class="form-group">
 	      <%= label_tag :delegado_regional %>
 	      <%= select_tag(:id_delegado, options_from_collection_for_select(@posibles_delegados,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Delegado Regional") %>
-
+	   </div>
+	   <div class="form-group">
+	      <%= label_tag :maestro_consejero %>
+	      <%= select_tag(:id_maestro, options_from_collection_for_select(@posibles_maestros,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Maestro Consejero Departamental") %>
 	   </div>
 	    <div class="actions">
 	      <%= submit_tag "Actualizar gestion", class: "btn btn-success" %>

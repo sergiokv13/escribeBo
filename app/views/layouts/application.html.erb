@@ -41,6 +41,7 @@
                 </li>
                 <li><a href="/campaments">Campamentos</a></li>
                 <li><a href="/announcements">Boletin</a></li>
+                <li><a href="/inboxes">Inbox(<%=current_user.get_not_seen%>)</a></li>
               </ul>
               <%= form_tag("/search", method:"post", class: "navbar-form navbar-left") do %>
                 <div class="form-group">

@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @inbox.subject %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @inbox.content %>
+</p>
+
+<p>
+  <strong>User1:</strong>
+  <%= @inbox.user1 %>
+</p>
+
+<p>
+  <strong>User2:</strong>
+  <%= @inbox.user2 %>
+</p>
+
+
+<p>
+  <% if @inbox.seen %>
+  	visto
+  <%else %>
+  no fue visto
+  <%end %>
+</p>
+
+<%= link_to 'Edit', edit_inbox_path(@inbox) %> |
+<%= link_to 'Back', inboxes_path %>

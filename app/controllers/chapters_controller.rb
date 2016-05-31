@@ -10,6 +10,17 @@ class ChaptersController < ApplicationController
   # GET /chapters/1
   # GET /chapters/1.json
   def show
+    @publicaciones_para_mostrar = Array.new
+    publicaciones = @chapter.announcements
+    if current_user.is_oficial
+      @publicaciones_para_mostrar = publicaciones
+    else
+      publicaciones.each do |publicacion|
+        if publicacion.aprobada(current_user)
+          @publicaciones_para_mostrar.push(publicacion)
+        end
+      end
+    end
   end
 
   # GET /chapters/new
