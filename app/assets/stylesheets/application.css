@@ -29,6 +29,7 @@ td {
 .center-title {
   text-align: center;
 }
-.form-group {
-  text-align: center;
+.info {
+  font-size: 130%;
+  text-align: justify;
 }
