@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/inboxes/new/:user_id' => "inboxes#new"
+  resources :inboxes
   resources :announcements
   resources :transactions
   resources :campaments
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   resource :passwords
 
   get "/update_chapters" => "admin_controller#update_chapters"
+  get "/update_user_field" => "inboxes#update_user_field"
 
   get 'home/index'
 
@@ -29,7 +32,8 @@ Rails.application.routes.draw do
   get '/users' => "admin_controller#users"
   post '/update_gestion/:id' => "chapters#update_gestion"
   get '/profile/:id' => 'profiles#profile'
-
+  post '/chapter/createAnnouncement/:id' => "announcements#createFromChapter"
+  post '/campament/createAnnouncement/:id' => "announcements#createFromCampament"
   get '/asignar_grado_demolay/:id' => 'profiles#asignar_grado_demolay'
   get '/asignar_grado_chevallier/:id' => 'profiles#asignar_grado_chevallier'
   get '/asignar_grado_caballero/:id' => 'profiles#asignar_grado_caballero'

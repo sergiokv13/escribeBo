@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528103452) do
+ActiveRecord::Schema.define(version: 20160531074134) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -23,19 +23,28 @@ ActiveRecord::Schema.define(version: 20160528103452) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "degrees"
+    t.string   "charges"
+    t.integer  "chapter_id"
+    t.integer  "campament_id"
   end
+
+  add_index "announcements", ["campament_id"], name: "index_announcements_on_campament_id"
+  add_index "announcements", ["chapter_id"], name: "index_announcements_on_chapter_id"
 
   create_table "campaments", force: :cascade do |t|
     t.string   "name"
     t.integer  "president_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "maestro_consejero_id"
   end
 
+  add_index "campaments", ["maestro_consejero_id"], name: "index_campaments_on_maestro_consejero_id"
   add_index "campaments", ["president_id"], name: "index_campaments_on_president_id"
 
   create_table "chapters", force: :cascade do |t|
@@ -79,6 +88,19 @@ ActiveRecord::Schema.define(version: 20160528103452) do
 
   add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id"
   add_index "degrees", ["user_id"], name: "index_degrees_on_user_id"
+
+  create_table "inboxes", force: :cascade do |t|
+    t.text     "subject"
+    t.string   "content"
+    t.integer  "user1_id"
+    t.integer  "user2_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "seen"
+  end
+
+  add_index "inboxes", ["user1_id"], name: "index_inboxes_on_user1_id"
+  add_index "inboxes", ["user2_id"], name: "index_inboxes_on_user2_id"
 
   create_table "transactions", force: :cascade do |t|
     t.string   "name"

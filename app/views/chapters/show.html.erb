@@ -56,7 +56,16 @@
       <% end %>
     <% end %>
 
+    <%=render "formCreateAnnouncement"%>
 
+
+
+
+    <h1>Publicaciones</h1>
+    <%  @publicaciones_para_mostrar.each do |an| %>
+      <%= an.subject%><br>
+      <%= an.content%><br>
+    <%end%>
 
   </div>
 </div>

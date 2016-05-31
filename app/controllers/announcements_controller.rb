@@ -4,7 +4,17 @@ class AnnouncementsController < ApplicationController
   # GET /announcements
   # GET /announcements.json
   def index
-    @announcements = Announcement.all
+    @publicaciones_para_mostrar = Array.new
+    publicaciones = Announcement.all
+    if current_user.is_oficial
+      @publicaciones_para_mostrar = publicaciones
+    else
+      publicaciones.each do |publicacion|
+        if publicacion.aprobada(current_user)
+          @publicaciones_para_mostrar.push(publicacion)
+        end
+      end
+    end
   end
 
   # GET /announcements/1
@@ -25,6 +35,10 @@ class AnnouncementsController < ApplicationController
   # POST /announcements.json
   def create
     @announcement = Announcement.new(announcement_params)
+    @degrees = params[:degrees]['degree']
+    @charges = params[:charges]['charge']
+    @announcement.degrees = @degrees.join(',')
+    @annoCuncement.charges = @charges.join(',')
     @announcement.user = current_user
     respond_to do |format|
       if @announcement.save
@@ -51,6 +65,36 @@ class AnnouncementsController < ApplicationController
     end
   end
 
+  def createFromChapter
+    @announcement = Announcement.new()
+    @announcement.user = current_user
+    @announcement.chapter = Chapter.find(params[:id])
+    @announcement.campament = Chapter.find(params[:id]).campament
+    @announcement.subject = params[:subject]
+    @announcement.content = params[:content]
+    @announcement.image = params[:image]
+    @degrees = params[:degrees]['degree']
+    @charges = params[:charges]['charge']
+    @announcement.degrees = @degrees.join(',')
+    @announcement.charges = @charges.join(',')
+    @announcement.save
+    redirect_to '/chapters/'+ params[:id]
+  end
+
+  def  createFromCampament
+    @announcement = Announcement.new()
+    @announcement.user = current_user
+    @announcement.campament = Campament.find(params[:id])
+    @announcement.subject = params[:subject]
+    @announcement.content = params[:content]
+    @announcement.image = params[:image]
+    @degrees = params[:degrees]['degree']
+    @charges = params[:charges]['charge']
+    @announcement.degrees = @degrees.join(',')
+    @announcement.charges = @charges.join(',')
+    @announcement.save
+    redirect_to '/campaments/'+ params[:id]
+  end
   # DELETE /announcements/1
   # DELETE /announcements/1.json
   def destroy
@@ -69,6 +113,6 @@ class AnnouncementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def announcement_params
-      params.require(:announcement).permit(:subject, :content, :user_id, :image)
+      params.require(:announcement).permit(:subject, :content, :user_id, :image,:degrees,:charges)
     end
 end
