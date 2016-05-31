@@ -2,7 +2,7 @@
   <div class="jumbotron">
     <h1 class="center-title">Perfil de <%= @user.fullName %></h1>
     <div class="col-lg-3">
-      <img src="/assets/user.png" class="img-responsive">
+      <img src="<%=@user.image.url%>" class="img-responsive">
     </div>
     <strong>Demolay ID:</strong>
     <%= @user.demolayID %><br><br>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531074134) do
+ActiveRecord::Schema.define(version: 20160531084326) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -143,6 +143,10 @@ ActiveRecord::Schema.define(version: 20160531074134) do
     t.boolean  "deputy_aproved"
     t.boolean  "oficial_aproved"
     t.integer  "campament_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["campament_id"], name: "index_users_on_campament_id"
