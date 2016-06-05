@@ -3,7 +3,7 @@
   <h2>Campamentos</h2>
   <% @campaments.each do |chapter| %>
     <div class="col-lg-4">
-      <a class="image_link" href="/chapter/<%=chapter.id%>">
+      <a class="image_link" href="/campaments/<%=chapter.id%>">
         <div class="image_name"><%=chapter.name%></div>
         <img class="img-responsive" src="<%=chapter.image.url%>">
       </a>

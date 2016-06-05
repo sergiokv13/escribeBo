@@ -80,7 +80,18 @@ h2{
 .navbar-default .navbar-nav > li > a:hover{
     color: white;
 }
-
 .fix {
   margin-top: 6px;
+}
+.campament{
+  font-size: 10px;
+}
+
+.chapter{
+  font-size: 10px;
+}
+
+.publicacion{
+  border-bottom:solid #777 1px;
+  padding: 5px;
 }
