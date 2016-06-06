@@ -1,29 +1,32 @@
-<h1>NewsFeed</h1>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-1"></div>
+		<div class="col-lg-10">
+			<div class="jumbotron">
+				<h1 class="center-title">Anuncios</h1>
+				<%@publicaciones_para_mostrar.each do |publicacion|%>
+					<div class="publicacion row">
+						<div class="col-lg-12">
+						  <img src="<%=current_user.image%>" width="30px;">
+						  <a href="/profiles/<%=current_user.id%>"><%=current_user.fullName%></a> -
+						  <a href="/campaments/<%=publicacion.campament.id%>"><%=publicacion.campament.name%></a>
 
-
-<%@publicaciones_para_mostrar.each do |publicacion|%>
-	<div class="publicacion row">
-			<div class="col-lg-3"></div>
-			<div class="col-lg-6">
-				<div class="image col-lg-12">
-				  <div class="image col-lg-2">
-				  	<img src="<%=current_user.image%>" class="img-responsive">
-				  </div>
-				  <div class="name"> <a href="/profiles/<%=current_user.id%>"><%=current_user.fullName%></a></div>
-				  <div class="campament">  <a href="/campaments/<%=publicacion.campament.id%>"><%=publicacion.campament.name%></a>
-				  </div>
-				  <%if publicacion.chapter!=nil%>
-				  	<div class="chapter"><a href="/chapters/<%=publicacion.chapter.id%>"><%=publicacion.chapter.chapter_name%></a>
-				  	</div>
-				  <%end%>
-				  </div>
-				  <div class="col-lg-12" style="margin-top:5px;">
-				  	<strong><%=publicacion.subject%></strong><br>
-				  	<%=publicacion.content%>
-				  </div>
+						  <%if publicacion.chapter!=nil%>
+						  	 - <a href="/chapters/<%=publicacion.chapter.id%>"><%=publicacion.chapter.chapter_name%></a>
+						  <%end%>
+					  	<h3 class="center-title"><%=publicacion.subject%></h3>
+					  	<p>
+					  		<%=publicacion.content%>
+					  	</p>
+					  	<center>
+					  		<img src="<%= publicacion.image.url %>" class="img-responsive">
+					  	</center>
+					  	<strong>Publicado el: </strong><%= publicacion.created_at.to_date %>
+					  </div>
+					</div>
+				<%end%>
 			</div>
-			
+		</div>
 	</div>
-
-<%end%>
+</div>
 

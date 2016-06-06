@@ -26,14 +26,20 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <% if user_signed_in? %>
               <ul class="nav navbar-nav">
-                <li><a href="/users">Usuarios <span class="sr-only">(current)</span></a></li>
-                <% if current_user.is_aprovator %>
-                  <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
-                <% end %>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/users">Usuarios <span class="sr-only">(current)</span></a></li>
+                    <% if current_user.is_aprovator %>
+                      <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
+                    <% end %>
+                  </ul>
+                </li>
 
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transacciones<span class="caret"></span></a>
                   <ul class="dropdown-menu">
+                    <li><a href="/transactions/new">Crear transaccion</a></li>
                     <li><a href="/pendingTransactions">Pendientes</a></li>
                     <li><a href="/aprovedTransactions">Archivadas</a></li>
                     <li><a href="/reports">Reportes</a></li>
@@ -52,16 +58,22 @@
                         <li><a href="/campaments/new">Crear Campamento</a></li>
                       </ul>
                   </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuerpos Demolay <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li><a href="/chapters">Cuerpos DeMolay</a></li>
-                        <li><a href="/chapters/new">Crear Cuerpo</a></li>
-                      </ul>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuerpos Demolay <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/chapters">Cuerpos DeMolay</a></li>
+                      <li><a href="/chapters/new">Crear Cuerpo</a></li>
+                    </ul>
                   </li>
                 <%end%>
                 <li><a href="/announcements">Boletin</a></li>
-                <li><a href="/inboxes">Inbox(<%=current_user.get_not_seen%>)</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inbox(<%=current_user.get_not_seen%>) <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/inboxes">Ver mensajes</a></li>
+                      <li><%= link_to 'Enviar mensaje', new_inbox_path %></li>
+                    </ul>
+                  </li>
               </ul>
               <%= form_tag("/search", method:"post", class: "navbar-form navbar-left") do %>
                 <div class="form-group">

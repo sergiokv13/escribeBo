@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531084326) do
+ActiveRecord::Schema.define(version: 20160605232136) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -118,12 +118,12 @@ ActiveRecord::Schema.define(version: 20160531084326) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                          default: "", null: false
+    t.string   "encrypted_password",             default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                  default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -133,8 +133,8 @@ ActiveRecord::Schema.define(version: 20160531084326) do
     t.string   "demolayID"
     t.string   "role"
     t.string   "ci"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "chapter_consultant_id"
     t.integer  "chapter_id"
     t.integer  "priory_id"
@@ -147,6 +147,10 @@ ActiveRecord::Schema.define(version: 20160531084326) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "registration_form_file_name"
+    t.string   "registration_form_content_type"
+    t.integer  "registration_form_file_size"
+    t.datetime "registration_form_updated_at"
   end
 
   add_index "users", ["campament_id"], name: "index_users_on_campament_id"

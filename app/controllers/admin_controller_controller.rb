@@ -26,6 +26,7 @@ class AdminControllerController < ApplicationController
 		@user.president_aproved = false
 		@user.deputy_aproved = false
 		@user.oficial_aproved = false
+		@user.registration_form = params[:registration_form]
 		if @user.save
 			flash[:notice] = "El usuario fue creado correctamente."
 			redirect_to "/"

@@ -1,51 +1,60 @@
 <div class="container">
-  <h1 class="center-title">Crear Usuario</h1>
-  <div class="col-lg-2"></div>
-  <div class="col-lg-8">
-    <%= form_tag("/createUser",method:"post") do %>
-    <div class="form-group">
-      <%= label_tag :email %>
-      <%= email_field_tag :email, nil, class: "form-control" %>
-    </div>
+  <div class="jumbotron">
+    <div class="row">
+      <h1 class="center-title">Crear Usuario</h1>
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <%= form_tag("/createUser",method:"post", multipart: true ) do %>
+        <div class="form-group">
+          <%= label_tag :email %>
+          <%= email_field_tag :email, nil, class: "form-control" %>
+        </div>
 
-    <div class="form-group">
-      <%= label_tag :nombre %>
-      <%= text_field_tag :name, nil, class: "form-control" %>
-    </div>
+        <div class="form-group">
+          <%= label_tag :nombre %>
+          <%= text_field_tag :name, nil, class: "form-control" %>
+        </div>
 
-    <div class="form-group">
-      <%= label_tag :apellido %>
-      <%= text_field_tag :lastname, nil, class: "form-control" %>
-    </div>
+        <div class="form-group">
+          <%= label_tag :apellido %>
+          <%= text_field_tag :lastname, nil, class: "form-control" %>
+        </div>
 
-    <div class="form-group">
-      <%= label_tag :ci %>
-      <%= text_field_tag :ci, nil, class: "form-control" %>
-    </div>
+        <div class="form-group">
+          <%= label_tag :ci %>
+          <%= text_field_tag :ci, nil, class: "form-control" %>
+        </div>
 
-    <div class="form-group">
-      <%= label_tag :campamento %>
-      <%= select_tag(:campament, options_from_collection_for_select(@campaments,'id', 'name'), :onchange => "update_chapters_div(this.value)", class: "form-control",:prompt => "Seleccionar campamento") %>
-    </div>
+        <div class="form-group">
+          <%= label_tag :campamento %>
+          <%= select_tag(:campament, options_from_collection_for_select(@campaments,'id', 'name'), :onchange => "update_chapters_div(this.value)", class: "form-control",:prompt => "Seleccionar campamento") %>
+        </div>
 
-    <div class="form-group" id="chapterDiv">
-      <%= render :partial => 'chapters', :object => @chapters %>
-    </div>
+        <div class="form-group" id="chapterDiv">
+          <%= render :partial => 'chapters', :object => @chapters %>
+        </div>
 
-    <div class="form-group">
-      <%= label_tag :demolayID %>
-      <%= text_field_tag :demolayID, nil, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= label_tag :rol %>
-      <%= select_tag(:role, options_for_select(@roles), class: "form-control") %>
-    </div>
+        <div class="form-group">
+          <%= label_tag :demolayID %>
+          <%= text_field_tag :demolayID, nil, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= label_tag :rol %>
+          <%= select_tag(:role, options_for_select(@roles), class: "form-control") %>
+        </div>
 
-    <div class="actions">
-      <%= submit_tag "Crear", class: "btn btn-success" %>
-      <%= link_to "Atrás", '/users', class: "btn btn-danger" %>
+        <div class="form-group">
+          <%= label_tag "Formulario" %>
+          <%= file_field_tag :registration_form, class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= submit_tag "Crear", class: "btn btn-success" %>
+          <%= link_to "Atrás", '/users', class: "btn btn-danger" %>
+        </div>
+      <% end %>
+      </div>
     </div>
-  <% end %>
   </div>
 </div>
 <br>

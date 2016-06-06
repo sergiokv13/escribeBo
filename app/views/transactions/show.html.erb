@@ -1,29 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-10">
+    <div class="jumbotron">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @transaction.name %>
-</p>
+      <h1 class="center-title"><%= @transaction.name %></h1>
 
-<p>
-  <strong>Description:</strong>
-  <%= @transaction.description %>
-</p>
+      <p>
+        <strong>Descripcion</strong><br>
+        <%= @transaction.description %>
+      </p>
 
-<p>
-  <strong>Mount:</strong>
-  <%= @transaction.mount %>
-</p>
+      <p>
+        <strong>Monto</strong><br>
+        Bs. <%= @transaction.mount %>
+      </p>
 
-<p>
-  <strong>Usuario:</strong>
-  <a href="/profile/<%= @transaction.user.id %>"> <%= @transaction.user.fullName %></a>
-</p>
+      <p>
+        <strong>Registrada por</strong><br>
+        <a href="/profile/<%= @transaction.user.id %>"> <%= @transaction.user.fullName %></a>
+      </p>
 
-<p>
-  <strong>Mount:</strong>
-  <%= @transaction.mount %>
-</p>
- <%= image_tag @transaction.image.url(:medium) %>
+      <center>
+        <%= image_tag @transaction.image.url(:original), class: "img-responsive" %><br>
+        <%= link_to 'Atras', :back, class: "btn btn-danger" %>
+      </center>
 
-<%= link_to 'Back', transactions_path %>
+
+
+    </div>
+  </div>
+</div>

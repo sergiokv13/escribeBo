@@ -16,6 +16,7 @@
     <% @user.degrees.each do |degree| %>
       <%= degree.title %> en <%= degree.chapter.chapter_name %> <br>
     <% end %>
+    <td><%= link_to "Ver Formulario", @user.registration_form.url, target: "_blank" %></td>
     <br>
     <%if @user.role == "Demolay"%>
       <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s %>

@@ -87,7 +87,7 @@ class TransactionsController < ApplicationController
 
   def aprovedTransactions
     if current_user.is_oficial or current_user.is_diputado
-      @transactions = Transaction.aprovedTransactions
+      @transactions = Transaction.aprovedTransactions.order(created_at: :desc)
     else
       @transactions = current_user.aprovedTransactions
     end

@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-1"></div>
-      <div class="col-lg-10">
-
+    <div class="col-lg-12">
+      <div class="jumbotron">
         <p id="notice"><%= notice %></p>
 
-        <h1>Listing Transactions</h1>
+        <h1 class="center-title">Transacciones Archivadas</h1>
 
         <% if current_user.is_oficial or current_user.is_diputado %>
           <hr class="divider">
@@ -23,6 +22,7 @@
                 <th>Mount</th>
                 <th>Usuario</th>
                 <th>Estado</th>
+                <th>Fecha</th>
                 <th>Operaciones</th>
               </tr>
             </thead>
@@ -36,15 +36,14 @@
                   <td>Bs. <%= transaction.mount %></td>
                   <td><%= link_to transaction.user.fullName, '/profile/'+transaction.user.id.to_s %></td>
                   <td><%= transaction.status %></td>
+                  <td><%= transaction.created_at.to_date %></td>
                   <td><%= link_to 'Ver detalle', transaction %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
-
           <br>
-
-          <%= link_to 'New Transaction', new_transaction_path %>
+        </div>
       </div>
     </div>
   </div>

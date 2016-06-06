@@ -5,7 +5,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.json
   def index
     @publicaciones_para_mostrar = Array.new
-    publicaciones = Announcement.all
+    publicaciones = Announcement.all.order(created_at: :desc)
     if current_user.is_oficial
       @publicaciones_para_mostrar = publicaciones
     else
@@ -75,6 +75,7 @@ class AnnouncementsController < ApplicationController
     @announcement.image = params[:image]
     @degrees = params[:degrees]['degree']
     @charges = params[:charges]['charge']
+    @charges.push("Diputado")
     @announcement.degrees = @degrees.join(',')
     @announcement.charges = @charges.join(',')
     @announcement.save
@@ -90,6 +91,7 @@ class AnnouncementsController < ApplicationController
     @announcement.image = params[:image]
     @degrees = params[:degrees]['degree']
     @charges = params[:charges]['charge']
+    @charges.push("Diputado")
     @announcement.degrees = @degrees.join(',')
     @announcement.charges = @charges.join(',')
     @announcement.save

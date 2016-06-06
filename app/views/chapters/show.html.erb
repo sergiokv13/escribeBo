@@ -2,8 +2,7 @@
   <div class="jumbotron">
     <p id="notice"><%= notice %></p>
 
-
-    <h2><%= @chapter.chapter_name %></h2>
+    <h1 class="center-title"><%= @chapter.chapter_name %></h1>
 
     <%= image_tag @chapter.image.url(:medium), class: "img-responsive" %>
     <div class="col-lg-5 info">
@@ -61,18 +60,25 @@
     <% end %>
 
     <div class="row">
-      <%= render "formCreateAnnouncement"%>
+      <%= render "formCreateAnnouncement" %>
     </div>
 
-
-
-
-    <h1>Publicaciones</h1>
-    <%  @publicaciones_para_mostrar.each do |an| %>
-      <%= an.subject%><br>
-      <%= an.content%><br>
-    <%end%>
-
+    <h1 class="center-title">Publicaciones</h1>
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <% @publicaciones_para_mostrar.each do |publication| %>
+          <img src="<%= publication.user.image.url %>" width="30px;"> <%= link_to publication.user.fullName, '/profile/' + publication.user.id.to_s %> publicó:
+          <h3><%= publication.subject%></h3>
+          <p>
+            <%= publication.content%>
+          </p>
+          <img src="<%= publication.image.url %>" class="img-responsive"><br>
+          <strong>Fecha de publicación:</strong> <%= publication.created_at.to_date %>
+          <hr class="divider">
+        <%end%>
+      </div>
+    </div>
   </div>
 </div>
 <br>

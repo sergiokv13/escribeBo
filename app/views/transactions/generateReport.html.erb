@@ -2,10 +2,11 @@
   <div class="row">
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
-      <h1 class="center-title">Reportes del <%= @year %>/<%= @month %></h1>
-      <%= @transactions.count %>
-      <%= pie_chart @transactions %>
-
+      <div class="jumbotron">
+        <h1 class="center-title">Reportes del <%= @year %>/<%= @month %></h1>
+        <%= @transactions.count %>
+        <%= pie_chart @transactions %>
+      </div>
     </div>
   </div>
 </div>
