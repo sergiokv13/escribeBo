@@ -1,33 +1,29 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-lg-1"></div>
+  <div class="col-lg-10">
+    <div class="jumbotron">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Subject:</strong>
-  <%= @inbox.subject %>
-</p>
+      <h1 class="center-title"><%= @inbox.subject %></h1>
 
-<p>
-  <strong>Content:</strong>
-  <%= @inbox.content %>
-</p>
+      <p>
+        <%= @inbox.content %>
+      </p>
 
-<p>
-  <strong>User1:</strong>
-  <%= @inbox.user1 %>
-</p>
+      <p>
+        Recibido de: <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
+      </p>
 
-<p>
-  <strong>User2:</strong>
-  <%= @inbox.user2 %>
-</p>
-
-
-<p>
-  <% if @inbox.seen %>
-  	visto
-  <%else %>
-  no fue visto
-  <%end %>
-</p>
-
-<%= link_to 'Edit', edit_inbox_path(@inbox) %> |
-<%= link_to 'Back', inboxes_path %>
+      <p>
+        <% if @inbox.seen %>
+          Visto
+        <%else %>
+          no fue visto
+        <%end %>
+      </p>
+      <center>
+        <%= link_to 'Atrás', inboxes_path, class: "btn btn-danger" %>
+      </center>
+    </div>
+  </div>
+</div>
