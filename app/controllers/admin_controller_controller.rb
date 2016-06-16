@@ -1,9 +1,13 @@
 class AdminControllerController < ApplicationController
 
 	def newUser
+		@user = User.new
 		@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
 		@campaments = Campament.all
 		@chapters = Chapter.where(:chapter_type =>"Capitulo").all
+		@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
+		@estados = [['Casado','Casado'],['Soltero','Soltero'],['Viudo','Viudo']]
+		@father = [['Mason','Mason'],['No Mason','No Mason']]
 	end
 
 	def update_chapters
@@ -12,27 +16,25 @@ class AdminControllerController < ApplicationController
 	end
 
 	def createUser
-		@user = User.new
-		@user.email = params[:email]
-		@user.name = params[:name]
-		@user.lastname = params[:lastname]
-		@user.role = params[:role]
-		@user.demolayID = params[:demolayID]
-		@user.ci = params[:ci]
-		@user.chapter_id = params[:chapter_id]
-		@user.campament_id = params[:campament]
-		@user.password = params[:ci]
-		@user.password_confirmation = params[:ci]
-		@user.president_aproved = false
+		@user = User.new(user_params)
+		@user.password = @user.ci
+		@user.password_confirmation = @user.ci
+		@user.president_aproved= false
 		@user.deputy_aproved = false
 		@user.oficial_aproved = false
-		@user.registration_form = params[:registration_form]
+
 		if @user.save
 			flash[:notice] = "El usuario fue creado correctamente."
-			redirect_to "/"
+			redirect_to '/users'
 		else
 			flash[:notice] = "El usuario no fue creado."
-			redirect_to (:back)
+			@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
+			@campaments = Campament.all
+			@chapters = Chapter.where(:chapter_type =>"Capitulo").all
+			@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
+			@estados = [['Casado','Casado'],['Soltero','Soltero'],['Viudo','Viudo']]
+			@father = [['Mason','Mason'],['No Mason','No Mason']]
+			render :newUser
 		end
 	end
 
@@ -88,5 +90,9 @@ class AdminControllerController < ApplicationController
 		end
 		redirect_to '/approvals'
 	end
+
+	def user_params
+    params.require(:user).permit(:email, :name, :lastname, :role, :demolayID, :ci, :chapter_id, :campament_id, :birth_date, :city, :adress, :phone, :cellphone, :assurance, :godfather_id, :iniciacion, :father_name, :father_info, :father_adress, :father_mail, :mather_name, :mather_adress, :mather_mail, :estado_civil, :nombre_esposa, :taller_nombre, :taller_numero, :registration_form)
+  end
 
 end

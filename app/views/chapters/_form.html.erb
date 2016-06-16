@@ -14,6 +14,11 @@
   <div class="field">
     <%= f.text_field :chapter_name, label: "Nombre" %>
   </div>
+
+   <div class="field">
+    <%= f.number_field :number, label: "Numero" %>
+  </div>
+
   <div class="field">
     <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), label: "Campamento") %>
   </div>

@@ -25,6 +25,8 @@ class User < ActiveRecord::Base
 
   has_many :transactions
 
+  validates :email, presence: true
+
   after_create :set_first_degree
 
   def visible_inboxes

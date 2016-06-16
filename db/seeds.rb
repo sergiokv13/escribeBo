@@ -11,9 +11,9 @@ Campament.create(name: "La Paz", president_id: "4")
 Campament.create(name: "Santa Cruz", president_id: "5")
 
 #Chapters
-Chapter.create(chapter_name:"Capitulo 1",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1")
-Chapter.create(chapter_name:"Capitulo 2",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1")
-Chapter.create(chapter_name:"Capitulo 3",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1")
+Chapter.create(chapter_name:"Capitulo 1",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"134")
+Chapter.create(chapter_name:"Capitulo 2",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"135")
+Chapter.create(chapter_name:"Capitulo 3",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"136")
 
 #Users
 User.create(email:"oficial@mail.com",password:'arsenal2012',name:'Oficial',lastname:'Ejecutivo',demolayID:'1',role:'No Demolay',ci:'1234567', chapter_id:'1', campament_id:'1', president_aproved:true, deputy_aproved:true, oficial_aproved:true)
