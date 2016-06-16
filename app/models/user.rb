@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/missing_user.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
+
+  has_attached_file :registration_form
+  validates_attachment_content_type :registration_form, :content_type => ["application/pdf"]
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -17,6 +22,8 @@ class User < ActiveRecord::Base
   belongs_to :priory, class_name: 'Chapter'
   belongs_to :court, class_name: 'Chapter'
   belongs_to :campament
+
+  has_many :transactions
 
   after_create :set_first_degree
 
@@ -185,6 +192,15 @@ class User < ActiveRecord::Base
     end
   end
 
+
+  def is_diputado
+    if self.charges.find_by(title: "Diputado") != nil
+      true
+    else
+      false
+    end
+  end
+
   def tiene_el_grado(x)
     if !self.degrees.empty?
       if self.degrees.find_by(title: x) != nil
@@ -192,11 +208,19 @@ class User < ActiveRecord::Base
       else
         false
       end
-    else
-      false
     end
   end
-  
+
+  def pendingTransactions
+    self.transactions.where(aproved: false)
+  end
+
+  def aprovedTransactions
+    self.transactions.where(aproved: true)
+  end
+
+
+
   def tiene_el_cargo(x)
     if !self.charges.empty?
       if self.charges.find_by(title: x) != nil
@@ -208,4 +232,5 @@ class User < ActiveRecord::Base
       false
     end
   end
+
 end

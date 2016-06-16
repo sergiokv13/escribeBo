@@ -4,6 +4,9 @@ class AdminControllerController < ApplicationController
 		@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
 		@campaments = Campament.all
 		@chapters = Chapter.where(:chapter_type =>"Capitulo").all
+		@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
+		@estados = [['Casado','Casado'],['Soltero','Soltero'],['Viudo','Viudo']]
+		@father = [['Mason','Mason'],['No Mason','No Mason']]
 	end
 
 	def update_chapters
@@ -17,15 +20,40 @@ class AdminControllerController < ApplicationController
 		@user.name = params[:name]
 		@user.lastname = params[:lastname]
 		@user.role = params[:role]
-		@user.demolayID = params[:demolayID]
+		@user.demolayID = params[:democlayID]
 		@user.ci = params[:ci]
 		@user.chapter_id = params[:chapter_id]
 		@user.campament_id = params[:campament]
 		@user.password = params[:ci]
 		@user.password_confirmation = params[:ci]
-		@user.president_aproved = false
+
+		@user.birth_date = params[:birth_date]
+		@user.city = params[:city]
+		@user.adress = params[:adress]
+		@user.phone = params[:phone]
+		@user.cellphone = params[:cellphone]
+
+		@user.assurance = params[:assurance]
+		@user.godfather_id = params[:godfather_id]
+		@user.iniciacion = params[:iniciacion]
+		@user.father_name = params[:father_name]
+		@user.father_info = params[:father_info]
+		@user.father_adress = params[:father_adress]
+		@user.father_mail = params[:father_mail]
+		@user.mather_name = params[:mather_name]
+		@user.mather_adress = params[:mather_adress]
+		@user.mather_mail = params[:mather_mail]
+
+		@user.estado_civil = params[:estado_civil]
+		@user.nombre_esposa = params[:nombre_esposa]
+		@user.taller_nombre = params[:taller_nombre]
+		@user.taller_numero = params[:taller_numero]
+
+		@user.president_aproved= false
 		@user.deputy_aproved = false
 		@user.oficial_aproved = false
+		@user.registration_form = params[:registration_form]
+
 		if @user.save
 			flash[:notice] = "El usuario fue creado correctamente."
 			redirect_to "/"

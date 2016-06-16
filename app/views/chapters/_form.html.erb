@@ -25,10 +25,9 @@
   <div class="field">
     <%= f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]), label: "Tipo") %>
   </div>
-  
+
   <div class="field">
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+    <%= f.file_field :image, label: "Imagen" %>
   </div>
   <div class="actions">
     <%= f.submit "Crear", class: "btn btn-success" %>

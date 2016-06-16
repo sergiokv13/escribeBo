@@ -10,12 +10,11 @@
     <%= @user.role %><br><br>
     <strong>Carnet de Identidad:</strong>
     <%= @user.ci %><br><br>
-     <strong>Campamento:</strong>
-    <%= @user.campament.name %><br><br>
     <strong>Grados</strong>
     <% @user.degrees.each do |degree| %>
       <%= degree.title %> en <%= degree.chapter.chapter_name %> <br>
     <% end %>
+    <td><%= link_to "Ver Formulario", @user.registration_form.url, target: "_blank" %></td>
     <br>
     <%if @user.role == "Demolay"%>
       <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s %>
@@ -25,5 +24,30 @@
       <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s %>
     <%end%>
     <br><br><br><br>
+    <h2>Datos</h2>
+    <strong>Fecha de nacimiento:</strong><%=@user.birth_date%><br>
+    <strong>Campamento:</strong><%=@user.campament.name%><br>
+    <strong>Provincia:</strong><%=@user.city%><br>
+    <strong>Dirección:</strong><%=@user.adress%><br>
+    <strong>Telefono Fijo:</strong><%=@user.phone%><br>
+    <strong>Telefono Celular:</strong><%=@user.cellphone%><br>
+    <% if @user.role == "Demolay" %>
+      <strong>Seguro:</strong><%=@user.assurance%><br>
+      <strong>Padrino:</strong><%=@user.godfather_id%><br>
+      <strong>Fecha de iniciacion:</strong><%=@user.iniciacion%><br>
+      <strong>Nombre del padre:</strong><%=@user.father_name%><br>
+      <strong>Informacion del padre:</strong><%=@user.father_info%><br>
+      <strong>Dirección del padre:</strong><%=@user.father_adress%><br>
+      <strong>Mail del padre:</strong><%=@user.father_mail%><br>
+      <strong>Nombre de la madre:</strong><%=@user.mather_name%><br>
+      <strong>Direccion de la madre:</strong><%=@user.mather_adress%><br>
+      <strong>Mail de la madre:</strong><%=@user.mather_mail%><br>
+    <%else%>
+      <strong>Estado civil:</strong><%=@user.estado_civil%><br>
+      <strong>Nombre esposa:</strong><%=@user.nombre_esposa%><br>
+      <strong>Nombre del taller</strong><%=@user.taller_nombre%><br>
+      <strong>Numero del taller</strong><%=@user.taller_numero%><br>
+    <%end%>
+    <strong></strong>
   </div>
 </div>

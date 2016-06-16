@@ -14,6 +14,9 @@
  *= require_self
  *= require bootstrap
  */
+p {
+  text-align: justify;
+}
 th {
   text-align: center;
 }
@@ -29,14 +32,15 @@ td {
 .center-title {
   text-align: center;
 }
-.form-group {
-  text-align: center;
+.info {
+  font-size: 130%;
+  text-align: justify;
 }
 
 .image_link:hover img{
 	border:solid grey;
 	opacity: 0.6;
-    filter: alpha(opacity=60);
+  filter: alpha(opacity=60);
 }
 
 .image_name{
@@ -48,7 +52,7 @@ td {
 h1{
 	background-color: #490808;
 	padding:10px;
-	color:white;
+	color:white !important;
 }
 
 h2{
@@ -56,6 +60,18 @@ h2{
 	padding:10px;
 	color:white;
 	width: 300px;
+}
+
+h3{
+  text-transform: uppercase;
+}
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
 }
 
 .navbar-default {
@@ -79,7 +95,9 @@ h2{
 .navbar-default .navbar-nav > li > a:hover{
     color: white;
 }
-
+.fix {
+  margin-top: 6px;
+}
 .campament{
   font-size: 10px;
 }
@@ -91,4 +109,7 @@ h2{
 .publicacion{
   border-bottom:solid #777 1px;
   padding: 5px;
+}
+.chapter-title {
+  margin-left:15px;
 }

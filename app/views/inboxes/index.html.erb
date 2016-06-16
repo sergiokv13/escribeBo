@@ -1,59 +1,64 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <div class="jumbotron">
+        <p id="notice"><%= notice %></p>
 
-<h1>Recibidos</h1>
+        <h1 class="center-title">Recibidos</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Content</th>
-      <th>User1</th>
-      <th>User2</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered">
+            <thead>
+              <tr>
+                <th>Titulo</th>
+                <th>Contenido</th>
+                <th>Recibido de</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
 
-  <tbody>
-    <% @inboxes.each do |inbox| %>
-      <tr>
-        <td><%= inbox.subject %></td>
-        <td><%= inbox.content %></td>
-        <td><%= inbox.user1 %></td>
-        <td><%= inbox.user2 %></td>
-        <td><%= link_to 'Show', inbox %></td>
-        <td><%= link_to 'Edit', edit_inbox_path(inbox) %></td>
-        <td><%= link_to 'Destroy', inbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<h1>Enviados</h1>
+            <tbody>
+              <% @inboxes.each do |inbox| %>
+                <tr>
+                  <td><%= inbox.subject %></td>
+                  <td><%= inbox.content %></td>
+                  <td><%= inbox.user1.fullName %></td>
+                  <td><%= link_to 'Ver', inbox %></td>
 
-<table>
-  <thead>
-    <tr>
-      <th>Subject</th>
-      <th>Content</th>
-      <th>User1</th>
-      <th>User2</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
 
-  <tbody>
-    <% @enviados.each do |inbox| %>
-      <tr>
-        <td><%= inbox.subject %></td>
-        <td><%= inbox.content %></td>
-        <td><%= inbox.user1 %></td>
-        <td><%= inbox.user2 %></td>
-        <td><%= link_to 'Show', inbox %></td>
-        <td><%= link_to 'Edit', edit_inbox_path(inbox) %></td>
-        <td><%= link_to 'Destroy', inbox, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br>
+        <h1 class="center-title">Enviados</h1>
+        <div class="table-responsive">
+          <table class="table table-hover table-striped table-bordered" >
+            <thead>
+              <tr>
+                <th>Subject</th>
+                <th>Content</th>
+                <th>Enviado a</th>
+                <th colspan="3"></th>
+              </tr>
+            </thead>
 
-<%= link_to 'New Inbox', new_inbox_path %>
+            <tbody>
+              <% @enviados.each do |inbox| %>
+                <tr>
+                  <td><%= inbox.subject %></td>
+                  <td><%= inbox.content %></td>
+                  <td><%= inbox.user2.fullName %></td>
+                  <td><%= link_to 'Ver', inbox %></td>
+
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<%= form_for @campament, html: { multipart: true } do |f| %>
+<%= bootstrap_form_for @campament, html: { multipart: true } do |f| %>
   <% if @campament.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@campament.errors.count, "error") %> prohibited this campament from being saved:</h2>
@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
+  <div class="form-group">
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= f.label :image %><br>
+  <div class="form-group">
     <%= f.file_field :image %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <center>
+      <%= f.submit "Crear", class: "btn btn-success" %>
+      <%= link_to 'Atras', campaments_path, class: "btn btn-danger" %>
+    </center>
   </div>
 <% end %>

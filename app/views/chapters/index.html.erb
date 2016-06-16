@@ -1,37 +1,41 @@
-<h1 class="text-center" style="margin-bottom:15px;">Cuerpos Demolay</h1>
 <div class="container">
-  <h2>Capitulos</h2>
-  <% @capitulos.each do |chapter| %>
-    <div class="col-lg-4">
-      <a class="image_link" href="/chapter/<%=chapter.id%>">
-      <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
-        <img class="img-responsive" src="<%=chapter.image.url%>">
-      </a>
+  <div class="jumbotron">
+    <h1 class="text-center" style="margin-bottom:15px;">Cuerpos Demolay</h1>
+    <div class="row">
+      <h2 class="chapter-title">Capitulos</h2>
+      <% @capitulos.each do |chapter| %>
+        <div class="col-lg-4">
+          <a class="image_link" href="/chapters/<%=chapter.id%>">
+          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
+          <img class="img-responsive" src="<%=chapter.image.url%>">
+          </a>
+        </div>
+      <%end%>
     </div>
-  <%end%>
-</div>
 
-<div class="container">
-  <h2>Prioratos</h2>
-  <% @prioratos.each do |chapter| %>
-    <div class="col-lg-4">
-      <a class="image_link" href="/chapter/<%=chapter.id%>">
-      <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%> </div>
-        <img class="img-responsive" src="<%=chapter.image.url%>">
-      </a>
+    <div class="row">
+      <h2 class="chapter-title">Prioratos</h2>
+      <% @prioratos.each do |chapter| %>
+        <div class="col-lg-4">
+          <a class="image_link" href="/chapters/<%=chapter.id%>">
+          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
+            <img class="img-responsive" src="<%=chapter.image.url%>">
+          </a>
+        </div>
+      <%end%>
     </div>
-  <%end%>
-</div>
 
-<div class="container">
-  <h2>Cortes</h2>
-  <% @cortes.each do |chapter| %>
-    <div class="col-lg-4">
-      <a class="image_link" href="/chapter/<%=chapter.id%>">
-      <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
-        <img class="img-responsive" src="<%=chapter.image.url%>">
-      </a>
+
+    <div class="row">
+      <h2 class="chapter-title">Cortes</h2>
+      <% @cortes.each do |chapter| %>
+        <div class="col-lg-4">
+          <a class="image_link" href="/chapters/<%=chapter.id%>">
+          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
+            <img class="img-responsive" src="<%=chapter.image.url%>">
+          </a>
+        </div>
+      <%end%>
     </div>
-  <%end%>
+  </div>
 </div>
-

@@ -1,38 +1,37 @@
 <div class="container">
-  <h1 class="center-title">Listado de usuarios</h1>
-  <div class="col-lg-1"></div>
-  <div class="col-lg-10">
-    <a href="/newUser" class="btn btn-success">Crear Usuario</a>
-    <br><br>
-    <div class="table-responsive">
-      <table class="table table-bordered table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Demolay ID</th>
-            <th>Rol</th>
-            <th>CI</th>
-            <th>Correo Electrónico</th>
-            <th>Capitulo</th>
-            <th>Estado</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @users.each do |user| %>
+  <div class="jumbotron">
+    <h1 class="center-title">Listado de usuarios</h1>
+      <a href="/newUser" class="btn btn-success">Crear Usuario</a>
+      <br><br>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
             <tr>
-              <td><%= user.fullName %></td>
-              <td><%= user.demolayID %></td>
-              <td><%= user.role %></td>
-              <td><%= user.ci %></td>
-              <td><%= user.email %></td>
-              <td><%= user.chapter.chapter_name %></td>
-              <td><%= user.status %></td>
-              <td><%= link_to "Ver perfil", "/profile/"+user.id.to_s, class: "btn btn-primary" %></td>
+              <th>Nombre</th>
+              <th>Demolay ID</th>
+              <th>Rol</th>
+              <th>CI</th>
+              <th>Correo Electrónico</th>
+              <th>Capitulo</th>
+              <th>Estado</th>
+              <th>Opciones</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.fullName %></td>
+                <td><%= user.demolayID %></td>
+                <td><%= user.role %></td>
+                <td><%= user.ci %></td>
+                <td><%= user.email %></td>
+                <td><%= user.chapter.chapter_name %></td>
+                <td><%= user.status %></td>
+                <td><%= link_to "Ver perfil", "/profile/"+user.id.to_s %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
   </div>
 </div>

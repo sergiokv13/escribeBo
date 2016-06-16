@@ -1,62 +1,87 @@
-<div class="container">
-  <h1 class="center-title">Nueva publicacion</h1>
-  <div class="col-lg-2"></div>
-  <div class="col-lg-8">
-    <%= form_tag("/chapter/createAnnouncement/"+@chapter.id.to_s,method:"post",:multipart => true) do %>
-		<div class="field">
-    		<%= label_tag :subject %><br>
-    		<%= text_field_tag :subject %>
-  		</div>
-		  <div class="field">
-		    <%= label_tag :content %><br>
-		    <%= text_field_tag :content %>
-		  </div>
-		  <div class="field">
-			   <%= label_tag 'grados_iniciatico', 'Iniciatico'%>
-			   <%= check_box_tag 'degrees[degree][]', "Iniciatico",id:'grados_iniciatico'%><br/>
-			  
-			  <%= label_tag 'grados_demolay', 'Demolay'%>
-			  <%= check_box_tag 'degrees[degree][]', "Demolay", id:'grados_demolay'%><br/>
+<div class="col-lg-12">
+	<h2>Nueva publicacion</h2>
+  <%= form_tag("/chapter/createAnnouncement/"+@chapter.id.to_s,method:"post",:multipart => true) do %>
+  	<div class="row">
+			<div class="col-lg-6">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group">
+				  		<%= label_tag "Titulo" %><br>
+				  		<%= text_field_tag :subject, nil, class: "form-control" %>
+						</div>
+	  			</div>
+				</div>
 
-			  <%= label_tag 'grados_consultor', 'Consultor'%>
-			  <%= check_box_tag 'degrees[degree][]', "Consultor", id:'grados_consultor'%><br/>
+				<div class="row">
+					<div class="col-lg-12">
+		  			<div class="form-group">
+					    <%= label_tag "Contenido" %><br>
+					    <%= text_area_tag :content, nil, class: "form-control", rows: "7" %>
+					  </div>
+	  			</div>
+				</div>
+			</div>
 
-			  <%= label_tag 'grados_caballero', 'Caballero'%>
-			  <%= check_box_tag 'degrees[degree][]', "Caballero", id:'grados_caballero'%><br/>
+			<div class="col-lg-6">
+				<div class="row">
+					<h3>Dirijido a:</h3>
+					<div class="col-lg-3">
+					  <div class="form-group">
+						   <%= label_tag 'grados_iniciatico', 'Iniciatico'%>
+						   <%= check_box_tag 'degrees[degree][]', "Iniciatico",id:'grados_iniciatico'%><br/>
 
-			  <%= label_tag 'grados_chevallier', 'Chevallier'%>
-			  <%= check_box_tag 'degrees[degree][]', "Chevallier", id:'grados_chevallier'%><br/>
-		  </div>
-		  <div class="field">
-			   <%= label_tag 'cargos_Maestro_consejero', 'Maestro Consejero'%>
-			   <%= check_box_tag 'charges[charge][]', "Maestro Consejero",id:'cargos_Maestro_consejero'%><br/>
+						  <%= label_tag 'grados_demolay', 'Demolay'%>
+						  <%= check_box_tag 'degrees[degree][]', "Demolay", id:'grados_demolay'%><br/>
 
-			   <%= label_tag 'cargos_Ilustre_Comendador_Caballero', 'Ilustre Comendador Caballero'%>
-			   <%= check_box_tag 'charges[charge][]', "Ilustre Comendador Caballero",id:'cargos_Ilustre_Comendador_Caballero'%><br/>
+						  <%= label_tag 'grados_consultor', 'Consultor'%>
+						  <%= check_box_tag 'degrees[degree][]', "Consultor", id:'grados_consultor'%><br/>
 
-			    <%= label_tag 'cargos_Gran_Comendador_Chevallier', 'Gran Comendador Chevallier'%>
-			   <%= check_box_tag 'charges[charge][]', "Gran Comendador Chevallier",id:'cargos_Gran_Comendador_Chevallier'%><br/>
-			  
-			  <%= label_tag 'cargos_Presidente_Consejo_Consultivo', 'Presidente Consejo Consultivo'%>
-			  <%= check_box_tag 'charges[charge][]', "Presidente Consejo'Consultivo", id:'cargos_Presidente_Consejo_Consultivo'%><br/>
+						  <%= label_tag 'grados_caballero', 'Caballero'%>
+						  <%= check_box_tag 'degrees[degree][]', "Caballero", id:'grados_caballero'%><br/>
 
-			  <%= label_tag 'cargos_Delegado_Regional', 'Delegado Regional'%>
-			  <%= check_box_tag 'charges[charge][]', "Delegado Regional", id:'cargos_Delegado_Regional'%><br/>
+						  <%= label_tag 'grados_chevallier', 'Chevallier'%>
+						  <%= check_box_tag 'degrees[degree][]', "Chevallier", id:'grados_chevallier'%><br/>
+					  </div>
+					</div>
+					<div class="col-lg-6">
+					  <div class="form-group">
+						   <%= label_tag 'cargos_Maestro_consejero', 'Maestro Consejero'%>
+						   <%= check_box_tag 'charges[charge][]', "Maestro Consejero",id:'cargos_Maestro_consejero'%><br/>
 
-			    <%= label_tag 'cargos_Diputado', 'Diputado'%>
-			  <%= check_box_tag 'charges[charge][]', "Diputado", id:'cargos_Diputado'%><br/>
-		  </div>
+						   <%= label_tag 'cargos_Ilustre_Comendador_Caballero', 'Ilustre Comendador Caballero'%>
+						   <%= check_box_tag 'charges[charge][]', "Ilustre Comendador Caballero",id:'cargos_Ilustre_Comendador_Caballero'%><br/>
 
-		  <div class="field">
-		    <%= label_tag :image %><br>
-		    <%= file_field_tag :image %>
-		  </div>
-		  <div class="actions">
-		    <%= submit_tag "Publicar" %>
-		  </div>
-  <% end %>
-  </div>
+						    <%= label_tag 'cargos_Gran_Comendador_Chevallier', 'Gran Comendador Chevallier'%>
+						   <%= check_box_tag 'charges[charge][]', "Gran Comendador Chevallier",id:'cargos_Gran_Comendador_Chevallier'%><br/>
+
+						  <%= label_tag 'cargos_Presidente_Consejo_Consultivo', 'Presidente Consejo Consultivo'%>
+						  <%= check_box_tag 'charges[charge][]', "Presidente Consejo'Consultivo", id:'cargos_Presidente_Consejo_Consultivo'%><br/>
+
+						  <%= label_tag 'cargos_Delegado_Regional', 'Delegado Regional'%>
+						  <%= check_box_tag 'charges[charge][]', "Delegado Regional", id:'cargos_Delegado_Regional'%><br/>
+
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="form-group">
+			    <%= label_tag :image %><br>
+			    <%= file_field_tag :image, class: "form-control" %>
+			  </div>
+			</div>
+			<div class="col-lg-6">
+				<div class="form-group">
+					<br>
+			    <%= submit_tag "Publicar", class: "form-control btn btn-success fix" %>
+			  </div>
+			</div>
+		</div>
+
+	<% end %>
 </div>
-<br>
+
 
 

@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+      <div class="col-lg-12">
+        <div class="jumbotron">
+          <p id="notice"><%= notice %></p>
+
+          <h1 class="center-title">Transacciones Pendientes</h1>
+
+          <div class="table-responsive">
+            <table class="table table-hover table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Mount</th>
+                  <th>Usuario</th>
+                  <th>Estado</th>
+                  <th>Fecha</th>
+                  <th colspan="4">Operaciones</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @transactions.each do |transaction| %>
+                  <tr>
+                    <td><%= transaction.transaction_type %></td>
+                    <td><%= transaction.name %></td>
+                    <td><%= transaction.description %></td>
+                    <td>Bs. <%= transaction.mount %></td>
+                    <td><%= transaction.user.fullName %></td>
+                    <td><%= transaction.status %></td>
+                    <td><%= transaction.created_at.to_date %></td>
+                    <% if current_user.is_oficial %>
+                      <td><%= link_to 'Aprobar', '/aproveTransaction/' + transaction.id.to_s %></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                    <td><%= link_to 'Ver detalle', transaction %></td>
+                    <% if !transaction.aproved? %>
+                      <td><%= link_to 'Editar', edit_transaction_path(transaction) %></td>
+                      <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <% else %>
+                      <td></td>
+                      <td></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <br>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

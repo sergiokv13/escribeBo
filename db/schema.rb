@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616055413) do
+ActiveRecord::Schema.define(version: 20160616061741) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -114,15 +114,17 @@ ActiveRecord::Schema.define(version: 20160616055413) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.boolean  "aproved"
+    t.string   "transaction_type"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                          default: "", null: false
+    t.string   "encrypted_password",             default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                  default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -132,8 +134,8 @@ ActiveRecord::Schema.define(version: 20160616055413) do
     t.string   "demolayID"
     t.string   "role"
     t.string   "ci"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
     t.integer  "chapter_consultant_id"
     t.integer  "chapter_id"
     t.integer  "priory_id"
@@ -146,6 +148,29 @@ ActiveRecord::Schema.define(version: 20160616055413) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.string   "registration_form_file_name"
+    t.string   "registration_form_content_type"
+    t.integer  "registration_form_file_size"
+    t.datetime "registration_form_updated_at"
+    t.date     "birth_date"
+    t.boolean  "assurance"
+    t.string   "adress"
+    t.string   "city"
+    t.integer  "cellphone"
+    t.integer  "phone"
+    t.integer  "godfather_id"
+    t.date     "iniciacion"
+    t.string   "father_name"
+    t.string   "father_info"
+    t.string   "father_adress"
+    t.string   "father_mail"
+    t.string   "mather_name"
+    t.string   "mather_adress"
+    t.string   "mather_mail"
+    t.string   "estado_civil"
+    t.string   "nombre_esposa"
+    t.string   "taller_nombre"
+    t.string   "taller_numero"
   end
 
   add_index "users", ["campament_id"], name: "index_users_on_campament_id"
@@ -153,6 +178,7 @@ ActiveRecord::Schema.define(version: 20160616055413) do
   add_index "users", ["chapter_id"], name: "index_users_on_chapter_id"
   add_index "users", ["court_id"], name: "index_users_on_court_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["godfather_id"], name: "index_users_on_godfather_id"
   add_index "users", ["priory_id"], name: "index_users_on_priory_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

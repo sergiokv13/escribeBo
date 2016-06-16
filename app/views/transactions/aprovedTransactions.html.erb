@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="jumbotron">
+        <p id="notice"><%= notice %></p>
+
+        <h1 class="center-title">Transacciones Archivadas</h1>
+
+        <% if current_user.is_oficial or current_user.is_diputado %>
+          <hr class="divider">
+          <h3>Balance hasta la fecha:</h3>
+          Bs. <%= @balance %>
+        <% end %>
+        <hr class="divider">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Mount</th>
+                <th>Usuario</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Operaciones</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <td><%= transaction.transaction_type %></td>
+                  <td><%= transaction.name %></td>
+                  <td><%= transaction.description %></td>
+                  <td>Bs. <%= transaction.mount %></td>
+                  <td><%= link_to transaction.user.fullName, '/profile/'+transaction.user.id.to_s %></td>
+                  <td><%= transaction.status %></td>
+                  <td><%= transaction.created_at.to_date %></td>
+                  <td><%= link_to 'Ver detalle', transaction %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

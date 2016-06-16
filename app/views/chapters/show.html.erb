@@ -2,44 +2,51 @@
   <div class="jumbotron">
     <p id="notice"><%= notice %></p>
 
-    <p>
-      <h2>Nombre:</h2>
-      <%= @chapter.chapter_name %> #<%= @chapter.number %> 
-    </p>
-     <%= image_tag @chapter.image.url(:medium) %>
-    <p>
-      <h2>Tipo:</h2>
-      <%= @chapter.chapter_type %>
-    </p>
 
-    <p>
-      <h2>Campamento:</h2>
-      <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>
-    </p>
-    <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil%>
-       <p>
-        <h2>Encargado:</h2>
-         <%= link_to @chapter.chapter_president.fullName, "/profile/"+@chapter.chapter_president.id.to_s %><br>
-      </p>
+    <h1 class="center-title"><%= @chapter.chapter_name %> #<%= @chapter.number %> </h1>
 
-      <p>
-        <h2>Presidente consejo consultivo</h2>
-        <%= link_to @chapter.chapter_consultant_president.fullName, "/profile/"+@chapter.chapter_consultant_president.id.to_s %><br>
-      </p>
-    <%else%>
-    <h3>La gestion no fue actualizada</h3>
-    <%end%>
 
-    <h2>Consultores:</h2>
-    <% @chapter.consultants.each do |consultant| %>
-      <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
-    <% end %>
-
-    <%if @chapter.chapter_type == "Capitulo"%>
-      <h2>Miembros:</h2>
-      <% @chapter.demolays.where(:role=>"Demolay").each do |demolay| %>
-        <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
+    <center>
+      <%= image_tag @chapter.image.url(:original), class: "img-responsive" %>
+    </center>
+    <div class="col-lg-5 info">
+      <h2>Informacion</h2>
+      Este es un <%= @chapter.chapter_type %> del campamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> Demolays activos.
+      <br>
+      <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
+        El Presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
       <% end %>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-5 info">
+      <h2>Miembros</h2>
+      Algunos de los miembros actuales son:<br>
+      <% @chapter.demolays.take(4).each do |dm| %>
+        <div class="row">
+          <div class="col-lg-2">
+            <%= image_tag dm.image.url(:medium), class: "img-responsive" %>
+          </div>
+          <div class="col-lg-10">
+            <%= link_to dm.fullName, '/profile/'+dm.id.to_s %>
+          </div>
+        </div>
+        <br>
+      <% end %>
+      <%= link_to 'Ver mas', '/users' %>
+    </div>
+
+    <% if !@chapter.consultants.empty? %>
+      <div class="row">
+        <div class="col-lg-5">
+          <h2>Consultores</h2>
+          <% @chapter.consultants.each do |consultant| %>
+            <div class="col-lg-2">
+              <%= image_tag consultant.image.url(:medium), class: "img-responsive" %>
+              <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
+            </div>
+          <% end %>
+        </div>
+      </div>
     <% end %>
 
     <%if @chapter.chapter_type == "Priorato"%>
@@ -56,17 +63,26 @@
       <% end %>
     <% end %>
 
-    <%=render "formCreateAnnouncement"%>
+    <div class="row">
+      <%= render "formCreateAnnouncement" %>
+    </div>
 
-
-
-
-    <h1>Publicaciones</h1>
-    <%  @publicaciones_para_mostrar.each do |an| %>
-      <%= an.subject%><br>
-      <%= an.content%><br>
-    <%end%>
-
+    <h1 class="center-title">Publicaciones</h1>
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8">
+        <% @publicaciones_para_mostrar.each do |publication| %>
+          <img src="<%= publication.user.image.url %>" width="30px;"> <%= link_to publication.user.fullName, '/profile/' + publication.user.id.to_s %> publicó:
+          <h3><%= publication.subject%></h3>
+          <p>
+            <%= publication.content%>
+          </p>
+          <img src="<%= publication.image.url %>" class="img-responsive"><br>
+          <strong>Fecha de publicación:</strong> <%= publication.created_at.to_date %>
+          <hr class="divider">
+        <%end%>
+      </div>
+    </div>
   </div>
 </div>
 <br>
