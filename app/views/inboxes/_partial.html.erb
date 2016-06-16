@@ -1,5 +1,5 @@
-<% if @user!=nil%>
-	<%=@user.name%>
-<%else%>
-	nombre aca
+<% if @users!=nil%>
+	<% @users.each do |user| %>
+    <strong><%= user.fullName %><br></strong>
+  <% end %>
 <%end%>

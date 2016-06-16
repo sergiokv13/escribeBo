@@ -14,18 +14,26 @@
                 <th>Titulo</th>
                 <th>Contenido</th>
                 <th>Recibido de</th>
+                <th>Fecha</th>
+                <th>Visto</th>
                 <th colspan="3"></th>
               </tr>
             </thead>
 
             <tbody>
               <% @inboxes.each do |inbox| %>
-                <tr>
+                <% if inbox.seen %>
+                  <tr class="success">
+                <% else %>
+                  <tr class="danger">
+                <% end %>
                   <td><%= inbox.subject %></td>
                   <td><%= inbox.content %></td>
-                  <td><%= inbox.user1.fullName %></td>
+                  <td><%= link_to inbox.user1.fullName, '/profile/' + inbox.user1.id.to_s %></td>
+                  <td><%= inbox.created_at.to_date %></td>
+                  <td><%= inbox.visto %></td>
                   <td><%= link_to 'Ver', inbox %></td>
-
+                  <td><%= link_to 'Borrar', '/deleteInbox/' + inbox.id.to_s %></td>
                 </tr>
               <% end %>
             </tbody>
@@ -37,19 +45,27 @@
           <table class="table table-hover table-striped table-bordered" >
             <thead>
               <tr>
-                <th>Subject</th>
-                <th>Content</th>
+                <th>Titulo</th>
+                <th>Contenido</th>
                 <th>Enviado a</th>
+                <th>Fecha</th>
+                <th>Visto</th>
                 <th colspan="3"></th>
               </tr>
             </thead>
 
             <tbody>
               <% @enviados.each do |inbox| %>
-                <tr>
+                <% if inbox.seen %>
+                  <tr class="success">
+                <% else %>
+                  <tr class="danger">
+                <% end %>
                   <td><%= inbox.subject %></td>
                   <td><%= inbox.content %></td>
-                  <td><%= inbox.user2.fullName %></td>
+                  <td><%= link_to inbox.user2.fullName, '/profile/' + inbox.user2.id.to_s %></td>
+                  <td><%= inbox.created_at.to_date %></td>
+                  <td><%= inbox.visto %></td>
                   <td><%= link_to 'Ver', inbox %></td>
 
                 </tr>

@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
 
   after_create :set_first_degree
 
+  def visible_inboxes
+    self.inboxes.where(inbox_hidden: false)
+  end
+
   def active_for_authentication?
     super and self.enabled
   end

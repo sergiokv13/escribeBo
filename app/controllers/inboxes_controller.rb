@@ -4,8 +4,8 @@ class InboxesController < ApplicationController
   # GET /inboxes
   # GET /inboxes.json
   def index
-    @inboxes = current_user.inboxes
-    @enviados = current_user.sent
+    @inboxes = current_user.visible_inboxes.order(created_at: :desc)
+    @enviados = current_user.sent.order(created_at: :desc)
   end
 
   # GET /inboxes/1
@@ -28,8 +28,13 @@ class InboxesController < ApplicationController
   end
 
   def update_user_field
-    @user = User.where(:id => params[:user_field]).first
-    render :partial => "partial", :object => @user
+    user_f = params[:user_field]
+    if user_f.size < 3
+      render :partial => "partial", :object => @users
+    else
+      @users = User.where("name LIKE ? OR id=?", "%#{user_f}%", "%#{user_f}%")
+      render :partial => "partial", :object => @users
+    end
   end
 
   # GET /inboxes/1/edit
@@ -40,8 +45,9 @@ class InboxesController < ApplicationController
   # POST /inboxes.json
   def create
     @inbox = Inbox.new(inbox_params)
-    @inbox.user1 = current_user 
+    @inbox.user1 = current_user
     @inbox.seen = false
+    @inbox.inbox_hidden = false
     respond_to do |format|
       if @inbox.save
         format.html { redirect_to @inbox, notice: 'Inbox was successfully created.' }
@@ -77,6 +83,12 @@ class InboxesController < ApplicationController
     end
   end
 
+  def deleteInbox
+    inbox = Inbox.find(params[:id])
+    inbox.hide
+    redirect_to inboxes_url
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_inbox
@@ -85,6 +97,6 @@ class InboxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inbox_params
-      params.require(:inbox).permit(:subject, :content, :user1_id, :user2_id)
+      params.require(:inbox).permit(:subject, :content, :user1_id, :user2_id, :inbox_att)
     end
 end

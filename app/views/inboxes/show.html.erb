@@ -14,11 +14,15 @@
         Recibido de: <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
       </p>
 
+      <% if @inbox.inbox_att.exists? %>
+        <span class="glyphicon glyphicon-paperclip"></span> <%= link_to 'Ver adjunto', @inbox.inbox_att.url, target: 'blank' %>
+      <% end %>
+
       <p>
         <% if @inbox.seen %>
-          Visto
+          <h5><strong>Este mensaje ha sido visto</strong></h5>
         <%else %>
-          no fue visto
+          <h5><strong>Este mensaje no ha sido visto</strong></h5>
         <%end %>
       </p>
       <center>

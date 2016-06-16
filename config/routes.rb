@@ -55,5 +55,6 @@ Rails.application.routes.draw do
   get '/aprovedTransactions' => 'transactions#aprovedTransactions'
   get '/reports' => 'transactions#reports'
   post '/generateReport' => 'transactions#generateReport'
+  get '/deleteInbox/:id' => 'inboxes#deleteInbox'
 
 end

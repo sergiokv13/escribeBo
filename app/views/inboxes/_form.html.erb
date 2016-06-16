@@ -1,21 +1,13 @@
-<%= bootstrap_form_for(@inbox) do |f| %>
-  <% if @inbox.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@inbox.errors.count, "error") %> prohibited this inbox from being saved:</h2>
-
-      <ul>
-      <% @inbox.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= bootstrap_form_for @inbox, html: { multipart: true } do |f| %>
 
   <div class="field">
-    <%= f.text_area :subject, label: "Titulo" %>
+    <%= f.text_area :subject %>
   </div>
   <div class="field">
-    <%= f.text_field :content, label: "Contenido" %>
+    <%= f.text_field :content %>
+  </div>
+  <div class="field">
+    <%= f.file_field :inbox_att %>
   </div>
   <div class="field">
     <% if @user_id != 0%>
@@ -23,8 +15,7 @@
     <%else%>
       <%= f.text_field :user2_id,  :id => 'user_id', label: "Enviar a" %>
     <%end%>
-    usuario:
-    <div id="user_field">nombre aca</div>
+    <div id="user_field"></div>
 
   </div>
   <div class="actions">

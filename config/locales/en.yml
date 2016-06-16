@@ -20,4 +20,25 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    attributes:
+      inbox:
+        subject: "Título"
+        content: "Contenido"
+        user2_id: "Enviar a"
+        inbox_att: "Archivo Adjunto"
+    errors:
+      models:
+        inbox:
+          attributes:
+            subject:
+              blank: "es obligatorio"
+              too_short: "es muy corto (mínimo 4 caracteres)"
+              too_long: "es muy largo (máximo 50 caracteres)"
+            content:
+              blank: "es obligatorio"
+              too_short: "es muy corto (mínimo 4 caracteres)"
+              too_long: "es muy largo (máximo 300 caracteres)"
+            user2_id:
+              blank: "es obligatorio"
+              too_short: "es muy corto (mínimo 4 caracteres)"
