@@ -12,7 +12,7 @@
         </center>
       </div>
       <div class="col-lg-4">
-        <h2>Informacion</h2>
+        <h3>Informacion</h3>
         Este es un <%= @chapter.chapter_type %> del campamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> Demolays activos.
         <br>
         <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
@@ -29,14 +29,14 @@
     </div>
 
     <%if @chapter.chapter_type == "Priorato"%>
-      <h2>Caballeros:</h2>
+      <h3>Caballeros:</h3>
       <% @chapter.knights.where(:role=>"Demolay").each do |demolay| %>
         <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
       <% end %>
     <% end %>
 
     <%if @chapter.chapter_type == "Corte"%>
-      <h2>Chevalliers:</h2>
+      <h3>Chevalliers:</h3>
       <% @chapter.chevalliers.each do |demolay| %>
         <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
       <% end %>
@@ -47,7 +47,7 @@
       <div class="col-lg-8">
         <div class="row">
           <div class="col-lg-5 info">
-            <h2>Miembros</h2>
+            <h3>Miembros</h3>
             Algunos de los miembros actuales son:<br>
             <% @chapter.chapter_users.take(4).each do |dm| %>
               <div class="row">
@@ -65,7 +65,7 @@
           <% if !@chapter.consultants.empty? %>
             <div class="col-lg-1"></div>
             <div class="col-lg-5 info">
-              <h2>Consultores</h2>
+              <h3>Consultores</h3>
               Algunos de los consultores actuales son:<br>
               <% @chapter.consultants.each do |consultant| %>
                 <div class="row">
