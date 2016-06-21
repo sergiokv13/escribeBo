@@ -1,10 +1,18 @@
-<%= form_for current_user, url: passwords_path do |f| %>
-  current_password:<br />
-  <%= f.password_field :current_password %><br />
-  password:<br />
-  <%= f.password_field :password %><br />
-  password_confirmation:<br />
-  <%= f.password_field :password_confirmation %><br />
-  <br />
-  <%= f.submit %>
+<h1>Cambiar Contraseña</h1>
+<%= bootstrap_form_for current_user, url: passwords_path do |f| %>
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4">
+	  <div class="form-group ">
+	  	<%= f.password_field :current_password ,:label => "Contraseña actual"%>
+	  </div>
+	  <div class="form-group ">
+	  	<%= f.password_field :password ,:label => "Nueva contraseña"%>
+	  </div>
+	  <div class="form-group ">
+	  	<%= f.password_field :password_confirmation ,:label => "Confirmación de nueva contraseña"%>
+	  </div>
+	  <div class="actions">
+	 	 <%= f.submit "Cambiar contraseña", class: "btn btn-success"%>
+	 	</div>
+	 </div>
 <% end %>

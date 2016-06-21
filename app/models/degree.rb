@@ -2,6 +2,14 @@ class Degree < ActiveRecord::Base
   belongs_to :user
   belongs_to :chapter
 
+
+  has_attached_file :image
+  validates_attachment_content_type :image, :content_type => ["application/pdf", "application/jpg", "application/png", "application/zip"]
+
+  def aproved 
+    return (self.president_aproved == true && self.deputy_aproved && self.oficial_aproved)
+  end
+  
   def self.for_oficial
     Degree.where(president_aproved: true, deputy_aproved: true, oficial_aproved: [false, nil])
   end
@@ -12,6 +20,16 @@ class Degree < ActiveRecord::Base
 
   def self.for_president
     Degree.where(president_aproved: [false, nil])
+  end
+
+  def self.all_to_be
+    degrees = Array.new
+    Degree.all.each do |degree|
+      if !degree.aproved
+        degrees.push(degree)
+      end
+    end
+    return degrees
   end
 
   def is_oficial

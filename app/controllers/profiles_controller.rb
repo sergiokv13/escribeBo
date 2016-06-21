@@ -1,5 +1,6 @@
 class ProfilesController < ApplicationController
   def profile
+    @premiacion = Premiacion.new
     @user = User.find(params[:id])
   end
 
@@ -11,6 +12,7 @@ class ProfilesController < ApplicationController
   def update_asignar_grado_demolay
     @degree = Degree.new
     @degree.title = "Demolay"
+    @degree.image = params[:image]
     @degree.chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
@@ -28,6 +30,7 @@ class ProfilesController < ApplicationController
   def update_asignar_grado_caballero
     @degree = Degree.new
     @degree.title = "Caballero"
+    @degree.image = params[:image]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.chapter = @chapter
     @degree.president_aproved = false
@@ -48,6 +51,7 @@ class ProfilesController < ApplicationController
   def update_asignar_grado_chevallier
     @degree = Degree.new
     @degree.title = "Chevallier"
+    @degree.image = params[:image]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
@@ -70,6 +74,7 @@ class ProfilesController < ApplicationController
     @chapter =  Chapter.find(params[:chapter_id])
     @degree = Degree.new
     @degree.title = "Consultor"
+    @degree.image = params[:image]
     @degree.president_aproved = false
     @degree.deputy_aproved = false
     @degree.oficial_aproved = false

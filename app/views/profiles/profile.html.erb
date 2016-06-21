@@ -1,53 +1,196 @@
 <div class="container">
   <div class="jumbotron">
-    <h1 class="center-title">Perfil de <%= @user.fullName %></h1>
-    <div class="col-lg-3">
+    <h2 ><%= @user.fullName %></h2>
+    <div class="col-lg-3 text-center">
       <img src="<%=@user.image.url%>" class="img-responsive">
+      <strong><%=@user.role%></strong><br>
+      <% if @user.aproved %>
+        <a class="btn btn-primary btn-block" href="/inboxes/new/<%=@user.id%>">Enviar mensaje</a>
+
+          <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal4">Ver Formularios</button>
+
+          <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal2">Grados</button>
+
+          <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal">Premiaciones</button>
+        <%else%>
+          <%= link_to "Aprobar", "/approve/"+@user.id.to_s, class: "btn btn-success btn-block" %>
+        <%end%>
+        <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver mas Información</button>
     </div>
-    <strong>Demolay ID:</strong>
-    <%= @user.demolayID %><br><br>
-    <strong>Rol:</strong>
-    <%= @user.role %><br><br>
-    <strong>Carnet de Identidad:</strong>
-    <%= @user.ci %><br><br>
-    <strong>Grados</strong>
-    <% @user.degrees.each do |degree| %>
-      <%= degree.title %> en <%= degree.chapter.chapter_name %> <br>
+
+    <div class="col-lg-3  text-center">
+      <h3>Grados</h3>
+      <% @user.degrees.each do |degree| %>
+      <% if degree.aproved %>
+        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>"> <%= degree.chapter.chapter_name %> </a><br>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-lg-3 text-center">
+      <h3>Cargos</h3>
+      <% @user.charges.each do |charge| %>
+        <% if charge.chapter != nil %>
+          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>"><%= charge.chapter.chapter_name %> </a><br>
+        <%else%>
+          Tiene el cargo de  <%= charge.title %> en <a href="/chapters/<%= charge.campament.id %>"><%= charge.campament.name %></a> <br>
+        <%end%>
+      <% end %>
+    </div>
+    <div class="col-lg-3 text-center">
+      <h3>Premiaciones</h3>
+      <% @user.premiacions.each do |premiacion| %>
+         <%= premiacion.title %> en <%= premiacion.date_of %> <br>
+      <% end %>
+    </div>
+    <div class="col-lg-9">
+      <h2>Información</h2>
+
+      <div class="col-lg-4"><strong>email: </strong><%=@user.email%></div>
+      <div class="col-lg-4"><strong>Telefono Fijo: </strong><%=@user.phone%></div>
+      <div class="col-lg-4"><strong>Telefono Celular: </strong><%=@user.cellphone%></div>
+
+      <div class="col-lg-4"><strong>fecha nacimiento: </strong><%=@user.birth_date%></div>
+      <div class="col-lg-4"><strong>Direccion: </strong><%=@user.adress%></div>
+      <div class="col-lg-4"></div>
+
+      <div class="col-lg-12">
+      <% if @user.aproved %>
+        Forma parte del capitulo 
+      <%else%>
+        Formara parte del capitulo 
+      <%end%> 
+        <a href="/chapters/<%=@user.chapter.id%>"><%=@user.chapter.chapter_name%></a>
+        en el campamento de 
+        <a href="/campaments/<%=@user.campament_id%>"><%=@user.campament.name%></a>
+      </div>
+    </div>
+    
+        
+    <div class="clear"></div> 
+     </div>
+</div>
+
+
+
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Premiar a <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+        <%= bootstrap_form_for @premiacion do |f| %>
+      <div class="form-group">
+        <%= f.text_field :title ,class:"form-control",label:"Motivo de la premiación"%>
+      </div>
+      <div class="form-group">
+        <%= f.date_field :date_of ,class:"form-control",label:"Fecha de premiación"%>
+      </div>
+      <div class="form-group" hidden="true">
+        <%= f.text_field :user_id, value: @user.id%>
+      </div>
+      <div class="actions">
+        <%= f.submit "Premiar", class: "btn btn-primary" %>
+      </div>
     <% end %>
-    <td><%= link_to "Ver Formulario", @user.registration_form.url, target: "_blank" %></td>
-    <br>
-    <%if @user.role == "Demolay"%>
-      <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s %>
-      <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s %>
-      <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s %>
-    <%else%>
-      <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s %>
-    <%end%>
-    <br><br><br><br>
-    <h2>Datos</h2>
-    <strong>Fecha de nacimiento:</strong><%=@user.birth_date%><br>
-    <strong>Campamento:</strong><%=@user.campament.name%><br>
-    <strong>Provincia:</strong><%=@user.city%><br>
-    <strong>Dirección:</strong><%=@user.adress%><br>
-    <strong>Telefono Fijo:</strong><%=@user.phone%><br>
-    <strong>Telefono Celular:</strong><%=@user.cellphone%><br>
-    <% if @user.role == "Demolay" %>
-      <strong>Seguro:</strong><%=@user.assurance%><br>
-      <strong>Padrino:</strong><%=@user.godfather_id%><br>
-      <strong>Fecha de iniciacion:</strong><%=@user.iniciacion%><br>
-      <strong>Nombre del padre:</strong><%=@user.father_name%><br>
-      <strong>Informacion del padre:</strong><%=@user.father_info%><br>
-      <strong>Dirección del padre:</strong><%=@user.father_adress%><br>
-      <strong>Mail del padre:</strong><%=@user.father_mail%><br>
-      <strong>Nombre de la madre:</strong><%=@user.mather_name%><br>
-      <strong>Direccion de la madre:</strong><%=@user.mather_adress%><br>
-      <strong>Mail de la madre:</strong><%=@user.mather_mail%><br>
-    <%else%>
-      <strong>Estado civil:</strong><%=@user.estado_civil%><br>
-      <strong>Nombre esposa:</strong><%=@user.nombre_esposa%><br>
-      <strong>Nombre del taller</strong><%=@user.taller_nombre%><br>
-      <strong>Numero del taller</strong><%=@user.taller_numero%><br>
-    <%end%>
-    <strong></strong>
-  </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+
+<div id="myModal2" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Otorgar grado a <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+        <%if @user.role == "Demolay"%>
+        <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
+        <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block"%>
+        <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+        <%else%>
+          <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block"%>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+<div id="myModal3" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Mas primaryrmación de <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+              <strong>Carnet de identidad: </strong> <%=@user.ci%><br>
+              <strong>Demolay Id: </strong> <%=@user.demolayID%><br>
+              <strong>Campamento:</strong> <%=@user.campament.name%><br>
+              <strong>Chapter:</strong> <%=@user.chapter.chapter_name%><br>
+              <strong>Provincia:</strong> <%=@user.city%><br>
+              <strong>Dirección:</strong> <%=@user.adress%><br>
+              <strong>Telefono Fijo:</strong> <%=@user.phone%><br>
+              <strong>Telefono Celular:</strong> <%=@user.cellphone%><br>
+            <% if @user.role == "Demolay"%>
+               <strong>Seguro: </strong> <%=@user.assurance%><br>
+                <strong>Padrino: </strong> <%=@user.godfather_id%><br>
+                <strong>Iniciacion:</strong> <%=@user.iniciacion%><br>
+                <strong>Nombre del padre:</strong> <%=@user.father_name%><br>
+                <strong>primaryrmación del padre:</strong> <%=@user.father_info%><br>
+                <strong>Dirección del padre:</strong> <%=@user.father_adress%><br>
+                <strong>Correo electronico del padre:</strong> <%=@user.father_mail%><br>
+                <strong>Nombre de la madre:</strong> <%=@user.mather_name%><br>
+                <strong>Dirección de la madre:</strong> <%=@user.mather_adress%><br>
+                <strong>Email de la madre:</strong> <%=@user.mather_mail%><br>
+            <%else%>
+              <strong>Estado civil:</strong> <%=@user.estado_civil%><br>
+              <strong>Nombre Esposa:</strong> <%=@user.nombre_esposa%><br>
+              <strong>Nombre del taller:</strong> <%=@user.taller_nombre%><br>
+              <strong>Numero del taller:</strong> <%=@user.taller_numero%><br>
+            <%end%>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+<div id="myModal4" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Formularios de <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+               <%= link_to "Ver Formulario de iniciación",@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block"%>
+               <strong>Formularios de grados</strong>
+               <% @user.degrees.each do |degree| %>
+                <% if degree.aproved %>
+               <% if degree.title!="Iniciatico"%>
+                <%= link_to "Ver Formulario de " + degree.title.to_s,degree.image.url, target: "_blank" , class: "btn btn-primary btn-block"%>
+                <%end%>
+                 <%end%>
+               <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </div>
