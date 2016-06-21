@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :premiacions
   get '/inboxes/new/:user_id' => "inboxes#new"
   resources :inboxes
   resources :announcements

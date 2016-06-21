@@ -24,28 +24,8 @@
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <% if user_signed_in? %>
+            <% if user_signed_in?%>
               <ul class="nav navbar-nav">
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/users">Usuarios <span class="sr-only">(current)</span></a></li>
-                    <% if current_user.is_aprovator %>
-                      <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
-                    <% end %>
-                  </ul>
-                </li>
-
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transacciones<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/transactions/new">Crear transaccion</a></li>
-                    <li><a href="/pendingTransactions">Pendientes</a></li>
-                    <li><a href="/aprovedTransactions">Archivadas</a></li>
-                    <li><a href="/reports">Reportes</a></li>
-                  </ul>
-                </li>
-
                 <% if !current_user.is_oficial%>
 
                 <li><a href="/campaments">Campamentos</a></li>
@@ -74,6 +54,30 @@
                       <li><%= link_to 'Enviar mensaje', new_inbox_path %></li>
                     </ul>
                   </li>
+                 <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transacciones<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/transactions/new">Crear transaccion</a></li>
+                    <% if current_user.is_oficial %>
+                      <li><a href="/pendingTransactions">Pendientes</a></li>
+                      <li><a href="/aprovedTransactions">Archivadas</a></li>
+                      <li><a href="/reports">Reportes</a></li>
+                    <% end %>
+
+                  </ul>
+                </li>
+                  <% if ( current_user.tiene_el_cargo("Oficial Ejecutivo") || current_user.tiene_el_cargo("Delegado Regional") || current_user.tiene_el_cargo("Presidente Consejo Consultivo") )%>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/users">Usuarios <span class="sr-only">(current)</span></a></li>
+                      <% if current_user.is_aprovator %>
+                        <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
+                      <% end %>
+                    </ul>
+                 
+                </li>
+                 <%end%>
               </ul>
               <%= form_tag("/search", method:"post", class: "navbar-form navbar-left") do %>
                 <div class="form-group">
@@ -82,6 +86,7 @@
                 <%= submit_tag "Buscar", class: "btn btn-default" %>
               <% end %>
             <% end %>
+
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <% if user_signed_in? %>

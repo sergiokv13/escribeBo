@@ -1,14 +1,25 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<div class="jumbotron text-center">
 
-<p>
-  <strong>Title:</strong>
-  <%= @degree.title %>
-</p>
+	<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @degree.user %>
-</p>
+		<p class="text-center">
+		  <strong>Usuario</strong><br>
+		  <%= @degree.user.fullName %>
+		</p>
 
-<%= link_to 'Edit', edit_degree_path(@degree) %> |
-<%= link_to 'Back', degrees_path %>
+		<p class="text-center">
+		  <strong>Razón del grado</strong><br>
+		  <%= @degree.title %>
+		</p>
+
+		<p class="text-center">
+		  <strong>Formulario del grado</strong><br>
+		  <%= link_to "Ver Formulario de " + @degree.title.to_s,@degree.image.url, target: "_blank" , class: "btn btn-info"%>
+		</p>
+
+		<%= link_to "Aprobar", "/approve_degree/"+@degree.id.to_s, class: "btn btn-success" %>
+
+
+	</div>
+</div>

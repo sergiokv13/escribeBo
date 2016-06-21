@@ -22,6 +22,7 @@ class InboxesController < ApplicationController
     @inbox = Inbox.new
     if params[:user_id]!=nil
       @user_id = params[:user_id]
+      @user = User.where(:id => @user_id).first
     else
       @user_id=0
     end
@@ -30,6 +31,7 @@ class InboxesController < ApplicationController
   def update_user_field
     user_f = params[:user_field]
     if user_f.size < 3
+      @users = User.where(:id => user_f)
       render :partial => "partial", :object => @users
     else
       @users = User.where("name LIKE ? OR id=?", "%#{user_f}%", "%#{user_f}%")

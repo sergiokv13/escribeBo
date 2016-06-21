@@ -15,7 +15,12 @@
     <%else%>
       <%= f.text_field :user2_id,  :id => 'user_id', label: "Enviar a" %>
     <%end%>
-    <div id="user_field"></div>
+
+    <div id="user_field">
+      <%if @user != nil %>
+        <strong><%= @user.fullName %><br></strong>
+      <% end %>
+    </div>
 
   </div>
   <div class="actions">

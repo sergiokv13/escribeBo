@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Premiacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Date of</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @premiacions.each do |premiacion| %>
+      <tr>
+        <td><%= premiacion.title %></td>
+        <td><%= premiacion.date_of %></td>
+        <td><%= premiacion.user %></td>
+        <td><%= link_to 'Show', premiacion %></td>
+        <td><%= link_to 'Edit', edit_premiacion_path(premiacion) %></td>
+        <td><%= link_to 'Destroy', premiacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Premiacion', new_premiacion_path %>

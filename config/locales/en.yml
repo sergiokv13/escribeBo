@@ -42,3 +42,26 @@ en:
             user2_id:
               blank: "es obligatorio"
               too_short: "es muy corto (mínimo 4 caracteres)"
+        user:
+          attributes:
+            email:
+              blank: "es obligatorio"
+              invalid: "es invalido"
+            name:
+              blank: "es obligatorio"
+              too_short: "es muy corto (mínimo 4 caracteres)"
+            lastname: 
+              blank: "es obligatorio"
+              too_short: "es muy corto (mínimo 4 caracteres)"
+            birth_date:
+              blank: "es obligatorio"
+            ci:
+              blank: "es obligatorio"
+              too_short: "es muy corto (mínimo 5 caracteres)"
+            campament_id:
+              blank: "es obligatorio"
+            chapter_id: 
+              blank: "es obligatorio"
+            role:
+              blank: "es obligatorio"
+

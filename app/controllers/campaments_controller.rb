@@ -43,11 +43,21 @@ class CampamentsController < ApplicationController
 
   def update_gestion
     @campament = Campament.find(params[:id])
-    @user = User.find(params[:id_delegado])
-    @user2 = User.find(params[:id_maestro])
-    @campament.president = @user
-    @campament.maestro_consejero = @user2
+    @encargado = User.find(params[:id_maestro])
+    @conPresident = User.find(params[:id_delegado])
+    @campament.maestro_consejero = @encargado
+    @campament.president = @conPresident
     @campament.save
+    @charge = Charge.new
+    @charge.user = @encargado
+    @charge.title = "Maestro Consejero"
+    @charge.campament = @campament
+    @charge.save
+    @charge = Charge.new
+    @charge.user = @conPresident
+    @charge.title = "Delegado Regional"
+    @charge.campament = @campament
+    @charge.save
     redirect_to "/campaments/"+@campament.id.to_s
   end
 

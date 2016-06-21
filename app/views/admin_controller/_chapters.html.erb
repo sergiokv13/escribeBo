@@ -1,2 +1,8 @@
-
-<%= f.select(:chapter_id, options_from_collection_for_select(chapters,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
+<div class="form-group"><label class="control-label" for="user_chapter_id">(*) Capitulo</label>
+<select class="form-control" name="user[chapter_id]" id="user_chapter_id">
+	<option value="">Seleccionar capitulo</option>
+	<% @chapters.each do |chapter| %>
+		<option value="<%=chapter.id%>"><%=chapter.chapter_name%></option>
+	<% end %>
+</select>
+</div>

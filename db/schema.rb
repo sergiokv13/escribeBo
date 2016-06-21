@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616064828) do
+ActiveRecord::Schema.define(version: 20160621093439) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -70,21 +70,29 @@ ActiveRecord::Schema.define(version: 20160616064828) do
   create_table "charges", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "campament_id"
+    t.integer  "chapter_id"
   end
 
+  add_index "charges", ["campament_id"], name: "index_charges_on_campament_id"
+  add_index "charges", ["chapter_id"], name: "index_charges_on_chapter_id"
   add_index "charges", ["user_id"], name: "index_charges_on_user_id"
 
   create_table "degrees", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "chapter_id"
     t.boolean  "president_aproved"
     t.boolean  "deputy_aproved"
     t.boolean  "oficial_aproved"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id"
@@ -107,6 +115,16 @@ ActiveRecord::Schema.define(version: 20160616064828) do
 
   add_index "inboxes", ["user1_id"], name: "index_inboxes_on_user1_id"
   add_index "inboxes", ["user2_id"], name: "index_inboxes_on_user2_id"
+
+  create_table "premiacions", force: :cascade do |t|
+    t.string   "title"
+    t.date     "date_of"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "premiacions", ["user_id"], name: "index_premiacions_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
     t.string   "name"

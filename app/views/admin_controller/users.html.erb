@@ -14,20 +14,18 @@
               <th>Correo Electrónico</th>
               <th>Capitulo</th>
               <th>Estado</th>
-              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
             <% @users.each do |user| %>
               <tr>
-                <td><%= user.fullName %></td>
+                <td><a href="/profile/<%= user.id %>"> <%= user.fullName %></a></td>
                 <td><%= user.demolayID %></td>
                 <td><%= user.role %></td>
                 <td><%= user.ci %></td>
                 <td><%= user.email %></td>
                 <td><%= user.chapter.chapter_name %></td>
                 <td><%= user.status %></td>
-                <td><%= link_to "Ver perfil", "/profile/"+user.id.to_s %></td>
               </tr>
             <% end %>
           </tbody>

@@ -1,46 +1,115 @@
 <div class="container">
   <div class="jumbotron">
     <h1 class="center-title">Editar Perfil</h1>
-    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put , :multipart => true} ) do |f| %>
       <%= devise_error_messages! %>
 
-      <div class="field">
+      <div class="field col-lg-6">
         <%= f.email_field :email, autofocus: true, label: "Correo Electrónico" %>
       </div>
+      
+      <div class="field col-lg-6">
+        <%= f.file_field :image,  label: "Foto de perfil" %>
+      </div>
 
+      <div class="clear"></div>
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
-
-      <div class="field">
+      *Dejar vacio si no se desea cambiar
+      <div class="clear"></div>
+      
+      <div class="field col-lg-4">
         <%= f.password_field :password, autocomplete: "off", label: "Contraseña Nueva" %>
       </div>
 
-      <div class="field">
+      <div class="field  col-lg-4">
         <%= f.password_field :password_confirmation, autocomplete: "off", label: "Confirmar Contraseña Nueva" %>
       </div>
 
-      <div class="field">
-        <%= f.password_field :current_password, autocomplete: "off", label: "Contraseña Actual" %>
+      <div class="field col-lg-4">
+        <%= f.text_field :name, label: "Nombres" %>
       </div>
 
-      <div class="field">
-        <%= f.text_field :name, label: "Nombre" %>
-      </div>
-
-      <div class="field">
+      <div class="field col-lg-4">
         <%= f.text_field :lastname, label: "Apellidos" %>
       </div>
 
-      <div class="field">
-        <%= f.text_field :demolayID, label: "Demolay ID" %>
+      <div class="form-group col-lg-4">
+          <%= f.date_field :birth_date, class: "form-control",label: "Fecha de nacimiento" %>
       </div>
 
-      <div class="field">
-        <%= f.text_field :role , label: "Rol"%>
+      <div class="form-group col-lg-4">
+          <%= f.number_field :ci, class: "form-control" ,label: "(*) Carnet de indentidad"%>
       </div>
 
+      <div class="form-group col-lg-4"">
+          <%= f.text_field :adress, class: "form-control",label: "Dirección" %>
+      </div>
 
+      <div class="form-group col-lg-4"">
+        <%= f.number_field :phone, class: "form-control",label: "Telofono fijo"%>
+      </div>
+      
+      <div class="form-group col-lg-4"">
+        <%= f.number_field :cellphone, class: "form-control" ,label: "Telofono celular"%>
+      </div>
+
+      <% if @user.role =="Demolay"%>
+            <div class="form-group col-lg-4">
+              <%= f.text_field :father_name, class: "form-control",label: "Nombre del padre"  %>
+            </div>
+
+            <div class="form-group col-lg-4">
+              <%= f.text_field :father_adress, class: "form-control" ,label: "Dirección del padre"%>
+            </div>
+
+            <div class="form-group col-lg-4">
+
+              <%= f.text_field :father_mail, class: "form-control" ,label: "Email del padre"%>
+            </div>
+            <div class="clear"></div>
+            <div class="form-group col-lg-4">
+
+              <%= f.text_field :mather_name, class: "form-control",label: "Nombre de la madre" %>
+            </div>
+
+            <div class="form-group col-lg-4">
+
+              <%= f.text_field :mather_adress, class: "form-control" ,label: "Dirección de la madre"%>
+            </div>
+
+            <div class="form-group col-lg-4">
+
+              <%= f.text_field :mather_mail, class: "form-control",label: "Email de la madre" %>
+            </div>
+      <% else %>
+            <div class="form-group col-lg-6">
+              <%= f.select(:estado_civil, options_for_select([['Casado','Casado'],['Soltero','Soltero'],['Viudo','Viudo']]), class: "form-control",label: "Estado Civil")%>
+            </div>
+
+            <div class="form-group col-lg-6">
+
+              <%= f.text_field :nombre_esposa, class: "form-control" ,label: "Nombre de la esposa"%>
+            </div>
+            <div class="clear"></div>
+             <div class="form-group col-lg-6">
+
+              <%= f.text_field :taller_nombre, class: "form-control" ,label: "Nombre de taller al que pertenece"%>
+            </div>
+
+            <div class="form-group col-lg-6">
+
+              <%= f.text_field :taller_numero, class: "form-control" ,label: "Numero del taller al que pertenece"%>
+            </div>
+      <% end %>
+
+
+      <div class="field  col-lg-4">
+        <%= f.password_field :current_password, autocomplete: "off", label: "Contraseña Actual" %>
+      </div>
+
+      <div class="clear"></div>
       <div class="actions">
         <%= f.submit "Actualizar", class: "btn btn-success" %>
       </div>

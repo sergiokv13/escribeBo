@@ -3,15 +3,14 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/missing_user.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-
+  
   has_attached_file :registration_form
-  validates_attachment_content_type :registration_form, :content_type => ["application/pdf"]
-
+  validates_attachment_content_type :registration_form, :content_type => ["application/pdf", "application/jpg", "application/png", "application/zip"]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
   has_many :charges
+  has_many :premiacions
   has_many :degrees
   has_many :inboxes, foreign_key: 'user2_id', class_name: 'Inbox'
   has_many :sent, foreign_key: 'user1_id', class_name: 'Inbox'
@@ -22,12 +21,46 @@ class User < ActiveRecord::Base
   belongs_to :priory, class_name: 'Chapter'
   belongs_to :court, class_name: 'Chapter'
   belongs_to :campament
-
   has_many :transactions
 
-  validates :email, presence: true
 
-  after_create :set_first_degree
+
+
+  validates :email, presence: true
+  
+  validates :name, presence: true
+  validates :name, length: { minimum: 4 }
+
+  validates :lastname, presence: true
+  validates :lastname, length: { minimum: 4 }
+
+  validates :birth_date, presence: true
+
+  validates :ci, presence: true
+  validates :ci, length: { minimum: 5 }
+
+  validates :campament_id, presence: true
+
+  validates :chapter_id, presence: true
+
+  validates :role, presence: true
+
+
+
+  def aproved 
+    return (self.president_aproved == true && self.deputy_aproved && self.oficial_aproved)
+  end
+
+  def self.all_to_be
+    degrees = Array.new
+    User.all.each do |degree|
+      if !degree.aproved
+        degrees.push(degree)
+      end
+    end
+    return degrees
+  end
+
 
   def visible_inboxes
     self.inboxes.where(inbox_hidden: false)

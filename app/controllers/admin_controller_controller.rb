@@ -12,7 +12,7 @@ class AdminControllerController < ApplicationController
 
 	def update_chapters
 	  @chapters = Chapter.where(:campament_id => params[:campament], :chapter_type =>"Capitulo")
-	  render :partial => "chapters", :object => @chapters
+	  render :partial => "chapters", :object => @chapters 
 	end
 
 	def createUser
@@ -39,7 +39,34 @@ class AdminControllerController < ApplicationController
 	end
 
 	def users
-		@users = User.all
+		@users = Array.new
+		if current_user.is_oficial
+			@users = User.all
+		end
+
+		if current_user.is_deputy
+			@charges = Charge.where(:user_id => current_user.id)
+			@charges.each do |charge|
+				if (charge.title == "Delegado Regional")
+					@users_from_campament = User.where(:campament_id => charge.campament_id)
+					@users_from_campament.each do |u|
+						@users.push(u)
+					end
+				end
+			end
+		end
+
+		if current_user.is_president
+			@charges = Charge.where(:user_id => current_user.id)
+			@charges.each do |charge|
+				if (charge.title == "Presidente Consejo Consultivo")
+					@users_from_campament = User.where(:chapter_id => charge.chapter_id)
+					@users_from_campament.each do |u|
+						@users.push(u)
+					end
+				end
+			end
+		end
 	end
 
 	def search
@@ -58,8 +85,8 @@ class AdminControllerController < ApplicationController
 			@degrees_to_approve = Degree.for_deputy
 		end
 		if current_user.is_oficial
-			@users_to_approve = User.where(oficial_aproved: [false, nil], deputy_aproved: true, president_aproved: true)
-			@degrees_to_approve = Degree.for_oficial
+			@users_to_approve = User.all_to_be
+			@degrees_to_approve = Degree.all_to_be
 		end
 	end
 
@@ -73,8 +100,11 @@ class AdminControllerController < ApplicationController
 		end
 		if current_user.is_oficial
 			@user.aprove_oficial
+			@user.aprove_president
+			@user.aprove_deputy
+			@user.set_first_degree
 		end
-		redirect_to '/approvals'
+		redirect_to '/profile/' + @user.id.to_s
 	end
 
 	def approve_degree
@@ -87,8 +117,10 @@ class AdminControllerController < ApplicationController
 		end
 		if current_user.is_oficial
 			@degree.aprove_oficial
+			@degree.aprove_deputy
+			@degree.aprove_president
 		end
-		redirect_to '/approvals'
+		redirect_to '/profile/' + @degree.user_id.to_s
 	end
 
 	def user_params
