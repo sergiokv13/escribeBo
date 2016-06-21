@@ -33,7 +33,7 @@ td {
   text-align: center;
 }
 .info {
-  font-size: 130%;
+  font-size: 120%;
   text-align: justify;
 }
 
@@ -112,4 +112,7 @@ hr {
 }
 .chapter-title {
   margin-left:15px;
+}
+.pagination {
+  visibility: hidden;
 }

@@ -9,4 +9,35 @@ class Chapter < ActiveRecord::Base
   has_many :demolays, foreign_key: 'chapter_id', class_name: 'User'
   has_many :knights, foreign_key: 'priory_id', class_name: 'User'
   has_many :chevalliers, foreign_key: 'court_id', class_name: 'User'
+
+  def announcements_to_aprove
+    announcements = Announcement.all
+    announcements_to_be_aproved = Array.new
+    announcements.each do |announcement|
+      if !announcement.is_aproved
+        announcements_to_be_aproved.push(announcement)
+      end
+    end
+    announcements_to_be_aproved
+  end
+
+  def aproved_announcements
+    announcements_to_be_aproved = Array.new
+    announcements.each do |announcement|
+      if announcement.is_aproved
+        announcements_to_be_aproved.push(announcement)
+      end
+    end
+    announcements_to_be_aproved
+  end
+
+  def chapter_users
+    if self.chapter_type == "Capitulo"
+      return self.demolays
+    elsif self.chapter_type == "Priorato"
+      return self.knights
+    else
+      return self.chevalliers
+    end
+  end
 end

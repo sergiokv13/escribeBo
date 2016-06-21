@@ -5,49 +5,28 @@
 
     <h1 class="center-title"><%= @chapter.chapter_name %> #<%= @chapter.number %> </h1>
 
-
-    <center>
-      <%= image_tag @chapter.image.url(:original), class: "img-responsive" %>
-    </center>
-    <div class="col-lg-5 info">
-      <h2>Informacion</h2>
-      Este es un <%= @chapter.chapter_type %> del campamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> Demolays activos.
-      <br>
-      <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
-        El Presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
-      <% end %>
-    </div>
-    <div class="col-lg-1"></div>
-    <div class="col-lg-5 info">
-      <h2>Miembros</h2>
-      Algunos de los miembros actuales son:<br>
-      <% @chapter.demolays.take(4).each do |dm| %>
-        <div class="row">
-          <div class="col-lg-2">
-            <%= image_tag dm.image.url(:medium), class: "img-responsive" %>
-          </div>
-          <div class="col-lg-10">
-            <%= link_to dm.fullName, '/profile/'+dm.id.to_s %>
-          </div>
-        </div>
-        <br>
-      <% end %>
-      <%= link_to 'Ver mas', '/users' %>
-    </div>
-
-    <% if !@chapter.consultants.empty? %>
-      <div class="row">
-        <div class="col-lg-5">
-          <h2>Consultores</h2>
-          <% @chapter.consultants.each do |consultant| %>
-            <div class="col-lg-2">
-              <%= image_tag consultant.image.url(:medium), class: "img-responsive" %>
-              <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
-            </div>
-          <% end %>
-        </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <center>
+          <%= image_tag @chapter.image.url(:original), class: "img-responsive" %>
+        </center>
       </div>
-    <% end %>
+      <div class="col-lg-4">
+        <h2>Informacion</h2>
+        Este es un <%= @chapter.chapter_type %> del campamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> Demolays activos.
+        <br>
+        <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
+          El Presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
+        <% end %>
+        <% if current_user.is_oficial %>
+          <center>
+            <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s, class: "btn btn-success btn-block" %>
+            <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path, class: "btn btn-primary btn-block" %>
+            <%= link_to 'Borrar ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea borrar este capitulo?' } %>
+          </center>
+        <% end %>
+      </div>
+    </div>
 
     <%if @chapter.chapter_type == "Priorato"%>
       <h2>Caballeros:</h2>
@@ -64,23 +43,62 @@
     <% end %>
 
     <div class="row">
-      <%= render "formCreateAnnouncement" %>
-    </div>
-
-    <h1 class="center-title">Publicaciones</h1>
-    <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
-        <% @publicaciones_para_mostrar.each do |publication| %>
-          <img src="<%= publication.user.image.url %>" width="30px;"> <%= link_to publication.user.fullName, '/profile/' + publication.user.id.to_s %> publicó:
-          <h3><%= publication.subject%></h3>
-          <p>
-            <%= publication.content%>
-          </p>
-          <img src="<%= publication.image.url %>" class="img-responsive"><br>
-          <strong>Fecha de publicación:</strong> <%= publication.created_at.to_date %>
+        <div class="row">
+          <div class="col-lg-5 info">
+            <h2>Miembros</h2>
+            Algunos de los miembros actuales son:<br>
+            <% @chapter.chapter_users.take(4).each do |dm| %>
+              <div class="row">
+                <div class="col-lg-2">
+                  <%= image_tag dm.image.url(:medium), class: "img-responsive" %>
+                </div>
+                <div class="col-lg-10">
+                  <%= link_to dm.fullName, '/profile/'+dm.id.to_s %>
+                </div>
+              </div>
+              <br>
+            <% end %>
+            <%= link_to 'Ver mas', '/chapter_users/' + @chapter.id.to_s %>
+          </div>
+          <% if !@chapter.consultants.empty? %>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5 info">
+              <h2>Consultores</h2>
+              Algunos de los consultores actuales son:<br>
+              <% @chapter.consultants.each do |consultant| %>
+                <div class="row">
+                  <div class="col-lg-2">
+                    <%= image_tag consultant.image.url(:medium), class: "img-responsive" %>
+                  </div>
+                  <div class="col-lg-10">
+                    <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="row">
           <hr class="divider">
-        <%end%>
+          <%= render "formCreateAnnouncement" %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-lg-8" id="my-posts">
+        <h1 class="center-title">Publicaciones</h1>
+
+        <%= render partial: "publications", collection: @publicaciones_para_mostrar %>
+
+        <div id="infinite-scrolling">
+          <%= will_paginate @publicaciones_para_mostrar %>
+        </div>
+
       </div>
     </div>
   </div>

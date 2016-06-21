@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160616064828) do
+ActiveRecord::Schema.define(version: 20160621073011) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -27,6 +27,8 @@ ActiveRecord::Schema.define(version: 20160616064828) do
     t.string   "charges"
     t.integer  "chapter_id"
     t.integer  "campament_id"
+    t.boolean  "president_aproved"
+    t.boolean  "oficial_aproved"
   end
 
   add_index "announcements", ["campament_id"], name: "index_announcements_on_campament_id"

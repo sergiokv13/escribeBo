@@ -4,39 +4,48 @@
 
     <h1 class="center-title"><%= @campament.name %></h1>
 
-    <%= image_tag @campament.image.url(:medium), class: "img-responsive" %>
-
-    <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
-      <p>
-      <strong>Delegado regional:</strong>
-      <%= @campament.president.fullName %>
-      </p>
-      <p>
-      <strong>Maestro Consejero Departamental:</strong>
-      <%= @campament.maestro_consejero.fullName %>
-      </p>
-    <%else%>
-      <h3>La gestion no fue actualizada</h3>
-    <%end%>
-
     <div class="row">
-      <%= render "formCreateAnnouncement"%>
+      <div class="col-lg-8">
+        <center>
+          <%= image_tag @campament.image.url(:original), class: "img-responsive" %>
+        </center>
+      </div>
+      <div class="col-lg-4">
+        <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
+          <p>
+          <strong>Delegado regional:</strong>
+          <%= @campament.president.fullName %>
+          </p>
+          <p>
+          <strong>Maestro Consejero Departamental:</strong>
+          <%= @campament.maestro_consejero.fullName %>
+          </p>
+        <%else%>
+          <h3>La gestion no fue actualizada</h3>
+        <%end%>
+      </div>
     </div>
 
-    <h1 class="center-title">Publicaciones</h1>
-    <div class="row">
+     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
-        <% @publicaciones_para_mostrar.each do |publication| %>
-          <img src="<%= publication.user.image.url %>" width="30px;"> <%= link_to publication.user.fullName, '/profile/' + publication.user.id.to_s %> publicó:
-          <h3><%= publication.subject%></h3>
-          <p>
-            <%= publication.content%>
-          </p>
-          <img src="<%= publication.image.url %>" class="img-responsive"><br>
-          <strong>Fecha de publicación:</strong> <%= publication.created_at.to_date %>
+        <div class="row">
           <hr class="divider">
-        <%end%>
+          <%= render "formCreateAnnouncement" %>
+        </div>
+        <h1 class="center-title">Publicaciones</h1>
+
+          <% @publicaciones_para_mostrar.each do |publication| %>
+            <img src="<%= publication.user.image.url %>" width="30px;"> <%= link_to publication.user.fullName, '/profile/' + publication.user.id.to_s %> publicó:
+            <h3><%= publication.subject%></h3>
+            <p>
+              <%= publication.content%>
+            </p>
+            <img src="<%= publication.image.url %>" class="img-responsive"><br>
+            <strong>Fecha de publicación:</strong> <%= publication.created_at.to_date %>
+            <hr class="divider">
+          <%end%>
+
       </div>
     </div>
 

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1 class="center-title">Listado de usuarios de </h1>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Demolay ID</th>
+              <th>Rol</th>
+              <th>CI</th>
+              <th>Correo Electrónico</th>
+              <th>Capitulo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= link_to user.fullName, "/profile/" + user.id.to_s %></td>
+                <td><%= user.demolayID %></td>
+                <td><%= user.role %></td>
+                <td><%= user.ci %></td>
+                <td><%= user.email %></td>
+                <td><%= user.chapter.chapter_name %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>

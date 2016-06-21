@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @announcement.subject %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @announcement.content %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @announcement.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_announcement_path(@announcement) %> |
-<%= link_to 'Back', announcements_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+      <div class="jumbotron">
+        <h1 class="center-title"><%= @announcement.subject %></h1>
+        <%= image_tag @announcement.image, class: "img-responsive" %>
+        <p>
+          <%= @announcement.content %>
+        </p>
+        <h5><strong>Publicado por:</strong> <%= link_to @announcement.user.fullName, '/profile/' + @announcement.user.id.to_s %></h5>
+        <div class="row">
+          <div class="col-lg-4"></div>
+          <% if !@announcement.is_aproved %>
+            <div class="col-lg-4">
+              <center>
+                <%= link_to "Aprobar", '/aprove_publication/' + @announcement.id.to_s, class: "btn btn-success" %>
+                <%= link_to "Atras", '/chapter_aprovals', class: "btn btn-danger" %>
+              </center>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,27 +14,43 @@ class ChaptersController < ApplicationController
   # GET /chapters/1.json
   def show
     @publicaciones_para_mostrar = Array.new
-    publicaciones = @chapter.announcements
+    publicaciones = @chapter.aproved_announcements.reverse
     if current_user.is_oficial
-      @publicaciones_para_mostrar = publicaciones
+      @publicaciones_para_mostrar = publicaciones.paginate(page: params[:page], per_page: 1)
     else
       publicaciones.each do |publicacion|
         if publicacion.aprobada(current_user)
           @publicaciones_para_mostrar.push(publicacion)
         end
       end
+      @publicaciones_para_mostrar = @publicaciones_para_mostrar.paginate(page: params[:page], per_page: 1)
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # GET /chapters/new
   def new
-    @chapter = Chapter.new
-    @campaments = Campament.all
+    if current_user.is_oficial
+      @chapter = Chapter.new
+      @campaments = Campament.all
+    else
+      redirect_to '/'
+    end
+
   end
 
   # GET /chapters/1/edit
   def edit
-    @campaments = Campament.all
+    if current_user.is_oficial
+      @campaments = Campament.all
+    else
+      redirect_to '/'
+    end
   end
 
   def gestion
@@ -75,15 +91,17 @@ class ChaptersController < ApplicationController
   # POST /chapters
   # POST /chapters.json
   def create
-    @chapter = Chapter.new(chapter_params)
+    if current_user.is_oficial
+      @chapter = Chapter.new(chapter_params)
 
-    respond_to do |format|
-      if @chapter.save
-        format.html { redirect_to @chapter, notice: 'Chapter was successfully created.' }
-        format.json { render :show, status: :created, location: @chapter }
-      else
-        format.html { render :new }
-        format.json { render json: @chapter.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @chapter.save
+          format.html { redirect_to @chapter, notice: 'Chapter was successfully created.' }
+          format.json { render :show, status: :created, location: @chapter }
+        else
+          format.html { render :new }
+          format.json { render json: @chapter.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -91,13 +109,15 @@ class ChaptersController < ApplicationController
   # PATCH/PUT /chapters/1
   # PATCH/PUT /chapters/1.json
   def update
-    respond_to do |format|
-      if @chapter.update(chapter_params)
-        format.html { redirect_to @chapter, notice: 'Chapter was successfully updated.' }
-        format.json { render :show, status: :ok, location: @chapter }
-      else
-        format.html { render :edit }
-        format.json { render json: @chapter.errors, status: :unprocessable_entity }
+    if current_user.is_oficial
+      respond_to do |format|
+        if @chapter.update(chapter_params)
+          format.html { redirect_to @chapter, notice: 'Chapter was successfully updated.' }
+          format.json { render :show, status: :ok, location: @chapter }
+        else
+          format.html { render :edit }
+          format.json { render json: @chapter.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -105,11 +125,18 @@ class ChaptersController < ApplicationController
   # DELETE /chapters/1
   # DELETE /chapters/1.json
   def destroy
-    @chapter.destroy
-    respond_to do |format|
-      format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.is_oficial
+      @chapter.destroy
+      respond_to do |format|
+        format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+  end
+
+  def chapter_users
+    chapter = Chapter.find(params[:id])
+    @users = chapter.chapter_users
   end
 
   private

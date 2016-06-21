@@ -5,7 +5,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.json
   def index
     @publicaciones_para_mostrar = Array.new
-    publicaciones = Announcement.all.order(created_at: :desc)
+    publicaciones = Announcement.aproved.reverse
     if current_user.is_oficial
       @publicaciones_para_mostrar = publicaciones
     else
@@ -40,6 +40,8 @@ class AnnouncementsController < ApplicationController
     @announcement.degrees = @degrees.join(',')
     @annoCuncement.charges = @charges.join(',')
     @announcement.user = current_user
+    @announcement.president_aproved = false
+    @announcement.oficial_aproved = false
     respond_to do |format|
       if @announcement.save
         format.html { redirect_to @announcement, notice: 'Announcement was successfully created.' }
@@ -102,7 +104,7 @@ class AnnouncementsController < ApplicationController
   def destroy
     @announcement.destroy
     respond_to do |format|
-      format.html { redirect_to announcements_url, notice: 'Announcement was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Announcement was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

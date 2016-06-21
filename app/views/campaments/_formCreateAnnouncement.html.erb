@@ -1,8 +1,8 @@
 <div class="col-lg-12">
-  <h2>Nueva publicacion</h2>
+  <h1 class="center-title">Nueva publicacion</h1>
   <%= form_tag("/campament/createAnnouncement/"+@campament.id.to_s,method:"post",:multipart => true) do %>
     <div class="row">
-    	<div class="col-lg-6">
+    	<div class="col-lg-12">
         <div class="row">
           <div class="col-lg-12">
             <div class="form-group">
@@ -20,45 +20,72 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <!-- Button trigger modal --><br>
+              <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">
+                Definir publico
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="col-lg-6">
         <div class="row">
-          <h3>Dirijido a:</h3>
-          <div class="col-lg-3">
-            <div class="form-group">
-          	   <%= label_tag 'grados_iniciatico', 'Iniciatico'%>
-          	   <%= check_box_tag 'degrees[degree][]', "Iniciatico",id:'grados_iniciatico'%><br/>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel"><h3>Dirijido a:</h3></h4>
+                </div>
+                <div class="modal-body">
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                       <%= label_tag 'grados_iniciatico', 'Iniciatico'%>
+                       <%= check_box_tag 'degrees[degree][]', "Iniciatico",id:'grados_iniciatico'%><br/>
 
-          	  <%= label_tag 'grados_demolay', 'Demolay'%>
-          	  <%= check_box_tag 'degrees[degree][]', "Demolay", id:'grados_demolay'%><br/>
+                      <%= label_tag 'grados_demolay', 'Demolay'%>
+                      <%= check_box_tag 'degrees[degree][]', "Demolay", id:'grados_demolay'%><br/>
 
-          	  <%= label_tag 'grados_consultor', 'Consultor'%>
-          	  <%= check_box_tag 'degrees[degree][]', "Consultor", id:'grados_consultor'%><br/>
+                      <%= label_tag 'grados_consultor', 'Consultor'%>
+                      <%= check_box_tag 'degrees[degree][]', "Consultor", id:'grados_consultor'%><br/>
 
-          	  <%= label_tag 'grados_caballero', 'Caballero'%>
-          	  <%= check_box_tag 'degrees[degree][]', "Caballero", id:'grados_caballero'%><br/>
+                      <%= label_tag 'grados_caballero', 'Caballero'%>
+                      <%= check_box_tag 'degrees[degree][]', "Caballero", id:'grados_caballero'%><br/>
 
-          	  <%= label_tag 'grados_chevallier', 'Chevallier'%>
-          	  <%= check_box_tag 'degrees[degree][]', "Chevallier", id:'grados_chevallier'%><br/>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="form-group">
-          	   <%= label_tag 'cargos_Maestro_consejero', 'Maestro Consejero'%>
-          	   <%= check_box_tag 'charges[charge][]', "Maestro Consejero",id:'cargos_Maestro_consejero'%><br/>
+                      <%= label_tag 'grados_chevallier', 'Chevallier'%>
+                      <%= check_box_tag 'degrees[degree][]', "Chevallier", id:'grados_chevallier'%><br/>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="form-group">
+                       <%= label_tag 'cargos_Maestro_consejero', 'Maestro Consejero'%>
+                       <%= check_box_tag 'charges[charge][]', "Maestro Consejero",id:'cargos_Maestro_consejero'%><br/>
 
-          	   <%= label_tag 'cargos_Ilustre_Comendador_Caballero', 'Ilustre Comendador Caballero'%>
-          	   <%= check_box_tag 'charges[charge][]', "Ilustre Comendador Caballero",id:'cargos_Ilustre_Comendador_Caballero'%><br/>
+                       <%= label_tag 'cargos_Ilustre_Comendador_Caballero', 'Ilustre Comendador Caballero'%>
+                       <%= check_box_tag 'charges[charge][]', "Ilustre Comendador Caballero",id:'cargos_Ilustre_Comendador_Caballero'%><br/>
 
-          	    <%= label_tag 'cargos_Gran_Comendador_Chevallier', 'Gran Comendador Chevallier'%>
-          	   <%= check_box_tag 'charges[charge][]', "Gran Comendador Chevallier",id:'cargos_Gran_Comendador_Chevallier'%><br/>
+                        <%= label_tag 'cargos_Gran_Comendador_Chevallier', 'Gran Comendador Chevallier'%>
+                       <%= check_box_tag 'charges[charge][]', "Gran Comendador Chevallier",id:'cargos_Gran_Comendador_Chevallier'%><br/>
 
-          	  <%= label_tag 'cargos_Presidente_Consejo_Consultivo', 'Presidente Consejo Consultivo'%>
-          	  <%= check_box_tag 'charges[charge][]', "Presidente Consejo Consultivo", id:'cargos_Presidente_Consejo_Consultivo'%><br/>
+                      <%= label_tag 'cargos_Presidente_Consejo_Consultivo', 'Presidente Consejo Consultivo'%>
+                      <%= check_box_tag 'charges[charge][]', "Presidente Consejo'Consultivo", id:'cargos_Presidente_Consejo_Consultivo'%><br/>
 
-          	  <%= label_tag 'cargos_Delegado_Regional', 'Delegado Regional'%>
-          	  <%= check_box_tag 'charges[charge][]', "Delegado Regional", id:'cargos_Delegado_Regional'%><br/>
+                      <%= label_tag 'cargos_Delegado_Regional', 'Delegado Regional'%>
+                      <%= check_box_tag 'charges[charge][]', "Delegado Regional", id:'cargos_Delegado_Regional'%><br/>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Seleccionar</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -68,7 +95,7 @@
       <div class="col-lg-6">
         <div class="form-group">
           <%= label_tag :image %><br>
-          <%= file_field_tag :image %>
+          <%= file_field_tag :image, class: "form-control" %>
         </div>
       </div>
       <div class="col-lg-6">

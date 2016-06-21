@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
 
   after_create :set_first_degree
 
+  has_many :announcements
+
   def visible_inboxes
     self.inboxes.where(inbox_hidden: false)
   end
@@ -236,6 +238,23 @@ class User < ActiveRecord::Base
       end
     else
       false
+    end
+  end
+
+  def announcements_to_aprove
+    announcements = Announcement.all
+
+    if self.tiene_el_cargo("Oficial Ejecutivo")
+      annnouncements_to_be_aproved = Announcement.to_aprove
+      return annnouncements_to_be_aproved
+    else
+      announcements_to_be_aproved = Array.new
+      announcements.each do |announcement|
+        if (announcement.chapter.chapter_president_id == self.id or announcement.chapter.chapter_consultant_president_id == self.id) and !announcement.is_aproved
+          announcements_to_be_aproved.push(announcement)
+        end
+      end
+      return announcements_to_be_aproved
     end
   end
 

@@ -91,6 +91,19 @@ class AdminControllerController < ApplicationController
 		redirect_to '/approvals'
 	end
 
+	def chapter_aprovals
+		@announcements_to_aprove = current_user.announcements_to_aprove
+	end
+
+	def aprove_publication
+		publication = Announcement.find(params[:id])
+		if publication.aprove(current_user) != nil
+			redirect_to :back
+		else
+			redirect_to :back
+		end
+	end
+
 	def user_params
     params.require(:user).permit(:email, :name, :lastname, :role, :demolayID, :ci, :chapter_id, :campament_id, :birth_date, :city, :adress, :phone, :cellphone, :assurance, :godfather_id, :iniciacion, :father_name, :father_info, :father_adress, :father_mail, :mather_name, :mather_adress, :mather_mail, :estado_civil, :nombre_esposa, :taller_nombre, :taller_numero, :registration_form)
   end

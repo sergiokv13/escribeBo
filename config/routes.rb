@@ -56,5 +56,8 @@ Rails.application.routes.draw do
   get '/reports' => 'transactions#reports'
   post '/generateReport' => 'transactions#generateReport'
   get '/deleteInbox/:id' => 'inboxes#deleteInbox'
+  get '/chapter_aprovals' => 'admin_controller#chapter_aprovals'
+  get '/aprove_publication/:id' => 'admin_controller#aprove_publication'
+  get '/chapter_users/:id' => 'chapters#chapter_users'
 
 end
