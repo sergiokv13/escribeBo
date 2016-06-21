@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20160616064828) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "number"
   end
 
   add_index "chapters", ["campament_id"], name: "index_chapters_on_campament_id"
@@ -156,6 +157,25 @@ ActiveRecord::Schema.define(version: 20160616064828) do
     t.string   "registration_form_content_type"
     t.integer  "registration_form_file_size"
     t.datetime "registration_form_updated_at"
+    t.date     "birth_date"
+    t.boolean  "assurance"
+    t.string   "adress"
+    t.string   "city"
+    t.string   "cellphone"
+    t.string   "phone"
+    t.integer  "godfather_id"
+    t.date     "iniciacion"
+    t.string   "father_name"
+    t.string   "father_info"
+    t.string   "father_adress"
+    t.string   "father_mail"
+    t.string   "mather_name"
+    t.string   "mather_adress"
+    t.string   "mather_mail"
+    t.string   "estado_civil"
+    t.string   "nombre_esposa"
+    t.string   "taller_nombre"
+    t.string   "taller_numero"
   end
 
   add_index "users", ["campament_id"], name: "index_users_on_campament_id"
@@ -163,6 +183,7 @@ ActiveRecord::Schema.define(version: 20160616064828) do
   add_index "users", ["chapter_id"], name: "index_users_on_chapter_id"
   add_index "users", ["court_id"], name: "index_users_on_court_id"
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["godfather_id"], name: "index_users_on_godfather_id"
   add_index "users", ["priory_id"], name: "index_users_on_priory_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 

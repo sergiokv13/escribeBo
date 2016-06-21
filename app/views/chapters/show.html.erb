@@ -2,7 +2,9 @@
   <div class="jumbotron">
     <p id="notice"><%= notice %></p>
 
-    <h1 class="center-title"><%= @chapter.chapter_name %></h1>
+
+    <h1 class="center-title"><%= @chapter.chapter_name %> #<%= @chapter.number %> </h1>
+
 
     <center>
       <%= image_tag @chapter.image.url(:original), class: "img-responsive" %>

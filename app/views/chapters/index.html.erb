@@ -6,7 +6,7 @@
       <% @capitulos.each do |chapter| %>
         <div class="col-lg-4">
           <a class="image_link" href="/chapters/<%=chapter.id%>">
-          <div class="image_name"><%=chapter.chapter_name%></div>
+          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
           <img class="img-responsive" src="<%=chapter.image.url%>">
           </a>
         </div>
@@ -18,19 +18,20 @@
       <% @prioratos.each do |chapter| %>
         <div class="col-lg-4">
           <a class="image_link" href="/chapters/<%=chapter.id%>">
-          <div class="image_name"><%=chapter.chapter_name%></div>
+          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
             <img class="img-responsive" src="<%=chapter.image.url%>">
           </a>
         </div>
       <%end%>
     </div>
 
+
     <div class="row">
       <h2 class="chapter-title">Cortes</h2>
       <% @cortes.each do |chapter| %>
         <div class="col-lg-4">
           <a class="image_link" href="/chapters/<%=chapter.id%>">
-          <div class="image_name"><%=chapter.chapter_name%></div>
+          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
             <img class="img-responsive" src="<%=chapter.image.url%>">
           </a>
         </div>

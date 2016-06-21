@@ -4,52 +4,167 @@
       <h1 class="center-title">Crear Usuario</h1>
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
-        <%= form_tag("/createUser",method:"post", multipart: true ) do %>
+        <% if @user.errors.any? %>
+          <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+        <% end %>
+        <%= bootstrap_form_for @user, url: "/createUser", multipart: true do |f| %>
         <div class="form-group">
-          <%= label_tag :email %>
-          <%= email_field_tag :email, nil, class: "form-control" %>
+          <%= f.email_field :email, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :nombre %>
-          <%= text_field_tag :name, nil, class: "form-control" %>
+          <%= f.text_field :name, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :apellido %>
-          <%= text_field_tag :lastname, nil, class: "form-control" %>
+
+          <%= f.text_field :lastname, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :ci %>
-          <%= text_field_tag :ci, nil, class: "form-control" %>
+
+          <%= f.date_field :birth_date, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :campamento %>
-          <%= select_tag(:campament, options_from_collection_for_select(@campaments,'id', 'name'), :onchange => "update_chapters_div(this.value)", class: "form-control",:prompt => "Seleccionar campamento") %>
-        </div>
 
-        <div class="form-group" id="chapterDiv">
-          <%= render :partial => 'chapters', :object => @chapters %>
+          <%= f.text_field :ci, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag :demolayID %>
-          <%= text_field_tag :demolayID, nil, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <%= label_tag :rol %>
-          <%= select_tag(:role, options_for_select(@roles), class: "form-control") %>
+
+          <%= f.text_field :demolayID, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= label_tag "Formulario" %>
-          <%= file_field_tag :registration_form, class: "form-control" %>
+
+          <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), :onchange => "update_chapters_div(this.value)", class: "form-control",:prompt => "Seleccionar campamento") %>
+        </div>
+
+         <div class="form-group" id="chapterDiv">
+          <%= render :partial => 'chapters', :object => @chapters, :locals=>{:f=>f} %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.text_field :city, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.text_field :adress, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.number_field :phone, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.number_field :cellphone, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+
+          <%= f.select(:role, options_for_select(@roles), class: "form-control",:onchange => "update_form(this.value)") %>
+        </div>
+
+        <span id="para_demolay">
+
+            <div class="form-group">
+
+              <%= f.select(:assurance, options_for_select(@seguro), class: "form-control")%>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.number_field :godfather_id, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.date_field :iniciacion, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :father_name, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+               <%= f.select(:father_info, options_for_select(@father), class: "form-control")%>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :father_adress, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :father_mail, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :mather_name, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :mather_adress, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :mather_mail, class: "form-control" %>
+            </div>
+
+
+
+        </span>
+
+         <span id="para_consultor">
+
+            <div class="form-group">
+
+              <%= f.select(:estado_civil, options_for_select(@estados), class: "form-control")%>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :nombre_esposa, class: "form-control" %>
+            </div>
+
+             <div class="form-group">
+
+              <%= f.text_field :taller_nombre, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+
+              <%= f.text_field :taller_numero, class: "form-control" %>
+            </div>
+
+        </span>
+
+        <div class="form-group">
+
+          <%= f.file_field :registration_form, class: "form-control" %>
         </div>
 
         <div class="actions">
-          <%= submit_tag "Crear", class: "btn btn-success" %>
+          <%= f.submit "Crear", class: "btn btn-success", id: "fileUpload", data: {disabled_with: "Uploading"} %>
           <%= link_to "Atrás", '/users', class: "btn btn-danger" %>
         </div>
       <% end %>
@@ -71,4 +186,47 @@
       }
     });
   }
+</script>
+
+<script type="text/javascript">
+   $('#para_consultor').hide()
+  function update_form(rol) {
+
+      if (rol == "No Demolay")
+      {
+        $('#para_demolay').hide();
+        $('#para_consultor').show();
+      }
+      if (rol == "Demolay")
+      {
+        $('#para_consultor').hide();
+        $('#para_demolay').show();
+      }
+
+  }
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+ var uploadObj = $("#user_registration_form").uploadFile({
+    url: "/users",
+    multiple: false,
+    fileName: "user[registration_form]",
+    autoSubmit: false,
+    formData: {
+      "user[email]": $('#user_name').text(),
+      "user[ci]": $('#user_ci').text()
+    },
+    onSuccess:function(files,data,xhr)
+    {
+      window.location.href = data.to;
+    }
+  });
+
+  $("#fileUpload").click(function(e) {
+    e.preventDefault();
+    $.rails.disableFormElements($($.rails.formSubmitSelector));
+    uploadObj.startUpload();
+  });
+});
 </script>

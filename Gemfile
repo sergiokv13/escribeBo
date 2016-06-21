@@ -30,6 +30,7 @@ gem "paperclip"
 gem 'bootstrap_form'
 
 gem "chartkick"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
