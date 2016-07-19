@@ -33,7 +33,7 @@
         <% if charge.chapter != nil %>
           Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>"><%= charge.chapter.chapter_name %> </a><br>
         <%else%>
-          Tiene el cargo de  <%= charge.title %> en <a href="/chapters/<%= charge.campament.id %>"><%= charge.campament.name %></a> <br>
+          Tiene el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> <br>
         <%end%>
       <% end %>
     </div>
@@ -56,18 +56,20 @@
 
       <div class="col-lg-12">
       <% if @user.aproved %>
-        Forma parte del capitulo 
+        Forma parte del capitulo
       <%else%>
-        Formara parte del capitulo 
-      <%end%> 
-        <a href="/chapters/<%=@user.chapter.id%>"><%=@user.chapter.chapter_name%></a>
-        en el campamento de 
-        <a href="/campaments/<%=@user.campament_id%>"><%=@user.campament.name%></a>
+        Formara parte del capitulo
+      <%end%>
+        <% if @user.chapter != nil %>
+          <a href="/chapters/<%=@user.chapter.id%>"><%=@user.chapter.chapter_name%></a>
+          en el campamento de
+          <a href="/campaments/<%=@user.campament_id%>"><%=@user.campament.name%></a>
+        <% end %>
       </div>
     </div>
-    
-        
-    <div class="clear"></div> 
+
+
+    <div class="clear"></div>
      </div>
 </div>
 
@@ -139,7 +141,9 @@
               <strong>Carnet de identidad: </strong> <%=@user.ci%><br>
               <strong>Demolay Id: </strong> <%=@user.demolayID%><br>
               <strong>Campamento:</strong> <%=@user.campament.name%><br>
-              <strong>Chapter:</strong> <%=@user.chapter.chapter_name%><br>
+              <% if @user.chapter != nil %>
+                <strong>Chapter:</strong> <%=@user.chapter.chapter_name%><br>
+              <% end %>
               <strong>Provincia:</strong> <%=@user.city%><br>
               <strong>Dirección:</strong> <%=@user.adress%><br>
               <strong>Telefono Fijo:</strong> <%=@user.phone%><br>

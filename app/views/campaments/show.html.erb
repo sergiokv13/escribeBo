@@ -22,6 +22,9 @@
           </p>
         <%else%>
           <h3>La gestion no fue actualizada</h3>
+          <% if current_user.is_oficial %>
+            <%= link_to 'Actualizar Gestion', '/campaments/gestion/' + @campament.id.to_s, class: "btn btn-primary btn-block" %>
+          <% end %>
         <%end%>
       </div>
     </div>
