@@ -13,7 +13,7 @@ Campament.create(name: "Bolivia", president_id:"1")
 
 
 #Chapters
-#Chapter.create(chapter_name:"Capitulo 1",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"134")
+Chapter.create(chapter_name:"Capitulo 1",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"134")
 #Chapter.create(chapter_name:"Capitulo 2",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"135")
 #Chapter.create(chapter_name:"Capitulo 3",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"136")
 
