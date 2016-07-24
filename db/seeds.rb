@@ -7,6 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Campament.create(name: "Bolivia", president_id:"1")
+<<<<<<< HEAD
+User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'arsenal2012',name:'Oficial',lastname:'Ejecutivo',demolayID:'1',role:'No Demolay',ci:'1234567', chapter_id:'1', campament_id:'1', president_aproved:true, deputy_aproved:true, oficial_aproved:true)
+=======
 #Campament.create(name: "Cochabamba")
 #Campament.create(name: "La Paz")
 #Campament.create(name: "Santa Cruz")
@@ -22,4 +25,5 @@ User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'administr
 
 
 #Charges
+>>>>>>> 1253a040bedc52f8ec5a73ff0387d8abdff6ea40
 Charge.create(title:"Oficial Ejecutivo", user_id: '1',campament_id:"1")

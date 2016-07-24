@@ -67,12 +67,11 @@ class ChaptersController < ApplicationController
 
   def update_gestion
     @chapter = Chapter.find(params[:id])
-    @encargado = User.find(params[:id_encargado])
-    @conPresident = User.find(params[:presidente_consejo_consultivo])
-    @chapter.chapter_president = @encargado
-    @chapter.chapter_consultant_president = @conPresident
-    @chapter.save
-    @charge = Charge.new
+    if params[:id_encargado] != ""
+      @encargado = User.find(params[:id_encargado])
+      @chapter.chapter_president = @encargado
+
+      @charge = Charge.new
     @charge.user = @encargado
     if @chapter.chapter_type == "Capitulo"
       @charge.title = "Maestro Consejero"
@@ -85,6 +84,11 @@ class ChaptersController < ApplicationController
     end
     @charge.chapter = @chapter
     @charge.save
+
+    end
+    @conPresident = User.find(params[:presidente_consejo_consultivo])
+    @chapter.chapter_consultant_president = @conPresident
+    @chapter.save
     @charge = Charge.new
     @charge.user = @conPresident
     @charge.title = "Presidente Consejo Consultivo"

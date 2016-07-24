@@ -21,6 +21,12 @@ class ChargesController < ApplicationController
   def edit
   end
 
+  def drop_gestion
+    Charge.drop_gestion
+    flash[:notice] = "La gestion fue reiniciada."
+    redirect_to "/"
+  end
+
   # POST /charges
   # POST /charges.json
   def create

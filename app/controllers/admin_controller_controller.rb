@@ -67,6 +67,7 @@ class AdminControllerController < ApplicationController
 				end
 			end
 		end
+		@users = @users.uniq{|x| x.id}
 	end
 
 	def search

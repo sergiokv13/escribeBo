@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621093439) do
+ActiveRecord::Schema.define(version: 20160702041852) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -81,6 +81,19 @@ ActiveRecord::Schema.define(version: 20160621093439) do
   add_index "charges", ["campament_id"], name: "index_charges_on_campament_id"
   add_index "charges", ["chapter_id"], name: "index_charges_on_chapter_id"
   add_index "charges", ["user_id"], name: "index_charges_on_user_id"
+
+  create_table "charges_histories", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "campament_id"
+    t.integer  "chapter_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "charges_histories", ["campament_id"], name: "index_charges_histories_on_campament_id"
+  add_index "charges_histories", ["chapter_id"], name: "index_charges_histories_on_chapter_id"
+  add_index "charges_histories", ["user_id"], name: "index_charges_histories_on_user_id"
 
   create_table "degrees", force: :cascade do |t|
     t.string   "title"
