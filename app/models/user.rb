@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/missing_user.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
-  
+
   has_attached_file :registration_form
   validates_attachment_content_type :registration_form, :content_type => ["application/pdf", "application/jpg", "application/png", "application/zip"]
 
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
 
   validates :email, presence: true
-  
+
   validates :name, presence: true
   validates :name, length: { minimum: 4 }
 
@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
 
 
 
-  def aproved 
+  def aproved
     return (self.president_aproved == true && self.deputy_aproved && self.oficial_aproved)
   end
 
@@ -288,6 +288,14 @@ class User < ActiveRecord::Base
         end
       end
       return announcements_to_be_aproved
+    end
+  end
+
+  def is_over(age)
+    if self.birth_date + age.years >= Date.today
+      return true
+    else
+      return false
     end
   end
 
