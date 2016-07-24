@@ -24,7 +24,13 @@
                 <td><%= user.role %></td>
                 <td><%= user.ci %></td>
                 <td><%= user.email %></td>
-                <td><%= user.chapter.chapter_name %></td>
+                <% if user.chapter != nil %>
+                  <td><%= user.chapter.chapter_name %></td>
+                <% else %>
+                  <td>
+                    -
+                  </td>
+                <% end %>
                 <td><%= user.status %></td>
               </tr>
             <% end %>

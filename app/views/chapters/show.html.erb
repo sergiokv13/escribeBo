@@ -18,6 +18,8 @@
         <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
           El Presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
         <% end %>
+
+        El presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
         <% if current_user.is_oficial %>
           <center>
             <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s, class: "btn btn-success btn-block" %>
