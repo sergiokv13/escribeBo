@@ -40,4 +40,10 @@ class Chapter < ActiveRecord::Base
       return self.chevalliers
     end
   end
+
+  def drop_gestion
+    self.chapter_president = nil
+    self.chapter_consultant_president = nil
+    self.save
+  end
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  user_id: 
+  campament_id: 
+  chapter_id: 
+
+two:
+  title: MyString
+  user_id: 
+  campament_id: 
+  chapter_id: 

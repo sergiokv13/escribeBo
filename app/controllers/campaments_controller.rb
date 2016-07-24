@@ -36,23 +36,27 @@ class CampamentsController < ApplicationController
 
   def gestion
     @campament = Campament.find(params[:id])
-    @posibles_delegados =  User.where(:role=>"No Demolay").all
-    @posibles_maestros =  User.where(:role=>"Demolay").all
+    @posibles_delegados =  User.where(:role=>"No Demolay").where(:campament_id => @campament.id).all
+    @posibles_maestros =  User.where(:role=>"Demolay").where(:campament_id => @campament.id).all
   end
 
 
   def update_gestion
     @campament = Campament.find(params[:id])
-    @encargado = User.find(params[:id_maestro])
+    if params[:id_maestro] != ""
+      @encargado = User.find(params[:id_maestro])
+      @campament.maestro_consejero = @encargado
+      @charge = Charge.new
+      @charge.user = @encargado
+      @charge.title = "Maestro Consejero"
+      @charge.campament = @campament
+      @charge.save
+    end
+
     @conPresident = User.find(params[:id_delegado])
-    @campament.maestro_consejero = @encargado
+   
     @campament.president = @conPresident
     @campament.save
-    @charge = Charge.new
-    @charge.user = @encargado
-    @charge.title = "Maestro Consejero"
-    @charge.campament = @campament
-    @charge.save
     @charge = Charge.new
     @charge.user = @conPresident
     @charge.title = "Delegado Regional"

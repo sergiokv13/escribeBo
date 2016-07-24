@@ -2,13 +2,17 @@
   <div class="jumbotron">
     <h1 class="text-center" style="margin-bottom:15px;">Campamentos</h1>
     <div class="row">
-      <% @campaments.each do |chapter| %>
-        <div class="col-lg-4">
-          <a class="image_link" href="/campaments/<%=chapter.id%>">
-            <div class="image_name"><%=chapter.name%></div>
-            <img class="img-responsive" src="<%=chapter.image.url%>">
-          </a>
-        </div>
+      <% @campaments.each_with_index do |chapter,i| %>
+        <% if i % 3 == 0%>
+          <div class="clear"></div>
+          <br>
+        <%end%>
+          <div class="col-lg-4">
+            <a class="image_link" href="/campaments/<%=chapter.id%>">
+              <div class="image_name"><%=chapter.name%></div>
+              <img class="img-responsive" src="<%=chapter.image.url%>">
+            </a>
+          </div>
       <%end%>
     </div>
   </div>
