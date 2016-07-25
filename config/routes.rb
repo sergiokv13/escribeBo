@@ -37,14 +37,14 @@ Rails.application.routes.draw do
   get '/profile/:id' => 'profiles#profile'
   post '/chapter/createAnnouncement/:id' => "announcements#createFromChapter"
   post '/campament/createAnnouncement/:id' => "announcements#createFromCampament"
-  get '/asignar_grado_demolay/:id' => 'profiles#asignar_grado_demolay'
+  get '/asignar_grado_DeMolay/:id' => 'profiles#asignar_grado_DeMolay'
   get '/asignar_grado_chevallier/:id' => 'profiles#asignar_grado_chevallier'
   get '/asignar_grado_caballero/:id' => 'profiles#asignar_grado_caballero'
-  get '/asignar_senior_demolay/:id' => 'profiles#asignar_senior_demolay'
-  post '/update_asignar_grado_demolay/:id' => 'profiles#update_asignar_grado_demolay'
+  get '/asignar_senior_DeMolay/:id' => 'profiles#asignar_senior_DeMolay'
+  post '/update_asignar_grado_DeMolay/:id' => 'profiles#update_asignar_grado_DeMolay'
   post '/update_asignar_grado_caballero/:id' => 'profiles#update_asignar_grado_caballero'
   post '/update_asignar_grado_chevallier/:id' => 'profiles#update_asignar_grado_chevallier'
-  post '/update_asignar_senior_demolay/:id' => 'profiles#update_asignar_senior_demolay'
+  post '/update_asignar_senior_DeMolay/:id' => 'profiles#update_asignar_senior_DeMolay'
   get 'campaments/gestion/:id' => "campaments#gestion"
 
   get '/gestion/:id' => 'chapters#gestion'

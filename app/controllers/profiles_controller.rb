@@ -4,14 +4,14 @@ class ProfilesController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def asignar_grado_demolay
+  def asignar_grado_DeMolay
     @user = User.find(params[:id])
     @opciones_capitulo = Chapter.all.where(:id=>@user.chapter.id)
   end
 
-  def update_asignar_grado_demolay
+  def update_asignar_grado_DeMolay
     @degree = Degree.new
-    @degree.title = "Demolay"
+    @degree.title = "DeMolay"
     @degree.image = params[:image]
     @degree.chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
@@ -64,14 +64,14 @@ class ProfilesController < ApplicationController
     redirect_to '/profile/'+params[:id]
   end
 
-  def asignar_senior_demolay
+  def asignar_senior_DeMolay
     @user = User.find(params[:id])
     @opciones_capitulo = Chapter.all.where(:id=>@user.chapter.id)
   end
 
-  def update_asignar_senior_demolay
+  def update_asignar_senior_DeMolay
     @degree = Degree.new
-    @degree.title = "Senior Demolay"
+    @degree.title = "Senior DeMolay"
     @degree.image = params[:image]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false

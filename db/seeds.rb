@@ -17,7 +17,7 @@ Chapter.create(chapter_name:"Capitulo 1",chapter_type:"Capitulo",campament_id: "
 #Chapter.create(chapter_name:"Capitulo 3",chapter_type:"Capitulo",campament_id: "1",chapter_president_id:"1",number:"136")
 
 #Users
-User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'administrador',name:'Oficial',lastname:'Ejecutivo',demolayID:'1',role:'No Demolay',ci:'1234567', chapter_id:'1', campament_id:'1', president_aproved:true, deputy_aproved:true, oficial_aproved:true)
+User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'administrador',name:'Oficial',lastname:'Ejecutivo',DeMolayID:'1',role:'No DeMolay',ci:'1234567', chapter_id:'1', campament_id:'1', president_aproved:true, deputy_aproved:true, oficial_aproved:true)
 
 
 #Charges

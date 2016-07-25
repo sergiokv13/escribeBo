@@ -6,7 +6,7 @@ class Chapter < ActiveRecord::Base
   has_many :announcements
   belongs_to :chapter_consultant_president, foreign_key: 'chapter_consultant_president_id',class_name: 'User'
   has_many :consultants, foreign_key: 'chapter_consultant_id', class_name: 'User'
-  has_many :demolays, foreign_key: 'chapter_id', class_name: 'User'
+  has_many :DeMolays, foreign_key: 'chapter_id', class_name: 'User'
   #has_many :knights, foreign_key: 'priory_id', class_name: 'User'
   has_many :chevalliers, foreign_key: 'court_id', class_name: 'User'
 
@@ -33,7 +33,7 @@ class Chapter < ActiveRecord::Base
 
   def chapter_users
     if self.chapter_type == "Capitulo"
-      return self.demolays
+      return self.DeMolays
     elsif self.chapter_type == "Priorato"
       return self.knights
     else

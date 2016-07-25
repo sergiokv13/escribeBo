@@ -3,7 +3,7 @@
 	<hr class="divider">
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4">
-	<%= form_tag("/update_asignar_senior_demolay/"+@user.id.to_s,method:"post", :multipart => true) do %>
+	<%= form_tag("/update_asignar_senior_DeMolay/"+@user.id.to_s,method:"post", :multipart => true) do %>
 		<div class="form-group">
 	      <%= label_tag :capitulo %>
 	      <%= select_tag(:chapter_id, options_from_collection_for_select(@opciones_capitulo,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
@@ -16,7 +16,7 @@
 	   </div>
 
 	    <div class="actions">
-	      <%= submit_tag "Volver Senior Demolay al usuario", class: "btn btn-success" %>
+	      <%= submit_tag "Volver Senior DeMolay al usuario", class: "btn btn-success" %>
 	      <%= link_to "Atrás", '/profile/'+@user.id.to_s, class: "btn btn-danger" %>
 	    </div>
 	<%end%>

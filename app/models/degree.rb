@@ -41,9 +41,9 @@ class Degree < ActiveRecord::Base
 
   def aprove_oficial
     self.oficial_aproved = true
-    if self.title == "Senior Demolay"
+    if self.title == "Senior DeMolay"
       user = User.find(self.user_id)
-      user.role = "No Demolay"
+      user.role = "No DeMolay"
       user.save
     end
     self.save

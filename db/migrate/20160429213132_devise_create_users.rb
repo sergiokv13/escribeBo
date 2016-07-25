@@ -21,7 +21,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ##Info
       t.string  :name
       t.string  :lastname
-      t.string  :demolayID
+      t.string  :DeMolayID
       t.string  :role
       t.string  :ci
       ## Confirmable
