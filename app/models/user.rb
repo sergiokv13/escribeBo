@@ -283,7 +283,7 @@ class User < ActiveRecord::Base
     else
       announcements_to_be_aproved = Array.new
       announcements.each do |announcement|
-        if (announcement.chapter.chapter_president_id == self.id or announcement.chapter.chapter_consultant_president_id == self.id) and !announcement.is_aproved
+        if announcement.chapter != nil and (announcement.chapter.chapter_president_id == self.id or announcement.chapter.chapter_consultant_president_id == self.id) and !announcement.is_aproved
           announcements_to_be_aproved.push(announcement)
         end
       end
@@ -292,11 +292,15 @@ class User < ActiveRecord::Base
   end
 
   def is_over(age)
-    if self.birth_date + age.years >= Date.today
+    if Date.today >= self.birth_date + age.years
       return true
     else
       return false
     end
+  end
+
+  def self.older_than(age)
+    User.all.select{|user| user.is_over(age)}
   end
 
 end

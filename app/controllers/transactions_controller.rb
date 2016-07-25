@@ -99,9 +99,10 @@ class TransactionsController < ApplicationController
   end
 
   def generateReport
-    @year = params[:date]["year"]
-    @month = params[:date]["month"]
-    @transactions = Transaction.this_month_results(@year, @month)
+    @start = params[:start].to_date
+    @end = params[:end].to_date
+    @transactions = Transaction.all.to_a
+    @transactions = @transactions.select{|t| t.created_at >= @start and t.created_at <= @end }
   end
 
   private

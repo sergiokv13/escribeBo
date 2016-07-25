@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   get "/update_chapters" => "admin_controller#update_chapters"
   get "/update_user_field" => "inboxes#update_user_field"
 
+  get '/update_chapters_for_filter' => "admin_controller#update_chapters_for_filter"
+
   get 'home/index'
 
   devise_for :users
@@ -61,5 +63,6 @@ Rails.application.routes.draw do
   get '/aprove_publication/:id' => 'admin_controller#aprove_publication'
   get '/chapter_users/:id' => 'chapters#chapter_users'
   get '/reiniciar_gestion' => "charges#drop_gestion"
+  get '/filtered' => 'admin_controller#filtered'
 
 end

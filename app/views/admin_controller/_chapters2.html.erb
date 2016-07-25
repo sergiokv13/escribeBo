@@ -1,0 +1,5 @@
+<% if @chapters != nil %>
+  <%= select_tag(:chapter_id, options_from_collection_for_select(@chapters, :id, :chapter_name), class: "form-control", :prompt => "Seleccionar capitulo") %>
+<% else %>
+  <%= select_tag(:chapter_id, options_from_collection_for_select(Chapter.all, :id, :chapter_name), class: "form-control", :prompt => "Seleccionar capitulo") %>
+<% end %>

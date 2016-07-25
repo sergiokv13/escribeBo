@@ -8,8 +8,10 @@
     <%= image_tag publication.image, class: "img-responsive" %>
   </center>
   <strong>Fecha de publicación:</strong> <%= publication.created_at.to_date %><br>
-  <% if current_user.id == publication.user.id or @chapter.chapter_president.id == current_user.id or  @chapter.chapter_consultant_president.id == current_user.id or current_user.is_oficial %>
-    <%= link_to 'Borrar publicación', publication, method: :delete, :class => "btn btn-danger", data: { confirm: '¿Está seguro que desea borrar esta publicación?' } %>
+  <% if @chapter.chapter_president != nil and @chapter.chapter_consultant_president != nil %>
+    <% if current_user.id == publication.user.id or @chapter.chapter_president.id == current_user.id or  @chapter.chapter_consultant_president.id == current_user.id or current_user.is_oficial %>
+      <%= link_to 'Borrar publicación', publication, method: :delete, :class => "btn btn-danger", data: { confirm: '¿Está seguro que desea borrar esta publicación?' } %>
+    <% end %>
   <% end %>
   <hr class="divider">
 <%end%>

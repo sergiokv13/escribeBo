@@ -65,22 +65,3 @@
       </div>
   </div>
 </div>
-
-<script type="text/javascript">
-
-  $( "#campament_id" ).change(function() {
-    var campament = $("#campament_id").val();
-    jQuery.ajax({
-      url: "/update_chapters_for_filter",
-      type: "GET",
-      data: {"campament" : campament},
-      dataType: "html",
-      success: function(data) {
-        jQuery('#chapterDiv2').html(data);
-      }
-    });
-  });
-
-
-
-</script>

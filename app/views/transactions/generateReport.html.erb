@@ -3,9 +3,43 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
       <div class="jumbotron">
-        <h1 class="center-title">Reportes del <%= @year %>/<%= @month %></h1>
-        <%= @transactions.count %>
-        <%= pie_chart @transactions %>
+        <h1 class="center-title">Reportes del <%= @start %>/<%= @end %></h1>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <th>
+                Nombre
+              </th>
+              <th>
+                Descripcion
+              </th>
+              <th>
+                Monto
+              </th>
+              <th>
+                Tipo
+              </th>
+            </thead>
+            <tbody>
+              <% @transactions.each do |transaction| %>
+                <tr>
+                  <td>
+                    <%= link_to transaction.name, transaction_path(transaction) %>
+                  </td>
+                  <td>
+                    <%= transaction.description %>
+                  </td>
+                  <td>
+                    Bs. <%= transaction.mount %>
+                  </td>
+                  <td>
+                    <%= transaction.transaction_type %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

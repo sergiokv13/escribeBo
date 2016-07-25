@@ -12,7 +12,18 @@ class AdminControllerController < ApplicationController
 
 	def update_chapters
 	  @chapters = Chapter.where(:campament_id => params[:campament], :chapter_type =>"Capitulo")
-	  render :partial => "chapters", :object => @chapters 
+	  render :partial => "chapters", :object => @chapters
+	end
+
+	def update_chapters_for_filter
+		campament = params[:campament_id].to_i
+		if campament != 0
+			@chapters = Chapter.where(:campament_id => campament).to_a
+		else
+			@chapters = Chapter.all.to_a
+		end
+
+		render :partial => "chapters2", :object => @chapters
 	end
 
 	def createUser
@@ -39,6 +50,7 @@ class AdminControllerController < ApplicationController
 	end
 
 	def users
+		@chapters = Chapter.all
 		@users = Array.new
 		if current_user.is_oficial
 			@users = User.all
@@ -134,6 +146,89 @@ class AdminControllerController < ApplicationController
 			redirect_to :back
 		else
 			redirect_to :back
+		end
+	end
+
+	def filtered
+		campament = params[:campament_id].to_i
+		chapter = params[:chapter_id].to_i
+		filt = params[:f].to_i
+		ord = params[:o].to_i
+		flag1 = false
+		flag2 = false
+		puts filt
+		puts ord
+
+
+		if campament != 0
+			flag1 = true
+			@users = User.where(campament_id: campament).to_a
+		end
+
+		if chapter != 0
+			flag2 = true
+			@users = User.where(chapter_id: chapter).to_a
+		end
+
+		if !flag1 and !flag2
+			@users = User.all.to_a
+		end
+
+		if filt != 0
+			case filt
+				when 1
+					if flag1 and flag2
+						@users = @users.select{|user| user.chapter_id == chapter and user.is_over(21)}
+					end
+					if !flag1 and !flag2
+						@users = User.older_than(21)
+					end
+					if flag1 and !flag2
+						@users = @users.select{|user| user.campament_id == campament and user.is_over(21)}
+					end
+					if !flag1 and flag2
+						@users = @users.select{|user| user.chapter_id == chapter and user.is_over(21)}
+					end
+				when 2
+					if flag1 and flag2
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "Demolay"}
+					end
+					if !flag1 and !flag2
+						@users = User.where(role: "Demolay").to_a
+					end
+					if flag1 and !flag2
+						@users = @users.select{|user| user.campament_id == campament and user.role == "Demolay"}
+					end
+					if !flag1 and flag2
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "Demolay"}
+					end
+				when 3
+					if flag1 and flag2
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "No Demolay"}
+					end
+					if !flag1 and !flag2
+						@users = User.where(role: "No Demolay").to_a
+					end
+					if flag1 and !flag2
+						@users = @users.select{|user| user.campament_id == campament and user.role == "No Demolay"}
+					end
+					if !flag1 and flag2
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "No Demolay"}
+					end
+			end
+		end
+
+		if ord != 0
+			case ord
+			when 1
+				@users.sort_by! &:name
+			when 2
+				@users.sort_by! &:lastname
+			when 3
+				@users.sort_by! &:birth_date
+			when 4
+				@users.sort_by! &:status
+			end
 		end
 	end
 
