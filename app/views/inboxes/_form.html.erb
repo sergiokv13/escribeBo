@@ -9,20 +9,31 @@
   <div class="field">
     <%= f.file_field :inbox_att %>
   </div>
-  <div class="field">
-    <% if @user_id != 0%>
-      <%= f.text_field :user2_id, :value => @user_id, :id => 'user_id', label: "Enviar a" %>
+
+  <div class="field" hidden="true">
+    <% if @user_id != nil && @user_id != 0%>
+      <%= f.text_field :user2_id, :value => @user_id, :id => 'user_id' %>
     <%else%>
-      <%= f.text_field :user2_id,  :id => 'user_id', label: "Enviar a" %>
+      <%= f.text_field :user2_id,  :id => 'user_id' %>
     <%end%>
-
-    <div id="user_field">
-      <%if @user != nil %>
-        <strong><%= @user.fullName %><br></strong>
-      <% end %>
-    </div>
-
   </div>
+
+  <div class="field">
+    <% if @user_id != nil && @user_id != 0%>
+      <%= f.text_field :user2_name, :value => User.find(@user_id).fullName, :id => 'user_name',:label=>"Enviar a" , :autocomplete => :off%>
+    <%else%>
+      <%= f.text_field :user2_name,  :value=>"",:placeholder => "Ingresar nombre", :id => 'user_name',:label=>"Enviar a" , :autocomplete => :off%>
+    <%end%>
+  </div>
+
+
+  <div id="user_field" hidden=true; style="height:100px; overflow-y:scroll;background-color:white;margin-top:-20px;margin-bottom:20px;padding:10px;">
+    <%if @user != nil %>
+      <strong><%= @user.fullName %><br></strong>
+    <% end %>
+  </div>
+
+  
   <div class="actions">
     <%= f.submit "Enviar Mensaje", class: "btn btn-success" %>
   </div>
@@ -30,8 +41,8 @@
 
 <script type="text/javascript">
 
-  jQuery('#user_id').on('input', function() {
-      update_user($('#user_id').val());
+  jQuery('#user_name').on('input', function() {
+      update_user($('#user_name').val());
   });
 
 
@@ -46,4 +57,18 @@
       }
     });
   }
+
+  function pass_name(name,id) {
+     jQuery('#user_name').val(name);
+     jQuery('#user_id').val(id);
+     jQuery('#user_field').html("");
+     $('#user_field').hide();
+  }
+
+  $('#user_name').focus(function(){
+        $('#user_field').show();
+  });
+
+
+
 </script>

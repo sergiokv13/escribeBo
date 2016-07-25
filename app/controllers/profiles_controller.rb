@@ -64,6 +64,27 @@ class ProfilesController < ApplicationController
     redirect_to '/profile/'+params[:id]
   end
 
+  def asignar_senior_demolay
+    @user = User.find(params[:id])
+    @opciones_capitulo = Chapter.all.where(:id=>@user.chapter.id)
+  end
+
+  def update_asignar_senior_demolay
+    @degree = Degree.new
+    @degree.title = "Senior Demolay"
+    @degree.image = params[:image]
+    @chapter = Chapter.find(params[:chapter_id])
+    @degree.president_aproved = false
+    @degree.deputy_aproved = false
+    @degree.oficial_aproved = false
+    @degree.chapter = @chapter
+    @chapter.chevalliers.push(User.find(params[:id]))
+    @degree.user_id = params[:id]
+    @chapter.save
+    @degree.save
+    redirect_to '/profile/'+params[:id]
+  end
+
   def asignar_consultor
     @user = User.find(params[:id])
     @opciones_capitulo = Chapter.all.where(:campament_id=>@user.campament.id)

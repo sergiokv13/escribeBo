@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :charges
+  has_many :charges_history, foreign_key: 'user_id', class_name: 'ChargesHistory'
   has_many :premiacions
   has_many :degrees
   has_many :inboxes, foreign_key: 'user2_id', class_name: 'Inbox'
@@ -283,9 +284,18 @@ class User < ActiveRecord::Base
     else
       announcements_to_be_aproved = Array.new
       announcements.each do |announcement|
-        if (announcement.chapter.chapter_president_id == self.id or announcement.chapter.chapter_consultant_president_id == self.id) and !announcement.is_aproved
-          announcements_to_be_aproved.push(announcement)
+        if announcement.chapter != nil
+          if (announcement.chapter.chapter_president_id == self.id or announcement.chapter.chapter_consultant_president_id == self.id) and !announcement.is_aproved
+            announcements_to_be_aproved.push(announcement)
+          end
         end
+
+        if announcement.chapter != nil
+          if (announcement.campament.president == self.id or announcement.campament.maestro_consejero == self.id) and !announcement.is_aproved
+            announcements_to_be_aproved.push(announcement)
+          end
+        end
+
       end
       return announcements_to_be_aproved
     end

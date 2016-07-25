@@ -15,6 +15,7 @@
                 <th>Correo Electrónico</th>
                 <th>Capitulo</th>
                 <th>Estado</th>
+                <th>Aprobado por:</th>
                 <th colspan="2">Opciones</th>
               </tr>
             </thead>
@@ -28,7 +29,17 @@
                   <td><%= user.email %></td>
                   <td><%= user.chapter.chapter_name %></td>
                   <td><%= user.status %></td>
-                  <td><%= link_to "Aprobar", "/approve/"+user.id.to_s, class: "btn btn-success" %></td>
+                  <td>
+                    <%if user.president_aproved%>
+                      Presidente: <a href="<%=user.chapter.chapter_consultant_president.id%>"><%=user.chapter.chapter_consultant_president.fullName%></a><br>
+                    <%end%>
+                    <%if user.deputy_aproved%>
+                      Delegado: <a href="<%=user.chapter.campament.president.id%>"><%=user.chapter.campament.president.fullName%></a><br>
+                    <%end%>
+                  </td>
+                  <td>
+                  <%= link_to "Aprobar", "/approve/"+user.id.to_s, class: "btn btn-success btn-block" %><br>
+                  <%= link_to "Rechazar", "/reject/"+user.id.to_s, class: "btn btn-danger btn-block" %></td><br>
                 </tr>
               <% end %>
             </tbody>
@@ -48,7 +59,9 @@
                 <th>Titulo de grado a aprobar</th>
                 <th>Capitulo</th>
                 <th>Usuario</th>
+                <th>Aprobado por</th>
                 <th>Ficha de grado</th>
+                <th>Nota de rechazo</th>
                 <th colspan="2">Opciones</th>
               </tr>
             </thead>
@@ -58,14 +71,20 @@
                   <td><%= degree.title %></td>
                   <td><%= degree.chapter.chapter_name %></td>
                   <td><a href="/profile/<%= degree.user.id %>"> <%= degree.user.fullName %> </a></td>
-                  <% if current_user.is_deputy %>
-                    <td>
-
-                    </td>
-                  <% end %>
+                  <td>
+                    <%if degree.president_aproved%>
+                      Presidente: <a href="<%=degree.chapter.chapter_consultant_president.id%>"><%=degree.chapter.chapter_consultant_president.fullName%></a><br>
+                    <%end%>
+                    <%if degree.deputy_aproved%>
+                      Delegado: <a href="<%=degree.chapter.campament.president.id%>"><%=degree.chapter.campament.president.fullName%></a><br>
+                    <%end%>
                   </td>
                   <td><a class="btn btn-info" href="/degrees/<%=degree.id%>">Ver ficha</a></td>
-                  <td><%= link_to "Aprobar", "/approve_degree/"+degree.id.to_s, class: "btn btn-success" %>
+                  <td><%=degree.reject_note%></td>
+                  <td>
+                    <%= link_to "Aprobar", "/approve_degree/"+degree.id.to_s, class: "btn btn-success btn-block" %><br>
+                    <%= link_to "Rechazar", "/reject_degree/"+degree.id.to_s, class: "btn btn-danger btn-block" %>
+                  </td>
                 </tr>
               <% end %>
             </tbody>

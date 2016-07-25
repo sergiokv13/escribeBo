@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160702041852) do
+ActiveRecord::Schema.define(version: 20160725080350) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20160702041852) do
     t.integer  "chapter_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "gestion"
   end
 
   add_index "charges_histories", ["campament_id"], name: "index_charges_histories_on_campament_id"
@@ -108,6 +109,7 @@ ActiveRecord::Schema.define(version: 20160702041852) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.text     "reject_note"
   end
 
   add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id"
@@ -209,6 +211,7 @@ ActiveRecord::Schema.define(version: 20160702041852) do
     t.string   "nombre_esposa"
     t.string   "taller_nombre"
     t.string   "taller_numero"
+    t.text     "reject_note"
   end
 
   add_index "users", ["campament_id"], name: "index_users_on_campament_id"

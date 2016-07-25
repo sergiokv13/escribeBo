@@ -14,7 +14,8 @@
           <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal">Premiaciones</button>
         <%else%>
           <% if current_user.is_oficial %>
-            <%= link_to "Aprobar", "/approve/"+@user.id.to_s, class: "btn btn-success btn-block" %>
+            <%= link_to "Aprobar", "/approve/"+@user.id.to_s, class: "btn btn-success btn-block" %><br>
+            <%= link_to "Rechazar", "/reject/"+@user.id.to_s, class: "btn btn-danger btn-block" %><br>
           <%end%>
         <%end%>
         <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver mas Información</button>
@@ -36,6 +37,14 @@
           Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>"><%= charge.chapter.chapter_name %> </a><br>
         <%else%>
           Tiene el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> <br>
+        <%end%>
+      <% end %>
+      <hr class="divider">
+      <% @user.charges_history.each do |charge| %>
+        <% if charge.chapter != nil %>
+          Tuvo el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>"><%= charge.chapter.chapter_name %> </a> en la gestión <%=charge.gestion%><br>
+        <%else%>
+          Tuvo el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
         <%end%>
       <% end %>
     </div>
@@ -118,11 +127,39 @@
       </div>
       <div class="modal-body">
         <%if @user.role == "Demolay"%>
-        <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
-        <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block"%>
-        <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+          <% if @user.tiene_el_grado("Demolay") %>
+            <%= link_to "Dar grado Demolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block disabled"%>
+          <%else%>
+             <%= link_to "Dar grado Demolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
+          <%end%>
+
+          <% if @user.tiene_el_grado("Caballero") %>
+            <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled"%>
+          <%else%>
+          <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block"%>
+           <%end%>
+
+          <% if @user.tiene_el_grado("Chevalier") %>
+            <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
+          <%else%>
+            <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+          <%end%>
+
+          <% if @user.tiene_el_grado("Senior Demolay") %>
+            <%= link_to "Dar Senior Demolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
+          <%else%>
+            <%= link_to "Dar Senior Demolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+          <%end%>
+
         <%else%>
-          <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block"%>
+
+          <% if @user.tiene_el_grado("Consultor") %>
+            <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block disabled"%>
+          <%else%>
+            <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block"%>
+          <%end%>
+
+
         <%end%>
       </div>
       <div class="modal-footer">

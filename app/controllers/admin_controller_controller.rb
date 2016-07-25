@@ -78,12 +78,12 @@ class AdminControllerController < ApplicationController
 
 	def approvals
 		if current_user.is_president
-			@users_to_approve = User.where(president_aproved: [false, nil])
-			@degrees_to_approve = Degree.for_president
+			@users_to_approve = User.where(:president_aproved=>false)
+			@degrees_to_approve = Degree.where(:president_aproved=>false)
 		end
 		if current_user.is_deputy
-			@users_to_approve = User.where(deputy_aproved: [false, nil], president_aproved: true)
-			@degrees_to_approve = Degree.for_deputy
+			@users_to_approve =  User.where(:deputy_aproved=>false)
+			@degrees_to_approve = Degree.where(:deputy_aproved=>false)
 		end
 		if current_user.is_oficial
 			@users_to_approve = User.all_to_be
@@ -108,6 +108,27 @@ class AdminControllerController < ApplicationController
 		redirect_to '/profile/' + @user.id.to_s
 	end
 
+	def reject
+		@user = User.find(params[:id])
+	end
+
+	def update_reject
+		@user = User.find(params[:id])
+		@user.reject_note = params[:notas_de_rechazo]
+		if current_user.is_deputy
+			@user.president_aproved = false
+		end
+		if current_user.is_oficial
+			@user.deputy_aproved = false
+		end
+		@user.save
+		if current_user.is_president
+			@user.delete
+		end
+		redirect_to ("/approvals")
+	end
+
+
 	def approve_degree
 		@degree = Degree.find(params[:id])
 		if current_user.is_president
@@ -122,6 +143,27 @@ class AdminControllerController < ApplicationController
 			@degree.aprove_president
 		end
 		redirect_to '/profile/' + @degree.user_id.to_s
+	end
+
+	def reject_degree
+		@degree = Degree.find(params[:id])
+		@user = User.find(@degree.user_id)
+	end
+
+	def update_reject_degree
+		@degree = Degree.find(params[:id])
+		@degree.reject_note = params[:notas_de_rechazo]
+		if current_user.is_deputy
+			@degree.president_aproved = false
+		end
+		if current_user.is_oficial
+			@degree.deputy_aproved = false
+		end
+		@degree.save
+		if current_user.is_president
+			@degree.delete
+		end
+		redirect_to ("/approvals")
 	end
 
 	def chapter_aprovals
