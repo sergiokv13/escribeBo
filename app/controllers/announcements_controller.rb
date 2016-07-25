@@ -75,8 +75,14 @@ class AnnouncementsController < ApplicationController
     @announcement.subject = params[:subject]
     @announcement.content = params[:content]
     @announcement.image = params[:image]
-    @degrees = params[:degrees]['degree']
-    @charges = params[:charges]['charge']
+    @degrees = Array.new
+    @charges = Array.new
+    if params[:degrees] != nil
+      @degrees = params[:degrees]['degree']
+    end
+    if params[:charges]!= nil
+      @charges = params[:charges]['charge']
+    end
     @charges.push("Diputado")
     @announcement.degrees = @degrees.join(',')
     @announcement.charges = @charges.join(',')
@@ -91,8 +97,14 @@ class AnnouncementsController < ApplicationController
     @announcement.subject = params[:subject]
     @announcement.content = params[:content]
     @announcement.image = params[:image]
-    @degrees = params[:degrees]['degree']
-    @charges = params[:charges]['charge']
+    @degrees = Array.new
+    @charges = Array.new
+    if params[:degrees] != nil
+      @degrees = params[:degrees]['degree']
+    end
+    if params[:charges] != nil
+      @charges = params[:charges]['charge']
+    end
     @charges.push("Diputado")
     @announcement.degrees = @degrees.join(',')
     @announcement.charges = @charges.join(',')

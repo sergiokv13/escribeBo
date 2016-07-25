@@ -10,17 +10,6 @@ class Degree < ActiveRecord::Base
     return (self.president_aproved == true && self.deputy_aproved && self.oficial_aproved)
   end
   
-  def self.for_oficial
-    Degree.where(president_aproved: true, deputy_aproved: true, oficial_aproved: [false, nil])
-  end
-
-  def self.for_deputy
-    Degree.where(president_aproved: true, deputy_aproved: [false, nil])
-  end
-
-  def self.for_president
-    Degree.where(president_aproved: [false, nil])
-  end
 
   def self.all_to_be
     degrees = Array.new
@@ -52,6 +41,11 @@ class Degree < ActiveRecord::Base
 
   def aprove_oficial
     self.oficial_aproved = true
+    if self.title == "Senior Demolay"
+      user = User.find(self.user_id)
+      user.role = "No Demolay"
+      user.save
+    end
     self.save
   end
 end

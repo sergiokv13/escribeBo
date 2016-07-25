@@ -1,0 +1,13 @@
+<%= form_tag("/update_reiniciar_gestion",method:"post") do %>
+		<div class="form-group">
+	      <%= label_tag :Oficial_ejecutivo %>
+	      <%= select_tag(:id_oficial, options_from_collection_for_select(@posibles_oficiales,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Oficial Ejecutivo") %>
+	   </div>
+	   <div class="form-group">
+	      <%= label_tag :Gestión %>
+	      <%= text_field_tag :gestion , nil , :placeholder => "ej. II 2016" %>
+	   </div>
+	    <div class="actions">
+	      <%= submit_tag "Reiniciar gestion", class: "btn btn-danger" %>
+	    </div>
+<%end%>

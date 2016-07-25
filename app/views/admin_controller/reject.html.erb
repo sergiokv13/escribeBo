@@ -1,0 +1,16 @@
+<div class="row text-center">
+	<strong>Rechazo del usuario <%=@user.fullName%></strong>
+	<%= form_tag("/update_reject/"+@user.id.to_s,method:"post", :multipart => true) do %>
+	   <strong>Razones de rechazo.</strong>
+	    <div class="form-group">
+	       <div class="form-group">
+		    <%= text_field_tag :notas_de_rechazo , nil, :size=>"100", placeholder: "Razones de rechazo" %>
+		  </div>
+	   </div>
+
+	    <div class="actions">
+	      <%= submit_tag "Rechazar", class: "btn btn-danger" %>
+	    </div>
+	<%end%>
+    </div>
+</div>

@@ -40,9 +40,11 @@ Rails.application.routes.draw do
   get '/asignar_grado_demolay/:id' => 'profiles#asignar_grado_demolay'
   get '/asignar_grado_chevallier/:id' => 'profiles#asignar_grado_chevallier'
   get '/asignar_grado_caballero/:id' => 'profiles#asignar_grado_caballero'
+  get '/asignar_senior_demolay/:id' => 'profiles#asignar_senior_demolay'
   post '/update_asignar_grado_demolay/:id' => 'profiles#update_asignar_grado_demolay'
   post '/update_asignar_grado_caballero/:id' => 'profiles#update_asignar_grado_caballero'
   post '/update_asignar_grado_chevallier/:id' => 'profiles#update_asignar_grado_chevallier'
+  post '/update_asignar_senior_demolay/:id' => 'profiles#update_asignar_senior_demolay'
   get 'campaments/gestion/:id' => "campaments#gestion"
 
   get '/gestion/:id' => 'chapters#gestion'
@@ -52,7 +54,13 @@ Rails.application.routes.draw do
   post '/campaments/update_gestion/:id' => "campaments#update_gestion"
   get '/approvals' => 'admin_controller#approvals'
   get '/approve/:id' => 'admin_controller#approve'
+  get '/reject/:id' => 'admin_controller#reject'
+  post '/update_reject/:id' => 'admin_controller#update_reject'
+
+
   get '/approve_degree/:id' => 'admin_controller#approve_degree'
+  get '/reject_degree/:id' => 'admin_controller#reject_degree'
+  post '/update_reject_degree/:id' => 'admin_controller#update_reject_degree'
   get '/aproveTransaction/:id' => 'transactions#aproveTransaction'
   get '/pendingTransactions' => 'transactions#pendingTransactions'
   get '/aprovedTransactions' => 'transactions#aprovedTransactions'
@@ -64,5 +72,6 @@ Rails.application.routes.draw do
   get '/chapter_users/:id' => 'chapters#chapter_users'
   get '/reiniciar_gestion' => "charges#drop_gestion"
   get '/filtered' => 'admin_controller#filtered'
+  post '/update_reiniciar_gestion' => "charges#update_drop_gestion"
 
 end

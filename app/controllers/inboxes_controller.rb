@@ -30,11 +30,11 @@ class InboxesController < ApplicationController
 
   def update_user_field
     user_f = params[:user_field]
-    if user_f.size < 3
+    if user_f.size < 2
       @users = User.where(:id => user_f)
       render :partial => "partial", :object => @users
     else
-      @users = User.where("name LIKE ? OR id=?", "%#{user_f}%", "%#{user_f}%")
+      @users = User.where("name || ' ' || lastname LIKE ?" , "%#{user_f}%")
       render :partial => "partial", :object => @users
     end
   end
@@ -99,6 +99,6 @@ class InboxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inbox_params
-      params.require(:inbox).permit(:subject, :content, :user1_id, :user2_id, :inbox_att)
+      params.require(:inbox).permit(:subject, :content, :user1_id, :user2_id, :inbox_att, :user2_name)
     end
 end

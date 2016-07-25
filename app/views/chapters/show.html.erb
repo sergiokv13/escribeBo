@@ -18,14 +18,15 @@
         <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
           El Presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
           El presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
-        <% end %>
-
-        <% if current_user.is_oficial %>
-          <center>
-            <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s, class: "btn btn-success btn-block" %>
-            <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path, class: "btn btn-primary btn-block" %>
-            <%= link_to 'Borrar ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea borrar este capitulo?' } %>
-          </center>
+        <% else %>
+          <strong>La gestión no fue actualizada.<strong>
+          <% if current_user.is_oficial %>
+            <center>
+              <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s, class: "btn btn-success btn-block" %>
+              <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path, class: "btn btn-primary btn-block" %>
+              <%= link_to 'Borrar ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea borrar este capitulo?' } %>
+            </center>
+          <% end %>
         <% end %>
       </div>
     </div>

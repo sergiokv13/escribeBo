@@ -1,5 +1,8 @@
+Favor hacer click en uno de los siguientes<br>
 <% if @users!=nil%>
 	<% @users.each do |user| %>
-    <strong><%= user.fullName %><br></strong>
+	<a href="#" onclick="pass_name('<%= user.fullName %>','<%= user.id %>')">
+    	<strong><%= user.fullName %><br></strong>
+    </a>
   <% end %>
 <%end%>
