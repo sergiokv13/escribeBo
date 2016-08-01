@@ -7,7 +7,7 @@
       <div class="field col-lg-6">
         <%= f.email_field :email, autofocus: true, label: "Correo Electrónico" %>
       </div>
-      
+
       <div class="field col-lg-6">
         <%= f.file_field :image,  label: "Foto de perfil" %>
       </div>
@@ -18,7 +18,7 @@
       <% end %>
       *Dejar vacio si no se desea cambiar
       <div class="clear"></div>
-      
+
       <div class="field col-lg-4">
         <%= f.password_field :password, autocomplete: "off", label: "Contraseña Nueva" %>
       </div>
@@ -43,19 +43,19 @@
           <%= f.number_field :ci, class: "form-control" ,label: "Carnet de indentidad"%>
       </div>
 
-      <div class="form-group col-lg-4"">
+      <div class="form-group col-lg-4">
           <%= f.text_field :adress, class: "form-control",label: "Dirección" %>
       </div>
 
-      <div class="form-group col-lg-4"">
+      <div class="form-group col-lg-4">
         <%= f.number_field :phone, class: "form-control",label: "Telofono fijo"%>
       </div>
-      
-      <div class="form-group col-lg-4"">
+
+      <div class="form-group col-lg-4">
         <%= f.number_field :cellphone, class: "form-control" ,label: "Telofono celular"%>
       </div>
 
-      <% if @user.role =="DeMolay"%>
+      <% if @user.role =="Demolay"%>
             <div class="form-group col-lg-4">
               <%= f.text_field :father_name, class: "form-control",label: "Nombre del padre"  %>
             </div>

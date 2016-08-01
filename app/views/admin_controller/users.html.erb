@@ -14,7 +14,7 @@
             </div>
           <% end %>
           <div class="form-group">
-            <%= select_tag(:f, options_for_select([['Mayores de 21', 1], ['DeMolay', 2], ['No DeMolay', 3]]), class: "form-control" ,:prompt => "Seleccionar filtro") %>
+            <%= select_tag(:f, options_for_select([['Mayores de 21', 1], ['Demolay', 2], ['No Demolay', 3]]), class: "form-control" ,:prompt => "Seleccionar filtro") %>
           </div>
           <div class="form-group">
             <%= select_tag(:o, options_for_select([['Nombre', 1], ['Apellido', 2], ['Fecha de Nac.', 3], ['Estado', 4]]), class: "form-control", :prompt => "Seleccionar filtro") %>

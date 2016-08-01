@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_many :inboxes, foreign_key: 'user2_id', class_name: 'Inbox'
   has_many :sent, foreign_key: 'user1_id', class_name: 'Inbox'
   has_many :chapters_created, foreign_key: 'chapter_president_id', class_name: 'Chapter'
-  #has_one :chapter_in_charge, foreign_key: 'DeMolay_in_charge_id', class_name: 'Chapter'
+  #has_one :chapter_in_charge, foreign_key: 'demolay_in_charge_id', class_name: 'Chapter'
   belongs_to :chapter_consultant, class_name: 'Chapter'
   belongs_to :chapter
   belongs_to :priory, class_name: 'Chapter'
@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
 
   def set_first_degree
-    if role == "DeMolay"
+    if role == "Demolay"
       degree = Degree.new
       degree.title = "Iniciatico"
       degree.user_id = id
@@ -198,9 +198,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def is_degree_DeMolay
+  def is_degree_demolay
     if !self.degrees.empty?
-      if self.degrees.find_by(title: "DeMolay") != nil
+      if self.degrees.find_by(title: "Demolay") != nil
         true
       else
         false

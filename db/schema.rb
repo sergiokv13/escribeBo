@@ -171,7 +171,7 @@ ActiveRecord::Schema.define(version: 20160725080350) do
     t.string   "last_sign_in_ip"
     t.string   "name"
     t.string   "lastname"
-    t.string   "DeMolayID"
+    t.string   "demolayID"
     t.string   "role"
     t.string   "ci"
     t.datetime "created_at",                                  null: false

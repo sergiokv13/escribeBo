@@ -126,11 +126,11 @@
         <h4 class="modal-title">Otorgar grado a <%=@user.fullName%></h4>
       </div>
       <div class="modal-body">
-        <%if @user.role == "DeMolay"%>
-          <% if @user.tiene_el_grado("DeMolay") %>
-            <%= link_to "Dar grado DeMolay", "/asignar_grado_DeMolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block disabled"%>
+        <%if @user.role == "Demolay"%>
+          <% if @user.tiene_el_grado("Demolay") %>
+            <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block disabled"%>
           <%else%>
-             <%= link_to "Dar grado DeMolay", "/asignar_grado_DeMolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
+             <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
           <%end%>
 
           <% if @user.tiene_el_grado("Caballero") %>
@@ -145,10 +145,10 @@
             <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
           <%end%>
 
-          <% if @user.tiene_el_grado("Senior DeMolay") %>
-            <%= link_to "Dar Senior DeMolay", "/asignar_senior_DeMolay/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
+          <% if @user.tiene_el_grado("Senior Demolay") %>
+            <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
           <%else%>
-            <%= link_to "Dar Senior DeMolay", "/asignar_senior_DeMolay/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+            <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
           <%end%>
 
         <%else%>

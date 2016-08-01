@@ -57,7 +57,7 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @posibles_encargados =  Array.new
     User.where(:chapter_id=>@chapter.id).all.each do |pos|
-      if pos.is_degree_DeMolay
+      if pos.is_degree_demolay
         @posibles_encargados.push(pos)
       end
     end

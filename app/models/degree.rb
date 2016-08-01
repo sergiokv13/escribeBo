@@ -6,10 +6,10 @@ class Degree < ActiveRecord::Base
   has_attached_file :image
   validates_attachment_content_type :image, :content_type => ["application/pdf", "application/jpg", "application/png", "application/zip"]
 
-  def aproved 
+  def aproved
     return (self.president_aproved == true && self.deputy_aproved && self.oficial_aproved)
   end
-  
+
 
   def self.all_to_be
     degrees = Array.new
@@ -41,9 +41,9 @@ class Degree < ActiveRecord::Base
 
   def aprove_oficial
     self.oficial_aproved = true
-    if self.title == "Senior DeMolay"
+    if self.title == "Senior Demolay"
       user = User.find(self.user_id)
-      user.role = "No DeMolay"
+      user.role = "No Demolay"
       user.save
     end
     self.save

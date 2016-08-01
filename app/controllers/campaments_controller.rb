@@ -36,8 +36,8 @@ class CampamentsController < ApplicationController
 
   def gestion
     @campament = Campament.find(params[:id])
-    @posibles_delegados =  User.where(:role=>"No DeMolay").where(:campament_id => @campament.id).all
-    @posibles_maestros =  User.where(:role=>"DeMolay").where(:campament_id => @campament.id).all
+    @posibles_delegados =  User.where(:role=>"No Demolay").where(:campament_id => @campament.id).all
+    @posibles_maestros =  User.where(:role=>"Demolay").where(:campament_id => @campament.id).all
   end
 
 
@@ -54,7 +54,7 @@ class CampamentsController < ApplicationController
     end
 
     @conPresident = User.find(params[:id_delegado])
-   
+
     @campament.president = @conPresident
     @campament.save
     @charge = Charge.new

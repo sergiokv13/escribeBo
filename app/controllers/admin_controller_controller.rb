@@ -2,7 +2,7 @@ class AdminControllerController < ApplicationController
 
 	def newUser
 		@user = User.new
-		@roles = [['DeMolay', 'DeMolay'], ['No DeMolay', 'No DeMolay']]
+		@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
 		@campaments = Campament.all
 		@chapters = Chapter.where(:chapter_type =>"Capitulo").all
 		@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
@@ -39,7 +39,7 @@ class AdminControllerController < ApplicationController
 			redirect_to '/users'
 		else
 			flash[:notice] = "El usuario no fue creado."
-			@roles = [['DeMolay', 'DeMolay'], ['No DeMolay', 'No DeMolay']]
+			@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
 			@campaments = Campament.all
 			@chapters = Chapter.where(:chapter_type =>"Capitulo").all
 			@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
@@ -233,29 +233,29 @@ class AdminControllerController < ApplicationController
 					end
 				when 2
 					if flag1 and flag2
-						@users = @users.select{|user| user.chapter_id == chapter and user.role == "DeMolay"}
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "Demolay"}
 					end
 					if !flag1 and !flag2
-						@users = User.where(role: "DeMolay").to_a
+						@users = User.where(role: "Demolay").to_a
 					end
 					if flag1 and !flag2
-						@users = @users.select{|user| user.campament_id == campament and user.role == "DeMolay"}
+						@users = @users.select{|user| user.campament_id == campament and user.role == "Demolay"}
 					end
 					if !flag1 and flag2
-						@users = @users.select{|user| user.chapter_id == chapter and user.role == "DeMolay"}
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "Demolay"}
 					end
 				when 3
 					if flag1 and flag2
-						@users = @users.select{|user| user.chapter_id == chapter and user.role == "No DeMolay"}
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "No Demolay"}
 					end
 					if !flag1 and !flag2
-						@users = User.where(role: "No DeMolay").to_a
+						@users = User.where(role: "No Demolay").to_a
 					end
 					if flag1 and !flag2
-						@users = @users.select{|user| user.campament_id == campament and user.role == "No DeMolay"}
+						@users = @users.select{|user| user.campament_id == campament and user.role == "No Demolay"}
 					end
 					if !flag1 and flag2
-						@users = @users.select{|user| user.chapter_id == chapter and user.role == "No DeMolay"}
+						@users = @users.select{|user| user.chapter_id == chapter and user.role == "No Demolay"}
 					end
 			end
 		end
@@ -275,7 +275,7 @@ class AdminControllerController < ApplicationController
 	end
 
 	def user_params
-    params.require(:user).permit(:email, :name, :lastname, :role, :DeMolayID, :ci, :chapter_id, :campament_id, :birth_date, :city, :adress, :phone, :cellphone, :assurance, :godfather_id, :iniciacion, :father_name, :father_info, :father_adress, :father_mail, :mather_name, :mather_adress, :mather_mail, :estado_civil, :nombre_esposa, :taller_nombre, :taller_numero, :registration_form)
+    params.require(:user).permit(:email, :name, :lastname, :role, :demolayID, :ci, :chapter_id, :campament_id, :birth_date, :city, :adress, :phone, :cellphone, :assurance, :godfather_id, :iniciacion, :father_name, :father_info, :father_adress, :father_mail, :mather_name, :mather_adress, :mather_mail, :estado_civil, :nombre_esposa, :taller_nombre, :taller_numero, :registration_form)
   end
 
 end

@@ -22,7 +22,7 @@ class ChargesController < ApplicationController
   end
 
   def drop_gestion
-    @posibles_oficiales =  User.where(:role=>"No DeMolay")
+    @posibles_oficiales =  User.where(:role=>"No Demolay")
   end
 
   def update_drop_gestion

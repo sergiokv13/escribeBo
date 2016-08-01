@@ -31,7 +31,7 @@
 
         <div class="form-group col-lg-4">
 
-          <%= f.number_field :DeMolayID, class: "form-control" ,label: "Id en DeMolay internacional"%>
+          <%= f.number_field :demolayID, class: "form-control" ,label: "Id en DeMolay internacional"%>
         </div>
         <div class="clear"></div>
         <div class="form-group  col-lg-4">
@@ -70,7 +70,7 @@
         </div>
 
         <div class="clear"></div>
-        <span id="para_DeMolay">
+        <span id="para_demolay">
 
             <div class="form-group col-lg-4">
 
@@ -166,15 +166,15 @@
   $('#para_consultor').hide()
 
   $( "#user_role" ).change(function() {
-     if ($("#user_role").val() == "No DeMolay")
+     if ($("#user_role").val() == "No Demolay")
       {
-        $('#para_DeMolay').hide(300);
+        $('#para_demolay').hide(300);
         $('#para_consultor').show(300);
       }
-      if ($("#user_role").val() == "DeMolay")
+      if ($("#user_role").val() == "Demolay")
       {
         $('#para_consultor').hide(300);
-        $('#para_DeMolay').show(300);
+        $('#para_demolay').show(300);
       }
   });
 

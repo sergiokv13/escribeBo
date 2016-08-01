@@ -17,7 +17,7 @@
             <% @users.each do |user| %>
               <tr>
                 <td><%= link_to user.fullName, "/profile/" + user.id.to_s %></td>
-                <td><%= user.DeMolayID %></td>
+                <td><%= user.demolayID %></td>
                 <td><%= user.role %></td>
                 <td><%= user.ci %></td>
                 <td><%= user.email %></td>

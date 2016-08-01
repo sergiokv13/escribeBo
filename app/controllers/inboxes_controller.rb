@@ -99,6 +99,6 @@ class InboxesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def inbox_params
-      params.require(:inbox).permit(:subject, :content, :user1_id, :user2_id, :inbox_att, :user2_name)
+      params.require(:inbox).permit(:subject, :content, :user1_id, :user2_id, :inbox_att)
     end
 end
