@@ -222,9 +222,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  def is_degree_chevallier
+  def is_degree_chevalier
     if !self.degrees.empty?
-      if self.degrees.find_by(title: "Chevallier") != nil
+      if self.degrees.find_by(title: "Chevalier") != nil
         true
       else
         false

@@ -17,7 +17,6 @@
         <br>
         <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
           El Presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
-          El presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
         <% else %>
           <strong>La gestión no fue actualizada.<strong>
           <% if current_user.is_oficial %>
@@ -39,8 +38,8 @@
     <% end %>
 
     <%if @chapter.chapter_type == "Corte"%>
-      <h3>Chevalliers:</h3>
-      <% @chapter.chevalliers.each do |demolay| %>
+      <h3>Chevaliers:</h3>
+      <% @chapter.chevaliers.each do |demolay| %>
         <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
       <% end %>
     <% end %>

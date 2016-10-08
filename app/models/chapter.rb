@@ -8,7 +8,7 @@ class Chapter < ActiveRecord::Base
   has_many :consultants, foreign_key: 'chapter_consultant_id', class_name: 'User'
   has_many :demolays, foreign_key: 'chapter_id', class_name: 'User'
   has_many :knights, foreign_key: 'priory_id', class_name: 'User'
-  has_many :chevalliers, foreign_key: 'court_id', class_name: 'User'
+  has_many :chevaliers, foreign_key: 'court_id', class_name: 'User'
 
   def announcements_to_aprove
     announcements = Announcement.all
@@ -37,7 +37,7 @@ class Chapter < ActiveRecord::Base
     elsif self.chapter_type == "Priorato"
       return self.knights
     else
-      return self.chevalliers
+      return self.chevaliers
     end
   end
 
