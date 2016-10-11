@@ -20,7 +20,7 @@
   </div>
 
   <div class="field">
-    <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), label: "Campamento") %>
+    <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), label: "Departamento") %>
   </div>
   <div class="field">
     <%= f.select(:chapter_type, options_for_select([["Capitulo", "Capitulo"],["Priorato", "Priorato"],["Corte", "Corte"]]), label: "Tipo") %>

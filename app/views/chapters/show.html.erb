@@ -13,7 +13,7 @@
       </div>
       <div class="col-lg-4">
         <h3>Informacion</h3>
-        Este es un <%= @chapter.chapter_type %> del campamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolays activos.
+        Este es un <%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolays activos.
         <br>
         <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
           El Presidente es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
