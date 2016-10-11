@@ -38,12 +38,12 @@ Rails.application.routes.draw do
   post '/chapter/createAnnouncement/:id' => "announcements#createFromChapter"
   post '/campament/createAnnouncement/:id' => "announcements#createFromCampament"
   get '/asignar_grado_demolay/:id' => 'profiles#asignar_grado_demolay'
-  get '/asignar_grado_chevallier/:id' => 'profiles#asignar_grado_chevallier'
+  get '/asignar_grado_chevalier/:id' => 'profiles#asignar_grado_chevalier'
   get '/asignar_grado_caballero/:id' => 'profiles#asignar_grado_caballero'
   get '/asignar_senior_demolay/:id' => 'profiles#asignar_senior_demolay'
   post '/update_asignar_grado_demolay/:id' => 'profiles#update_asignar_grado_demolay'
   post '/update_asignar_grado_caballero/:id' => 'profiles#update_asignar_grado_caballero'
-  post '/update_asignar_grado_chevallier/:id' => 'profiles#update_asignar_grado_chevallier'
+  post '/update_asignar_grado_chevalier/:id' => 'profiles#update_asignar_grado_chevalier'
   post '/update_asignar_senior_demolay/:id' => 'profiles#update_asignar_senior_demolay'
   get 'campaments/gestion/:id' => "campaments#gestion"
 

@@ -43,21 +43,21 @@ class ProfilesController < ApplicationController
     redirect_to '/profile/'+params[:id]
   end
 
-  def asignar_grado_chevallier
+  def asignar_grado_chevalier
     @user = User.find(params[:id])
    @opciones_capitulo = Chapter.all.where(:chapter_type=>"Corte")
   end
 
-  def update_asignar_grado_chevallier
+  def update_asignar_grado_chevalier
     @degree = Degree.new
-    @degree.title = "Chevallier"
+    @degree.title = "Chevalier"
     @degree.image = params[:image]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
     @degree.oficial_aproved = false
     @degree.chapter = @chapter
-    @chapter.chevalliers.push(User.find(params[:id]))
+    @chapter.chevaliers.push(User.find(params[:id]))
     @degree.user_id = params[:id]
     @chapter.save
     @degree.save
@@ -78,7 +78,7 @@ class ProfilesController < ApplicationController
     @degree.deputy_aproved = false
     @degree.oficial_aproved = false
     @degree.chapter = @chapter
-    @chapter.chevalliers.push(User.find(params[:id]))
+    @chapter.chevaliers.push(User.find(params[:id]))
     @degree.user_id = params[:id]
     @chapter.save
     @degree.save

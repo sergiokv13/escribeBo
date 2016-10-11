@@ -140,9 +140,9 @@
            <%end%>
 
           <% if @user.tiene_el_grado("Chevalier") %>
-            <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
+            <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
           <%else%>
-            <%= link_to "Dar Grado Chevallier", "/asignar_grado_chevallier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+            <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
           <%end%>
 
           <% if @user.tiene_el_grado("Senior Demolay") %>
