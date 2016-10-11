@@ -39,7 +39,7 @@
           <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), class: "form-control",:prompt => "Seleccionar campamento",label: "(*) Campamento")%>
         </div>
 
-         <div class="form-group  col-lg-4" id="chapterDiv">
+        <div class="form-group  col-lg-4" id="chapterDiv">
           <%= render :partial => 'chapters', :object => @chapters, :locals=>{:f=>f} ,label: "Capitulo"%>
         </div>
 

@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <%if @chapter.chapter_type == "Priorato"%>
+    <% if @chapter.chapter_type == "Priorato" %>
       <h3>Caballeros:</h3>
       <% @chapter.knights.where(:role=>"Demolay").each do |demolay| %>
         <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
