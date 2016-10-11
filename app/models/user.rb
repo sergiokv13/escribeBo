@@ -132,14 +132,18 @@ class User < ActiveRecord::Base
   end
 
   def number_of_approvals
+    count = 0
     if self.is_president
-      User.where(president_aproved: [false, nil]).count
+      count += User.where(president_aproved: [false, nil]).count
+      count += Degree.where(president_aproved: [false, nil]).count
     end
     if self.is_deputy
       User.where(deputy_aproved: [false, nil], president_aproved: true).count
+      count += Degree.where(deputy_aproved: [false, nil], president_aproved: true).count
     end
     if self.is_oficial
-      User.where(oficial_aproved: [false, nil], deputy_aproved: true, president_aproved: true).count
+      User.where(oficial_aproved: [false, nil]).count
+      count += Degree.where(oficial_aproved: [false, nil]).count
     end
   end
 

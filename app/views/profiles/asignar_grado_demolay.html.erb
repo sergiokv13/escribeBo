@@ -3,12 +3,12 @@
 	<hr class="divider">
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4">
-	<%= form_tag("/update_asignar_grado_DeMolay/"+@user.id.to_s,method:"post", :multipart => true) do %>
+	<%= form_tag("/update_asignar_grado_demolay/"+@user.id.to_s,method:"post", :multipart => true) do %>
 		<div class="form-group">
 	      <%= label_tag :capitulo %>
 	      <%= select_tag(:chapter_id, options_from_collection_for_select(@opciones_capitulo,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
 	   </div>
-	   
+
 	    <div class="form-group">
 	       <div class="form-group">
 		    <%= file_field_tag :image %>
