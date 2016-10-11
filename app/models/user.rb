@@ -248,9 +248,10 @@ class User < ActiveRecord::Base
   end
 
   def tiene_el_grado(x)
+    hola = self.degrees.find_by(title: x)
     if !self.degrees.empty?
-      if self.degrees.find_by(title: x) != nil
-        true
+      if hola != nil
+        return hola.aproved
       else
         false
       end

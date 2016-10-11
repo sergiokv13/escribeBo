@@ -32,13 +32,28 @@ class Chapter < ActiveRecord::Base
   end
 
   def chapter_users
+    members = Array.new
+
     if self.chapter_type == "Capitulo"
-      return self.demolays
+      self.demolays.each do |m|
+        if m.tiene_el_grado("Demolay")
+          members.push(m)
+        end
+      end
     elsif self.chapter_type == "Priorato"
-      return self.knights
+      self.knights.each do |m|
+        if m.tiene_el_grado("Caballero")
+          members.push(m)
+        end
+      end
     else
-      return self.chevaliers
+      self.demolays.each do |m|
+        if m.tiene_el_grado("Chevalier")
+          members.push(m)
+        end
+      end
     end
+    members
   end
 
   def drop_gestion

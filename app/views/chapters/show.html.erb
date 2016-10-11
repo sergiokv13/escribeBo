@@ -29,27 +29,20 @@
         <% end %>
       </div>
     </div>
-
-    <% if @chapter.chapter_type == "Priorato" %>
-      <h3>Caballeros:</h3>
-      <% @chapter.knights.where(:role=>"Demolay").each do |demolay| %>
-        <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
-      <% end %>
-    <% end %>
-
-    <%if @chapter.chapter_type == "Corte"%>
-      <h3>Chevaliers:</h3>
-      <% @chapter.chevaliers.each do |demolay| %>
-        <%= link_to demolay.fullName, "/profile/"+demolay.id.to_s %><br>
-      <% end %>
-    <% end %>
-
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
         <div class="row">
           <div class="col-lg-5 info">
-            <h3>Miembros</h3>
+            <% if @chapter.chapter_type == "Priorato" %>
+              <h3>Caballeros</h3>
+            <% end %>
+            <% if @chapter.chapter_type == "Corte" %>
+              <h3>Chevaliers</h3>
+            <% end %>
+            <% if @chapter.chapter_type == "Capitulo" %>
+              <h3>Miembros</h3>
+            <% end %>
             Algunos de los miembros actuales son:<br>
             <% @chapter.chapter_users.take(4).each do |dm| %>
               <div class="row">
