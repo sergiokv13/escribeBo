@@ -73,7 +73,7 @@
       <%end%>
         <% if @user.chapter != nil %>
           <a href="/chapters/<%=@user.chapter.id%>"><%=@user.chapter.chapter_name%></a>
-          en el campamento de
+          en el Departamento de
           <a href="/campaments/<%=@user.campament_id%>"><%=@user.campament.name%></a>
         <% end %>
       </div>
@@ -179,7 +179,7 @@
       <div class="modal-body">
               <strong>Carnet de identidad: </strong> <%=@user.ci%><br>
               <strong>DeMolay Id: </strong> <%=@user.demolayID%><br>
-              <strong>Campamento:</strong> <%=@user.campament.name%><br>
+              <strong>Departamento:</strong> <%=@user.campament.name%><br>
               <% if @user.chapter != nil %>
                 <strong>Chapter:</strong> <%=@user.chapter.chapter_name%><br>
               <% end %>

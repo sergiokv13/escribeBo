@@ -7,7 +7,7 @@
         <%= form_tag '/filtered', method: "get", class: "form-inline", id: "filter-form" do %>
           <% if current_user.is_oficial %>
             <div class="form-group">
-              <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, :id, :name), class: "form-control", :prompt => "Seleccionar campamento") %>
+              <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, :id, :name), class: "form-control", :prompt => "Seleccionar Departamento") %>
             </div>
             <div class="form-group" id="chapterDiv2">
               <%= render :partial => 'chapters2', :object => @chapters ,label: "Capitulo"%>
