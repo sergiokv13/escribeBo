@@ -106,7 +106,7 @@
         <%= f.text_field :user_id, value: @user.id%>
       </div>
       <div class="actions">
-        <%= f.submit "Premiar", class: "btn btn-primary" %>
+        <%= f.submit "Premiar", class: "btn btn-info" %>
       </div>
     <% end %>
       </div>
@@ -174,7 +174,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Mas primaryrmación de <%=@user.fullName%></h4>
+        <h4 class="modal-title">Mas información de <%=@user.fullName%></h4>
       </div>
       <div class="modal-body">
               <strong>Carnet de identidad: </strong> <%=@user.ci%><br>
@@ -192,7 +192,7 @@
                 <strong>Padrino: </strong> <%=@user.godfather_id%><br>
                 <strong>Iniciacion:</strong> <%=@user.iniciacion%><br>
                 <strong>Nombre del padre:</strong> <%=@user.father_name%><br>
-                <strong>primaryrmación del padre:</strong> <%=@user.father_info%><br>
+                <strong>Información del padre:</strong> <%=@user.father_info%><br>
                 <strong>Dirección del padre:</strong> <%=@user.father_adress%><br>
                 <strong>Correo electronico del padre:</strong> <%=@user.father_mail%><br>
                 <strong>Nombre de la madre:</strong> <%=@user.mather_name%><br>
