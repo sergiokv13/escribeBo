@@ -37,7 +37,12 @@ class CampamentsController < ApplicationController
   def gestion
     @campament = Campament.find(params[:id])
     @posibles_delegados =  User.where(:role=>"No Demolay").where(:campament_id => @campament.id).all
-    @posibles_maestros =  User.where(:role=>"Demolay").where(:campament_id => @campament.id).all
+    @posibles_maestros =  Array.new
+    User.where(role: "Demolay").where(campament_id: @campament.id).each do |u|
+      if u.is_degree_demolay
+        @posibles_maestros.push(u)
+      end
+    end
   end
 
 

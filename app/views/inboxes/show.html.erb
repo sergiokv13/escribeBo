@@ -11,7 +11,7 @@
       </p>
 
       <p>
-        Recibido de: <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
+        <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
       </p>
 
       <% if @inbox.inbox_att.exists? %>

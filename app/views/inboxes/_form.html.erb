@@ -1,10 +1,10 @@
 <%= bootstrap_form_for @inbox, html: { multipart: true } do |f| %>
 
   <div class="field">
-    <%= f.text_area :subject %>
+    <%= f.text_field :subject %>
   </div>
   <div class="field">
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
   </div>
   <div class="field">
     <%= f.file_field :inbox_att %>
@@ -33,7 +33,7 @@
     <% end %>
   </div>
 
-  
+
   <div class="actions">
     <%= f.submit "Enviar Mensaje", class: "btn btn-success" %>
   </div>

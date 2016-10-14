@@ -13,12 +13,12 @@
       <div class="col-lg-4">
         <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
           <p>
-          <strong>Delegado regional:</strong>
-          <%= @campament.president.fullName %>
+          <strong>Delegado regional:</strong><br />
+          <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>
           </p>
           <p>
-          <strong>Maestro Consejero Departamental:</strong>
-          <%= @campament.maestro_consejero.fullName %>
+          <strong>Maestro Consejero Departamental:</strong><br />
+          <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %>
           </p>
         <%else%>
           <h3>La gestion no fue actualizada</h3>
@@ -27,6 +27,10 @@
             <%= link_to 'Actualizar Gestion', '/campaments/gestion/' + @campament.id.to_s, class: "btn btn-primary btn-block" %>
           <% end %>
         <%end%>
+        <% if current_user.is_oficial %>
+          <%= link_to 'Editar Capitulo', '/campaments/' + @campament.id.to_s + '/edit', class: "btn btn-warning btn-block" %>
+        <% end %>
+
       </div>
     </div>
 
