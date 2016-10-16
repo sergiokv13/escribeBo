@@ -258,6 +258,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def tendra_el_grado(x)
+    hola = self.degrees.find_by(title: x)
+    return hola!= nil
+  end
+
   def pendingTransactions
     self.transactions.where(aproved: false)
   end

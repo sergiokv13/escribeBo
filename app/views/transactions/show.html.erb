@@ -7,6 +7,16 @@
       <h1 class="center-title"><%= @transaction.name %></h1>
 
       <p>
+        <strong>Concepto</strong><br>
+        <%= @transaction.concept_type %>
+      </p>
+
+      <p>
+        <strong>Tipo de transacción</strong><br>
+        <%= @transaction.transaction_type %>
+      </p>
+
+      <p>
         <strong>Descripcion</strong><br>
         <%= @transaction.description %>
       </p>
