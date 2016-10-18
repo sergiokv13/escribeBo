@@ -101,8 +101,14 @@ class TransactionsController < ApplicationController
   def generateReport
     @start = params[:start].to_date
     @end = params[:end].to_date
-    @transactions = Transaction.all.to_a
-    @transactions = @transactions.select{|t| t.created_at >= @start and t.created_at <= @end }
+    possible_transactions = Transaction.all
+    @transactions = Array.new
+    possible_transactions.each do |t|
+      if t.created_at.to_date >= @start and t.created_at.to_date <= @end
+        @transactions.push(t)
+      end
+    end
+    @transactions
   end
 
   private

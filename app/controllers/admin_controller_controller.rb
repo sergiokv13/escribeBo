@@ -199,10 +199,7 @@ class AdminControllerController < ApplicationController
 		if current_user.is_oficial
 			@degree.deputy_aproved = false
 		end
-		@degree.save
-		if current_user.is_president
-			@degree.delete
-		end
+		@degree.delete
 		redirect_to ("/approvals")
 	end
 

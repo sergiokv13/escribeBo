@@ -28,7 +28,7 @@ en:
         user2_id: "Enviar a"
         inbox_att: "Archivo Adjunto"
       transaction:
-        image: "Comprobante"
+        image: "Formulario de Control de Depósitos"
     errors:
       models:
         inbox:
