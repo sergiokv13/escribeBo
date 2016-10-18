@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725080350) do
+ActiveRecord::Schema.define(version: 20161014160047) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(version: 20160725080350) do
     t.datetime "image_updated_at"
     t.boolean  "aproved"
     t.string   "transaction_type"
+    t.text     "concept_type"
   end
 
   create_table "users", force: :cascade do |t|

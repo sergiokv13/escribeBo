@@ -130,25 +130,25 @@
       </div>
       <div class="modal-body">
         <%if @user.role == "Demolay"%>
-          <% if @user.tiene_el_grado("Demolay") %>
+          <% if @user.tendra_el_grado("Demolay") %>
             <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block disabled"%>
           <%else%>
              <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
           <%end%>
 
-          <% if @user.tiene_el_grado("Caballero") %>
+          <% if @user.tendra_el_grado("Caballero") %>
             <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled"%>
           <%else%>
           <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block"%>
            <%end%>
 
-          <% if @user.tiene_el_grado("Chevalier") %>
+          <% if @user.tendra_el_grado("Chevalier") %>
             <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
           <%else%>
             <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
           <%end%>
 
-          <% if @user.tiene_el_grado("Senior Demolay") %>
+          <% if @user.tendra_el_grado("Senior Demolay") %>
             <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
           <%else%>
             <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
@@ -156,7 +156,7 @@
 
         <%else%>
 
-          <% if @user.tiene_el_grado("Consultor") %>
+          <% if @user.tendra_el_grado("Consultor") %>
             <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block disabled"%>
           <%else%>
             <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block"%>
@@ -224,15 +224,18 @@
         <h4 class="modal-title">Formularios de <%=@user.fullName%></h4>
       </div>
       <div class="modal-body">
-               <%= link_to "Ver Formulario de iniciación",@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block"%>
-               <strong>Formularios de grados</strong>
-               <% @user.degrees.each do |degree| %>
-                <% if degree.aproved %>
-               <% if degree.title!="Iniciatico"%>
-                <%= link_to "Ver Formulario de " + degree.title.to_s,degree.image.url, target: "_blank" , class: "btn btn-primary btn-block"%>
-                <%end%>
+              <strong>Formularios de grados</strong>
+               <% if @user.role == "Demolay" %>
+                  <%= link_to "Iniciación en " + @user.chapter.chapter_name.to_s,@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block"%>
+               <%end%>         
+                 <% @user.degrees.each do |degree| %>
+                  <% if degree.aproved %>
+                 <% if degree.title!="Iniciatico"%>
+                  <%= link_to degree.title.to_s + " en " + degree.chapter.chapter_name.to_s,degree.image.url, target: "_blank" , class: "btn btn-primary btn-block"%>
+                  <%end%>
+                   <%end%>
                  <%end%>
-               <%end%>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>

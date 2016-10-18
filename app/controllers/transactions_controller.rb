@@ -20,6 +20,7 @@ class TransactionsController < ApplicationController
   def new
     @transaction = Transaction.new
     @types = [['Ingreso', 'Ingreso'], ['Egreso', 'Egreso']]
+    @concepts = [['Iniciación','Iniciación'],['Elevación','Elevación'],['Investidura','Investidura'],['Investidura Chevalier','Investidura Chevalier'],['DeMolay Card','DeMolay Card'],['Consultor','Consultor'],['Premiación','Premiación'],['Otro','Otro']]
   end
 
   # GET /transactions/1/edit
@@ -112,6 +113,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:name, :description, :mount, :image, :transaction_type)
+      params.require(:transaction).permit(:name, :description, :mount, :image, :transaction_type,:concept_type)
     end
 end
