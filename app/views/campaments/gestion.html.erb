@@ -3,23 +3,21 @@
 	<hr class="divider">
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4">
-	<%= form_tag("/campaments/update_gestion/"+@campament.id.to_s,method:"post") do %>
-
-	<% if @campament.id != 1 %>
-		<div class="form-group">
-	      <%= label_tag :delegado_regional %>
-	      <%= select_tag(:id_delegado, options_from_collection_for_select(@posibles_delegados,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Delegado Regional") %>
-	   </div>
-	<% end %>
-
-	   <div class="form-group">
+		<%= form_tag("/campaments/update_gestion/"+@campament.id.to_s,method:"post") do %>
+			<% if @campament.id != 1 %>
+				<div class="form-group">
+			      <%= label_tag :delegado_regional %>
+			      <%= select_tag(:id_delegado, options_from_collection_for_select(@posibles_delegados,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Delegado Regional") %>
+			   </div>
+			<% end %>
+	   	<div class="form-group">
 	      <%= label_tag :maestro_consejero %>
 	      <%= select_tag(:id_maestro, options_from_collection_for_select(@posibles_maestros,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Maestro Consejero Departamental") %>
-	   </div>
+	   	</div>
 	    <div class="actions">
 	      <%= submit_tag "Actualizar gestión", class: "btn btn-success" %>
 	      <%= link_to "Atrás", '/campaments', class: "btn btn-danger" %>
 	    </div>
-	<%end%>
-    </div>
+		<%end%>
+  </div>
 </div>

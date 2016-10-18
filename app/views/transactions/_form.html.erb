@@ -17,7 +17,7 @@
 
   <% if current_user.is_oficial %>
     <div class="field">
-      <%= f.select :transaction_type, options_for_select(['Ingreso', 'Ingreso'], ['Egreso', 'Egreso']), :label => "Tipo de transacción" %>
+      <%= f.select :transaction_type, options_for_select([['Ingreso', 'Ingreso'], ['Egreso', 'Egreso']]), :label => "Tipo de transacción" %>
     </div>
   <% else %>
     <div class="field">

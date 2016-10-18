@@ -20,7 +20,7 @@
         <%end%>
         <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver más Información</button>
         <% if current_user.id == @user.id %>
-          <a href="/users/<%= @user.id %>/edit" class="btn btn-primary btn-block">Editar Información</a>
+          <a href="/users/edit" class="btn btn-primary btn-block">Editar Información</a>
         <% end %>
     </div>
 

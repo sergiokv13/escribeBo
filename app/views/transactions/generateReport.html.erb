@@ -14,10 +14,10 @@
                 Descripcion
               </th>
               <th>
-                Monto
+                Tipo
               </th>
               <th>
-                Tipo
+                Monto
               </th>
             </thead>
             <tbody>
@@ -30,13 +30,21 @@
                     <%= transaction.description %>
                   </td>
                   <td>
-                    Bs. <%= transaction.mount %>
+                    <%= transaction.transaction_type %>
                   </td>
                   <td>
-                    <%= transaction.transaction_type %>
+                    Bs. <%= transaction.mount %>
                   </td>
                 </tr>
               <% end %>
+              <tr>
+                <td colspan="3">
+                  Total
+                </td>
+                <td>
+                  Bs. <%= @total %>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

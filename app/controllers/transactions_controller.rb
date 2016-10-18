@@ -103,9 +103,15 @@ class TransactionsController < ApplicationController
     @end = params[:end].to_date
     possible_transactions = Transaction.all
     @transactions = Array.new
+    @total = 0
     possible_transactions.each do |t|
       if t.created_at.to_date >= @start and t.created_at.to_date <= @end
         @transactions.push(t)
+        if t.transaction_type == "Ingreso"
+          @total += t.mount
+        else
+          @total -= t.mount
+        end
       end
     end
     @transactions

@@ -17,7 +17,7 @@
         <br>
         <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
           <% if @chapter.chapter_type == "Capitulo" %>
-            El Maestro Consejero es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.
+            El Maestro Consejero es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_consultant_president.id.to_s %>.
           <% end %>
           <% if @chapter.chapter_type == "Priorato" %>
             El Ilustre Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.
