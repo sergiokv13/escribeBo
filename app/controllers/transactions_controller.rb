@@ -63,7 +63,7 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: 'Transacción borrada correctamente' }
+      format.html { redirect_to '/aprovedTransactions', notice: 'Transacción borrada correctamente' }
       format.json { head :no_content }
     end
   end
