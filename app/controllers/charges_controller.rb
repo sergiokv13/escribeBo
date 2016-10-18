@@ -26,12 +26,35 @@ class ChargesController < ApplicationController
   end
 
   def update_drop_gestion
-    Charge.drop_gestion(params[:gestion])
+
+    if params[:capitulo_check_box] != nil
+      Charge.drop_capitulo(params[:gestion])
+    end
+
+    if params[:priorato_check_box] != nil
+      Charge.drop_priorato(params[:gestion])
+    end
+
+    if params[:corte_check_box] != nil
+      Charge.drop_corte(params[:gestion])
+    end
+
+    if params[:corte_check_box] != nil
+      Charge.drop_departamento(params[:gestion])
+    end
+
+    if params[:corte_check_box] != nil
+      Charge.drop_gabinete(params[:gestion])
+    end
+
     cargo_oficial = Charge.new
+    cargo_oficial.ente = "Gabinete"
     cargo_oficial.title = "Oficial Ejecutivo"
     cargo_oficial.user_id = params[:id_oficial]
     cargo_oficial.campament_id = 1
     cargo_oficial.save
+
+
     flash[:notice] = "La gestion fue reiniciada."
     redirect_to "/"
   end

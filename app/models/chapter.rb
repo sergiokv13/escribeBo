@@ -5,7 +5,7 @@ class Chapter < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
   has_many :announcements
   belongs_to :chapter_consultant_president, foreign_key: 'chapter_consultant_president_id',class_name: 'User'
-  has_many :consultants, foreign_key: 'chapter_consultant_id', class_name: 'User'
+
   has_many :demolays, foreign_key: 'chapter_id', class_name: 'User'
   has_many :knights, foreign_key: 'priory_id', class_name: 'User'
   has_many :chevaliers, foreign_key: 'court_id', class_name: 'User'
@@ -19,6 +19,16 @@ class Chapter < ActiveRecord::Base
       end
     end
     announcements_to_be_aproved
+  end
+
+  def consultants
+    c = Array.new
+    Degree.where(:chapter_id => id).where(:title => "Consultor").each do |degree|
+      if degree.aproved
+        c.push(User.find(degree.user_id)).uniq
+      end
+    end
+    c
   end
 
   def aproved_announcements
@@ -36,22 +46,24 @@ class Chapter < ActiveRecord::Base
 
     if self.chapter_type == "Capitulo"
       self.demolays.each do |m|
-        if m.tiene_el_grado("Demolay")
+        if m.tiene_el_grado("Demolay") && m.role == "Demolay"
           members.push(m)
         end
       end
     elsif self.chapter_type == "Priorato"
       self.knights.each do |m|
-        if m.tiene_el_grado("Caballero")
+        if m.tiene_el_grado("Caballero") && m.role == "Demolay"
           members.push(m)
         end
       end
     else
-      self.demolays.each do |m|
+
+      self.chevaliers.each do |m|
         if m.tiene_el_grado("Chevalier")
           members.push(m)
         end
       end
+
     end
     members
   end

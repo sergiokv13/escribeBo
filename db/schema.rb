@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161014160047) do
+ActiveRecord::Schema.define(version: 20161018212806) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20161014160047) do
     t.datetime "updated_at",   null: false
     t.integer  "campament_id"
     t.integer  "chapter_id"
+    t.string   "ente"
   end
 
   add_index "charges", ["campament_id"], name: "index_charges_on_campament_id"

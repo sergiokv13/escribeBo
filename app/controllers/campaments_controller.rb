@@ -52,6 +52,7 @@ class CampamentsController < ApplicationController
       @encargado = User.find(params[:id_maestro])
       @campament.maestro_consejero = @encargado
       @charge = Charge.new
+      @charge.ente = "Campamento"
       @charge.user = @encargado
       @charge.title = "Maestro Consejero"
       @charge.campament = @campament
@@ -63,6 +64,7 @@ class CampamentsController < ApplicationController
     @campament.president = @conPresident
     @campament.save
     @charge = Charge.new
+    @charge.ente = "Campamento"
     @charge.user = @conPresident
     @charge.title = "Delegado Regional"
     @charge.campament = @campament

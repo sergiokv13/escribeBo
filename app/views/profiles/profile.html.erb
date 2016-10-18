@@ -153,11 +153,9 @@
 
         <%else%>
 
-          <% if @user.tendra_el_grado("Consultor") %>
-            <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block disabled"%>
-          <%else%>
+
             <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block"%>
-          <%end%>
+
 
 
         <%end%>
