@@ -78,7 +78,7 @@ class CampamentsController < ApplicationController
 
     respond_to do |format|
       if @campament.save
-        format.html { redirect_to @campament, notice: 'Campament was successfully created.' }
+        format.html { redirect_to @campament, notice: 'El campamento fue creado correctamente' }
         format.json { render :show, status: :created, location: @campament }
       else
         format.html { render :new }

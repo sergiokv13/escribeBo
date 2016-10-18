@@ -5,16 +5,16 @@
 
         <p id="notice"><%= notice %></p>
 
-        <h1>Listing Transactions</h1>
+        <h1>Listado de Transacciones</h1>
 
         <div class="table-responsive">
           <table class="table table-hover table-bordered table-striped">
             <thead>
               <tr>
                 <td>Tipo</td>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Mount</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Monto</th>
                 <th>Usuario</th>
                 <th>Estado</th>
                 <th colspan="4">Operaciones</th>
@@ -38,7 +38,7 @@
                   <td><%= link_to 'Ver detalle', transaction %></td>
                   <% if !transaction.aproved? %>
                     <td><%= link_to 'Editar', edit_transaction_path(transaction) %></td>
-                    <td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                    <td><%= link_to 'Borrar', transaction, method: :delete, data: { confirm: 'Está seguro?' } %></td>
                   <% else %>
                     <td></td>
                     <td></td>
@@ -49,8 +49,6 @@
           </table>
 
           <br>
-
-          <%= link_to 'New Transaction', new_transaction_path %>
       </div>
     </div>
   </div>

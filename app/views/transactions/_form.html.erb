@@ -12,37 +12,37 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_field :name , :label => "Nombre de transacción."%>
+    <%= f.text_field :name , :label => "Nombre de transacción"%>
   </div>
 
   <% if current_user.is_oficial %>
     <div class="field">
-      <%= f.select :transaction_type, options_for_select(@types), :label => "Tipo de transacción." %>
+      <%= f.select :transaction_type, options_for_select(@types), :label => "Tipo de transacción" %>
     </div>
   <% else %>
     <div class="field">
-      <%= f.select :transaction_type, options_for_select(@types[0]), :label => "Tipo de transacción." %>
+      <%= f.select :transaction_type, options_for_select(@types[0]), :label => "Tipo de transacción" %>
     </div>
   <% end %>
 
   <div class="field">
-    <%= f.select :concept_type, options_for_select(@concepts), :label => "Concepto."  %>
+    <%= f.select :concept_type, options_for_select(@concepts), :label => "Concepto"  %>
   </div>
 
   <div class="field">
-    <%= f.text_area :description , :label => "Descripción."%>
+    <%= f.text_area :description , :label => "Descripción"%>
   </div>
 
   <div class="field">
-    <%= f.number_field :mount , :label => "Monto."%>
+    <%= f.number_field :mount , :label => "Monto"%>
   </div>
 
   <div class="field">
-    <%= f.file_field :image , :label => "Comprobante."%>
+    <%= f.file_field :image , :label => "Comprobante"%>
   </div>
 
   <div class="actions">
     <%= f.submit "Registrar", class: "btn btn-success" %>
-    <%= link_to 'Back', transactions_path, class: "btn btn-danger" %>
+    <%= link_to 'Atrás', transactions_path, class: "btn btn-danger" %>
   </div>
 <% end %>

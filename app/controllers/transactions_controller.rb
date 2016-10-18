@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
     @transaction.aproved = false
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to @transaction, notice: 'Transacción creada correctamente' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to @transaction, notice: 'Transacción actualizada correctamente' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
@@ -63,7 +63,7 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
+      format.html { redirect_to transactions_url, notice: 'Transacción borrada correctamente' }
       format.json { head :no_content }
     end
   end
