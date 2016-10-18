@@ -37,6 +37,7 @@
                   <th>Capitulo</th>
                   <th>Fecha de Nacimiento</th>
                   <th>Estado</th>
+                  <th>Operaciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -56,6 +57,9 @@
                     <% end %>
                     <td><%= user.birth_date %></td>
                     <td><%= user.status %></td>
+                    <% if current_user.is_oficial or current_user.id == user.id %>
+                      <td><%= link_to "Editar", '/users/' + user.id.to_s + '/edit' %></td>
+                    <% end %>
                   </tr>
                 <% end %>
               </tbody>

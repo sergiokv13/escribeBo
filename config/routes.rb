@@ -32,6 +32,7 @@ Rails.application.routes.draw do
 
   get '/newUser' => "admin_controller#newUser"
   post '/createUser' => "admin_controller#createUser"
+  post '/updateUser' => "admin_controller#updateUser"
   get '/users' => "admin_controller#users"
   post '/update_gestion/:id' => "chapters#update_gestion"
   get '/profile/:id' => 'profiles#profile'
@@ -73,5 +74,6 @@ Rails.application.routes.draw do
   get '/reiniciar_gestion' => "charges#drop_gestion"
   get '/filtered' => 'admin_controller#filtered'
   post '/update_reiniciar_gestion' => "charges#update_drop_gestion"
+  get '/users/:id/edit' => 'admin_controller#edit'
 
 end
