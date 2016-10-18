@@ -15,6 +15,16 @@ class AdminControllerController < ApplicationController
 	  render :partial => "chapters", :object => @chapters
 	end
 
+	def edit
+		@user = User.find(params[:id])
+		@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
+		@campaments = Campament.all
+		@chapters = Chapter.where(:chapter_type =>"Capitulo").all
+		@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
+		@estados = [['Casado','Casado'],['Soltero','Soltero'],['Viudo','Viudo']]
+		@father = [['Mason','Mason'],['No Mason','No Mason']]
+	end
+
 	def update_chapters_for_filter
 		campament = params[:campament_id].to_i
 		if campament != 0
@@ -34,6 +44,24 @@ class AdminControllerController < ApplicationController
 		@user.deputy_aproved = false
 		@user.oficial_aproved = false
 
+		if @user.save
+			flash[:notice] = "El usuario fue creado correctamente."
+			redirect_to '/users'
+		else
+			flash[:notice] = "El usuario no fue creado."
+			@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
+			@campaments = Campament.all
+			@chapters = Chapter.where(:chapter_type =>"Capitulo").all
+			@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
+			@estados = [['Casado','Casado'],['Soltero','Soltero'],['Viudo','Viudo']]
+			@father = [['Mason','Mason'],['No Mason','No Mason']]
+			render :newUser
+		end
+	end
+
+	def updateUser
+		@user = User.find(params[:user][:id])
+		@user.update_attributes(user_params)
 		if @user.save
 			flash[:notice] = "El usuario fue creado correctamente."
 			redirect_to '/users'
@@ -171,10 +199,7 @@ class AdminControllerController < ApplicationController
 		if current_user.is_oficial
 			@degree.deputy_aproved = false
 		end
-		@degree.save
-		if current_user.is_president
-			@degree.delete
-		end
+		@degree.delete
 		redirect_to ("/approvals")
 	end
 

@@ -52,7 +52,7 @@ class InboxesController < ApplicationController
     @inbox.inbox_hidden = false
     respond_to do |format|
       if @inbox.save
-        format.html { redirect_to @inbox, notice: 'Inbox was successfully created.' }
+        format.html { redirect_to @inbox, notice: 'Mensaje enviado correctamente' }
         format.json { render :show, status: :created, location: @inbox }
       else
         format.html { render :new }
@@ -66,7 +66,7 @@ class InboxesController < ApplicationController
   def update
     respond_to do |format|
       if @inbox.update(inbox_params)
-        format.html { redirect_to @inbox, notice: 'Inbox was successfully updated.' }
+        format.html { redirect_to @inbox, notice: 'Mensaje actualizado correctamente' }
         format.json { render :show, status: :ok, location: @inbox }
       else
         format.html { render :edit }
@@ -80,7 +80,7 @@ class InboxesController < ApplicationController
   def destroy
     @inbox.destroy
     respond_to do |format|
-      format.html { redirect_to inboxes_url, notice: 'Inbox was successfully destroyed.' }
+      format.html { redirect_to inboxes_url, notice: 'Mensaje borrado correctamente' }
       format.json { head :no_content }
     end
   end

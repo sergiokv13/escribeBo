@@ -8,7 +8,7 @@
           <table class="table table-bordered table-hover table-striped">
             <thead>
               <tr>
-                <th>Titulo</th>
+                <th>Título</th>
                 <th>Autor</th>
                 <th colspan="2">Opciones</th>
               </tr>
@@ -18,8 +18,8 @@
                 <tr>
                   <td><%= announcement.subject %></td>
                   <td><%= link_to announcement.user.fullName, '/profile/' + announcement.user.id.to_s %></td>
-                  <td><%= link_to "Ver publicacion", announcement %></td>
-                  <td><%= link_to "Aprobar publicacion", '/aprove_publication/' + announcement.id.to_s %></td>
+                  <td><%= link_to "Ver publicación", announcement %></td>
+                  <td><%= link_to "Aprobar publicación", '/aprove_publication/' + announcement.id.to_s %></td>
                 </tr>
               <% end %>
             </tbody>

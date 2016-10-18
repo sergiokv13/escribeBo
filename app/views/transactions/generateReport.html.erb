@@ -3,7 +3,7 @@
     <div class="col-lg-1"></div>
     <div class="col-lg-10">
       <div class="jumbotron">
-        <h1 class="center-title">Reportes del <%= @start %>/<%= @end %></h1>
+        <h1 class="center-title">Reportes desde <%= @start %> hasta <%= @end %></h1>
         <div class="table-responsive">
           <table class="table table-bordered table-hover">
             <thead>
@@ -14,10 +14,10 @@
                 Descripcion
               </th>
               <th>
-                Monto
+                Tipo
               </th>
               <th>
-                Tipo
+                Monto
               </th>
             </thead>
             <tbody>
@@ -30,13 +30,21 @@
                     <%= transaction.description %>
                   </td>
                   <td>
-                    Bs. <%= transaction.mount %>
+                    <%= transaction.transaction_type %>
                   </td>
                   <td>
-                    <%= transaction.transaction_type %>
+                    Bs. <%= transaction.mount %>
                   </td>
                 </tr>
               <% end %>
+              <tr>
+                <td colspan="3">
+                  Total
+                </td>
+                <td>
+                  Bs. <%= @total %>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

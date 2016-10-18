@@ -1,7 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
-
   # GET /transactions
   # GET /transactions.json
   def index
@@ -36,7 +35,7 @@ class TransactionsController < ApplicationController
     @transaction.aproved = false
     respond_to do |format|
       if @transaction.save
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully created.' }
+        format.html { redirect_to @transaction, notice: 'Transacción creada correctamente' }
         format.json { render :show, status: :created, location: @transaction }
       else
         format.html { render :new }
@@ -50,7 +49,7 @@ class TransactionsController < ApplicationController
   def update
     respond_to do |format|
       if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+        format.html { redirect_to @transaction, notice: 'Transacción actualizada correctamente' }
         format.json { render :show, status: :ok, location: @transaction }
       else
         format.html { render :edit }
@@ -64,7 +63,7 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
+      format.html { redirect_to '/aprovedTransactions', notice: 'Transacción borrada correctamente' }
       format.json { head :no_content }
     end
   end
@@ -102,8 +101,20 @@ class TransactionsController < ApplicationController
   def generateReport
     @start = params[:start].to_date
     @end = params[:end].to_date
-    @transactions = Transaction.all.to_a
-    @transactions = @transactions.select{|t| t.created_at >= @start and t.created_at <= @end }
+    possible_transactions = Transaction.all
+    @transactions = Array.new
+    @total = 0
+    possible_transactions.each do |t|
+      if t.created_at.to_date >= @start and t.created_at.to_date <= @end
+        @transactions.push(t)
+        if t.transaction_type == "Ingreso"
+          @total += t.mount
+        else
+          @total -= t.mount
+        end
+      end
+    end
+    @transactions
   end
 
   private

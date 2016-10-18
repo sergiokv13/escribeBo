@@ -18,7 +18,10 @@
             <%= link_to "Rechazar", "/reject/"+@user.id.to_s, class: "btn btn-danger btn-block" %><br>
           <%end%>
         <%end%>
-        <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver mas Información</button>
+        <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver más Información</button>
+        <% if current_user.id == @user.id %>
+          <a href="/users/edit" class="btn btn-primary btn-block">Editar Información</a>
+        <% end %>
     </div>
 
     <div class="col-lg-3  text-center">
@@ -58,16 +61,16 @@
       <h2>Información</h2>
 
       <div class="col-lg-4"><strong>email: </strong><%=@user.email%></div>
-      <div class="col-lg-4"><strong>Telefono Fijo: </strong><%=@user.phone%></div>
-      <div class="col-lg-4"><strong>Telefono Celular: </strong><%=@user.cellphone%></div>
+      <div class="col-lg-4"><strong>Teléfono Fijo: </strong><%=@user.phone%></div>
+      <div class="col-lg-4"><strong>Teléfono Celular: </strong><%=@user.cellphone%></div>
 
-      <div class="col-lg-4"><strong>fecha nacimiento: </strong><%=@user.birth_date%></div>
-      <div class="col-lg-4"><strong>Direccion: </strong><%=@user.adress%></div>
+      <div class="col-lg-4"><strong>Fecha nacimiento: </strong><%=@user.birth_date%></div>
+      <div class="col-lg-4"><strong>Dirección: </strong><%=@user.adress%></div>
       <div class="col-lg-4"></div>
 
       <div class="col-lg-12">
       <% if @user.aproved %>
-        Forma parte del capitulo
+        Forma parte de
       <%else%>
         Formara parte del capitulo
       <%end%>
@@ -172,7 +175,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Mas información de <%=@user.fullName%></h4>
+        <h4 class="modal-title">Más información de <%=@user.fullName%></h4>
       </div>
       <div class="modal-body">
               <strong>Carnet de identidad: </strong> <%=@user.ci%><br>
@@ -183,8 +186,8 @@
               <% end %>
               <strong>Provincia:</strong> <%=@user.city%><br>
               <strong>Dirección:</strong> <%=@user.adress%><br>
-              <strong>Telefono Fijo:</strong> <%=@user.phone%><br>
-              <strong>Telefono Celular:</strong> <%=@user.cellphone%><br>
+              <strong>Teléfono Fijo:</strong> <%=@user.phone%><br>
+              <strong>Teléfono Celular:</strong> <%=@user.cellphone%><br>
             <% if @user.role == "DeMolay"%>
                <strong>Seguro: </strong> <%=@user.assurance%><br>
                 <strong>Padrino: </strong> <%=@user.godfather_id%><br>
@@ -192,12 +195,12 @@
                 <strong>Nombre del padre:</strong> <%=@user.father_name%><br>
                 <strong>Información del padre:</strong> <%=@user.father_info%><br>
                 <strong>Dirección del padre:</strong> <%=@user.father_adress%><br>
-                <strong>Correo electronico del padre:</strong> <%=@user.father_mail%><br>
+                <strong>Correo electrónico del padre:</strong> <%=@user.father_mail%><br>
                 <strong>Nombre de la madre:</strong> <%=@user.mather_name%><br>
                 <strong>Dirección de la madre:</strong> <%=@user.mather_adress%><br>
-                <strong>Email de la madre:</strong> <%=@user.mather_mail%><br>
+                <strong>Correo electrónico de la madre:</strong> <%=@user.mather_mail%><br>
             <%else%>
-              <strong>Estado civil:</strong> <%=@user.estado_civil%><br>
+              <strong>Estado civíl:</strong> <%=@user.estado_civil%><br>
               <strong>Nombre Esposa:</strong> <%=@user.nombre_esposa%><br>
               <strong>Nombre del taller:</strong> <%=@user.taller_nombre%><br>
               <strong>Numero del taller:</strong> <%=@user.taller_numero%><br>
@@ -222,7 +225,7 @@
               <strong>Formularios de grados</strong>
                <% if @user.role == "Demolay" %>
                   <%= link_to "Iniciación en " + @user.chapter.chapter_name.to_s,@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block"%>
-               <%end%>         
+               <%end%>
                  <% @user.degrees.each do |degree| %>
                   <% if degree.aproved %>
                  <% if degree.title!="Iniciatico"%>

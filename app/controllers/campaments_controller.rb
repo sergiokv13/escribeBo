@@ -51,24 +51,24 @@ class CampamentsController < ApplicationController
     if params[:id_maestro] != ""
       @encargado = User.find(params[:id_maestro])
       @campament.maestro_consejero = @encargado
+      @campament.save
       @charge = Charge.new
       @charge.ente = "Campamento"
       @charge.user = @encargado
       @charge.title = "Maestro Consejero"
       @charge.campament = @campament
       @charge.save
+    else
+      @conPresident = User.find(params[:id_delegado])
+      @campament.president = @conPresident
+      @campament.save
+      @charge = Charge.new
+      @charge.ente = "Campamento"
+      @charge.user = @conPresident
+      @charge.title = "Delegado Regional"
+      @charge.campament = @campament
+      @charge.save
     end
-
-    @conPresident = User.find(params[:id_delegado])
-
-    @campament.president = @conPresident
-    @campament.save
-    @charge = Charge.new
-    @charge.ente = "Campamento"
-    @charge.user = @conPresident
-    @charge.title = "Delegado Regional"
-    @charge.campament = @campament
-    @charge.save
     redirect_to "/campaments/"+@campament.id.to_s
   end
 
@@ -80,7 +80,7 @@ class CampamentsController < ApplicationController
 
     respond_to do |format|
       if @campament.save
-        format.html { redirect_to @campament, notice: 'Campament was successfully created.' }
+        format.html { redirect_to @campament, notice: 'El campamento fue creado correctamente' }
         format.json { render :show, status: :created, location: @campament }
       else
         format.html { render :new }

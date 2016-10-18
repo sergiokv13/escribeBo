@@ -27,6 +27,8 @@ en:
         content: "Contenido"
         user2_id: "Enviar a"
         inbox_att: "Archivo Adjunto"
+      transaction:
+        image: "Formulario de Control de Depósitos"
     errors:
       models:
         inbox:
@@ -50,7 +52,7 @@ en:
             name:
               blank: "es obligatorio"
               too_short: "es muy corto (mínimo 4 caracteres)"
-            lastname: 
+            lastname:
               blank: "es obligatorio"
               too_short: "es muy corto (mínimo 4 caracteres)"
             birth_date:
@@ -60,8 +62,11 @@ en:
               too_short: "es muy corto (mínimo 5 caracteres)"
             campament_id:
               blank: "es obligatorio"
-            chapter_id: 
+            chapter_id:
               blank: "es obligatorio"
             role:
               blank: "es obligatorio"
-
+        transaction:
+          attributes:
+            image:
+              blank: "es obligatorio"

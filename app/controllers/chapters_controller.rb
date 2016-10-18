@@ -109,7 +109,7 @@ class ChaptersController < ApplicationController
 
       respond_to do |format|
         if @chapter.save
-          format.html { redirect_to @chapter, notice: 'Chapter was successfully created.' }
+          format.html { redirect_to @chapter, notice: 'Exitosamente creado' }
           format.json { render :show, status: :created, location: @chapter }
         else
           format.html { render :new }
@@ -125,7 +125,7 @@ class ChaptersController < ApplicationController
     if current_user.is_oficial
       respond_to do |format|
         if @chapter.update(chapter_params)
-          format.html { redirect_to @chapter, notice: 'Chapter was successfully updated.' }
+          format.html { redirect_to @chapter, notice: 'Exitosamente actualizado' }
           format.json { render :show, status: :ok, location: @chapter }
         else
           format.html { render :edit }
@@ -141,7 +141,7 @@ class ChaptersController < ApplicationController
     if current_user.is_oficial
       @chapter.destroy
       respond_to do |format|
-        format.html { redirect_to chapters_url, notice: 'Chapter was successfully destroyed.' }
+        format.html { redirect_to chapters_url, notice: 'Exitosamente borrado' }
         format.json { head :no_content }
       end
     end

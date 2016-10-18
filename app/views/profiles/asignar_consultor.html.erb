@@ -5,7 +5,7 @@
 	<div class="col-lg-4">
 	<%= form_tag("/update_asignar_consultor/"+@user.id.to_s, method:"post",:multipart => true) do %>
 		<div class="form-group">
-	      <%= label_tag :capitulo %>
+	      <%= label_tag "Capítulo" %>
 	      <%= select_tag(:chapter_id, options_from_collection_for_select(@opciones_capitulo,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
 	   </div>
 

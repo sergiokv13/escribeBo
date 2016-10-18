@@ -58,7 +58,7 @@
                     </ul>
                   </li>
                 <%end%>
-                <li><a href="/announcements">Boletin</a></li>
+                <li><a href="/announcements">Boletín</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inbox(<%=current_user.get_not_seen%>) <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -69,7 +69,7 @@
                  <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transacciones<span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="/transactions/new">Crear transaccion</a></li>
+                    <li><a href="/transactions/new">Crear transacción</a></li>
                     <% if current_user.is_oficial %>
                       <li><a href="/pendingTransactions">Pendientes</a></li>
                       <li><a href="/aprovedTransactions">Archivadas</a></li>
@@ -107,10 +107,10 @@
                   <ul class="dropdown-menu">
                     <li><a href="/profile/<%=current_user.id.to_s%>">Perfil</a></li>
                     <li><a href="/users/edit">Editar Perfil</a></li>
-                    <li><%= link_to('Cerrar Sesion', destroy_user_session_path, :method => :delete) %></li>
                     <% if current_user.is_oficial %>
                       <li><a href="/reiniciar_gestion">Reiniciar Gestión</a></li>
                     <%end%>
+                    <li><%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete) %></li>
                   </ul>
                 <% else %>
                   <li><a href="/users/sign_in">Iniciar Sesion <span class="sr-only">(current)</span></a></li>

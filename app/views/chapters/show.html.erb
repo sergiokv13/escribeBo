@@ -12,18 +12,18 @@
         </center>
       </div>
       <div class="col-lg-4">
-        <h3>Informacion</h3>
-        Este es un <%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolays activos.
+        <h3>Información</h3>
+        Este es un <%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolay activos.
         <br>
         <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
           <% if @chapter.chapter_type == "Capitulo" %>
-            El Maestro Consejero es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
+            El Maestro Consejero es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_consultant_president.id.to_s %>.
           <% end %>
           <% if @chapter.chapter_type == "Priorato" %>
-            El Ilustre Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
+            El Ilustre Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.
           <% end %>
           <% if @chapter.chapter_type == "Corte" %>
-            El Gran Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>
+            El Gran Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.
           <% end %>
         <% else %>
           <strong>La gestión no fue actualizada.<strong>
@@ -63,7 +63,7 @@
               </div>
               <br>
             <% end %>
-            <%= link_to 'Ver mas', '/chapter_users/' + @chapter.id.to_s %>
+            <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s %>
           </div>
           <% if !@chapter.consultants.empty? %>
             <div class="col-lg-1"></div>
