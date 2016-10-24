@@ -56,7 +56,7 @@
           <hr class="divider">
           <%= render "formCreateAnnouncement" %>
         </div>
-        <h1 class="center-title">Publicaciones</h1>
+        <h2 class="center-title">Publicaciones</h2>
 
           <% @publicaciones_para_mostrar.each do |publication| %>
             <img src="<%= publication.user.image.url %>" width="30px;"> <%= link_to publication.user.fullName, '/profile/' + publication.user.id.to_s %> publicó:

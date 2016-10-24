@@ -29,6 +29,7 @@ div.clear {
 th {
   text-align: center;
 }
+
 td {
   text-align: justify;
 }
@@ -43,7 +44,7 @@ td {
 }
 .info {
   font-size: 120%;
-  
+
 }
 
 .image_link:hover img{
@@ -60,23 +61,19 @@ td {
 
 h1{
 	background-color: #490808;
-	padding:10px;
 	color:white !important;
 }
 
 h2{
 	background-color: #490808;
-	padding:10px;
 	color:white;
-	width: 500px;
+	width: 100%;
 }
 
 h3{
   background-color: #490808;
   color:white;
 }
-
-
 hr {
     display: block;
     height: 1px;
