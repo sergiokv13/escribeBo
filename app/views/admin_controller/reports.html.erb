@@ -20,12 +20,15 @@
         <h2>Transacciones</h2>
         <%= bootstrap_form_tag url: "/transactions_reports", method: "get" do |f| %>
           <div class="form-group">
-            <%= f.date_field :star_date, label: "Desde" %>
+            <%= f.date_field :start_date, label: "Desde" %>
             <%= f.date_field :end_date, label: "Hasta" %>
           </div>
           <div class="form-group">
             <%= f.check_box :incomes, label: "Ingresos" %>
             <%= f.check_box :outcomes, label: "Egresos" %>
+          </div>
+          <div>
+            <%= f.select(:concept, options_for_select(@concepts), class: "form-control",label: "Por concepto")%>
           </div>
           <div class="actions">
             <%= f.submit "Generar Excel", class: "btn btn-info" %>

@@ -27,6 +27,11 @@
       </p>
 
       <p>
+        <strong>Número de comprobante</strong><br>
+        <%= @transaction.receipt_number %>
+      </p>
+
+      <p>
         <strong>Registrada por</strong><br>
         <a href="/profile/<%= @transaction.user.id %>"> <%= @transaction.user.fullName %></a>
       </p>
