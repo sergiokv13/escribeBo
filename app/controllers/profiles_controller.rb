@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
   def profile
-    @premiacion = Premiacion.new
+    @premiacion = UserPremiation.new
     @user = User.find(params[:id])
   end
 
@@ -105,5 +105,20 @@ class ProfilesController < ApplicationController
     @degree.user = @user
     @degree.save
     redirect_to "/profile/"+@user.id.to_s
+  end
+
+  def transfer_user
+
+  end
+
+  def add_premiacion
+    premiacion = params[:premiacion_id]
+    date_of_premiacion = params[:date_of]
+    user_id = (params[:user_id])
+    user_premiation = UserPremiation.new
+    user_premiation.user_id = user_id
+    user_premiation.premiacion_id = premiacion
+    user_premiation.save
+    redirect_to '/profile/' + user_id.to_s
   end
 end

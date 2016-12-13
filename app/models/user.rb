@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :charges
   has_many :charges_history, foreign_key: 'user_id', class_name: 'ChargesHistory'
-  has_many :premiacions
+  has_many :user_premiations
   has_many :degrees
   has_many :inboxes, foreign_key: 'user2_id', class_name: 'Inbox'
   has_many :sent, foreign_key: 'user1_id', class_name: 'Inbox'
@@ -24,7 +24,8 @@ class User < ActiveRecord::Base
   belongs_to :campament
   has_many :transactions
 
-
+  validates :cellphone, phone: true
+  validates :phone, phone: { possible: true, types: [:voip, :mobile] }
 
 
   validates :email, presence: true
@@ -45,7 +46,25 @@ class User < ActiveRecord::Base
 
   validates :role, presence: true
 
+  def getAge
+    now = Time.now.utc.to_date
+    now.year - self.birth_date.year - ((now.month > self.birth_date.month || (now.month == self.birth_date.month && now.day >= self.birth_date.day)) ? 0 : 1)
+  end
 
+  def show_cellphone
+    cellular = self.cellphone.to_s
+    cellular.insert(0,"+")
+    cellular.insert(4,"-")
+    cellular
+  end
+
+  def show_phone
+    phone_number = self.phone.to_s
+    phone_number.insert(0,"+")
+    phone_number.insert(4,"-")
+    phone_number.insert(6,"-")
+    phone_number
+  end
 
   def aproved
     return (self.president_aproved == true && self.deputy_aproved && self.oficial_aproved)

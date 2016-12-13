@@ -33,6 +33,14 @@ gem "chartkick"
 
 gem 'will_paginate', '~> 3.0.5'
 
+gem 'modernizr-rails'
+
+gem 'jquery-ui-rails'
+
+gem 'phonelib'
+
+gem 'axlsx_rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

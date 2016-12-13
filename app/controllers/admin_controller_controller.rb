@@ -299,6 +299,87 @@ class AdminControllerController < ApplicationController
 		end
 	end
 
+	def users_reports
+		initial_age = params[:star_age].to_i
+		final_age = params[:end_age].to_i
+		active = params[:active_users].to_i
+		inactive = params[:inactive_users].to_i
+
+		@final_users = Array.new
+
+		User.all.each do |u|
+
+			if active == 1 and inactive == 1
+				if u.getAge >= initial_age and u.getAge <= final_age
+					@final_users.push(u)
+				end
+			end
+
+			if active == 1 and inactive == 0
+				if u.getAge >= initial_age and u.getAge <= final_age and u.enabled
+					@final_users.push(u)
+				end
+			end
+
+			if active == 0 and inactive == 1
+				if u.getAge >= initial_age and u.getAge <= final_age and !u.enabled
+					@final_users.push(u)
+				end
+			end
+
+		end
+
+		respond_to do |format|
+      format.html
+      format.xlsx {
+        response.headers['Content-Disposition'] = 'attachment; filename="usuarios.xlsx"'
+      }
+    end
+
+	end
+
+	def reports
+
+	end
+
+	def transactions_reports
+		start_date = params[:start_date].to_date
+		end_date = params[:end_date].to_date
+		incomes = params[:incomes]
+		outcomes = params[:outcomes]
+
+		@final_transactions = Array.new
+
+		Transaction.all.each do |t|
+
+			if incomes == 1 and outcomes == 1
+				if t.created_at > start_date and t.created_at < end_date
+					@final_transactions.push(t)
+				end
+			end
+
+			if incomes == 1 and outcomes == 0
+				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Ingreso"
+					@final_transactions.push(t)
+				end
+			end
+
+			if incomes == 0 and outcomes == 1
+				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Egreso"
+					@final_transactions.push(t)
+				end
+			end
+
+			respond_to do |format|
+	      format.html
+	      format.xlsx {
+	        response.headers['Content-Disposition'] = 'attachment; filename="usuarios.xlsx"'
+	      }
+	    end
+
+		end
+	end
+
 	def user_params
     params.require(:user).permit(:email, :name, :lastname, :role, :demolayID, :ci, :chapter_id, :campament_id, :birth_date, :city, :adress, :phone, :cellphone, :assurance, :godfather_id, :iniciacion, :father_name, :father_info, :father_adress, :father_mail, :mather_name, :mather_adress, :mather_mail, :estado_civil, :nombre_esposa, :taller_nombre, :taller_numero, :registration_form)
   end
