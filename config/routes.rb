@@ -65,7 +65,7 @@ Rails.application.routes.draw do
   get '/aproveTransaction/:id' => 'transactions#aproveTransaction'
   get '/pendingTransactions' => 'transactions#pendingTransactions'
   get '/aprovedTransactions' => 'transactions#aprovedTransactions'
-  get '/reports' => 'transactions#reports'
+  #get '/reports' => 'transactions#reports'
   post '/generateReport' => 'transactions#generateReport'
   get '/deleteInbox/:id' => 'inboxes#deleteInbox'
   get '/chapter_aprovals' => 'admin_controller#chapter_aprovals'
@@ -75,5 +75,12 @@ Rails.application.routes.draw do
   get '/filtered' => 'admin_controller#filtered'
   post '/update_reiniciar_gestion' => "charges#update_drop_gestion"
   get '/users/:id/edit' => 'admin_controller#edit'
+
+  post '/transfer_user' => 'transactions#transfer_user'
+  post '/add_premiacion' => 'profiles#add_premiacion'
+
+  get '/users_reports' => 'admin_controller#users_reports', :defaults => { :format => 'xlsx' }
+
+  get '/reports' => 'admin_controller#reports'
 
 end

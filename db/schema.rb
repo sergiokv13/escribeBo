@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161018212806) do
+ActiveRecord::Schema.define(version: 20161207201123) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -137,12 +137,9 @@ ActiveRecord::Schema.define(version: 20161018212806) do
   create_table "premiacions", force: :cascade do |t|
     t.string   "title"
     t.date     "date_of"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "premiacions", ["user_id"], name: "index_premiacions_on_user_id"
 
   create_table "transactions", force: :cascade do |t|
     t.string   "name"
@@ -159,6 +156,16 @@ ActiveRecord::Schema.define(version: 20161018212806) do
     t.string   "transaction_type"
     t.text     "concept_type"
   end
+
+  create_table "user_premiations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "premiacion_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "user_premiations", ["premiacion_id"], name: "index_user_premiations_on_premiacion_id"
+  add_index "user_premiations", ["user_id"], name: "index_user_premiations_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                          default: "", null: false

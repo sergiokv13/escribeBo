@@ -1,7 +1,11 @@
 <div class="container">
   <div class="jumbotron">
     <div class="row">
-      <h1 class="center-title">Crear Usuario</h1>
+      <% if request.env['PATH_INFO'].split("/").last == "edit" %>
+        <h1 class="center-title">Editar Usuario</h1>
+      <% else %>
+        <h1 class="center-title">Crear Usuario</h1>
+      <% end %>
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
   <div class="row">

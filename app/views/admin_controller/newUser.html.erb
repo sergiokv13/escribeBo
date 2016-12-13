@@ -28,18 +28,15 @@
         <div class="form-group col-lg-4">
           <%= f.text_field :ci, class: "form-control" ,label: "(*) Carnet de identidad"%>
         </div>
-
         <div class="form-group col-lg-4">
-
           <%= f.text_field :demolayID, class: "form-control" ,label: "Id en DeMolay internacional"%>
         </div>
         <div class="clear"></div>
-        <div class="form-group  col-lg-4">
-
+        <div class="form-group col-lg-4">
           <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), class: "form-control",:prompt => "Seleccionar Departamento",label: "(*) Departamento")%>
         </div>
 
-        <div class="form-group  col-lg-4" id="chapterDiv">
+        <div class="form-group col-lg-4" id="chapterDiv">
           <%= render :partial => 'chapters', :object => @chapters, :locals=>{:f=>f} ,label: "Capítulo"%>
         </div>
 
@@ -189,6 +186,18 @@
         jQuery('#chapterDiv').html(data);
       }
     });
+  });
+
+
+  $(function(){
+      if (!Modernizr.inputtypes.date) {
+          $('input[type=date]').datepicker({
+                dateFormat : 'mm-dd-yy',
+                yearRange: '1950:2017',
+                changeYear: true
+              }
+           );
+      }
   });
 
 

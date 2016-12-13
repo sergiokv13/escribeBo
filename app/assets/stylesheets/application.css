@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery-ui
  *= require bootstrap
  */
 
@@ -124,6 +125,10 @@ hr {
 }
 .pagination {
   visibility: hidden;
+}
+
+.glyphicon{
+  font-size: 200%;
 }
 
 
