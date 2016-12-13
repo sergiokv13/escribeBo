@@ -35,6 +35,26 @@
           <% if current_user.is_oficial %>
             <%= link_to 'Actualizar Gestión', '/campaments/gestion/' + @campament.id.to_s, class: "btn btn-primary btn-block" %>
           <% end %>
+
+          <h3>Capitulos</h3>
+          <% @campament.chapters.each do |c| %>
+            <% if c.chapter_type == "Capitulo" %>
+              <a href="/chapters/<%=c.id%>"><%= c.chapter_name %></a><br>
+            <% end %>
+          <% end %>
+          <h3>Prioratos</h3>
+          <% @campament.chapters.each do |c| %>
+            <% if c.chapter_type == "Priorato" %>
+              <a href="/chapters/<%=c.id%>"><%= c.chapter_name %></a><br>
+            <% end %>
+          <% end %>
+          <h3>Cortes</h3>
+          <% @campament.chapters.each do |c| %>
+            <% if c.chapter_type == "Corte" %>
+              <a href="/chapters/<%=c.id%>"><%= c.chapter_name %></a><br>
+            <% end %>
+          <% end %>
+
         <%end%>
 
         <% if current_user.is_oficial %>

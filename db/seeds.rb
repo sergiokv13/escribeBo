@@ -29,3 +29,4 @@ data = [ {'email': 'cursus@libero.edu', 'password': 'OBW27WMT9XA', 'name': 'Hyat
 data.each do |u|
   User.create!(email: u[:email], password: u[:password], name: u[:name], lastname: u[:lastname], demolayID: u[:demolayID], ci: u[:ci], birth_date: u[:birth_date], assurance: u[:assurance], adress: u[:adress], city: u[:city], cellphone: u[:cellphone], phone: u[:phone], iniciacion: u[:iniciacion], father_name: u[:father_name], father_info: u[:father_info], father_adress: u[:father_adress], father_mail: u[:father_mail], mather_name: u[:mather_name], mather_adress: u[:mather_adress], mather_mail: u[:mather_mail], estado_civil: u[:estado_civil], nombre_esposa: u[:nombre_esposa], taller_nombre: u[:taller_nombre], taller_numero: u[:taller_numero], role: u[:role], chapter_id: u[:chapter_id], priory_id: u[:priory_id], court_id: u[:court_id])
 end
+
