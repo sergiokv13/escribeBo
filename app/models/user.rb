@@ -30,10 +30,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true
 
   validates :name, presence: true
-  validates :name, length: { minimum: 4 }
+
 
   validates :lastname, presence: true
-  validates :lastname, length: { minimum: 4 }
 
   validates :birth_date, presence: true
 

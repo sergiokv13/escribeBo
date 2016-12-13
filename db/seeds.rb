@@ -22,3 +22,4 @@ User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'administr
 
 #Charges
 Charge.create(title:"Oficial Ejecutivo", user_id: '1',campament_id:"1",ente:"Gabinete")
+

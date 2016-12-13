@@ -15,18 +15,14 @@
     <div class="row">
       <% @campaments.each_with_index do |chapter,i| %>
         <% if i != 0 %>
-          <% if i % 3 == 0%>
-            <div class="clear"></div>
-            <br>
-          <%end%>
             <div class="col-lg-4">
               <a class="image_link" href="/campaments/<%=chapter.id%>">
                 <div class="image_name"><%=chapter.name%></div>
-                <img class="img-responsive" src="<%=chapter.image.url%>">
+                <img height="300px" width="300px" src="<%=chapter.image.url%>">
               </a>
             </div>
         <%end%>
-        <% end %>
+      <% end %>
 
 
     </div>
