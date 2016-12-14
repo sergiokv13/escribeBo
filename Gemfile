@@ -41,6 +41,8 @@ gem 'phonelib'
 
 gem 'axlsx_rails'
 
+gem 'faker'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
