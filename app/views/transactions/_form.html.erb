@@ -41,6 +41,10 @@
     <%= f.file_field :image , :label => "Comprobante"%>
   </div>
 
+  <div class="field">
+    <%= f.text_field :receipt_number , :label => "Numero de Comprobante"%>
+  </div>
+
   <div class="actions">
     <%= f.submit "Registrar", class: "btn btn-success" %>
     <%= link_to 'Atrás', :back, class: "btn btn-danger" %>

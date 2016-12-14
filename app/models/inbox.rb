@@ -8,7 +8,7 @@ class Inbox < ActiveRecord::Base
   validates :content, length: { maximum: 300 }
 
   has_attached_file :inbox_att
-  validates_attachment_content_type :inbox_att, :content_type => ["application/pdf"]
+  validates_attachment_content_type :inbox_att, :content_type => ["application/zip"]
 
   def hide
     self.inbox_hidden = true

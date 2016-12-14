@@ -339,33 +339,34 @@ class AdminControllerController < ApplicationController
 	end
 
 	def reports
-
+		@concepts = [['Iniciación','Iniciación'],['Elevación','Elevación'],['Investidura','Investidura'],['Investidura Chevalier','Investidura Chevalier'],['DeMolay Card','DeMolay Card'],['Consultor','Consultor'],['Premiación','Premiación'],['Otro','Otro']]
 	end
 
 	def transactions_reports
 		start_date = params[:start_date].to_date
 		end_date = params[:end_date].to_date
-		incomes = params[:incomes]
-		outcomes = params[:outcomes]
+		concept = params[:concept].to_s
+		incomes = params[:incomes].to_i
+		outcomes = params[:outcomes].to_i
 
 		@final_transactions = Array.new
 
 		Transaction.all.each do |t|
 
 			if incomes == 1 and outcomes == 1
-				if t.created_at > start_date and t.created_at < end_date
+				if t.created_at > start_date and t.created_at < end_date and t.concept_type == concept
 					@final_transactions.push(t)
 				end
 			end
 
 			if incomes == 1 and outcomes == 0
-				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Ingreso"
+				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Ingreso" and t.concept_type == concept
 					@final_transactions.push(t)
 				end
 			end
 
 			if incomes == 0 and outcomes == 1
-				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Egreso"
+				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Egreso" and t.concept_type == concept
 					@final_transactions.push(t)
 				end
 			end
@@ -373,7 +374,7 @@ class AdminControllerController < ApplicationController
 			respond_to do |format|
 	      format.html
 	      format.xlsx {
-	        response.headers['Content-Disposition'] = 'attachment; filename="usuarios.xlsx"'
+	        response.headers['Content-Disposition'] = 'attachment; filename="transacciones.xlsx"'
 	      }
 	    end
 

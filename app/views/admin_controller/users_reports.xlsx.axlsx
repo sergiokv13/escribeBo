@@ -1,6 +1,14 @@
 wb = xlsx_package.workbook
-wb.add_worksheet(name: "Usuarios") do |sheet|
-  @final_users.each do |user|
-    sheet.add_row [user.fullName, user.email]
+
+wb.styles do |style|
+
+  highlight_cell = style.add_style(bg_color: "490808", alignment: {horizontal: :center})
+
+  wb.add_worksheet(name: "Usuarios") do |sheet|
+    sheet.add_row ["Nombre completo", "Correo Electrónico", "Demolay ID", "CI", "Edad", "Fecha de Nacimiento", "Dirección", "Celular", "Teléfono"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+    @final_users.each do |user|
+      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+    end
+    sheet.column_widths nil, nil, nil
   end
 end

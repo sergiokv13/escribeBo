@@ -52,18 +52,26 @@ class User < ActiveRecord::Base
   end
 
   def show_cellphone
-    cellular = self.cellphone.to_s
-    cellular.insert(0,"+")
-    cellular.insert(4,"-")
-    cellular
+    if !self.cellphone.nil?
+      cellular = self.cellphone.to_s
+      cellular.insert(0,"+")
+      cellular.insert(4,"-")
+      return cellular
+    else
+      return ""
+    end
   end
 
   def show_phone
-    phone_number = self.phone.to_s
-    phone_number.insert(0,"+")
-    phone_number.insert(4,"-")
-    phone_number.insert(6,"-")
-    phone_number
+    if !self.phone.nil?
+      phone_number = self.phone.to_s
+      phone_number.insert(0,"+")
+      phone_number.insert(4,"-")
+      phone_number.insert(6,"-")
+      return phone_number
+    else
+      return ""
+    end
   end
 
   def aproved

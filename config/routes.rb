@@ -80,6 +80,7 @@ Rails.application.routes.draw do
   post '/add_premiacion' => 'profiles#add_premiacion'
 
   get '/users_reports' => 'admin_controller#users_reports', :defaults => { :format => 'xlsx' }
+  get '/transactions_reports' => 'admin_controller#transactions_reports', :defaults => { :format => 'xlsx' }
 
   get '/reports' => 'admin_controller#reports'
 
