@@ -15,6 +15,7 @@ class AnnouncementsController < ApplicationController
         end
       end
     end
+    @publicaciones_para_mostrar = @publicaciones_para_mostrar.paginate(page: params[:page], per_page: 1)
   end
 
   # GET /announcements/1

@@ -123,14 +123,14 @@ hr {
 .chapter-title {
   margin-left:15px;
 }
-.pagination {
-  visibility: hidden;
-}
 
 .glyphicon{
   font-size: 200%;
 }
 
+.pagination{
+  visibility: hidden;
+}
 
 @media (max-width: 1200px) {
     .navbar-header {
