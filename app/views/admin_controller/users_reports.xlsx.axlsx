@@ -5,10 +5,49 @@ wb.styles do |style|
   highlight_cell = style.add_style(bg_color: "490808", alignment: {horizontal: :center})
 
   wb.add_worksheet(name: "Usuarios") do |sheet|
+
     sheet.add_row ["Nombre completo", "Correo Electrónico", "Demolay ID", "CI", "Edad", "Fecha de Nacimiento", "Dirección", "Celular", "Teléfono"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
-    @final_users.each do |user|
+
+
+    sheet.add_row ["Usuarios de tipo Demolay"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+    @demolay_users.each do |user|
       sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
     end
+
+    sheet.add_row ["Usuarios de tipo No Demolay"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+    @no_demolays_users.each do |user|
+      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+    end
+
+
+    sheet.add_row ["Usuarios Iniciaticos"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+    @new_demolays.each do |user|
+      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+    end
+
+    sheet.add_row ["Usuarios Caballeros"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+    @knight_users.each do |user|
+      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+    end
+
+    sheet.add_row ["Usuarios Chevaliers"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+    @chevaliers_users.each do |user|
+      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+    end
+
+    sheet.add_row ["Usuarios Consultores"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+    @consultants_users.each do |user|
+      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+    end
+
+
     sheet.column_widths nil, nil, nil
+
   end
 end

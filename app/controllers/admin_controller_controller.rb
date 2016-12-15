@@ -1,3 +1,4 @@
+
 class AdminControllerController < ApplicationController
 
 	def newUser
@@ -302,32 +303,82 @@ class AdminControllerController < ApplicationController
 	def users_reports
 		initial_age = params[:star_age].to_i
 		final_age = params[:end_age].to_i
-		active = params[:active_users].to_i
-		inactive = params[:inactive_users].to_i
+		enabled = params[:active_users].to_i
+		disabled = params[:inactive_users].to_i
+		demolays = params[:demolays].to_i
+		no_demolays = params[:no_demolays].to_i
+		new_demolays = params[:new_demolays].to_i
+		knights = params[:knights].to_i
+		chevaliers = params[:chevaliers].to_i
+		consultants = params[:consultants].to_i
 
-		@final_users = Array.new
-
-		User.all.each do |u|
-
-			if active == 1 and inactive == 1
-				if u.getAge >= initial_age and u.getAge <= final_age
-					@final_users.push(u)
-				end
+		if enabled == 1 and disabled == 1
+			if demolays == 1
+				@demolay_users = User.all.select{|user| user.role == "Demolay" and user.is_over(initial_age) and user.is_under(final_age) }
 			end
-
-			if active == 1 and inactive == 0
-				if u.getAge >= initial_age and u.getAge <= final_age and u.enabled
-					@final_users.push(u)
-				end
+			if no_demolays == 1
+				@no_demolays_users = User.all.select{|user| user.role == "No Demolay" and user.is_over(initial_age) and user.is_under(final_age) }
 			end
-
-			if active == 0 and inactive == 1
-				if u.getAge >= initial_age and u.getAge <= final_age and !u.enabled
-					@final_users.push(u)
-				end
+			if new_demolays == 1
+				@new_demolays = User.all.select{|user| user.tiene_el_grado("Iniciatico") and user.degrees.count == 1 and user.is_over(initial_age) and user.is_under(final_age) }
 			end
-
+			if knights == 1
+				@knight_users = User.all.select{|user| user.tiene_el_grado("Caballero") and user.is_over(initial_age) and user.is_under(final_age)}
+			end
+			if chevaliers == 1
+				@chevaliers_users = User.all.select{|user| user.tiene_el_grado("Chevallier") and user.is_over(initial_age) and user.is_under(final_age)}
+			end
+			if consultants == 1
+				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.is_over(initial_age) and user.is_under(final_age)}
+			end
 		end
+
+		if enabled == 1 and disabled == 0
+			if demolays == 1
+				@demolay_users = User.all.select{|user| user.role == "Demolay" and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if no_demolays == 1
+				@no_demolays_users = User.all.select{|user| user.role == "No Demolay" and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if new_demolays == 1
+				@new_demolays = User.all.select{|user| user.tiene_el_grado("Iniciatico") and user.degrees.count == 1 and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if knights == 1
+				@knight_users = User.all.select{|user| user.tiene_el_grado("Caballero") and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if chevaliers == 1
+				@chevaliers_users = User.all.select{|user| user.tiene_el_grado("Chevallier") and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if consultants == 1
+				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+		end
+
+
+		if enabled == 0 and disabled == 1
+			if demolays == 1
+				@demolay_users = User.all.select{|user| user.role == "Demolay" and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if no_demolays == 1
+				@no_demolays_users = User.all.select{|user| user.role == "No Demolay" and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if new_demolays == 1
+				@new_demolays = User.all.select{|user| user.tiene_el_grado("Iniciatico") and user.degrees.count == 1 and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if knights == 1
+				@knight_users = User.all.select{|user| user.tiene_el_grado("Caballero") and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if chevaliers == 1
+				@chevaliers_users = User.all.select{|user| user.tiene_el_grado("Chevallier") and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if consultants == 1
+				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+			end
+		end
+
+
+
+
 
 		respond_to do |format|
       format.html
