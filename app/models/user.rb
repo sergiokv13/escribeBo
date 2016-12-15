@@ -355,6 +355,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  def account_active?
+    self.blocked.nil? or self.blocked == false
+  end
+
+  def active_for_authentication?
+    super && account_active?
+  end
+
+  def inactive_message
+    account_active? ? super : :locked
+  end
+
   def self.find_users_of_type_and_between_age(type_of_user, initial_age, final_age)
     if type_of_user == "enabled"
       User.all.select{|user| user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
