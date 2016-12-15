@@ -58,7 +58,7 @@ class CampamentsController < ApplicationController
       @charge.title = "Maestro Consejero"
       @charge.campament = @campament
       @charge.save
-    else
+    end
       @conPresident = User.find(params[:id_delegado])
       @campament.president = @conPresident
       @campament.save
@@ -68,7 +68,6 @@ class CampamentsController < ApplicationController
       @charge.title = "Delegado Regional"
       @charge.campament = @campament
       @charge.save
-    end
     redirect_to "/campaments/"+@campament.id.to_s
   end
 

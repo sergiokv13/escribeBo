@@ -11,32 +11,27 @@
         </center>
       </div>
       <div class="col-lg-4">
-        <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
-          <p>
-           <% if @campament.id == 1 %>
-            <strong>Oficial Ejecutivo:</strong><br />
-          <% else %>
-            <strong>Delegado Regional:</strong><br />
-          <% end %>
-          <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>
-          </p>
-          <p>
-          <% if @campament.id == 1 %>
-            <strong>Maestro Consejero Nacional:</strong><br />
-          <% else %>
-            <strong>Maestro Consejero Departamental:</strong><br />
-          <% end %>
 
-          <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %>
-          </p>
+      <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
+
+        <% if @campament.id != 1 %>
+            El Maestro Consejero Departamental es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Delegado Regional es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.
+        <% else %>
+          El Maestro Consejero Nacional es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Oficial Ejecutivo es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.
+        <% end %>
         <%else%>
           <h3>La gestión no fue actualizada</h3>
-
           <% if current_user.is_oficial %>
             <%= link_to 'Actualizar Gestión', '/campaments/gestion/' + @campament.id.to_s, class: "btn btn-primary btn-block" %>
+            <% if @campament.id != 1 %>
+            <%= link_to 'Editar Departamento', '/campaments/' + @campament.id.to_s + '/edit', class: "btn btn-warning btn-block" %>
+             <% else %>
+             <%= link_to 'Editar Jurisdicción', '/campaments/' + @campament.id.to_s + '/edit', class: "btn btn-warning btn-block" %>
+              <% end %>
           <% end %>
-
-          <h3>Capitulos</h3>
+        <%end%>
+        <% if @campament.id != 1 %>
+         <h3>Capitulos</h3>
           <% @campament.chapters.each do |c| %>
             <% if c.chapter_type == "Capitulo" %>
               <a href="/chapters/<%=c.id%>"><%= c.chapter_name %></a><br>
@@ -54,17 +49,14 @@
               <a href="/chapters/<%=c.id%>"><%= c.chapter_name %></a><br>
             <% end %>
           <% end %>
-
-        <%end%>
-
-        <% if current_user.is_oficial %>
-          <% if @campament.id != 1 %>
-            <%= link_to 'Editar Departamento', '/campaments/' + @campament.id.to_s + '/edit', class: "btn btn-warning btn-block" %>
-          <% else %>
-             <%= link_to 'Editar Jurisdicción', '/campaments/' + @campament.id.to_s + '/edit', class: "btn btn-warning btn-block" %>
+        <% else %>
+          <h3>Campamentos</h3>
+          <% Campament.all.each do |c| %>
+            <% if c.id != 1 %>
+              <a href="/campaments/<%=c.id%>"><%= c.name %></a><br>
+            <% end %>
           <% end %>
         <% end %>
-
 
       </div>
     </div>

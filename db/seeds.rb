@@ -154,7 +154,7 @@ end
 #Users Demolays
 #1801 - X
 for i in 2..10
-	for c in 1..5
+	for c in 1..20
 		user_id += 1
 		chapter_id = ids_capitulo[i].sample
 		priory_id = ids_priorato[i].sample

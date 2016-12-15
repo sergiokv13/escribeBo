@@ -57,7 +57,9 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @posibles_encargados =  Array.new
       @chapter.chapter_users.each do |demolay|
+        if demolay.tiene_el_grado("Demolay")
           @posibles_encargados.push(demolay)
+        end
       end
     @posibles_presidente =  @chapter.consultants
   end

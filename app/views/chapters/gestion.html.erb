@@ -10,7 +10,16 @@
 			<div class="col-lg-4">
 				<%= form_tag("/update_gestion/"+@chapter.id.to_s,method:"post") do %>
 					<div class="form-group">
-				      <%= label_tag :encargado %>
+					<% if @chapter.chapter_type == "Capitulo" %>
+				      	<%= label_tag :Maestro_Consejero %>
+				    <%end%>
+				    <% if @chapter.chapter_type == "Priorato" %>
+				      	<%= label_tag :Ilustre_Comendador_Caballero %>
+				    <%end%>
+				    <% if @chapter.chapter_type == "Corte" %>
+				      	<%= label_tag :Gran_Comendador_Chevallier %>
+				    <%end%>
+
 				      <%= select_tag(:id_encargado, options_from_collection_for_select(@posibles_encargados,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar encargado") %>
 
 				   </div>
