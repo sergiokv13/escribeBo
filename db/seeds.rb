@@ -92,12 +92,16 @@ for i in 2..10
 		chapter_id = ids_capitulo[i].sample
 		priory_id = ids_priorato[i].sample
 		court_id = ids_courte[i]
+		lerolero_name = Faker::Name.first_name
+		lerolero_lastname =Faker::Name.last_name
+		lerolero_fullname = lerolero_name + " " + lerolero_lastname
 		User.create(
 				email: Faker::Internet.email,
 				birth_date: Faker::Date.between(Date.new(1997,1,1), Date.new(2003,1,1)), 
 				password:'demolay',
-				name: Faker::Name.first_name ,
-				lastname: Faker::Name.last_name,
+				name: lerolero_name,
+				lastname: lerolero_lastname,
+				full_name: lerolero_fullname,
 				demolayID:c,
 				role:'Demolay',
 				ci: Faker::Number.number(10), 
