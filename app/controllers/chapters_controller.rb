@@ -23,7 +23,7 @@ class ChaptersController < ApplicationController
           @publicaciones_para_mostrar.push(publicacion)
         end
       end
-      @publicaciones_para_mostrar = @publicaciones_para_mostrar.paginate(page: params[:page], per_page: 1)
+      @publicaciones_para_mostrar = @publicaciones_para_mostrar.paginate(page: params[:page], per_page: 10)
     end
 
     respond_to do |format|
@@ -84,7 +84,7 @@ class ChaptersController < ApplicationController
       @charge.ente = "Corte"
     end
 
-    
+
     @charge.chapter = @chapter
     @charge.save
 

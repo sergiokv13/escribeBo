@@ -347,8 +347,29 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_under(age)
+    if Date.today <= self.birth_date + age.years
+      return true
+    else
+      return false
+    end
+  end
+
+  def self.find_users_of_type_and_between_age(type_of_user, initial_age, final_age)
+    if type_of_user == "enabled"
+      User.all.select{|user| user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
+    end
+    if type_of_user == "disabled"
+      User.all.select{|user| !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
+    end
+  end
+
   def self.older_than(age)
     User.all.select{|user| user.is_over(age)}
+  end
+
+  def self.younger_than(age)
+    User.all.select{|user| user.is_under(age)}
   end
 
 end

@@ -6,12 +6,18 @@
         <h2>Usuarios</h2>
         <%= bootstrap_form_tag url: "/users_reports", method: "get" do |f| %>
           <div class="form-group">
-            <%= f.number_field :star_age, label: "Desde" %>
-            <%= f.number_field :end_age, label: "Hasta" %>
+            <%= f.number_field :star_age, label: "Edad Inicial" %>
+            <%= f.number_field :end_age, label: "Edad Final" %>
           </div>
           <div class="form-group">
-            <%= f.check_box :active_users, label: "Usuarios activos" %>
-            <%= f.check_box :inactive_users, label: "Usuarios inactivos" %>
+            <%= f.check_box :active_users, label: "Usuarios habilitados" %>
+            <%= f.check_box :inactive_users, label: "Usuarios inhabilitados" %>
+            <%= f.check_box :demolays, label: "Demolays" %>
+            <%= f.check_box :no_demolays, label: "No Demolays" %>
+            <%= f.check_box :new_demolays, label: "Iniciaticos" %>
+            <%= f.check_box :knights, label: "Caballeros" %>
+            <%= f.check_box :chevaliers, label: "Chevaliers" %>
+            <%= f.check_box :consultants, label: "Consultores" %>
           </div>
           <div class="actions">
             <%= f.submit "Generar Excel", class: "btn btn-info" %>
