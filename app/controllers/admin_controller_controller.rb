@@ -1,4 +1,3 @@
-
 class AdminControllerController < ApplicationController
 
 	def newUser
@@ -312,6 +311,8 @@ class AdminControllerController < ApplicationController
 		knights = params[:knights].to_i
 		chevaliers = params[:chevaliers].to_i
 		consultants = params[:consultants].to_i
+		master = params[:master].to_i
+		presidente_consejo = params[:presidente_consejo].to_i
 
 		@demolay_users = []
 		@no_demolay_users = []
@@ -319,6 +320,8 @@ class AdminControllerController < ApplicationController
 		@knight_users = []
 		@chevaliers_users = []
 		@consultants_users = []
+		@master_users = []
+		@presidente_consejo = []
 
 
 		if enabled == 1 and disabled == 1
@@ -339,6 +342,12 @@ class AdminControllerController < ApplicationController
 			end
 			if consultants == 1
 				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.is_over(initial_age) and user.is_under(final_age)}
+			end
+			if master == 1
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestro Consejero") and user.is_over(initial_age) and user.is_under(final_age)}
+			end
+			if presidente_consejo == 1
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Presidente Consejo Consultivo") and user.is_over(initial_age) and user.is_under(final_age)}
 			end
 		end
 
@@ -361,6 +370,12 @@ class AdminControllerController < ApplicationController
 			if consultants == 1
 				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
+			if master == 1
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestro Consejero") and user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
+			end
+			if presidente_consejo == 1
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Presidente Consejo Consultivo") and user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
+			end
 		end
 
 
@@ -382,6 +397,12 @@ class AdminControllerController < ApplicationController
 			end
 			if consultants == 1
 				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
+			end
+			if master == 1
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestro Consejero") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
+			end
+			if presidente_consejo == 1
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Presidente Consejo Consultivo") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
 			end
 		end
 
@@ -439,6 +460,28 @@ class AdminControllerController < ApplicationController
 	    end
 
 		end
+	end
+
+	def block_user
+		@user = User.find(params[:id])
+		@user.blocked = true
+		@user.save
+		redirect_to '/profile/' + @user.id.to_s
+	end
+
+	def unblock_user
+		@user = User.find(params[:id])
+		@user.blocked = false
+		@user.save
+		redirect_to '/profile/' + @user.id.to_s
+	end
+
+	def transfer_user
+		user = User.find(params[:id])
+		user.chapter_id = params[:chapter_id].to_i
+		user.campament_id = params[:campament_id].to_i
+		user.save
+		redirect_to "/profile/" + user.id.to_s
 	end
 
 	def user_params

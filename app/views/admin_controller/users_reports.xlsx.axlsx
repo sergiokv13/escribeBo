@@ -71,6 +71,17 @@ wb.styles do |style|
 
     end
 
+    if @master_users != [] and !@master_users.nil?
+
+      sheet.add_row ["USUARIOS MAESTROS CONSEJEROS", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+      @master_users.each do |user|
+        sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      end
+
+    end
+
+
     sheet.column_widths nil, nil, nil
 
   end

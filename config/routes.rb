@@ -76,12 +76,15 @@ Rails.application.routes.draw do
   post '/update_reiniciar_gestion' => "charges#update_drop_gestion"
   get '/users/:id/edit' => 'admin_controller#edit'
 
-  post '/transfer_user' => 'transactions#transfer_user'
+  get '/transfer_user/:id/:campament_id/:chapter_id' => 'admin_controller#transfer_user'
   post '/add_premiacion' => 'profiles#add_premiacion'
 
   get '/users_reports' => 'admin_controller#users_reports', :defaults => { :format => 'xlsx' }
   get '/transactions_reports' => 'admin_controller#transactions_reports', :defaults => { :format => 'xlsx' }
 
   get '/reports' => 'admin_controller#reports'
+
+  get '/block_user/:id' => 'admin_controller#block_user'
+  get '/unblock_user/:id' => 'admin_controller#unblock_user'
 
 end

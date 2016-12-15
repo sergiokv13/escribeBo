@@ -12,6 +12,12 @@
           <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal2">Grados</button>
 
           <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal">Premiaciones</button>
+          <% if @user.account_active? %>
+            <%= link_to "Bloquear Usuario", "/block_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
+          <% end %>
+          <% if !@user.account_active? %>
+            <%= link_to "Desbloquear Usuario", "/unblock_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
+          <% end %>
         <%else%>
           <% if current_user.is_oficial %>
             <%= link_to "Aprobar", "/approve/"+@user.id.to_s, class: "btn btn-success btn-block" %><br>
@@ -249,8 +255,9 @@
         <h4 class="modal-title">Transferir a <%=@user.fullName%></h4>
       </div>
       <div class="modal-body">
-        <%= form_tag('/transfer_user', method: "post") do %>
+        <%= form_tag('/transfer_user', :method => :get) do %>
           <label>Campamento</label>
+          <input type="hidden" name="id" value="<%= @user.id %>">
           <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, 'id', 'name'), class: "form-control", :prompt => "Seleccionar filtro") %><br>
           <label>Capítulo</label>
           <%= select_tag(:chapter_id, options_from_collection_for_select(Chapter.all, 'id', 'chapter_name'), class: "form-control", :prompt => "Seleccionar filtro") %><br>
