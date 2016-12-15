@@ -7,7 +7,7 @@ Campament.create(name: "Pando")							#5
 Campament.create(name: "Potosi")						#6
 Campament.create(name: "Chuquisaca")					#7
 Campament.create(name: "Santa Cruz")					#8
-Campament.create(name: "Tarija")						#9	
+Campament.create(name: "Tarija")						#9
 Campament.create(name: "Beni")							#10
 
 city = Array.new
@@ -94,21 +94,21 @@ for i in 2..10
 		court_id = ids_courte[i]
 		User.create(
 				email: Faker::Internet.email,
-				birth_date: Faker::Date.between(Date.new(1997,1,1), Date.new(2003,1,1)), 
+				birth_date: Faker::Date.between(Date.new(1997,1,1), Date.new(2003,1,1)),
 				password:'demolay',
 				name: Faker::Name.first_name ,
 				lastname: Faker::Name.last_name,
 				demolayID:c,
 				role:'Demolay',
-				ci: Faker::Number.number(10), 
+				ci: Faker::Number.number(10),
 				chapter_id: chapter_id,
 				priory_id: priory_id,
 				court_id: court_id,
-				campament_id:i, 
-				president_aproved:true, 
-				deputy_aproved:true, 
-				oficial_aproved:true, 
-				cellphone: '59179777396', 
+				campament_id:i,
+				president_aproved:true,
+				deputy_aproved:true,
+				oficial_aproved:true,
+				cellphone: '59179777396',
 				phone: '59144229865'
 			)
 		Degree.create(
@@ -157,22 +157,22 @@ for i in 2..10
 		court_id = ids_courte[i]
 		User.create(
 				email: Faker::Internet.email,
-				birth_date: Faker::Date.between(Date.new(1997,1,1), Date.new(2003,1,1)), 
+				birth_date: Faker::Date.between(Date.new(1997,1,1), Date.new(2003,1,1)),
 				password:'no_demolay',
 				name: Faker::Name.first_name ,
 				lastname: Faker::Name.last_name,
 				demolayID:c,
 				role:'No Demolay',
-				ci: Faker::Number.number(10), 
+				ci: Faker::Number.number(10),
 				chapter_id: chapter_id,
-				campament_id:i, 
-				president_aproved:true, 
-				deputy_aproved:true, 
-				oficial_aproved:true, 
-				cellphone: '59179777396', 
+				campament_id:i,
+				president_aproved:true,
+				deputy_aproved:true,
+				oficial_aproved:true,
+				cellphone: '59179777396',
 				phone: '59144229865'
 			)
-		
+
 		Consultor = Degree.create(
 				title: "Consultor",
 				user_id: user_id,
@@ -210,8 +210,6 @@ end
 
 #Charges
 Charge.create(title:"Oficial Ejecutivo", user_id: '1',campament_id:"1",ente:"Gabinete")
-
-
 
 
 

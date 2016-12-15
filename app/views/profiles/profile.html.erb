@@ -29,7 +29,7 @@
       <h3>Grados</h3>
       <% @user.degrees.each do |degree| %>
       <% if degree.aproved %>
-        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>"> <%= degree.chapter.chapter_name %> </a><br>
+        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a><br>
         <% end %>
       <% end %>
     </div>
@@ -38,7 +38,7 @@
       <h3>Cargos</h3>
       <% @user.charges.each do |charge| %>
         <% if charge.chapter != nil %>
-          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>"><%= charge.chapter.chapter_name %> </a><br>
+          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a><br>
         <%else%>
           Tiene el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> <br>
         <%end%>
@@ -46,7 +46,7 @@
       <hr class="divider">
       <% @user.charges_history.each do |charge| %>
         <% if charge.chapter != nil %>
-          Tuvo el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>"><%= charge.chapter.chapter_name %> </a> en la gestión <%=charge.gestion%><br>
+          Tuvo el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> en la gestión <%=charge.gestion%><br>
         <%else%>
           Tuvo el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
         <%end%>
@@ -76,7 +76,7 @@
         Formara parte del capitulo
       <%end%>
         <% if @user.chapter != nil %>
-          <a href="/chapters/<%=@user.chapter.id%>"><%=@user.chapter.chapter_name%></a>
+          <a href="/chapters/<%=@user.chapter.id%>" data-no-turbolink><%=@user.chapter.chapter_name%></a>
           en el Departamento de
           <a href="/campaments/<%=@user.campament_id%>"><%=@user.campament.name%></a>
         <% end %>
@@ -223,7 +223,7 @@
       <div class="modal-body">
               <strong>Formularios de grados</strong>
                <% if @user.role == "Demolay" %>
-                  <%= link_to "Iniciación en " + @user.chapter.chapter_name.to_s,@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block"%>
+                  <%= link_to "Iniciación en " + @user.chapter.chapter_name.to_s,@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block", data: { no_turbolink: true } %>
                <%end%>
                  <% @user.degrees.each do |degree| %>
                   <% if degree.aproved %>

@@ -44,6 +44,7 @@ class AdminControllerController < ApplicationController
 		@user.president_aproved= false
 		@user.deputy_aproved = false
 		@user.oficial_aproved = false
+		@user.full_name = @user.fullName
 
 		if @user.save
 			flash[:notice] = "El usuario fue creado correctamente."
@@ -113,7 +114,7 @@ class AdminControllerController < ApplicationController
 
 	def search
 		search = params[:search]
-		@users = User.where("name LIKE ?","%#{search}%")
+		@users = User.where("name LIKE ? or lastname LIKE ? or full_name LIKE ?","%#{search}%", "%#{search}%", "%#{search}%")
 		@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
 	end
 
@@ -301,7 +302,7 @@ class AdminControllerController < ApplicationController
 	end
 
 	def users_reports
-		initial_age = params[:star_age].to_i
+		initial_age = params[:start_age].to_i
 		final_age = params[:end_age].to_i
 		enabled = params[:active_users].to_i
 		disabled = params[:inactive_users].to_i
@@ -311,6 +312,14 @@ class AdminControllerController < ApplicationController
 		knights = params[:knights].to_i
 		chevaliers = params[:chevaliers].to_i
 		consultants = params[:consultants].to_i
+
+		@demolay_users = []
+		@no_demolay_users = []
+		@new_demolays = []
+		@knight_users = []
+		@chevaliers_users = []
+		@consultants_users = []
+
 
 		if enabled == 1 and disabled == 1
 			if demolays == 1
@@ -341,16 +350,16 @@ class AdminControllerController < ApplicationController
 				@no_demolays_users = User.all.select{|user| user.role == "No Demolay" and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if new_demolays == 1
-				@new_demolays = User.all.select{|user| user.tiene_el_grado("Iniciatico") and user.degrees.count == 1 and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@new_demolays = User.all.select{|user| user.tiene_el_grado("Iniciatico") and user.degrees.count == 1 and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if knights == 1
-				@knight_users = User.all.select{|user| user.tiene_el_grado("Caballero") and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@knight_users = User.all.select{|user| user.tiene_el_grado("Caballero") and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if chevaliers == 1
-				@chevaliers_users = User.all.select{|user| user.tiene_el_grado("Chevallier") and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@chevaliers_users = User.all.select{|user| user.tiene_el_grado("Chevallier") and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if consultants == 1
-				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 		end
 
@@ -363,16 +372,16 @@ class AdminControllerController < ApplicationController
 				@no_demolays_users = User.all.select{|user| user.role == "No Demolay" and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if new_demolays == 1
-				@new_demolays = User.all.select{|user| user.tiene_el_grado("Iniciatico") and user.degrees.count == 1 and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@new_demolays = User.all.select{|user| user.tiene_el_grado("Iniciatico") and user.degrees.count == 1 and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if knights == 1
-				@knight_users = User.all.select{|user| user.tiene_el_grado("Caballero") and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@knight_users = User.all.select{|user| user.tiene_el_grado("Caballero") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if chevaliers == 1
-				@chevaliers_users = User.all.select{|user| user.tiene_el_grado("Chevallier") and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@chevaliers_users = User.all.select{|user| user.tiene_el_grado("Chevallier") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if consultants == 1
-				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and !user.enabledand user.is_over(initial_age) and user.is_under(final_age) }
+				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 		end
 
@@ -405,19 +414,19 @@ class AdminControllerController < ApplicationController
 		Transaction.all.each do |t|
 
 			if incomes == 1 and outcomes == 1
-				if t.created_at > start_date and t.created_at < end_date and t.concept_type == concept
+				if t.created_at.to_date >= start_date and t.created_at.to_date <= end_date and t.concept_type == concept
 					@final_transactions.push(t)
 				end
 			end
 
 			if incomes == 1 and outcomes == 0
-				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Ingreso" and t.concept_type == concept
+				if t.created_at.to_date >= start_date and t.created_at.to_date <= end_date and t.transaction_type == "Ingreso" and t.concept_type == concept
 					@final_transactions.push(t)
 				end
 			end
 
 			if incomes == 0 and outcomes == 1
-				if t.created_at > start_date and t.created_at < end_date and t.transaction_type == "Egreso" and t.concept_type == concept
+				if t.created_at.to_date >= start_date and t.created_at.to_date <= end_date and t.transaction_type == "Egreso" and t.concept_type == concept
 					@final_transactions.push(t)
 				end
 			end

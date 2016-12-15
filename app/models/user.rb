@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   has_attached_file :registration_form
-  validates_attachment_content_type :registration_form, :content_type => ["application/pdf", "application/jpg", "application/png", "application/zip"]
+  validates_attachment_content_type :registration_form, :content_type => ["application/zip"]
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -164,11 +164,11 @@ class User < ActiveRecord::Base
       count += Degree.where(president_aproved: [false, nil]).count
     end
     if self.is_deputy
-      User.where(deputy_aproved: [false, nil], president_aproved: true).count
+      count += User.where(deputy_aproved: [false, nil], president_aproved: true).count
       count += Degree.where(deputy_aproved: [false, nil], president_aproved: true).count
     end
     if self.is_oficial
-      User.where(oficial_aproved: [false, nil]).count
+      count += User.where(oficial_aproved: [false, nil]).count
       count += Degree.where(oficial_aproved: [false, nil]).count
     end
   end

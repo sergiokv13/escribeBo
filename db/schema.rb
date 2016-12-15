@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161213180504) do
+ActiveRecord::Schema.define(version: 20161215191912) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -222,6 +222,8 @@ ActiveRecord::Schema.define(version: 20161213180504) do
     t.string   "taller_nombre"
     t.string   "taller_numero"
     t.text     "reject_note"
+    t.string   "full_name"
+    t.boolean  "blocked"
   end
 
   add_index "users", ["campament_id"], name: "index_users_on_campament_id"

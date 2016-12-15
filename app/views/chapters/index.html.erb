@@ -6,11 +6,11 @@
         <h2 class="center-title">Capítulos</h2>
       </div>
 
-      <% @capitulos.each do |chapter| %>
+      <% @capitulos.each_with_index do |chapter, index| %>
         <div class="col-lg-4">
-          <a class="image_link" href="/chapters/<%=chapter.id%>">
-          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
-          <img class="img-responsive" src="<%=chapter.image.url%>">
+          <a class="image_link" href="/chapters/<%=chapter.id%>" data-no-turbolink>
+            <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
+            <img class="img-responsive" src="<%=chapter.image.url%>">
           </a>
         </div>
       <%end%>

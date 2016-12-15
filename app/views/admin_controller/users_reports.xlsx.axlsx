@@ -8,44 +8,68 @@ wb.styles do |style|
 
     sheet.add_row ["Nombre completo", "Correo Electrónico", "Demolay ID", "CI", "Edad", "Fecha de Nacimiento", "Dirección", "Celular", "Teléfono"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
 
+    if @demolay_users != [] and !@demolay_users.nil?
 
-    sheet.add_row ["Usuarios de tipo Demolay"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+      sheet.add_row ["USUARIOS DEMOLAY", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
 
-    @demolay_users.each do |user|
-      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
-    end
+      @demolay_users.each do |user|
+        sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      end
 
-    sheet.add_row ["Usuarios de tipo No Demolay"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
-
-    @no_demolays_users.each do |user|
-      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
     end
 
 
-    sheet.add_row ["Usuarios Iniciaticos"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+    if @no_demolay_users != [] and !@no_demolay_users.nil?
 
-    @new_demolays.each do |user|
-      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      sheet.add_row ["USUARIOS NO DEMOLAY", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+      @no_demolays_users.each do |user|
+        sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      end
+
     end
 
-    sheet.add_row ["Usuarios Caballeros"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
 
-    @knight_users.each do |user|
-      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+    if @new_demolays != [] and !@new_demolays.nil?
+
+      sheet.add_row ["USUARIOS INICIATICOS", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+      @new_demolays.each do |user|
+        sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      end
+
     end
 
-    sheet.add_row ["Usuarios Chevaliers"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+    if @knight_users != [] and !@knight_users.nil?
 
-    @chevaliers_users.each do |user|
-      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      sheet.add_row ["USUARIOS CABALLEROS", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+      @knight_users.each do |user|
+        sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      end
+
     end
 
-    sheet.add_row ["Usuarios Consultores"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+    if @chevaliers_users != [] and !@chevaliers_users.nil?
 
-    @consultants_users.each do |user|
-      sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      sheet.add_row ["USUARIOS CHEVALIERS", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+      @chevaliers_users.each do |user|
+        sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      end
+
     end
 
+
+    if @consultants_users != [] and !@consultants_users.nil?
+
+      sheet.add_row ["USUARIOS CONSULTORES", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+      @consultants_users.each do |user|
+        sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]
+      end
+
+    end
 
     sheet.column_widths nil, nil, nil
 
