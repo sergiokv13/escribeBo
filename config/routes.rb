@@ -76,7 +76,8 @@ Rails.application.routes.draw do
   post '/update_reiniciar_gestion' => "charges#update_drop_gestion"
   get '/users/:id/edit' => 'admin_controller#edit'
 
-  get '/transfer_user/:id/:campament_id/:chapter_id' => 'admin_controller#transfer_user'
+  post '/transfer_user' => 'admin_controller#transfer_user'
+
   post '/add_premiacion' => 'profiles#add_premiacion'
 
   get '/users_reports' => 'admin_controller#users_reports', :defaults => { :format => 'xlsx' }

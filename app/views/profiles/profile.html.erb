@@ -255,7 +255,7 @@
         <h4 class="modal-title">Transferir a <%=@user.fullName%></h4>
       </div>
       <div class="modal-body">
-        <%= form_tag('/transfer_user', :method => :get) do %>
+        <%= form_tag('/transfer_user', :method => :post) do %>
           <label>Campamento</label>
           <input type="hidden" name="id" value="<%= @user.id %>">
           <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, 'id', 'name'), class: "form-control", :prompt => "Seleccionar filtro") %><br>

@@ -109,6 +109,8 @@ class AdminControllerController < ApplicationController
 			end
 		end
 		@users = @users.uniq{|x| x.id}
+		@users = @users.paginate(:page => params[:page], :per_page => 10)
+
 	end
 
 	def search

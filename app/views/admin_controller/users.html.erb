@@ -67,11 +67,10 @@
           </div>
         </div>
       </div>
+      <%= will_paginate @users %>
   </div>
 </div>
-
 <script type="text/javascript">
-
   $( "#campament_id" ).change(function() {
     var campament = $("#campament_id").val();
     jQuery.ajax({
@@ -84,7 +83,4 @@
       }
     });
   });
-
-
-
 </script>

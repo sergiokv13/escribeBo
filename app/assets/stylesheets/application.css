@@ -23,6 +23,12 @@
   background-size: cover;
 }
 
+
+body{
+  color: #071A33;
+}
+a { text-decoration-style: none; } 
+
 div.clear {
     clear:both;
 }
@@ -61,18 +67,21 @@ td {
 }
 
 h1{
-	background-color: #490808;
+  padding-left: 5px;
+	background-color: #B42125;
 	color:white !important;
 }
 
 h2{
-	background-color: #490808;
+  padding-left: 5px;
+	background-color: #B42125;
 	color:white;
 	width: 100%;
 }
 
 h3{
-  background-color: #490808;
+  padding-left: 5px;
+  background-color: #B42125;
   color:white;
 }
 hr {
@@ -85,8 +94,8 @@ hr {
 }
 
 .navbar-default {
-    background-color: #490808;
-    border-color: #490808;
+    background-color: #B42125;
+    border-color: white;
     padding: 0;
 }
 
@@ -104,6 +113,8 @@ hr {
 
 .navbar-default .navbar-nav > li > a:hover{
     color: white;
+    background-color: #F4CA1A;
+
 }
 .fix {
   margin-top: 6px;
@@ -127,11 +138,11 @@ hr {
 .glyphicon{
   font-size: 200%;
 }
-
+/*
 .pagination{
   visibility: hidden;
 }
-
+*/
 @media (max-width: 1200px) {
     .navbar-header {
         float: none;
