@@ -11,6 +11,9 @@
           <%= image_tag @chapter.image.url(:original), class: "img-responsive" %>
         </center>
       </div>
+
+
+<% if @chapter.sleep != true %>
       <div class="col-lg-4">
         <h3>Información</h3>
         Este es un <%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolay activos.
@@ -31,12 +34,12 @@
             <center>
               <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s, class: "btn btn-success btn-block" %>
               <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path, class: "btn btn-primary btn-block" %>
-              <%= link_to 'Borrar ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea borrar este capitulo?' } %>
+              <%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea poner en sueño este capitulo?' } %>
             </center>
           <% end %>
         <% end %>
       </div>
-    </div>
+
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-lg-8">
@@ -104,6 +107,17 @@
 
       </div>
     </div>
-  </div>
+
+<% else %>
+ <div class="col-lg-4">
+  <h3>El capitulo esta en sueños.</h3>
+  <% if current_user.is_oficial %>
+    <a href="/chapters/wake/<%=@chapter.id%>">Despertar Capitulo</a>
+  <% end %>
+</div>
+<% end %>
+
+</div>
+</div>
 </div>
 <br>

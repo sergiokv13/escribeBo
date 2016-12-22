@@ -141,11 +141,18 @@ class ChaptersController < ApplicationController
   # DELETE /chapters/1.json
   def destroy
     if current_user.is_oficial
-      @chapter.destroy
-      respond_to do |format|
-        format.html { redirect_to chapters_url, notice: 'Exitosamente borrado' }
-        format.json { head :no_content }
-      end
+      @chapter.sleep = true
+      @chapter.save
+      redirect_to :back
+    end
+  end
+
+  def wake
+    if current_user.is_oficial
+      @chapter = Chapter.find(params[:id])
+      @chapter.sleep = false
+      @chapter.save
+      redirect_to :back
     end
   end
 
