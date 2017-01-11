@@ -27,10 +27,12 @@
 }
 
 .nopadding {
-   padding: 10px !important;
+   padding: 20px !important;
    margin: 1 !important;
 }
-
+.side-font{
+  font-size: 80%
+}
 
 .row.no-gutter {
   margin-left: 0;
