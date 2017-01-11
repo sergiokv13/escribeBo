@@ -24,6 +24,17 @@
 }
 
 
+#logo{
+  height:100px; 
+  margin-top: -40px;
+}
+#logo:hover{
+  height: 106px;
+  margin-top: -43px;
+  margin-right: -3px;
+  margin-left: -3px;
+}
+
 body{
   color: #071A33;
 }
@@ -55,7 +66,6 @@ td {
 }
 
 .image_link:hover img{
-
 	opacity: 0.6;
   filter: alpha(opacity=60);
 }
@@ -94,6 +104,7 @@ hr {
 }
 
 .navbar-default {
+    margin-top: 30px;
     background-color: #B42125;
     border-color: white;
     padding: 0;
