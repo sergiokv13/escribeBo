@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EscribeBo</title>
+    <title>SirDeMBo</title>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "https://www.google.com/jsapi" %>
@@ -28,9 +28,17 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <% if user_signed_in?%>
               <ul class="nav navbar-nav">
+                <%= form_tag("/search", method:"post", class: "navbar-form navbar-left") do %>
+                <div class="form-group">
+                  <%= text_field_tag :search, nil, class: "form-control", placeholder: "Busca personas, entes y cosas" %>
+                </div>
+                  <%= submit_tag "Buscar", class: "btn btn-default" %>
+                <% end %>
+              </ul>
+              <ul class="nav navbar-nav navbar-right">
                 <% if !current_user.is_oficial%>
 
-                  <li><a href="/campaments">Departamentos</a></li>
+                  <li><a title="Departamentos" href="/campaments"><span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span</a></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuerpos DeMolay (<%= current_user.announcements_to_aprove.count %>)<span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -42,14 +50,20 @@
                   </li>
                 <%else%>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departamentos <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+                      <span  id="gly-menu" class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+
+                    <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                      <li><a href="/campaments">Departamentos</a></li>
+                      <li>
+                        <a href="/campaments">Departamentos</a>
+                      </li>
                       <li><a href="/campaments/new">Crear Departamento</a></li>
                     </ul>
                   </li>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuerpos DeMolay <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="/chapters" data-turbolinks="false">Cuerpos DeMolay</a></li>
                       <li><a href="/chapters/new">Crear Cuerpo</a></li>
@@ -59,16 +73,16 @@
                     </ul>
                   </li>
                 <%end%>
-                <li><a href="/announcements">Boletín</a></li>
+                <li><a href="/announcements"><span  id="gly-menu" class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inbox(<%=current_user.get_not_seen%>) <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
                       <li><a href="/inboxes">Ver mensajes</a></li>
                       <li><%= link_to 'Enviar mensaje', new_inbox_path %></li>
                     </ul>
                   </li>
                  <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Transacciones<span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-credit-card" aria-hidden="true"></span><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="/transactions/new">Crear transacción</a></li>
                     <% if current_user.is_oficial %>
@@ -80,7 +94,7 @@
                 </li>
                 <% if ( current_user.tiene_el_cargo("Oficial Ejecutivo") || current_user.tiene_el_cargo("Delegado Regional") || current_user.tiene_el_cargo("Presidente Consejo Consultivo") )%>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-user" aria-hidden="true"></span></span></a>
                       <ul class="dropdown-menu">
                         <li><a href="/users">Usuarios <span class="sr-only">(current)</span></a></li>
                         <% if current_user.is_aprovator %>
@@ -90,16 +104,11 @@
 
                   </li>
                  <%end%>
-              </ul>
-              <%= form_tag("/search", method:"post", class: "navbar-form navbar-left") do %>
-                <div class="form-group">
-                  <%= text_field_tag :search, nil, class: "form-control", placeholder: "Ingrese su búsqueda..." %>
-                </div>
-                <%= submit_tag "Buscar", class: "btn btn-default" %>
-              <% end %>
+           
+              
             <% end %>
 
-            <ul class="nav navbar-nav navbar-right">
+          
               <li class="dropdown">
                 <% if user_signed_in? %>
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.fullName %><span class="caret"></span></a>
