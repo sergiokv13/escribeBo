@@ -20,6 +20,16 @@
   background-color: red;
 }
 
+.btn-success{
+  background-color: #F4CA1A;
+  border-color: #F4CA1A;
+}
+.btn-success:hover {
+  background-color: white;
+  border-color: #F4CA1A;
+  color: #F4CA1A;
+}
+
 .wrapper{
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -29,7 +39,7 @@
 
 
 #logo{
-  height:100px; 
+  height:100px;
   margin-top: -40px;
 }
 #logo:hover{
@@ -80,17 +90,27 @@ td {
 	text-align: center;
 }
 
+.glyphicon {
+  color: #B42125;
+  font-size: 98% !important;
+}
+.config-bt:hover{
+  font-size: 93%;
+}
+.dropdown{
+
+}
 h1{
-  padding-left: 5px;
-	background-color: #B42125;
-	color:white !important;
+  font-size: 148% !important;
+  font-weight: bold;
+
+	color:#B42125 !important;
 }
 
 h2{
-  padding-left: 5px;
-	background-color: #B42125;
-	color:white;
-	width: 100%;
+  font-weight: bold;
+  font-size: 120% !important;
+	color:#B42125 !important;
 }
 
 h3{
