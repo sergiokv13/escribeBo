@@ -2,26 +2,28 @@
 <div class="jumbotron">
  <h2 class="text-center">Jurisdicción</h2>
   <div class="row">
+   <div class="col-lg-4"></div>
     <div class="col-lg-4">
       <a class="image_link" href="/campaments/<%=@campaments.first.id%>">
         <div class="image_name"><%=@campaments.first.name%></div>
         <img class="img-responsive" src="<%=@campaments.first.image.url%>">
       </a>
     </div>
-    <div class="col-lg-4"></div>
+   
     <div class="col-lg-4"></div>
   </div>
    <h2 class="center-title">Departamentos</h2>
   <div class="row">
     <% @campaments.each_with_index do |chapter,i| %>
       <% if i != 0 %>
-          <div class="col-lg-4">
+          <div class="col-lg-4" style="margin-bottom: 100px;">
             <a class="image_link" href="/campaments/<%=chapter.id%>">
               <div class="image_name"><%=chapter.name%></div>
               <img class="img-responsive" src="<%=chapter.image.url%>">
             </a>
           </div>
       <%end%>
+
     <% end %>
 
 

@@ -193,35 +193,3 @@
 
 
 
-
-          <div class="col-lg-3">
-            <div class="jumbotron side-bar">
-              <div class="row">
-                <br />
-                  <div class="form">
-                    <%= form_tag("/search", method:"post") do %>
-                    <div class="form-group">
-                      <%= text_field_tag :search, nil, class: "form-control", placeholder: "Buscar..." %>
-                    </div>
-                      <%= submit_tag "Buscar", class: "btn btn-default btn-block" %>
-                    <% end %>
-                  </div>
-
-                <h2>Capítulos que sigo</h2>
-                <a href="/chapters/<%= current_user.chapter.id %>"><%= current_user.chapter.chapter_name %></a><br />
-                <a href="/chapters/5"><%= Chapter.find(5).chapter_name %></a><br />
-                <a href="/chapters/8"><%= Chapter.find(8).chapter_name %></a><br />
-                <h2>Departamentos que sigo</h2>
-                <a href="/campaments/<%= current_user.campament.id %>"><%= current_user.campament.name %></a><br />
-                <a href="/campaments/5"><%= Campament.find(5).name %></a><br />
-                <a href="/campaments/8"><%= Campament.find(8).name %></a><br />
-                <h2>Últimos mensajes</h2>
-                  <% current_user.inboxes.each do |inbox| %>
-                    <a href="/users/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
-                    <%= truncate(inbox.content.html_safe, length: 50) %>
-                    <a href="/inboxes/<%= inbox.id %>">Ver más</a><br />
-                  <% end %>
-              </div>
-            </div>
-          </div>
-        
