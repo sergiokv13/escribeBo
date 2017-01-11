@@ -16,6 +16,22 @@
  *= require bootstrap
  */
 
+.nopadding {
+   padding: 10px !important;
+   margin: 1 !important;
+}
+
+
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 1;
+  padding-left: 1;
+}
 
 .a.dropdown-toggle {
   background-color: red;
@@ -114,9 +130,9 @@ h2{
 }
 
 h3{
-  padding-left: 5px;
-  background-color: #B42125;
-  color:white;
+  font-weight: bold;
+  font-size: 80% !important;
+  color:#B42125 !important;
 }
 hr {
   border: none;
