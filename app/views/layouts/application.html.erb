@@ -66,7 +66,6 @@
                     </ul>
                   </li>
                 <%end%>
-                <li><a href="/announcements"><span  id="gly-menu" class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -126,11 +125,11 @@
 
     <div class="container-fluid">
       <br />
-      <div class="row">
-        <% if !current_user.nil? %>
-          <div class="col-lg-3">
-            <div class="jumbotron side-bar">
-              <div class="row">
+      <div class="row no-gutter">
+      <% if !current_user.nil? %>
+        <div class="col-lg-2">
+          <div class="jumbotron nopadding">
+            <div class="row">
                 <br />
                   <div class="form">
                     <%= form_tag("/search", method:"post") do %>
@@ -141,29 +140,40 @@
                     <% end %>
                   </div>
 
-                <h2>Capítulos que sigo</h2>
+                <h3>Capítulos que sigo</h3>
                 <a href="/chapters/<%= current_user.chapter.id %>"><%= current_user.chapter.chapter_name %></a><br />
                 <a href="/chapters/5"><%= Chapter.find(5).chapter_name %></a><br />
                 <a href="/chapters/8"><%= Chapter.find(8).chapter_name %></a><br />
-                <h2>Departamentos que sigo</h2>
+                <h3>Departamentos que sigo</h3>
                 <a href="/campaments/<%= current_user.campament.id %>"><%= current_user.campament.name %></a><br />
                 <a href="/campaments/5"><%= Campament.find(5).name %></a><br />
                 <a href="/campaments/8"><%= Campament.find(8).name %></a><br />
-                <h2>Últimos mensajes</h2>
+                <h3>Últimos mensajes</h3>
                   <% current_user.inboxes.each do |inbox| %>
                     <a href="/users/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
                     <%= truncate(inbox.content.html_safe, length: 50) %>
                     <a href="/inboxes/<%= inbox.id %>">Ver más</a><br />
                   <% end %>
               </div>
-            </div>
           </div>
+        </div>
         <% end %>
+
         <div class="col-lg-8">
           <%= yield %>
         </div>
-      </div>
+
+        <div class="col-lg-2 " >
+          <div class="jumbotron nopadding">
+            <div class="row ">
+              <div class="col-lg-12">
+                <h3>Anuncios de Oficialía Ejecutiva</h3>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
+  </div>
 
   </body>
   <script type="text/javascript">
