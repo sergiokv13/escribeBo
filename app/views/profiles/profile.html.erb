@@ -11,13 +11,19 @@
 
           <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal2">Grados</button>
 
+          
+
+          <% if current_user.is_oficial %>
           <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal">Premiaciones</button>
-          <% if @user.account_active? %>
-            <%= link_to "Bloquear Usuario", "/block_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
-          <% end %>
-          <% if !@user.account_active? %>
-            <%= link_to "Desbloquear Usuario", "/unblock_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
-          <% end %>
+            <% if @user.account_active? %>
+              <%= link_to "Bloquear Usuario", "/block_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
+            <% end %>
+            <% if !@user.account_active? %>
+              <%= link_to "Desbloquear Usuario", "/unblock_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
+            <% end %>
+          <%end%>
+
+
         <%else%>
           <% if current_user.is_oficial %>
             <%= link_to "Aprobar", "/approve/"+@user.id.to_s, class: "btn btn-success btn-block" %><br>
@@ -25,7 +31,11 @@
           <%end%>
         <%end%>
         <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver más Información</button>
-        <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#myModal5">Transferir usuario</button>
+        
+        <% if current_user.is_oficial %>
+          <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#myModal5">Transferir usuario</button>
+        <% end %>
+        
         <% if current_user.id == @user.id %>
           <a href="/users/edit" class="btn btn-primary btn-block">Editar Información</a>
         <% end %>

@@ -87,5 +87,6 @@ Rails.application.routes.draw do
 
   get '/block_user/:id' => 'admin_controller#block_user'
   get '/unblock_user/:id' => 'admin_controller#unblock_user'
+  get '/chapters/wake/:id' => 'chapters#wake'
 
 end
