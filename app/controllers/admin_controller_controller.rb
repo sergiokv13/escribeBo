@@ -115,7 +115,7 @@ class AdminControllerController < ApplicationController
 
 	def search
 		search = params[:search]
-		@users = User.where("name LIKE ? or lastname LIKE ? or full_name LIKE ?","%#{search}%", "%#{search}%", "%#{search}%")
+		@users = User.where("name LIKE ? or lastname LIKE ? or full_name LIKE ? or ci LIKE ? ","%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
 		@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
 	end
 

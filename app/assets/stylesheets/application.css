@@ -16,6 +16,10 @@
  *= require bootstrap
  */
 
+.a.dropdown-toggle {
+  background-color: red;
+}
+
 .wrapper{
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -27,7 +31,7 @@
 body{
   color: #071A33;
 }
-a { text-decoration-style: none; } 
+a { text-decoration-style: none; }
 
 div.clear {
     clear:both;
@@ -61,7 +65,7 @@ td {
 }
 
 .image_name{
-	background-color: #490808;
+	background-color: #B42125;
 	color:#ddd;
 	text-align: center;
 }

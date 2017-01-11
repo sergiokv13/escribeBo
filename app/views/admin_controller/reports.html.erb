@@ -35,6 +35,12 @@
             <%= f.check_box :incomes, label: "Ingresos" %>
             <%= f.check_box :outcomes, label: "Egresos" %>
           </div>
+          <div class="form-group">
+            <%= f.select :campament_id, options_for_select(Campament.all.map{ |c| [c.name, c.id] }) %>
+          </div>
+          <div class="form-group">
+            <%= f.select :chapter_id, options_for_select(Chapter.all.map{ |c| [c.chapter_name, c.id] }) %>
+          </div>
           <div>
             <%= f.select(:concept, options_for_select(@concepts), class: "form-control",label: "Por concepto")%>
           </div>
