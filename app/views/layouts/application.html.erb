@@ -38,7 +38,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <% if !current_user.is_oficial%>
 
-                  <li><a title="Departamentos" href="/campaments"><span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span</a></li>
+                  <li><a title="Departamentos" href="/campaments"><span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span></a></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuerpos DeMolay (<%= current_user.announcements_to_aprove.count %>)<span class="caret"></span></a>
                     <ul class="dropdown-menu">
