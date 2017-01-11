@@ -15,15 +15,24 @@
  *= require jquery-ui
  *= require bootstrap
  */
+.btn-default{
+  background-color: #B42125;
+  border-color: #B42125;
+  color: white;
+}
 
+.btn-default:hover {
+  background-color: #C60F14;
+  color: white;
+}
 
 .a.dropdown-toggle {
   background-color: red;
 }
 
 .side-bar{
-  padding: 2px;
-  
+  padding: 4px;
+
 }
 
 #gly-menu{

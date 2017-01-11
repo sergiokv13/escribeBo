@@ -27,14 +27,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <% if user_signed_in?%>
-              <ul class="nav navbar-nav">
-                <%= form_tag("/search", method:"post", class: "navbar-form navbar-left") do %>
-                <div class="form-group">
-                  <%= text_field_tag :search, nil, class: "form-control", placeholder: "Busca personas, entes y cosas" %>
-                </div>
-                  <%= submit_tag "Buscar", class: "btn btn-default" %>
-                <% end %>
-              </ul>
+
               <ul class="nav navbar-nav navbar-right">
                 <% if !current_user.is_oficial%>
 
@@ -138,6 +131,16 @@
           <div class="col-lg-3">
             <div class="jumbotron side-bar">
               <div class="row">
+                <br />
+                  <div class="form">
+                    <%= form_tag("/search", method:"post") do %>
+                    <div class="form-group">
+                      <%= text_field_tag :search, nil, class: "form-control", placeholder: "Buscar..." %>
+                    </div>
+                      <%= submit_tag "Buscar", class: "btn btn-default btn-block" %>
+                    <% end %>
+                  </div>
+
                 <h2>Capítulos que sigo</h2>
                 <a href="/chapters/<%= current_user.chapter.id %>"><%= current_user.chapter.chapter_name %></a><br />
                 <a href="/chapters/5"><%= Chapter.find(5).chapter_name %></a><br />
