@@ -21,10 +21,24 @@
   background-color: red;
 }
 
+.side-bar{
+  padding: 2px;
+  
+}
+
 #gly-menu{
   color:white;
   font-size: 15px;
 }
+
+.menu-li{
+  font-size: 90%;
+}
+
+li{
+  list-style-type: none;
+}
+
 
 span{
    border:none;
