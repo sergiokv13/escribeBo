@@ -29,6 +29,10 @@ en:
         inbox_att: "Archivo Adjunto"
       transaction:
         image: "Formulario de Control de Depósitos"
+      oficer_an:
+        text: "Anuncio"
+        title: "Titulo"
+        deadline: "Fecha de Finalizazión"
     errors:
       models:
         inbox:
@@ -69,4 +73,12 @@ en:
         transaction:
           attributes:
             image:
+              blank: "es obligatorio"
+        oficer_an:
+          attributes:
+            text:
+              blank: "es obligatorio"
+            title:
+              blank: "es obligatorio"
+            deadline:
               blank: "es obligatorio"

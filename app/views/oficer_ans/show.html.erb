@@ -1,0 +1,39 @@
+ <div class="col-lg-1"></div>
+  <div class="col-lg-10">
+    <div class="jumbotron">
+      <p id="notice"><%= notice %></p>
+
+      <h1 class="center-title"><%= @oficer_an.title %></h1>
+
+      <p>
+        <%= @oficer_an.text %>
+      </p>
+      <p>
+         <strong>Fecha de finalización:</strong>
+  		<%= @oficer_an.deadline %>
+      </p>
+
+      <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg=4">
+          <% if @oficer_an.document.url != "/documents/original/missing.png" %>
+            <img class="img-responsive" src="<%=@oficer_an.document.url%>"><br><br>
+          <%end%>
+        </div>
+        <div class="col-lg-4"></div>
+      </div>
+      
+      <center>
+      <% if current_user.is_oficial %>
+      	<%= link_to 'Editar', edit_oficer_an_path(@oficer_an), class: "btn btn-primary" %> 
+      	 <%= link_to 'Elimiar', @oficer_an, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar el anuncio?' }, class: "btn btn-danger"  %><br><br>
+
+        <%= link_to 'Atras', :back , class: "btn btn-danger" %>
+       <% else %>
+       	<%= link_to 'Atras', :back , class: "btn btn-danger" %>
+       <% end %>
+       
+      </center>
+    </div>
+  </div>
+

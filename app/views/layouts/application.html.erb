@@ -27,19 +27,13 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <% if user_signed_in?%>
-            
               <ul class="nav navbar-nav navbar-right">
                 <% if !current_user.is_oficial%>
 
-                  <li><a title="Departamentos" href="/campaments"><span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span></a></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuerpos DeMolay (<%= current_user.announcements_to_aprove.count %>)<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/chapters" data-no-turbolink>Cuerpos DeMolay </a></li>
-                      <% if current_user.announcements_to_aprove.count != 0 %>
-                        <li><a href="/chapter_aprovals">Aprobaciones (<%= current_user.announcements_to_aprove.count %>)</a></li>
-                      <% end %>
-                    </ul>
+                  <li><a title="Departamentos" href="/campaments"> <span  id="gly-menu" class="glyphicon glyphicon-th-large" aria-hidden="true"></span></a></li>
+                  <li>
+                      <a title="Camopamentos" href="/chapters" > <span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                   
                   </li>
                 <%else%>
                   <li class="dropdown">
@@ -69,6 +63,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                      <li><a href="/oficer_ans">Anuncios de Oficialia Ejecutiva</a></li>
                       <li><a href="/inboxes">Ver mensajes</a></li>
                       <li><%= link_to 'Enviar mensaje', new_inbox_path %></li>
                     </ul>
@@ -96,27 +91,26 @@
 
                   </li>
                  <%end%>
-           
-              
+
+                 <li class="dropdown">
+                  <% if user_signed_in? %>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.fullName %><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/profile/<%=current_user.id.to_s%>">Perfil</a></li>
+                      <li><a href="/users/edit">Editar Perfil</a></li>
+                      <% if current_user.is_oficial %>
+                        
+                        <li><a href="/reports">Reportes</a></li>
+                      <%end%>
+                      <li><%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete) %></li>
+                    </ul>
+                  <% else %>
+                    <li><a href="/users/sign_in">Iniciar Sesion <span class="sr-only">(current)</span></a></li>
+                  <% end %>
+                </li>
+
             <% end %>
 
-          
-              <li class="dropdown">
-                <% if user_signed_in? %>
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.fullName %><span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/profile/<%=current_user.id.to_s%>">Perfil</a></li>
-                    <li><a href="/users/edit">Editar Perfil</a></li>
-                    <% if current_user.is_oficial %>
-                      <li><a href="/reiniciar_gestion">Reiniciar Gestión</a></li>
-                      <li><a href="/reports">Reportes</a></li>
-                    <%end%>
-                    <li><%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete) %></li>
-                  </ul>
-                <% else %>
-                  <li><a href="/users/sign_in">Iniciar Sesion <span class="sr-only">(current)</span></a></li>
-                <% end %>
-              </li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -126,12 +120,12 @@
     <div class="container-fluid">
       <br />
       <div class="row no-gutter">
+      <div class="col-lg-2">
       <% if !current_user.nil? %>
-        <div class="col-lg-2">
           <div class="jumbotron nopadding">
             <div class="row">
                 <br />
-                  <div class="form">
+                  <div class="form side-font">
                     <%= form_tag("/search", method:"post") do %>
                     <div class="form-group">
                       <%= text_field_tag :search, nil, class: "form-control", placeholder: "Buscar..." %>
@@ -139,39 +133,50 @@
                       <%= submit_tag "Buscar", class: "btn btn-default btn-block" %>
                     <% end %>
                   </div>
-
                 <h3>Capítulos que sigo</h3>
-                <a href="/chapters/<%= current_user.chapter.id %>"><%= current_user.chapter.chapter_name %></a><br />
-                <a href="/chapters/5"><%= Chapter.find(5).chapter_name %></a><br />
-                <a href="/chapters/8"><%= Chapter.find(8).chapter_name %></a><br />
+                <a class="side-font" href="/chapters/<%= current_user.chapter.id %>"><%= current_user.chapter.chapter_name %></a><br />
+                <a class="side-font" href="/chapters/5"><%= Chapter.find(5).chapter_name %> (2)</a><br />
+                <a class="side-font" href="/chapters/8"><%= Chapter.find(8).chapter_name %> (3)</a><br />
+                <a class="side-font" href="/chapters/<%= current_user.chapter.id %>">Capitulo Oruro 1</a><br />
                 <h3>Departamentos que sigo</h3>
-                <a href="/campaments/<%= current_user.campament.id %>"><%= current_user.campament.name %></a><br />
-                <a href="/campaments/5"><%= Campament.find(5).name %></a><br />
-                <a href="/campaments/8"><%= Campament.find(8).name %></a><br />
+                <a class="side-font" href="/campaments/<%= current_user.campament.id %>"><%= current_user.campament.name %></a><br />
+                <a class="side-font" href="/campaments/5"><%= Campament.find(5).name %> (1)</a><br />
+                <a class="side-font" href="/campaments/8"><%= Campament.find(8).name %> (3)</a><br />
                 <h3>Últimos mensajes</h3>
                   <% current_user.inboxes.each do |inbox| %>
-                    <a href="/users/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
-                    <%= truncate(inbox.content.html_safe, length: 50) %>
-                    <a href="/inboxes/<%= inbox.id %>">Ver más</a><br />
+                    <a class="side-font" href="/users/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
+                    <span class="side-font"><%= truncate(inbox.content.html_safe, length: 50) %></span>
+                    <a class="side-font" href="/inboxes/<%= inbox.id %>">Ver más</a><br />
                   <% end %>
               </div>
           </div>
-        </div>
-        <% end %>
+      <% end %>
+      </div>
+
 
         <div class="col-lg-8">
           <%= yield %>
         </div>
-
-        <div class="col-lg-2 " >
-          <div class="jumbotron nopadding">
-            <div class="row ">
-              <div class="col-lg-12">
-                <h3>Anuncios de Oficialía Ejecutiva</h3>
+        <%if current_user %>
+          <div class="col-lg-2 " >
+            <div class="jumbotron nopadding">
+              <div class="row ">
+                <div class="col-lg-12">
+                  <a href="/oficer_ans" style="text-decoration: none;"><h3>Anuncios de Oficialía Ejecutiva</h3></a>
+                  <% if !OficerAn.all.order(:deadline).reverse.empty? %>
+                    <% OficerAn.all.each do |of| %>
+                      <% if of.state %>
+                        <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%=of.text.first(65)%>... </span><br />
+                      <%end%>
+                    <% end %>
+                  <% else %>
+                    No hay anuncios para la fecha.
+                  <%end%>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        <%end%> 
     </div>
   </div>
 
@@ -189,7 +194,4 @@
   });
   </script>
 </html>
-
-
-
 

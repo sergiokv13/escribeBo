@@ -1,0 +1,21 @@
+<%= bootstrap_form_for @oficer_an, html: { multipart: true } do |f| %>
+
+  <div class="field">
+    <%= f.text_field :title , :label => "Titulo" %>
+  </div>
+
+    <div class="field">
+    <%= f.text_area :text , :label => "Anuncio"%>
+  </div>
+  <div class="field">
+    <%= f.date_field :deadline, :label => "Fecha de Finalización" %>
+  </div>
+
+  <div class="field">
+    <%= f.file_field :document, :label => "Imagen de anuncio"%>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Crear"%>
+  </div>
+<% end %>

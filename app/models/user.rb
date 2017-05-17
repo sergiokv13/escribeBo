@@ -46,6 +46,22 @@ class User < ActiveRecord::Base
 
   validates :role, presence: true
 
+  after_create :welcome_msg
+
+  def welcome_msg
+    msg = Inbox.new
+    msg.subject = "Bienvenido!"
+    msg.content = "Hola DeMolay! Bienvenido al sistema de Demolay. Esperamos que tu participación sea activa y que tu experiencia satisfactira. Saludos!"
+    msg.user1_id = 1
+    msg.user2_id = self.id
+    msg.seen = false
+    msg.inbox_hidden = false
+    msg.save
+  end
+
+
+
+
   def getAge
     now = Time.now.utc.to_date
     now.year - self.birth_date.year - ((now.month > self.birth_date.month || (now.month == self.birth_date.month && now.day >= self.birth_date.day)) ? 0 : 1)

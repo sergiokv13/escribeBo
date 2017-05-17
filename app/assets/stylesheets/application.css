@@ -15,12 +15,24 @@
  *= require jquery-ui
  *= require bootstrap
  */
+.btn-default{
+  background-color: #B42125;
+  border-color: #B42125;
+  color: white;
+}
+
+.btn-default:hover {
+  background-color: #C60F14;
+  color: white;
+}
 
 .nopadding {
    padding: 20px !important;
    margin: 1 !important;
 }
-
+.side-font{
+  font-size: 80%
+}
 
 .row.no-gutter {
   margin-left: 0;
@@ -37,10 +49,24 @@
   background-color: red;
 }
 
+.side-bar{
+  padding: 4px;
+
+}
+
 #gly-menu{
   color:white;
   font-size: 15px;
 }
+
+.menu-li{
+  font-size: 90%;
+}
+
+li{
+  list-style-type: none;
+}
+
 
 span{
    border:none;
