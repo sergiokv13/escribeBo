@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   belongs_to :court, class_name: 'Chapter'
   belongs_to :campament
   has_many :transactions
+  has_many :chapter_user_follows
+  has_many :campaments_user_follows
 
   validates :cellphone, phone: true
   validates :phone, phone: { possible: true, types: [:voip, :mobile] }
@@ -382,6 +384,26 @@ class User < ActiveRecord::Base
 
   def self.younger_than(age)
     User.all.select{|user| user.is_under(age)}
+  end
+
+  def follows_chapter(chapter_id)
+    res = false
+    self.chapter_user_follows.each do |c|
+      if c.chapter_id == chapter_id
+        res = true
+      end
+    end
+    return res
+  end
+
+  def follows_campament(campament_id)
+    res = false
+    self.campaments_user_follows.each do |c|
+      if c.campament_id == campament_id
+        res = true
+      end
+    end
+    return res
   end
 
 end

@@ -36,7 +36,14 @@
             </center>
           <% end %>
         <% end %>
+
+        <% if current_user.follows_chapter(@chapter.id) %>
+          <a href="/unfollow_chapter/<%= current_user.id %>/<%= @chapter.id %>" class="btn btn-primary btn-block">Dejar de Seguir</a>
+        <% else %>
+          <a href="/follow_chapter/<%= current_user.id %>/<%= @chapter.id %>" class="btn btn-primary btn-block">Seguir Capítulo</a>
+        <% end %>
       </div>
+
 
     <div class="row">
       <div class="col-lg-2"></div>
@@ -100,7 +107,9 @@
         <%= render partial: "publications", collection: @publicaciones_para_mostrar %>
 
         <div id="infinite-scrolling">
-          <%= will_paginate @publicaciones_para_mostrar %>
+          <div class="apple_pagination" style="visibility: hidden;">
+            <%= will_paginate @publicaciones_para_mostrar %>
+          </div>
         </div>
 
       </div>

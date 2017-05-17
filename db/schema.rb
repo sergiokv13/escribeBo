@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222203914) do
+ActiveRecord::Schema.define(version: 20170517063449) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -48,6 +48,28 @@ ActiveRecord::Schema.define(version: 20161222203914) do
 
   add_index "campaments", ["maestro_consejero_id"], name: "index_campaments_on_maestro_consejero_id"
   add_index "campaments", ["president_id"], name: "index_campaments_on_president_id"
+
+  create_table "campaments_user_follows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "campament_id"
+    t.integer  "number_views"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "campaments_user_follows", ["campament_id"], name: "index_campaments_user_follows_on_campament_id"
+  add_index "campaments_user_follows", ["user_id"], name: "index_campaments_user_follows_on_user_id"
+
+  create_table "chapter_user_follows", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "chapter_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.integer  "number_views"
+  end
+
+  add_index "chapter_user_follows", ["chapter_id"], name: "index_chapter_user_follows_on_chapter_id"
+  add_index "chapter_user_follows", ["user_id"], name: "index_chapter_user_follows_on_user_id"
 
   create_table "chapters", force: :cascade do |t|
     t.string   "chapter_name"

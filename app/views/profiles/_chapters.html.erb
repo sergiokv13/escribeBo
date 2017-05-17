@@ -1,0 +1,6 @@
+<select class="form-control" name="chapter_id" id="chapter_id">
+	<option value="">Seleccionar capítulo</option>
+	<% @chapters.each do |chapter| %>
+		<option value="<%=chapter.id%>"><%=chapter.chapter_name%></option>
+	<% end %>
+</select>

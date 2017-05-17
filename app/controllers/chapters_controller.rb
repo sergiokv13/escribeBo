@@ -1,6 +1,25 @@
 class ChaptersController < ApplicationController
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
+  def follow_chapter
+    user = User.find(params[:user_id])
+    chapter = Chapter.find(params[:chapter_id])
+    follow = ChapterUserFollow.new
+    follow.user_id = user.id
+    follow.chapter_id = chapter.id
+    follow.number_views = chapter.announcements.count
+    follow.save
+    redirect_to '/chapters/' + chapter.id.to_s
+  end
+
+  def unfollow_chapter
+    user = User.find(params[:user_id])
+    chapter = Chapter.find(params[:chapter_id])
+    follow = user.chapter_user_follows.find_by(chapter_id: chapter.id)
+    follow.destroy
+    redirect_to '/chapters/' + chapter.id.to_s
+  end
+
   # GET /chapters
   # GET /chapters.json
   def index
@@ -13,6 +32,13 @@ class ChaptersController < ApplicationController
   # GET /chapters/1
   # GET /chapters/1.json
   def show
+    if current_user.chapter_user_follows.count != 0
+      follow = current_user.chapter_user_follows.find_by(chapter_id: @chapter.id)
+      if !follow.nil?
+        follow.number_views = @chapter.announcements.count
+        follow.save
+      end
+    end
     @publicaciones_para_mostrar = Array.new
     publicaciones = @chapter.aproved_announcements.reverse
     if current_user.is_oficial

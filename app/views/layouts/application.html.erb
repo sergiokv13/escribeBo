@@ -21,7 +21,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/"><img src="/assets/logo-01.png" id="logo"></a>
+            <a class="navbar-brand" href="/" data-no-turbolink><img src="/assets/logo-01.png" id="logo"></a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
@@ -140,13 +140,13 @@
                   </div>
 
                 <h3>Capítulos que sigo</h3>
-                <a class="side-font" href="/chapters/<%= current_user.chapter.id %>"><%= current_user.chapter.chapter_name %></a><br />
-                <a class="side-font" href="/chapters/5"><%= Chapter.find(5).chapter_name %></a><br />
-                <a class="side-font" href="/chapters/8"><%= Chapter.find(8).chapter_name %></a><br />
-                <h3>Departamentos que sigo</h3>
-                <a class="side-font" href="/campaments/<%= current_user.campament.id %>"><%= current_user.campament.name %></a><br />
-                <a class="side-font" href="/campaments/5"><%= Campament.find(5).name %></a><br />
-                <a class="side-font" href="/campaments/8"><%= Campament.find(8).name %></a><br />
+                <% current_user.chapter_user_follows.each do |f| %>
+                  <a class="side-font" href="/chapters/<%= f.chapter.id %>" data-no-turbolink><%= f.chapter.chapter_name %> (<%= f.chapter.announcements.count - f.number_views %>)</a><br />
+                <% end %>
+                  <h3>Departamentos que sigo</h3>
+                  <% current_user.campaments_user_follows.each do |f| %>
+                    <a class="side-font" href="/campaments/<%= current_user.campament.id %>" data-no-turbolink><%= current_user.campament.name %> <%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
+                  <% end %>
                 <h3>Últimos mensajes</h3>
                   <% current_user.inboxes.each do |inbox| %>
                     <a class="side-font" href="/users/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:

@@ -9,6 +9,7 @@ class Chapter < ActiveRecord::Base
   has_many :demolays, foreign_key: 'chapter_id', class_name: 'User'
   has_many :knights, foreign_key: 'priory_id', class_name: 'User'
   has_many :chevaliers, foreign_key: 'court_id', class_name: 'User'
+  has_many :chapter_user_follows
 
   def announcements_to_aprove
     announcements = Announcement.all

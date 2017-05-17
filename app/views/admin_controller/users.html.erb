@@ -67,8 +67,12 @@
           </div>
         </div>
       </div>
-      <%= will_paginate @users %>
+
+      <div class="apple_pagination">
+        <%= will_paginate @users, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+      </div>
   </div>
+
 
 <script type="text/javascript">
   $( "#campament_id" ).change(function() {

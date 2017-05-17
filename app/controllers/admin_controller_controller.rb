@@ -11,7 +11,7 @@ class AdminControllerController < ApplicationController
 	end
 
 	def update_chapters
-	  @chapters = Chapter.where(:campament_id => params[:campament], :chapter_type =>"Capitulo")
+	  @chapters = Chapter.where(:campament_id => params[:campament_id], :chapter_type =>"Capitulo")
 	  render :partial => "chapters", :object => @chapters
 	end
 
