@@ -138,8 +138,12 @@
           <div class="form-group" hidden="true">
             <%= f.text_field :user_id, value: @user.id%>
           </div>
+
           <div class="actions">
-            <%= f.submit "Premiar", class: "btn btn-info" %>
+            <div onmouseover="checkFields2()">
+              <%= f.submit "Premiar", class: "btn btn-block btn-success",id: "boton2" %>
+            </div>  
+            
           </div>
         <% end %>
       </div>
@@ -323,6 +327,19 @@
       $('#boton').attr('value', 'Transferir');
       $('#boton').removeClass( "btn-danger" ).addClass( "btn-primary" );
       $('#boton').removeAttr('disabled');
+    }
+  };
+
+  function checkFields2() {
+    if ($('#_premiacion_id').val() == "" || $('#date_of').val() == ""){
+      $('#boton2').attr('disabled', 'disabled');
+      $('#boton2').attr('value', 'Todos los campos son obligatorios');
+      $('#boton2').removeClass( "btn-primary" ).addClass( "btn-danger" );
+    }
+    if ($('#_premiacion_id').val().length != "" && $('#date_of').val() != ""){
+      $('#boton2').attr('value', 'Transferir');
+      $('#boton2').removeClass( "btn-danger" ).addClass( "btn-primary" );
+      $('#boton2').removeAttr('disabled');
     }
   };
 

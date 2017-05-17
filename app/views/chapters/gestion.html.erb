@@ -1,13 +1,7 @@
-<div class="row text-center">
-	<div class="col-lg-2"></div>
-	<div class="col-lg-8">
-	<div class="jumbotron">
-		<div class="row">
-			<h1><%=@chapter.chapter_name%></h1>
-			<h3><%=@chapter.campament.name%></h3>
-			<hr class="divider">
-			<div class="col-lg-2"></div>
-			<div class="col-lg-8">
+<div class="row">
+			<h1 class="text-center"><%=@chapter.chapter_name%></h1>
+			<h3 class="text-center" ><%=@chapter.campament.name%></h3>
+		
 				<%= form_tag("/update_gestion/"+@chapter.id.to_s,method:"post") do %>
 					<div class="form-group">
 					<% if @chapter.chapter_type == "Capitulo" %>
@@ -32,11 +26,8 @@
 		    	      <%= link_to "Atrás", '/chapters', class: "btn btn-danger" %>
 		    	    </div>
 				<%end%>
-		  </div>
 	  </div>
-	</div>
-	</div>
-</div>
+
 
 
 <script type="text/javascript">
