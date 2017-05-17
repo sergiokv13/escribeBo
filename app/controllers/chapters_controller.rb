@@ -106,6 +106,7 @@ class ChaptersController < ApplicationController
   # POST /chapters
   # POST /chapters.json
   def create
+     @campaments = Campament.all
     if current_user.is_oficial
       @chapter = Chapter.new(chapter_params)
 

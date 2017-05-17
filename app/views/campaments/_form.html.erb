@@ -1,15 +1,4 @@
 <%= bootstrap_form_for @campament, html: { multipart: true } do |f| %>
-  <% if @campament.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@campament.errors.count, "error") %> prohibited this campament from being saved:</h2>
-
-      <ul>
-      <% @campament.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="form-group">
     <%= f.text_field :name, label: "Nombre" %>

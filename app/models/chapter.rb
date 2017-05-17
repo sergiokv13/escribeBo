@@ -10,6 +10,10 @@ class Chapter < ActiveRecord::Base
   has_many :knights, foreign_key: 'priory_id', class_name: 'User'
   has_many :chevaliers, foreign_key: 'court_id', class_name: 'User'
 
+
+  validates :chapter_name, :presence => true
+  validates :image, :presence => true
+
   def announcements_to_aprove
     announcements = Announcement.all
     announcements_to_be_aproved = Array.new

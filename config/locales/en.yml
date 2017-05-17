@@ -70,9 +70,21 @@ en:
               blank: "es obligatorio"
             role:
               blank: "es obligatorio"
+            iniciacion:
+              blank: "es obligatorio"
+            registration_form:
+              blank: "es obligatorio"
         transaction:
           attributes:
             image:
+              blank: "es obligatorio"
+            name:
+              blank: "es obligatorio"
+            description:
+              blank: "es obligatorio"
+            mount:
+              blank: "es obligatorio"
+            receipt_number:
               blank: "es obligatorio"
         oficer_an:
           attributes:
@@ -81,4 +93,16 @@ en:
             title:
               blank: "es obligatorio"
             deadline:
+              blank: "es obligatorio"
+        campament:
+          attributes:
+            name:
+              blank: "es obligatorio"
+            image:
+              blank: "es obligatorio"
+        chapter:
+          attributes:
+            chapter_name:
+              blank: "es obligatorio"
+            image:
               blank: "es obligatorio"

@@ -24,8 +24,9 @@ class User < ActiveRecord::Base
   belongs_to :campament
   has_many :transactions
 
-  validates :cellphone, phone: true
-  validates :phone, phone: { possible: true, types: [:voip, :mobile] }
+  validates :registration_form, presence: true
+  validates :iniciacion, presence: true
+  
 
 
   validates :email, presence: true

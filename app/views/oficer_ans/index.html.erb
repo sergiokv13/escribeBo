@@ -1,7 +1,7 @@
 
-      <div class="jumbotron">
-        <p id="notice"><%= notice %></p>
-
+         <%if current_user.is_oficial %>
+          <%= link_to 'Crear anuncio de Oficialia Ejecutiva', new_oficer_an_path, :class => "btn btn-success"  %>
+        <%end%>
         <h1>Anuncios</h1>
 
         <div class="table-responsive">
@@ -49,12 +49,5 @@
         <br>
         <center><%= will_paginate @users , :previous_label => "Anterior", :next_label => "Siguiente" %></center>
         <br>
-        <%if current_user.is_oficial %>
-          <%= link_to 'Crear anuncio de Oficialia Ejecutiva', new_oficer_an_path %>
-        <%end%>
       </div>
-  </div>
-
-
-
 

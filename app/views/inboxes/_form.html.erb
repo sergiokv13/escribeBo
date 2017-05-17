@@ -19,10 +19,10 @@
   </div>
 
   <div class="field">
-    <% if @user_id != nil && @user_id != 0%>
-      <%= f.text_field :user2_name, :value => User.find(@user_id).fullName, :id => 'user_name',:label=>"Enviar a" , :autocomplete => :off%>
+    <% if @user_id != nil && @user_id != 0 %>
+      <%= f.text_field :user2_name, :value => User.find(@user_id).fullName, :id => 'user2_id',:label=>"Enviar a" , :autocomplete => :off%>
     <%else%>
-      <%= f.text_field :user2_name,  :value=>"",:placeholder => "Ingresar nombre", :id => 'user_name',:label=>"Enviar a" , :autocomplete => :off%>
+      <%= f.text_field :user2_name,  :value=>"",:placeholder => "Ingresar nombre", :id => 'user2_id',:label=>"Enviar a" , :autocomplete => :off%>
     <%end%>
   </div>
 
