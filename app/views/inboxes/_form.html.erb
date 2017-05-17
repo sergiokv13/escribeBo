@@ -27,7 +27,7 @@
   </div>
 
 
-  <div id="user_field" hidden=true; style="height:100px; overflow-y:scroll;background-color:white;margin-top:-20px;margin-bottom:20px;padding:10px;">
+  <div id="user_field" hidden=true; style="height:100px; overflow-y:scroll;background-color:white;margin-top:-20px;margin-bottom:20px;padding:10px;border:solid 1px grey;">
     <%if @user != nil %>
       <strong><%= @user.fullName %><br></strong>
     <% end %>
@@ -69,6 +69,17 @@
         $('#user_field').show();
   });
 
+  $(window).click(function() {
+    $('#user_field').hide();
+  });
+
+  $('#user_field').click(function(event){
+      event.stopPropagation();
+  });
+
+  $('#user_name').click(function(event){
+      event.stopPropagation();
+  });
 
 
 </script>

@@ -39,36 +39,48 @@ class ChargesController < ApplicationController
 
   def update_drop_gestion
 
-    if params[:capitulo_check_box] != nil
-      Charge.drop_capitulo(params[:gestion])
+
+    if params[:capitulo_check_box] == nil && params[:priorato_check_box] == nil && params[:corte_check_box] == nil 
+        flash[:notice] = "Por lo menos una de las gestiones tiene que ser reiniciada."
+        redirect_to :back
+    else
+
+      if params[:id_oficial] != "" 
+        if params[:capitulo_check_box] != nil
+          Charge.drop_capitulo(params[:gestion])
+        end
+
+        if params[:priorato_check_box] != nil
+          Charge.drop_priorato(params[:gestion])
+        end
+
+        if params[:corte_check_box] != nil
+          Charge.drop_corte(params[:gestion])
+        end
+
+        if params[:corte_check_box] != nil
+          Charge.drop_departamento(params[:gestion])
+        end
+
+        if params[:corte_check_box] != nil
+          Charge.drop_gabinete(params[:gestion])
+        end
+
+        cargo_oficial = Charge.new
+        cargo_oficial.ente = "Gabinete"
+        cargo_oficial.title = "Oficial Ejecutivo"
+        cargo_oficial.user_id = params[:id_oficial]
+        cargo_oficial.campament_id = 1
+        cargo_oficial.save
+
+
+        flash[:notice] = "La gestion fue reiniciada."
+        redirect_to "/"
+      else
+        flash[:notice] = "No se pudo reiniciar la gestión porque el usuario no existe."
+        redirect_to :back
+      end
     end
-
-    if params[:priorato_check_box] != nil
-      Charge.drop_priorato(params[:gestion])
-    end
-
-    if params[:corte_check_box] != nil
-      Charge.drop_corte(params[:gestion])
-    end
-
-    if params[:corte_check_box] != nil
-      Charge.drop_departamento(params[:gestion])
-    end
-
-    if params[:corte_check_box] != nil
-      Charge.drop_gabinete(params[:gestion])
-    end
-
-    cargo_oficial = Charge.new
-    cargo_oficial.ente = "Gabinete"
-    cargo_oficial.title = "Oficial Ejecutivo"
-    cargo_oficial.user_id = params[:id_oficial]
-    cargo_oficial.campament_id = 1
-    cargo_oficial.save
-
-
-    flash[:notice] = "La gestion fue reiniciada."
-    redirect_to "/"
   end
 
   # POST /charges

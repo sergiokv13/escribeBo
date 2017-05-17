@@ -13,7 +13,6 @@ class Chapter < ActiveRecord::Base
 
 
   validates :chapter_name, :presence => true
-  validates :image, :presence => true
 
   def announcements_to_aprove
     announcements = Announcement.all
