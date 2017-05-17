@@ -1,9 +1,9 @@
 <%= bootstrap_form_for @premiacion do |f| %>
   <div class="form-group">
-    <%= f.text_field :title ,class:"form-control"%>
+    <%= f.text_field :title ,class:"form-control", label: "Título" %>
   </div>
   <div class="form-group">
-    <%= f.date_field :date_of ,class:"form-control"%>
+    <%= f.date_field :date_of , class: "form-control", label: "Fecha" %>
   </div>
   <div class="actions">
     <%= f.submit "Premiar", class: "btn btn-success" %>

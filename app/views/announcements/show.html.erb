@@ -4,6 +4,13 @@
         <p>
           <%= @announcement.content %>
         </p>
+
+
+        <p>
+          <strong>Dirijido a usuarios de tipo:</strong> <%= @announcement.degrees + @announcement.charges %>
+        </p>
+
+
         <h5><strong>Publicado por:</strong> <%= link_to @announcement.user.fullName, '/profile/' + @announcement.user.id.to_s %></h5>
         <div class="row">
           <div class="col-lg-4"></div>
