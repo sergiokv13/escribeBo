@@ -6,8 +6,8 @@
 			<h1><%=@chapter.chapter_name%></h1>
 			<h3><%=@chapter.campament.name%></h3>
 			<hr class="divider">
-			<div class="col-lg-4"></div>
-			<div class="col-lg-4">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
 				<%= form_tag("/update_gestion/"+@chapter.id.to_s,method:"post") do %>
 					<div class="form-group">
 					<% if @chapter.chapter_type == "Capitulo" %>
@@ -27,13 +27,29 @@
 				      <%= label_tag :presidente_consejo_consultivo %>
 				      <%= select_tag(:presidente_consejo_consultivo , options_from_collection_for_select(@posibles_presidente,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar presidente") %>
 				   </div>
-				    <div class="actions">
-				      <%= submit_tag "Actualizar gestion", class: "btn btn-success" %>
-				      <%= link_to "Atrás", :back, class: "btn btn-danger" %>
-				    </div>
+				    <div class="actions" onmouseover="checkFields()">
+		    	      <%= submit_tag "Actualizar gestión", class: "btn btn-success", id: "boton" %>
+		    	      <%= link_to "Atrás", '/chapters', class: "btn btn-danger" %>
+		    	    </div>
 				<%end%>
 		  </div>
 	  </div>
 	</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	function checkFields() {
+		if ($('#id_encargado').val().length == 0 || $('#presidente_consejo_consultivo').val().length == 0){
+			$('#boton').attr('disabled', 'disabled');
+			$('#boton').attr('value', 'Todos los campos son obligatorios');
+			$('#boton').removeClass( "btn-success" ).addClass( "btn-danger" );
+		}
+		if ($('#id_encargado').val().length > 0 && $('#presidente_consejo_consultivo').val().length > 0){
+			$('#boton').attr('value', 'Actualizar');
+			$('#boton').removeClass( "btn-danger" ).addClass( "btn-success" );
+			$('#boton').removeAttr('disabled');
+		}
+	}
+</script>

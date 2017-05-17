@@ -113,7 +113,8 @@ for i in 2..10
 				deputy_aproved:true,
 				oficial_aproved:true,
 				cellphone: '59179777396',
-				phone: '59144229865'
+				phone: '59144229865',
+				iniciacion: Faker::Date.between(Date.new(1997,1,1), Date.new(2017,5,1))
 			)
 		Degree.create(
 			title: "Iniciatico",

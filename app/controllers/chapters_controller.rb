@@ -96,25 +96,25 @@ class ChaptersController < ApplicationController
     if params[:id_encargado] != ""
       @encargado = User.find(params[:id_encargado])
       @chapter.chapter_president = @encargado
+      @charge = Charge.new
+      @charge.user = @encargado
+      
+      if @chapter.chapter_type == "Capitulo"
+        @charge.title = "Maestro Consejero"
+        @charge.ente = "Capitulo"
+      end
+      if @chapter.chapter_type == "Priorato"
+        @charge.title = "Ilustre Comendador Caballero"
+        @charge.ente = "Priorato"
+      end
+      if @chapter.chapter_type == "Corte"
+        @charge.title = "Gran Comendador Chevalier"
+        @charge.ente = "Corte"
+      end
 
-    @charge = Charge.new
-    @charge.user = @encargado
-    if @chapter.chapter_type == "Capitulo"
-      @charge.title = "Maestro Consejero"
-      @charge.ente = "Capitulo"
-    end
-    if @chapter.chapter_type == "Priorato"
-      @charge.title = "Ilustre Comendador Caballero"
-      @charge.ente = "Priorato"
-    end
-    if @chapter.chapter_type == "Corte"
-      @charge.title = "Gran Comendador Chevalier"
-      @charge.ente = "Corte"
-    end
 
-
-    @charge.chapter = @chapter
-    @charge.save
+      @charge.chapter = @chapter
+      @charge.save
 
     end
     @conPresident = User.find(params[:presidente_consejo_consultivo])

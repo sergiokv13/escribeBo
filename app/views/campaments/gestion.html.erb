@@ -5,7 +5,7 @@
 	<div class="col-lg-4">
 		<%= form_tag("/campaments/update_gestion/"+@campament.id.to_s,method:"post") do %>
 			
-		<div class="form-group">
+		<div class="form-group" >
 		<% if @campament.id != 1 %>
 	    	<%= label_tag :Delegado_regional %>
 	    	<%= select_tag(:id_delegado, options_from_collection_for_select(@posibles_delegados,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Delegado Regional") %>
@@ -20,10 +20,25 @@
 	    <% end %>
 	      <%= select_tag(:id_maestro, options_from_collection_for_select(@posibles_maestros,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Maestro Consejero") %>
 	   	</div>
-	    <div class="actions">
-	      <%= submit_tag "Actualizar gestión", class: "btn btn-success" %>
+	    <div class="actions" onmouseover="checkFields()">
+	      <%= submit_tag "Actualizar gestión", class: "btn btn-success", id: "boton" %>
 	      <%= link_to "Atrás", '/campaments', class: "btn btn-danger" %>
 	    </div>
 		<%end%>
   </div>
 </div>
+
+<script type="text/javascript">
+	function checkFields() {
+		if ($('#id_delegado').val().length == 0 || $('#id_maestro').val().length == 0){
+			$('#boton').attr('disabled', 'disabled');
+			$('#boton').attr('value', 'Todos los campos son obligatorios');
+			$('#boton').removeClass( "btn-success" ).addClass( "btn-danger" );
+		}
+		if ($('#id_delegado').val().length > 0 && $('#id_maestro').val().length > 0){
+			$('#boton').attr('value', 'Actualizar');
+			$('#boton').removeClass( "btn-danger" ).addClass( "btn-success" );
+			$('#boton').removeAttr('disabled');
+		}
+	}
+</script>
