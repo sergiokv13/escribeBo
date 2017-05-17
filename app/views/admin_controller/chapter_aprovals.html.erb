@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dLabel">
                             <li><%= link_to "Ver publicación", announcement %></li>
                             <li><%= link_to "Aprobar mostrar publicación", '/aprove_publication/' + announcement.id.to_s %></li>
-                            <li><%= link_to "Rechazar mostrar publicación", '/aprove_publication/' + announcement.id.to_s %></li>
+                            <li><%= link_to 'Rechazar mostrar publicación', announcement, method: :delete, data: { confirm: 'Estas seguro que rechazar la publicación?' }  %></li>
                         </ul>
                       </div>
                   </td>
