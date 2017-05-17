@@ -9,6 +9,7 @@ class TransactionsController < ApplicationController
     else
       @transactions = current_user.transactions
     end
+      @transactions = @transactions.paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /transactions/1
@@ -83,6 +84,7 @@ class TransactionsController < ApplicationController
     else
       @transactions = current_user.pendingTransactions
     end
+    @transactions = @transactions.paginate(:page => params[:page], :per_page => 10)
   end
 
   def aprovedTransactions
@@ -92,6 +94,7 @@ class TransactionsController < ApplicationController
       @transactions = current_user.aprovedTransactions
     end
     @balance = Transaction.balance
+    @transactions = @transactions.paginate(:page => params[:page], :per_page => 10)
   end
 
   def reports

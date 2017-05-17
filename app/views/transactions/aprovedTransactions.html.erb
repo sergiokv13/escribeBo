@@ -3,7 +3,6 @@
         <h1 class="center-title">Transacciones Archivadas</h1>
 
         <% if current_user.is_oficial or current_user.is_diputado %>
-          <hr class="divider">
           <h3>Balance hasta la fecha:</h3>
           Bs. <%= @balance %>
         <% end %>
@@ -12,6 +11,7 @@
           <table class="table table-hover table-bordered table-striped">
             <thead>
               <tr>
+                <th></th>
                 <th>Tipo</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
@@ -19,13 +19,21 @@
                 <th>Usuario</th>
                 <th>Estado</th>
                 <th>Fecha</th>
-                <th>Operaciones</th>
               </tr>
             </thead>
 
             <tbody>
               <% @transactions.each do |transaction| %>
                 <tr>
+                  <td>
+                        <div class="dropdown config-bt llavecita">
+                          <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          </span>
+                          <ul class="dropdown-menu" aria-labelledby="dLabel">
+                              <li><%= link_to 'Ver detalle', transaction %></li>
+                          </ul>
+                      </div>
+                  </td>
                   <td><%= transaction.transaction_type %></td>
                   <td><%= transaction.name %></td>
                   <td><%= transaction.description %></td>
@@ -33,10 +41,12 @@
                   <td><%= link_to transaction.user.fullName, '/profile/'+transaction.user.id.to_s %></td>
                   <td><%= transaction.status %></td>
                   <td><%= transaction.created_at.to_date %></td>
-                  <td><%= link_to 'Ver detalle', transaction %></td>
                 </tr>
               <% end %>
             </tbody>
           </table>
           <br>
         </div>
+        <center>
+        <%= will_paginate @transactions, :next_label => "Siguiente", :previous_label => "Anterior" %>
+      </center>

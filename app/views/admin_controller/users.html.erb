@@ -28,20 +28,32 @@
             <table class="table table-bordered table-hover table-striped">
               <thead>
                 <tr>
+                  <th></th>
+                  <th></th>
                   <th>Nombre</th>
                   <th>DeMolay ID</th>
                   <th>Rol</th>
                   <th>CI</th>
                   <th>Correo Electrónico</th>
                   <th>Capítulo</th>
-                  <th>Fecha de Nacimiento</th>
                   <th>Estado</th>
-                  <th>Operaciones</th>
                 </tr>
               </thead>
               <tbody>
                 <% @users.each do |user| %>
                   <tr>
+                    <td colspan="2">
+                      <div class="dropdown config-bt llavecita">
+                        <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        </span>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                          <% if current_user.is_oficial or current_user.id == user.id %>
+                              <li><a href="/profile/<%= user.id %>"> Ver</a></li>
+                              <li><%= link_to "Editar", '/users/' + user.id.to_s + '/edit' %></li>
+                          <% end %>
+                        </ul>
+                      </div>
+                    </td>
                     <td><a href="/profile/<%= user.id %>"> <%= user.fullName %></a></td>
                     <td><%= user.demolayID %></td>
                     <td><%= user.role %></td>
@@ -54,11 +66,7 @@
                         -
                       </td>
                     <% end %>
-                    <td><%= user.birth_date %></td>
                     <td><%= user.status %></td>
-                    <% if current_user.is_oficial or current_user.id == user.id %>
-                      <td><%= link_to "Editar", '/users/' + user.id.to_s + '/edit' %></td>
-                    <% end %>
                   </tr>
                 <% end %>
               </tbody>
@@ -66,7 +74,9 @@
           </div>
         </div>
       </div>
-      <%= will_paginate @users %>
+      <center>
+        <%= will_paginate @users, :next_label => "Siguiente", :previous_label => "Anterior" %>
+      </center>
 
 <script type="text/javascript">
   $( "#campament_id" ).change(function() {
