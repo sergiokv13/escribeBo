@@ -5,16 +5,16 @@
   <%= bootstrap_form_for @user, url: "/createUser", multipart: true do |f| %>
 
         <div class="form-group col-lg-12">
-          <%= f.email_field :email, class: "form-control",label: "(*) Email"%>
+          <%= f.email_field :email, class: "form-control",label: "(*) Email", placeholder: "Ingresa el correo electrónico" %>
         </div>
         <div class="clear"></div>
         <div class="form-group col-lg-6">
-          <%= f.text_field :name, class: "form-control",label: "(*) Nombres" %>
+          <%= f.text_field :name, class: "form-control",label: "(*) Nombres", placeholder: "Ingresa los nombres" %>
         </div>
 
         <div class="form-group col-lg-6">
 
-          <%= f.text_field :lastname, class: "form-control",label: "(*) Apellidos" %>
+          <%= f.text_field :lastname, class: "form-control",label: "(*) Apellidos", placeholder: "Ingresa los apellidos" %>
         </div>
         <div class="clear"></div>
 
@@ -23,10 +23,10 @@
         </div>
 
         <div class="form-group col-lg-4">
-          <%= f.text_field :ci, class: "form-control" ,label: "(*) Carnet de identidad"%>
+          <%= f.text_field :ci, class: "form-control" ,label: "(*) Carnet de identidad", placeholder: "Ingresa el carnet de identidad" %>
         </div>
         <div class="form-group col-lg-4">
-          <%= f.text_field :demolayID, class: "form-control" ,label: "Id en DeMolay internacional"%>
+          <%= f.text_field :demolayID, class: "form-control" ,label: "Id en DeMolay internacional", placeholder: "Ingresa el Id en DeMolay internacional" %>
         </div>
         <div class="clear"></div>
         <div class="form-group col-lg-4">
@@ -39,22 +39,22 @@
 
         <div class="form-group col-lg-4">
 
-          <%= f.text_field :city, class: "form-control",label: "Provincia" %>
+          <%= f.text_field :city, class: "form-control",label: "Provincia", placeholder: "Ingresa la provincia" %>
         </div>
 
         <div class="clear"></div>
         <div class="form-group col-lg-4">
-          <%= f.text_field :adress, class: "form-control",label: "Dirección" %>
+          <%= f.text_field :adress, class: "form-control",label: "Dirección", placeholder: "Ingresa la dirección" %>
         </div>
 
         <div class="form-group col-lg-4">
 
-          <%= f.text_field :phone, class: "form-control",label: "Teléfono fijo"%>
+          <%= f.text_field :phone, class: "form-control",label: "Teléfono fijo", placeholder: "Ingresa el teléfono fijo" %>
         </div>
 
         <div class="form-group col-lg-4">
 
-          <%= f.text_field :cellphone, class: "form-control" ,label: "Teléfono celular"%>
+          <%= f.text_field :cellphone, class: "form-control" ,label: "Teléfono celular", placeholder: "Ingresa el celular" %>
         </div>
         <div class="clear"></div>
         <div class="form-group col-lg-12">
@@ -72,7 +72,7 @@
             </div>
 
             <div class="form-group col-lg-4">
-              <%= f.number_field :godfather_id, class: "form-control",label: "Padrino" %>
+              <%= f.number_field :godfather_id, class: "form-control",label: "Padrino", placeholder: "Ingresa el Id del padrino" %>
             </div>
 
             <div class="form-group col-lg-4">
@@ -81,7 +81,7 @@
             <div class="clear"></div>
 
             <div class="form-group col-lg-6">
-              <%= f.text_field :father_name, class: "form-control",label: "Nombre del padre"  %>
+              <%= f.text_field :father_name, class: "form-control",label: "Nombre del padre", placeholder: "Ingresa el nombre del padre"  %>
             </div>
 
             <div class="form-group col-lg-6">
@@ -90,27 +90,27 @@
             </div>
             <div class="clear"></div>
             <div class="form-group col-lg-6">
-              <%= f.text_field :father_adress, class: "form-control" ,label: "Dirección del padre"%>
+              <%= f.text_field :father_adress, class: "form-control" ,label: "Dirección del padre", placeholder: "Ingresa la dirección del padre"%>
             </div>
 
             <div class="form-group col-lg-6">
 
-              <%= f.text_field :father_mail, class: "form-control" ,label: "Email del padre"%>
+              <%= f.text_field :father_mail, class: "form-control" ,label: "Email del padre", placeholder: "Ingresa el correo electrónico del padre" %>
             </div>
             <div class="clear"></div>
             <div class="form-group col-lg-4">
 
-              <%= f.text_field :mather_name, class: "form-control",label: "Nombre de la madre" %>
+              <%= f.text_field :mather_name, class: "form-control",label: "Nombre de la madre" , placeholder: "Ingresa el nombre de la madre"%>
             </div>
 
             <div class="form-group col-lg-4">
 
-              <%= f.text_field :mather_adress, class: "form-control" ,label: "Dirección de la madre"%>
+              <%= f.text_field :mather_adress, class: "form-control" ,label: "Dirección de la madre", placeholder: "Ingresa la dirección de la madre"%>
             </div>
 
             <div class="form-group col-lg-4">
 
-              <%= f.text_field :mather_mail, class: "form-control",label: "Email de la madre" %>
+              <%= f.text_field :mather_mail, class: "form-control",label: "Email de la madre", placeholder: "Ingresa el correo electrónico de la madre"%>
             </div>
 
 
@@ -125,17 +125,17 @@
 
             <div class="form-group col-lg-6">
 
-              <%= f.text_field :nombre_esposa, class: "form-control" ,label: "Nombre de la esposa"%>
+              <%= f.text_field :nombre_esposa, class: "form-control" ,label: "Nombre de la esposa", placeholder: "Ingresa el nombre de la esposa"%>
             </div>
             <div class="clear"></div>
              <div class="form-group col-lg-6">
 
-              <%= f.text_field :taller_nombre, class: "form-control" ,label: "Nombre de taller al que pertenece"%>
+              <%= f.text_field :taller_nombre, class: "form-control" ,label: "Nombre de taller al que pertenece", placeholder: "Ingresa el nombre del taller al que pertenece"%>
             </div>
 
             <div class="form-group col-lg-6">
 
-              <%= f.text_field :taller_numero, class: "form-control" ,label: "Numero del taller al que pertenece"%>
+              <%= f.text_field :taller_numero, class: "form-control" ,label: "Numero del taller al que pertenece", placeholder: "Ingresa el número del taller"%>
             </div>
             <div class="clear"></div>
         </span>
