@@ -41,14 +41,21 @@ class CampamentsController < ApplicationController
     @publicaciones_para_mostrar = Array.new
     publicaciones = @campament.announcements
     if current_user.is_oficial
-      @publicaciones_para_mostrar = publicaciones
+      @publicaciones_para_mostrar = publicaciones.paginate(page: params[:page], per_page: 1)
     else
       publicaciones.each do |publicacion|
         if publicacion.aprobada(current_user)
           @publicaciones_para_mostrar.push(publicacion)
         end
       end
+      @publicaciones_para_mostrar = @publicaciones_para_mostrar.paginate(page: params[:page], per_page: 10)
     end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   # GET /campaments/new

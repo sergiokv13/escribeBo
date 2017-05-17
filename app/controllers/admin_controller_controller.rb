@@ -116,6 +116,7 @@ class AdminControllerController < ApplicationController
 	def search
 		search = params[:search]
 		@users = User.where("name LIKE ? or lastname LIKE ? or full_name LIKE ? or ci LIKE ? ","%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+		@users = @users.paginate(page: params[:page], per_page: 10)
 		@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
 	end
 

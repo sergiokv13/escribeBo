@@ -8,7 +8,7 @@
         <%if publicacion.chapter!=nil%>
            - <a href="/chapters/<%=publicacion.chapter.id%>"><%=publicacion.chapter.chapter_name%></a>
         <%end%>
-        <h2 ><%=publicacion.subject%></h2>
+        <h3 ><%=publicacion.subject%></h3>
         <p>
           <%=publicacion.content%>
         </p>
@@ -23,6 +23,11 @@
        <% end %>
        <br>
         <strong>Publicado el: </strong><%= publicacion.created_at.to_date %>
+          <% if (@chapter.chapter_president != nil && @chapter.chapter_president.id == current_user.id)  or (@chapter.chapter_consultant_president != nil && @chapter.chapter_consultant_president.id == current_user.id ) or current_user.is_oficial %>
+            <br><%= link_to 'Borrar publicación', publicacion, method: :delete, data: { confirm: '¿Está seguro que desea borrar esta publicación?'} %>
+          <% end %>
       </div>
     </div>
   <%end%>
+
+

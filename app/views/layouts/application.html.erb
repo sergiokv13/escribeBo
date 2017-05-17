@@ -99,7 +99,7 @@
                       <li><a href="/profile/<%=current_user.id.to_s%>">Perfil</a></li>
                       <li><a href="/users/edit">Editar Perfil</a></li>
                       <% if current_user.is_oficial %>
-                        
+                        <li><a href="/reiniciar_gestion">Reiniciar Gestión</a></li>
                         <li><a href="/reports">Reportes</a></li>
                       <%end%>
                       <li><%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete) %></li>
@@ -138,15 +138,24 @@
                 <% current_user.chapter_user_follows.each do |f| %>
                   <a class="side-font" href="/chapters/<%= f.chapter.id %>" data-no-turbolink><%= f.chapter.chapter_name %> (<%= f.chapter.announcements.count - f.number_views %>)</a><br />
                 <% end %>
+                  <% if current_user.chapter_user_follows.all.empty? %>
+                    No sigues ningun capitulo. Puedes explorar <a href="/chapters">aca.</a>
+                  <% end %>
                   <h3>Departamentos que sigo</h3>
                   <% current_user.campaments_user_follows.each do |f| %>
-                    <a class="side-font" href="/campaments/<%= current_user.campament.id %>" data-no-turbolink><%= current_user.campament.name %> <%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
+                    <a class="side-font" href="/campaments/<%= f.campament_id %>" data-no-turbolink><%= current_user.campament.name %> <%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
+                  <% end %>
+                  <% if current_user.campaments_user_follows.all.empty? %>
+                    No sigues ningun campamento. Puedes explorar <a href="/campaments">aca.</a>
                   <% end %>
                 <h3>Últimos mensajes</h3>
                   <% current_user.inboxes.each do |inbox| %>
                     <a class="side-font" href="/users/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
                     <span class="side-font"><%= truncate(inbox.content.html_safe, length: 50) %></span>
                     <a class="side-font" href="/inboxes/<%= inbox.id %>">Ver más</a><br />
+                  <% end %>
+                  <% if current_user.inboxes.all.empty? %>
+                    No tienes mensasjes. Empieza a comunicarte.
                   <% end %>
               </div>
           </div>
