@@ -185,8 +185,15 @@ class ChaptersController < ApplicationController
   end
 
   def chapter_users
-    chapter = Chapter.find(params[:id])
-    @users = chapter.chapter_users
+    @chapter = Chapter.find(params[:id])
+    @user_type = params[:type].to_s
+    @user_type = @user_type.to_i
+    if @user_type == 1
+      @users = @chapter.chapter_users
+    else
+      @users = @chapter.consultants
+    end
+    
   end
 
   private
