@@ -24,7 +24,9 @@
           <% if @chapter.chapter_type == "Corte" %>
             <span class="side-font">El Gran Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.</span>
           <% end %>
-          <%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea poner en sueño este capitulo?' } %>
+          <% if current_user.is_oficial %>
+            <%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea poner en sueño este capitulo?' } %>
+          <% end %>
         <% else %>
           <strong>La gestión no fue actualizada.<strong>
           <% if current_user.is_oficial %>
@@ -70,7 +72,7 @@
               </div>
               <br>
             <% end %><br>
-            <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s %>
+            <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s + '/1' %>
           </div>
           <% if !@chapter.consultants.empty? %>
             <div class="col-lg-5 info">
@@ -88,7 +90,7 @@
               </div>
               <% end %>
               <br>
-               <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s %>
+               <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s + '/2' %>
             </div>
             
           <% end %>

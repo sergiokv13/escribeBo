@@ -1,5 +1,10 @@
 
-    <h1 class="center-title">Listado de usuarios de </h1>
+    <% if @user_type == 1 %>
+      <h1 class="center-title">Listado de usuarios del <%= @chapter.chapter_name %></h1>
+    <% else %>
+      <h1 class="center-title">Listado de consultores del <%= @chapter.chapter_name %></h1>
+    <% end %>
+  
       <div class="table-responsive">
         <table class="table table-bordered table-hover table-striped">
           <thead>

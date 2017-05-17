@@ -74,6 +74,8 @@ en:
               blank: "es obligatorio"
             registration_form:
               blank: "es obligatorio"
+            current_password:
+              blank: "es obligatoria"
         transaction:
           attributes:
             image:
