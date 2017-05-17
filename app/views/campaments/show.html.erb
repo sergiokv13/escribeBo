@@ -1,38 +1,53 @@
 
+    <h1 class="text-center"><%= @campament.name %> &nbsp
+      <% if @current_user.is_oficial %>
+        <span class="dropdown config-bt llavecita">
+              <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              </span>
+              <ul class="dropdown-menu" aria-labelledby="dLabel">
+                    <li> <%= link_to 'Gestionar', '/campaments/gestion/' + @campament.id.to_s %></li>
+                    <li> <%= link_to 'Editar', '/campaments/' + @campament.id.to_s + '/edit'%></li>
+              </ul>
+        </span>
+      <% end %>
 
-    <h1 class="center-title"><%= @campament.name %></h1>
+    </h1>
+     <hr id="divider"></hr>
 
+    <br><br>
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-4 col-md-12">
         <center>
-          <%= image_tag @campament.image.url(:original), class: "img-responsive" %>
+           <%= image_tag @campament.image.url(:original), class: "img-responsive" %>
         </center>
       </div>
-      <div class="col-lg-4">
-
-      <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
-
-        <% if @campament.id != 1 %>
-            El Maestro Consejero Departamental es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Delegado Regional es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.
-        <% else %>
-          El Maestro Consejero Nacional es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Oficial Ejecutivo es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.
-        <% end %>
-        <%else%>
-          <h3>La gestión no fue actualizada</h3>
-          <% if current_user.is_oficial %>
-            <%= link_to 'Actualizar Gestión', '/campaments/gestion/' + @campament.id.to_s, class: "btn btn-primary btn-block" %>
-            <% if @campament.id != 1 %>
-            <%= link_to 'Editar Departamento', '/campaments/' + @campament.id.to_s + '/edit', class: "btn btn-warning btn-block" %>
-             <% else %>
-             <%= link_to 'Editar Jurisdicción', '/campaments/' + @campament.id.to_s + '/edit', class: "btn btn-warning btn-block" %>
-              <% end %>
-          <% end %>
-        <%end%>
-        <% if current_user.follows_campament(@campament.id) %>
-          <a href="/unfollow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-primary btn-block">Dejar de Seguir</a>
-        <% else %>
-          <a href="/follow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-primary btn-block">Seguir Departamento</a>
-        <% end %>
+    
+      <div class="col-lg-5 col-md-6 col-xs-12 col-sm-6">
+          <h2>Información</h2>
+          <% if @campament.id != 1 %>
+            <p>Este es un el campamento del Departamento de <%= @campament.name %></p>
+          <%else%>
+            <p>Esta es la Jurisdicción de <%= @campament.name %></p>
+          <%end%>
+          <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
+              <% if @campament.id != 1 %>
+              <p>El Maestro Consejero Departamental es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Delegado Regional es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.</p>
+            <% else %>
+              <p>El Maestro Consejero Nacional es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Oficial Ejecutivo es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.</p>
+            <% end %>
+          <%else%>
+             <p><strong>La gestión no fue actualizada.</strong></p>
+          <%end%>
+          <center>
+             <% if current_user.follows_campament(@campament.id) %>
+              <a href="/unfollow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-danger btn-block">Seguir</a>
+            <% else %>
+              <a href="/follow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-success btn-block">Dejar de seguir</a>
+            <% end %><br><br>
+          </center>
+      </div>
+    
+      <div class="col-lg-3 col-md-6 col-xs-12 col-sm-6 info">
         <% if @campament.id != 1 %>
          <h3>Capitulos</h3>
           <% @campament.chapters.each do |c| %>
@@ -60,10 +75,12 @@
             <% end %>
           <% end %>
         <% end %>
-
-
       </div>
-    </div>
+
+</div>
+
+
+
 
      <div class="row">
       <div class="col-lg-2"></div>
