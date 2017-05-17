@@ -2,7 +2,11 @@
 <select class="form-control" name="user[chapter_id]" id="user_chapter_id">
 	<option value="">Seleccionar capítulo</option>
 	<% @chapters.each do |chapter| %>
-		<option value="<%=chapter.id%>"><%=chapter.chapter_name%></option>
+		<% if chapter.id == @chapter %>
+			<option selected="selected" value="<%=chapter.id%>"><%=chapter.chapter_name%></option>
+		<% else %>
+			<option value="<%=chapter.id%>"><%=chapter.chapter_name%></option>
+		<% end %>
 	<% end %>
 </select>
 </div>

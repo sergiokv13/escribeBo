@@ -27,7 +27,7 @@ class PremiacionsController < ApplicationController
     @premiacion = Premiacion.new(premiacion_params)
 
     if @premiacion.save
-      redirect_to :back
+      redirect_to '/premiacions'
     else
       flash[:notice] = "La premiacion no pudo ser guardada."
       redirect_to :back

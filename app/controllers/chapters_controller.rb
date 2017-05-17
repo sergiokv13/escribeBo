@@ -93,12 +93,16 @@ class ChaptersController < ApplicationController
 
   def update_gestion
     @chapter = Chapter.find(params[:id])
+    puts "=================================================="
+    puts @chapter.id
     if params[:id_encargado] != ""
       @encargado = User.find(params[:id_encargado])
+      puts "=================================================="
+      puts @encargado.id
       @chapter.chapter_president = @encargado
       @charge = Charge.new
       @charge.user = @encargado
-      
+
       if @chapter.chapter_type == "Capitulo"
         @charge.title = "Maestro Consejero"
         @charge.ente = "Capitulo"

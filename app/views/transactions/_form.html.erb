@@ -1,6 +1,6 @@
 <%= bootstrap_form_for @transaction, html: { multipart: true } do |f| %>
   <div class="form-group">
-    <%= f.text_field :name , :label => "Nombre de transacción"%>
+    <%= f.text_field :name , :label => "Nombre de transacción", placeholder: "Ingresa el nombre de la transacción" %>
   </div>
 
   <% if current_user.is_oficial %>
@@ -18,11 +18,11 @@
   </div>
 
   <div class="form-group">
-    <%= f.text_area :description , :label => "Descripción"%>
+    <%= f.text_area :description , :label => "Descripción", placeholder: "Ingresa la descripción de la transacción, no olvide ningun detalle relevante" %>
   </div>
 
   <div class="form-group">
-    <%= f.number_field :mount , :label => "Monto"%>
+    <%= f.number_field :mount , :label => "Monto", placeholder: "Ingresa el monto total" %>
   </div>
 
   <div class="form-group">
@@ -30,7 +30,7 @@
   </div>
 
   <div class="form-group">
-    <%= f.text_field :receipt_number , :label => "Numero de Comprobante"%>
+    <%= f.text_field :receipt_number , :label => "Numero de Comprobante", placeholder: "Asegurate de no ingresarlo incorrectamente" %>
   </div>
 
   <div class="actions">

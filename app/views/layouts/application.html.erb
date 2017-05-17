@@ -88,6 +88,7 @@
                         <% if current_user.is_aprovator %>
                           <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
                         <% end %>
+                        <li><a href="/premiacions">Premios </a></li>
                       </ul>
 
                   </li>
@@ -158,7 +159,7 @@
                     <a class="side-font" href="/inboxes/<%= inbox.id %>">Ver más</a><br />
                   <% end %>
                   <% if current_user.inboxes.all.empty? %>
-                    <span class="side-font">No tienes mensasjes. Empieza a comunicarte.</span>
+                    <span class="side-font">No tienes mensajes. Empieza a comunicarte.</span>
                   <% end %>
               </div>
           </div>

@@ -51,6 +51,8 @@ class AdminControllerController < ApplicationController
 		else
 			flash[:notice] = "El usuario no fue creado."
 			@roles = [['Demolay', 'Demolay'], ['No Demolay', 'No Demolay']]
+			@campament = @user.campament_id
+			@chapter = @user.chapter_id
 			@campaments = Campament.all
 			@chapters = Chapter.where(:chapter_type =>"Capitulo").all
 			@seguro = [['Asegurado con nosotros','1'],['Asegurado con terceros','0']]
@@ -216,9 +218,9 @@ class AdminControllerController < ApplicationController
 	def aprove_publication
 		publication = Announcement.find(params[:id])
 		if publication.aprove(current_user) != nil
-			redirect_to :back
+			redirect_to '/announcements/' + publication.id.to_s
 		else
-			redirect_to :back
+			redirect_to '/announcements/' + publication.id.to_s
 		end
 	end
 
