@@ -1,107 +1,119 @@
+<% if @chapter.sleep != true %>
+    <h1 class="text-center"><%= @chapter.chapter_name %> #<%= @chapter.number %> &nbsp
+      <% if @current_user.is_oficial %>
+        <span class="dropdown config-bt llavecita">
+              <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              </span>
+              <ul class="dropdown-menu" aria-labelledby="dLabel">
+                  <li> <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s%></li>
+                  <li> <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path%></li>
+                  <li><%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, data: { confirm: '¿Está seguro que desea poner en sueño este ente?' } %></li>
+              </ul>
+        </span>
+      <% end %>
 
-    <h1><%= @chapter.chapter_name %> #<%= @chapter.number %> </h1>
+    </h1>
+     <hr id="divider"></hr>
 
+
+    <br><br>
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-4 col-md-12">
         <center>
           <%= image_tag @chapter.image.url(:original), class: "img-responsive" %>
         </center>
       </div>
 
+      <div class="col-lg-8 col-md-12">
+          <h2>Información</h2>
+          <p>Este es un <%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolay activos.</p>
 
-      <% if @chapter.sleep != true %>
-      <div class="col-lg-4">
-        <h3>Información</h3>
-        <span class="side-font">Este es un <%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolay activos.</span>
-        <br>
-        <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
-          <% if @chapter.chapter_type == "Capitulo" %>
-            <span class="side-font">El Maestro Consejero es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_consultant_president.id.to_s %>.</span>
+          <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
+            <% if @chapter.chapter_type == "Capitulo" %>
+                <p>El Maestro Consejero es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_consultant_president.id.to_s %>.</p>
+              <% end %>
+              <% if @chapter.chapter_type == "Priorato" %>
+                <p>El Ilustre Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.</p>
+              <% end %>
+              <% if @chapter.chapter_type == "Corte" %>
+                <p>El Gran Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.</p>
+            <% end %>
+            <% else %>
+            <p><strong>La gestión no fue actualizada.</strong></p>
           <% end %>
-          <% if @chapter.chapter_type == "Priorato" %>
-            <span class="side-font">El Ilustre Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.</span>
-          <% end %>
-          <% if @chapter.chapter_type == "Corte" %>
-            <span class="side-font">El Gran Comendador es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %>.</span>
-          <% end %>
-          <% if current_user.is_oficial %>
-            <%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea poner en sueño este capitulo?' } %>
-          <% end %>
-        <% else %>
-          <strong>La gestión no fue actualizada.<strong>
-          <% if current_user.is_oficial %>
-            <center>
-              <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s, class: "btn btn-success btn-block" %>
-              <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path, class: "btn btn-primary btn-block" %>
-              <%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, :class => "btn btn-danger btn-block", data: { confirm: '¿Está seguro que desea poner en sueño este capitulo?' } %>
-            </center>
-          <% end %>
-        <% end %>
-
-        <% if current_user.follows_chapter(@chapter.id) %>
-          <a href="/unfollow_chapter/<%= current_user.id %>/<%= @chapter.id %>" class="btn btn-primary btn-block">Dejar de Seguir</a>
-        <% else %>
-          <a href="/follow_chapter/<%= current_user.id %>/<%= @chapter.id %>" class="btn btn-primary btn-block">Seguir Capítulo</a>
-        <% end %>
+           <center>
+                  <% if current_user.follows_chapter(@chapter.id) %>
+                    <a href="/unfollow_chapter/<%= current_user.id %>/<%= @chapter.id %>" class="btn btn-danger btn-block">Dejar de Seguir</a>
+                  <% else %>
+                    <a href="/follow_chapter/<%= current_user.id %>/<%= @chapter.id %>" class="btn btn-success btn-block">Seguir Ente</a>
+                  <% end %><br><br>
+          </center>
+        </div>
       </div>
 
 
-    <div class="row">
-      <div class="col-lg-2"></div>
-      <div class="col-lg-8">
-        <div class="row">
-          <div class="col-lg-5 info">
-            <% if @chapter.chapter_type == "Priorato" %>
-              <h3>Caballeros</h3>
-            <% end %>
-            <% if @chapter.chapter_type == "Corte" %>
-              <h3>Chevaliers</h3>
-            <% end %>
-            <% if @chapter.chapter_type == "Capitulo" %>
-              <h3>Miembros</h3>
-            <% end %>
-            Algunos de los miembros actuales son:<br><br>
-            <% @chapter.chapter_users.take(4).each do |dm| %>
-              <div class="row">
-                <div class="col-lg-2">
-                  <%= image_tag dm.image.url(:medium), class: "img-responsive" %>
-                </div>
-                <div class="col-lg-10">
-                  <%= link_to dm.fullName, '/profile/'+dm.id.to_s %>
-                </div>
-              </div>
-              <br>
-            <% end %><br>
-            <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s + '/1' %>
-          </div>
-          <% if !@chapter.consultants.empty? %>
-            <div class="col-lg-5 info">
-              <h3>Consultores</h3>
-              Algunos de los consultores actuales son:<br><br>
-              <% @chapter.consultants.take(4).each do |ct| %>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <%= image_tag ct.image.url(:medium), class: "img-responsive" %>
-                  </div>
-                  <div class="col-lg-10">
-                    <%= link_to ct.fullName, '/profile/'+ct.id.to_s %>
-                  </div>
-                  <br><br>
-              </div>
-              <% end %>
-              <br>
-               <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s + '/2' %>
+    <div class="row ">
+      <div class="col-lg-4 hidden-xs hidden-md hidden-sm info">
+        <% if @chapter.chapter_type == "Priorato" %>
+          <h3>Caballeros</h3>
+        <% end %>
+        <% if @chapter.chapter_type == "Corte" %>
+          <h3>Chevaliers</h3>
+        <% end %>
+        <% if @chapter.chapter_type == "Capitulo" %>
+          <h3>Algunos miembros</h3>
+        <% end %>
+        <% @chapter.chapter_users.take(6).each do |dm| %>
+          <div class="row">
+            <div class="col-lg-2">
+              <%= image_tag dm.image.url(:medium), class: "img-responsive" %>
             </div>
-            
-          <% end %>
+            <div class="col-lg-10">
+              <%= link_to dm.fullName, '/profile/'+dm.id.to_s %>
+            </div>
+          </div>
+          <br>
+        <% end %>
+        <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s + '/1' %>
+      </div>
+          
+      <div class="col-lg-4 hidden-xs hidden-md hidden-sm info">
+        <% if !@chapter.consultants.empty? %>
+        <h3>Algunos consultores</h3>
+        <% @chapter.consultants.take(6).each do |ct| %>
+          <div class="row">
+            <div class="col-lg-2">
+              <%= image_tag ct.image.url(:medium), class: "img-responsive" %>
+            </div>
+            <div class="col-lg-10">
+              <%= link_to ct.fullName, '/profile/'+ct.id.to_s %>
+            </div>
         </div>
+        <br>
+        <% end %>
+         <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s + '/2' %>
+         <% end %>
+      </div>
+
+      <div class="col-lg-4 col-xs-12 col-md-12 info">
+      <h3>Social</h3>
+        <div class="row">
+          <% @chapter.chapter_users.all.reverse.take(36).each do |dm| %>
+            <div class="col-lg-2 col-xs-3 col-md-3" style="padding: 0; margin: 0;"><a href="/profile/<%=dm.id%>"><%= image_tag dm.image.url(:medium), class: "img-responsive" %></a></div>
+          <%end%>
+        </div>
+      </div> 
+          
+     </div>
+
+
         <div class="row">
           <hr class="divider">
           <%= render "formCreateAnnouncement" %>
         </div>
-      </div>
+      
 
-    </div>
+
 
     <div class="row">
       <div class="col-lg-2"></div>
@@ -120,13 +132,24 @@
     </div>
 
 <% else %>
- <div class="col-lg-4">
-  <h3>El capitulo esta en sueños.</h3>
-  <% if current_user.is_oficial %>
-    <a href="/chapters/wake/<%=@chapter.id%>">Despertar Capitulo</a>
-  <% end %>
+
+
+
+<div class="row">
+      <div class="col-lg-4">
+        <center>
+          <%= image_tag @chapter.image.url(:original), class: "img-responsive" %>
+        </center>
+      </div>
+
+       <div class="col-lg-4">
+        <h3>El capitulo esta en sueños.</h3>
+        <% if current_user.is_oficial %>
+          <a href="/chapters/wake/<%=@chapter.id%>">Despertar Capitulo</a>
+        <% end %>
+      </div>
 </div>
 <% end %>
 
-</div>
+
 

@@ -17,6 +17,9 @@
  */
 
 
+.devider{
+  border: 1px grey;
+}
 
  body{
   color: #071A33;
