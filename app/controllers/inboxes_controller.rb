@@ -53,7 +53,7 @@ class InboxesController < ApplicationController
     @inbox.seen = false
     @inbox.inbox_hidden = false
     if @inbox.user2_id == nil
-      @inbox.errors.add(:user2_id, "Not valid")
+      flash[:notice] = "El destinatario no es valido."
     end
     respond_to do |format|
       if @inbox.save

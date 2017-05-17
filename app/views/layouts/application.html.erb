@@ -71,6 +71,7 @@
                  <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-credit-card" aria-hidden="true"></span><span class="caret"></span></a>
                   <ul class="dropdown-menu">
+                    <li><a href="/mis_transacciones">Mis transacciones</a></li>
                     <li><a href="/transactions/new">Crear transacción</a></li>
                     <% if current_user.is_oficial %>
                       <li><a href="/pendingTransactions">Pendientes</a></li>
@@ -192,7 +193,7 @@
                       <%end%>
                     <% end %>
                   <% else %>
-                    No hay anuncios para la fecha.
+                    <span class="side-font"> No hay anuncios para la fecha.</span>
                   <%end%>
                 </div>
               </div>

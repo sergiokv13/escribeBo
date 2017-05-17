@@ -120,6 +120,10 @@ class TransactionsController < ApplicationController
     @transactions
   end
 
+  def mis_transacciones
+    @transactions = current_user.transactions.paginate(:page => params[:page], :per_page => 10)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_transaction

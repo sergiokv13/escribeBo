@@ -90,6 +90,7 @@ Rails.application.routes.draw do
   get '/transactions_reports' => 'admin_controller#transactions_reports', :defaults => { :format => 'xlsx' }
 
   get '/reports' => 'admin_controller#reports'
+  get '/mis_transacciones' => "transactions#mis_transacciones"
 
   get '/block_user/:id' => 'admin_controller#block_user'
   get '/unblock_user/:id' => 'admin_controller#unblock_user'
