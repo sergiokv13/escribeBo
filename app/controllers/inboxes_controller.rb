@@ -6,6 +6,8 @@ class InboxesController < ApplicationController
   def index
     @inboxes = current_user.visible_inboxes.order(created_at: :desc)
     @enviados = current_user.sent.order(created_at: :desc)
+    @inboxes = @inboxes.paginate(:page => params[:page], :per_page => 5)
+    @enviados = @enviados.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /inboxes/1

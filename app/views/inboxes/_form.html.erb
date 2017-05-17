@@ -1,16 +1,16 @@
 <%= bootstrap_form_for @inbox, html: { multipart: true } do |f| %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.text_field :subject %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.text_area :content %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.file_field :inbox_att %>
   </div>
 
-  <div class="field" hidden="true">
+  <div class="form-group" hidden="true">
     <% if @user_id != nil && @user_id != 0%>
       <%= f.text_field :user2_id, :value => @user_id, :id => 'user_id' %>
     <%else%>
@@ -18,11 +18,11 @@
     <%end%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <% if @user_id != nil && @user_id != 0 %>
-      <%= f.text_field :user2_name, :value => User.find(@user_id).fullName, :id => 'user2_id',:label=>"Enviar a" , :autocomplete => :off%>
+      <%= f.text_field :user2_name, :value => User.find(@user_id).fullName, :id => 'user_name',:label=>"Enviar a" , :autocomplete => :off%>
     <%else%>
-      <%= f.text_field :user2_name,  :value=>"",:placeholder => "Ingresar nombre", :id => 'user2_id',:label=>"Enviar a" , :autocomplete => :off%>
+      <%= f.text_field :user2_name,  :value=>"",:placeholder => "Ingresar nombre", :id => 'user_name',:label=>"Enviar a" , :autocomplete => :off%>
     <%end%>
   </div>
 
