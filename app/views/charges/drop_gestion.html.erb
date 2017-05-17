@@ -1,21 +1,20 @@
 <%= form_tag("/update_reiniciar_gestion",method:"post") do %>
 		<div class="form-group">
 	      <%= label_tag :Oficial_ejecutivo %>
-	      <%= text_field_tag(:nombre, "",class: "form-control") %>
+	      <%= text_field_tag(:nombre, "",class: "form-control", :autocomplete => :off, required:true) %>
 
-	      <div id="chapterDiv">
-            <%= render :partial => 'names', :object => @users ,label: "Nombre"%>
-          </div>
+
+
+          <div id="chapterDiv" hidden=true; style="height:100px; overflow-y:scroll;background-color:white;margin-top:0px;margin-bottom:20px;padding:10px;border:solid 1px grey;">
+		    <%= render :partial => 'names', :object => @users ,label: "Nombre"%>
+		  </div>
+
 
           <div hidden="true">
           	<%= text_field_tag(:id_oficial) %>
           </div>
-          	
-
-	      
+       
 	    </div>
-	   	
-
 	    <div class="form-group">
 	     	<%= label_tag :Reiniciar_las_siguientes_gestiones %><br>
 	    	<%= check_box_tag(:capitulo_check_box) %>
@@ -33,10 +32,11 @@
 
 	   <div class="form-group">
 	      <%= label_tag :Gestión %>
-	      <%= text_field_tag :gestion , nil , :placeholder => "ej. II 2016" %>
+	      <%= text_field_tag :gestion , nil , :placeholder => "ej. II 2016" ,  required: true%>
 	   </div>
+	   <center><strong>Tomar en cuenta que posterior al borro de la gestión, la información no podra volver a cambiarse al estado de ahora. Porfavor mucho cuidado.</strong></center><br>
 	    <div class="actions">
-	      <%= submit_tag "Reiniciar gestión", class: "btn btn-danger" %>
+	      <%= submit_tag "Reiniciar gestión", class: "btn btn-danger"%>
 	    </div>
 <%end%>
 
@@ -58,8 +58,40 @@
   function set_oficial(id,name) {
      jQuery('#id_oficial').val(id);
      jQuery('#nombre').val(name);
-     $("#lista").hide();
+     $("#chapterDiv").hide();
   }
+
+    $('#nombre').focus(function(){
+        $('#chapterDiv').show();
+	  });
+
+	  $(window).click(function() {
+	    $('#chapterDiv').hide();
+	  });
+
+	  $('#nombre').click(function(event){
+	      event.stopPropagation();
+	  });
+
+	  $('#chapterDiv').click(function(event){
+	      event.stopPropagation();
+	  });
+
+	document.addEventListener("DOMContentLoaded", function() {
+    var elements = document.getElementsByTagName("INPUT");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+                e.target.setCustomValidity("Este campo es obligatorio.");
+            }
+        };
+        elements[i].oninput = function(e) {
+            e.target.setCustomValidity("");
+        };
+    }
+	});
+
 </script>
 
 

@@ -1,5 +1,6 @@
-<ul id="lista">
+Favor hacer click en uno de los siguientes<br>
+<% if @users!=nil%>
 	<% @users.each do |user| %>
-		<a href="#" id="sucesor" onclick="set_oficial('<%= user.id %>','<%= user.fullName %>')"><li><%= user.fullName %></li></a>
+		<a href="#" id="sucesor" onclick="set_oficial('<%= user.id %>','<%= user.fullName %>')"><strong><%= user.fullName %><br></strong></a>
 	<% end %>
-</ul>
+<% end %>

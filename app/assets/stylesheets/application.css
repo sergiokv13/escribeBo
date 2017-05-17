@@ -16,6 +16,12 @@
  *= require bootstrap
  */
 
+
+
+ body{
+  color: #071A33;
+}
+
 .llavecita{
   position: absolute;
 
@@ -101,9 +107,7 @@ span{
   margin-left: -3px;
 }
 
-body{
-  color: #071A33;
-}
+
 a { text-decoration-style: none; }
 
 div.clear {

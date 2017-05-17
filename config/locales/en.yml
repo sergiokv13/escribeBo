@@ -47,7 +47,6 @@ en:
               too_long: "es muy largo (máximo 300 caracteres)"
             user2_id:
               blank: "es obligatorio"
-              too_short: "es muy corto (mínimo 4 caracteres)"
         user:
           attributes:
             email:
