@@ -67,23 +67,21 @@
 
      <div class="row">
       <div class="col-lg-2"></div>
-      <div class="col-lg-8">
+      <div class="col-lg-8" id="my-posts-campament">
         <div class="row">
           <hr class="divider">
           <%= render "formCreateAnnouncement" %>
         </div>
         <h2 class="center-title">Publicaciones</h2>
 
-          <% @publicaciones_para_mostrar.each do |publication| %>
-            <img src="<%= publication.user.image.url %>" width="30px;"> <%= link_to publication.user.fullName, '/profile/' + publication.user.id.to_s %> publicó:
-            <h3><%= publication.subject%></h3>
-            <p>
-              <%= publication.content%>
-            </p>
-            <img src="<%= publication.image.url %>" class="img-responsive"><br>
-            <strong>Fecha de publicación:</strong> <%= publication.created_at.to_date %>
-            <hr class="divider">
-          <%end%>
+        <%= render partial: "publications", collection: @publicaciones_para_mostrar %>
+
+        <div id="infinite-scrolling">
+          <div class="apple_pagination" style="visibility: hidden;">
+            <%= will_paginate @publicaciones_para_mostrar %>
+          </div>
+        </div>
+
 
       </div>
     </div>

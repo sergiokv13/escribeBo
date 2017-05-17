@@ -24,6 +24,9 @@
           </tbody>
         <% end %>
       </table>
+      <div class="apple_pagination">
+        <%= will_paginate @users, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+      </div>
     </div>
 
     <hr class="divider">

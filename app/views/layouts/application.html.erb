@@ -140,7 +140,7 @@
                 <% end %>
                   <h3>Departamentos que sigo</h3>
                   <% current_user.campaments_user_follows.each do |f| %>
-                    <a class="side-font" href="/campaments/<%= current_user.campament.id %>" data-no-turbolink><%= current_user.campament.name %> <%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
+                    <a class="side-font" href="/campaments/<%= f.campament_id %>" data-no-turbolink><%= current_user.campament.name %> <%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
                   <% end %>
                 <h3>Últimos mensajes</h3>
                   <% current_user.inboxes.each do |inbox| %>

@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: [:show, :edit, :update, :destroy]
+  before_action :set_chapter, only: [:show, :edit, :update, :destroy, :sleep]
 
   def follow_chapter
     user = User.find(params[:user_id])
@@ -169,6 +169,16 @@ class ChaptersController < ApplicationController
   def destroy
     if current_user.is_oficial
       @chapter.sleep = true
+      
+      @chapter.save
+      redirect_to :back
+    end
+  end
+
+  def sleep
+    if current_user.is_oficial
+      @chapter.sleep = true
+      
       @chapter.save
       redirect_to :back
     end
