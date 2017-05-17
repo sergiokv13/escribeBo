@@ -4,20 +4,28 @@
           <table class="table table-bordered table-hover table-striped">
             <thead>
               <tr>
+                <th></th>
                 <th>Título</th>
                 <th>Autor</th>
-                <th colspan="3">Opciones</th>
               </tr>
             </thead>
             <tbody>
               <% @announcements_to_aprove.each do |announcement| %>
                 <tr>
+                  <td>
+                     <div class="dropdown config-bt llavecita">
+                        <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        </span>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><%= link_to "Ver publicación", announcement %></li>
+                            <li><%= link_to "Aprobar mostrar publicación", '/aprove_publication/' + announcement.id.to_s %></li>
+                            <li><%= link_to "Rechazar mostrar publicación", '/aprove_publication/' + announcement.id.to_s %></li>
+                        </ul>
+                      </div>
+                  </td>
                   <td><%= announcement.subject %></td>
                   <td><%= link_to announcement.user.fullName, '/profile/' + announcement.user.id.to_s %></td>
-                  <td><%= link_to "Ver publicación", announcement %></td>
-                  <td><%= link_to "Aprobar mostrar publicación", '/aprove_publication/' + announcement.id.to_s %>
-                  <td><%= link_to "Rechazar mostrar publicación", '/aprove_publication/' + announcement.id.to_s %>
-                  </td>
+               
                 </tr>
               <% end %>
             </tbody>

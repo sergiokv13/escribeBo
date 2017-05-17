@@ -1,12 +1,12 @@
 
       <h1>Usuarios a aprobar</h1>
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover table-striped table-bordered">
           <tbody>
             <% @users_to_approve.each do |user| %>
               <tr>
                 <td>
-                  <div class="dropdown config-bt">
+                  <div class="dropdown config-bt llavecita">
                     <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     </span>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -21,20 +21,20 @@
                 <td><%= user.role %></td>
                 <td><%= user.ci %></td>
                 <td><%= user.email %></td>
-
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
+
       <h1>Grados a aprobar</h1>
       <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover table-striped table-bordered">
           <tbody>
             <% @degrees_to_approve.each do |degree| %>
               <tr>
                 <td>
-                  <div class="dropdown config-bt">
+                  <div class="dropdown config-bt llavecita">
                     <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     </span>
                     <ul class="dropdown-menu" aria-labelledby="dLabel">

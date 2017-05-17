@@ -13,6 +13,7 @@
               <% end %>
               <th>Titulo</th>
               <th>Estado</th>
+              <th>Fecha de finalización</th>
             </tr>
           </thead>
 
@@ -21,7 +22,7 @@
               <tr>
                 <% if current_user.is_oficial %>
                   <td>
-                     <div class="dropdown config-bt">
+                     <div class="dropdown config-bt llavecita">
                       <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                       </span>
                       <ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -42,12 +43,15 @@
                     <td> Finalizada</td>
                   <%end%>
                 <% end %>
+                <td><center><%=oficer_an.deadline%><center></td>
               </tr>
             <% end %>
           </tbody>
         </table>
         <br>
-        <center><%= will_paginate @users , :previous_label => "Anterior", :next_label => "Siguiente" %></center>
+          <div class="apple_pagination">
+            <%= will_paginate @oficer_ans, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+          </div>
         <br>
       </div>
 

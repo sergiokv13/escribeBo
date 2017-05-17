@@ -301,6 +301,7 @@ class AdminControllerController < ApplicationController
 				@users.sort_by! &:status
 			end
 		end
+		@users = @users.paginate(:page => params[:page], :per_page => 10)
 	end
 
 	def users_reports

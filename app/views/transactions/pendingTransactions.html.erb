@@ -5,6 +5,8 @@
             <table class="table table-hover table-bordered table-striped">
               <thead>
                 <tr>
+
+                  <th></th>
                   <th>Tipo</th>
                   <th>Nombre</th>
                   <th>Descripción</th>
@@ -12,13 +14,28 @@
                   <th>Usuario</th>
                   <th>Estado</th>
                   <th>Fecha</th>
-                  <th colspan="4">Operaciones</th>
                 </tr>
               </thead>
 
               <tbody>
                 <% @transactions.each do |transaction| %>
                   <tr>
+
+
+                    <td>
+                        <div class="dropdown config-bt llavecita">
+                        <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        </span>
+                        <ul class="dropdown-menu" aria-labelledby="dLabel">
+                            <li><%= link_to 'Aprobar', '/aproveTransaction/' + transaction.id.to_s %></li>
+                            <li><%= link_to 'Ver detalle', transaction %></li>
+                            <li><%= link_to 'Borrar', transaction, method: :delete, data: { confirm: 'Está seguro?' }%></li>
+                            <li><%= link_to 'Editar', edit_transaction_path(transaction) %></li>
+                        </ul>
+                      </div>
+                    </td>
+
+
                     <td><%= transaction.transaction_type %></td>
                     <td><%= transaction.name %></td>
                     <td><%= transaction.description %></td>
@@ -26,23 +43,17 @@
                     <td><%= transaction.user.fullName %></td>
                     <td><%= transaction.status %></td>
                     <td><%= transaction.created_at.to_date %></td>
-                    <% if current_user.is_oficial %>
-                      <td><%= link_to 'Aprobar', '/aproveTransaction/' + transaction.id.to_s %></td>
-                    <% else %>
-                      <td></td>
-                    <% end %>
-                    <td><%= link_to 'Ver detalle', transaction %></td>
-                    <% if !transaction.aproved? %>
-                      <td><%= link_to 'Editar', edit_transaction_path(transaction) %></td>
-                      <td><%= link_to 'Borrar', transaction, method: :delete, data: { confirm: 'Está seguro?' } %></td>
-                    <% else %>
-                      <td></td>
-                      <td></td>
-                    <% end %>
+                  
                   </tr>
                 <% end %>
               </tbody>
             </table>
             <br>
           </div>
+          <center>
+          <div class="apple_pagination">
+            <%= will_paginate @transactions, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+          </div>
+          </center>
+
 
