@@ -1,6 +1,6 @@
 <div class="col-lg-12">
 	<h2 class="center-title">Nueva publicación</h2>
-  <%= bootstrap_form_tag url: form_tag("/chapter/createAnnouncement/"+@chapter.id.to_s,method:"post",:multipart => true do %>
+  <%= bootstrap_form_tag url: "/chapter/createAnnouncement/"+@chapter.id.to_s,method:"post", :html => { :multipart => true } do %>
   	<div class="row">
 			<div class="col-lg-12">
 				<div class="row">
@@ -101,12 +101,27 @@
 			  </div>
 			</div>
 			<div class="col-lg-6">
-				<div class="form-group">
+				<div class="form-group" onmouseover="checkFields()">
 					<br>
-			    <%= submit_tag "Publicar", class: "form-control btn btn-success fix" %>
+			    <%= submit_tag "Publicar", class: "form-control btn btn-success fix", id: "boton" %>
 			  </div>
 			</div>
 		</div>
 
 	<% end %>
 </div>
+
+<script type="text/javascript">
+	function checkFields() {
+		if ($('#subject').val().length == 0 || $('#content').val().length == 0){
+			$('#boton').attr('disabled', 'disabled');
+			$('#boton').attr('value', 'Todos los campos son obligatorios');
+			$('#boton').removeClass( "btn-success" ).addClass( "btn-danger" );
+		}
+		if ($('#subject').val().length > 0 && $('#content').val().length > 0){
+			$('#boton').attr('value', 'Publicar');
+			$('#boton').removeClass( "btn-danger" ).addClass( "btn-success" );
+			$('#boton').removeAttr('disabled');
+		}
+	}
+</script>

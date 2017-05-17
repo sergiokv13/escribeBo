@@ -46,7 +46,7 @@
       <hr class="divider">
       <% @user.degrees.each do |degree| %>
       <% if degree.aproved %>
-        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a><br>
+        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a> otorgado en fecha <%= degree.created_at %><br>
         <% end %>
       <% end %>
       <% if @user.degrees.empty? == true %>
@@ -59,9 +59,9 @@
       <hr class="divider">
       <% @user.charges.each do |charge| %>
         <% if charge.chapter != nil %>
-          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a><br>
+          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> otorgado el <%= charge.created_at %><br>
         <%else%>
-          Tiene el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> <br>
+          Tiene el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> otorgado el <%= charge.created_at %><br>
         <%end%>
       <% end %>
        <% if @user.charges.empty? == true && @user.charges_history.empty? == true%>
@@ -294,8 +294,12 @@
             <%= render :partial => 'chapters', :object => @chapters ,label: "Capítulo"%>
           </div>
 
+          <br>
           
-          <%= submit_tag("Transeferir", class: "btn-block btn btn-primary") %>
+          <div onmouseover="checkFields()">
+            <%= submit_tag("Transferir", class: "btn-block btn btn-primary", id: "boton") %>
+          </div>  
+            
         <% end %>
 
 
@@ -308,6 +312,21 @@
 </div>
 
 <script type="text/javascript">
+
+  function checkFields() {
+    if ($('#campament_id').val().length == 0 || $('#chapter_id').val().length == 0){
+      $('#boton').attr('disabled', 'disabled');
+      $('#boton').attr('value', 'Todos los campos son obligatorios');
+      $('#boton').removeClass( "btn-primary" ).addClass( "btn-danger" );
+    }
+    if ($('#campament_id').val().length > 0 && $('#chapter_id').val().length > 0){
+      $('#boton').attr('value', 'Transferir');
+      $('#boton').removeClass( "btn-danger" ).addClass( "btn-primary" );
+      $('#boton').removeAttr('disabled');
+    }
+  };
+
+
   $( "#campament_id" ).change(function() {
     var campament = $("#campament_id").val();
     jQuery.ajax({
