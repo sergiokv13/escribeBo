@@ -1,5 +1,5 @@
 
-  <div class="jumbotron">
+  <div class="row">
     <h2 ><%= @user.fullName %></h2>
     <div class="col-lg-3 text-center">
       <img src="<%=@user.image.url%>" class="img-responsive">
@@ -43,15 +43,20 @@
 
     <div class="col-lg-3  text-center">
       <h3>Grados</h3>
+      <hr class="divider">
       <% @user.degrees.each do |degree| %>
       <% if degree.aproved %>
         Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a><br>
         <% end %>
       <% end %>
+      <% if @user.degrees.empty? == true %>
+        No hay ningún grado registrado.
+      <%end%>
     </div>
 
     <div class="col-lg-3 text-center">
       <h3>Cargos</h3>
+      <hr class="divider">
       <% @user.charges.each do |charge| %>
         <% if charge.chapter != nil %>
           Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a><br>
@@ -59,7 +64,10 @@
           Tiene el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> <br>
         <%end%>
       <% end %>
-      <hr class="divider">
+       <% if @user.charges.empty? == true && @user.charges_history.empty? == true%>
+        No hay ningún cargo registrado.
+      <%end%>
+       <hr class="divider">
       <% @user.charges_history.each do |charge| %>
         <% if charge.chapter != nil %>
           Tuvo el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> en la gestión <%=charge.gestion%><br>
@@ -67,12 +75,19 @@
           Tuvo el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
         <%end%>
       <% end %>
+      <% if @user.charges_history.empty? == true && @user.charges_history.empty? == true%>
+        No hay ningún historial de cargos registrado.
+      <%end%>
     </div>
     <div class="col-lg-3 text-center">
       <h3>Premiaciones</h3>
+      <hr class="divider">
       <% @user.user_premiations.each do |user_premiacion| %>
          <%= user_premiacion.premiacion.title %> en <%= user_premiacion.premiacion.date_of %> <br>
       <% end %>
+      <% if @user.user_premiations.empty? == true %>
+        No hay ninguna premiación registrado registrado.
+      <%end%>
     </div>
     <div class="col-lg-9">
       <h2>Información</h2>

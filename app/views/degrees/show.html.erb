@@ -1,8 +1,4 @@
 
-	<div class="jumbotron text-center">
-
-	<p id="notice"><%= notice %></p>
-
 		<p class="text-center">
 		  <strong>Usuario</strong><br>
 		  <%= @degree.user.fullName %>
@@ -19,6 +15,3 @@
 		</p>
 
 		<%= link_to "Aprobar", "/approve_degree/"+@degree.id.to_s, class: "btn btn-success" %>
-
-
-	</div>

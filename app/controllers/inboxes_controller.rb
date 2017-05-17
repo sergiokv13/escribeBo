@@ -50,6 +50,9 @@ class InboxesController < ApplicationController
     @inbox.user1 = current_user
     @inbox.seen = false
     @inbox.inbox_hidden = false
+    if @inbox.user2_id == nil
+      @inbox.errors.add(:user2_id, "Not valid")
+    end
     respond_to do |format|
       if @inbox.save
         format.html { redirect_to @inbox, notice: 'Mensaje enviado correctamente' }

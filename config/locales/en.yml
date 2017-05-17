@@ -29,6 +29,10 @@ en:
         inbox_att: "Archivo Adjunto"
       transaction:
         image: "Formulario de Control de Depósitos"
+      oficer_an:
+        text: "Anuncio"
+        title: "Titulo"
+        deadline: "Fecha de Finalizazión"
     errors:
       models:
         inbox:
@@ -66,7 +70,39 @@ en:
               blank: "es obligatorio"
             role:
               blank: "es obligatorio"
+            iniciacion:
+              blank: "es obligatorio"
+            registration_form:
+              blank: "es obligatorio"
         transaction:
           attributes:
+            image:
+              blank: "es obligatorio"
+            name:
+              blank: "es obligatorio"
+            description:
+              blank: "es obligatorio"
+            mount:
+              blank: "es obligatorio"
+            receipt_number:
+              blank: "es obligatorio"
+        oficer_an:
+          attributes:
+            text:
+              blank: "es obligatorio"
+            title:
+              blank: "es obligatorio"
+            deadline:
+              blank: "es obligatorio"
+        campament:
+          attributes:
+            name:
+              blank: "es obligatorio"
+            image:
+              blank: "es obligatorio"
+        chapter:
+          attributes:
+            chapter_name:
+              blank: "es obligatorio"
             image:
               blank: "es obligatorio"

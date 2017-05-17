@@ -1,6 +1,4 @@
 
-  <div class="jumbotron">
-
     <h1><%= @chapter.chapter_name %> #<%= @chapter.number %> </h1>
 
     <div class="row">
@@ -59,7 +57,7 @@
             <% if @chapter.chapter_type == "Capitulo" %>
               <h3>Miembros</h3>
             <% end %>
-            Algunos de los miembros actuales son:<br>
+            Algunos de los miembros actuales son:<br><br>
             <% @chapter.chapter_users.take(4).each do |dm| %>
               <div class="row">
                 <div class="col-lg-2">
@@ -70,25 +68,28 @@
                 </div>
               </div>
               <br>
-            <% end %>
+            <% end %><br>
             <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s %>
           </div>
           <% if !@chapter.consultants.empty? %>
-            <div class="col-lg-1"></div>
             <div class="col-lg-5 info">
               <h3>Consultores</h3>
-              Algunos de los consultores actuales son:<br>
-              <% @chapter.consultants.each do |consultant| %>
+              Algunos de los consultores actuales son:<br><br>
+              <% @chapter.consultants.take(4).each do |ct| %>
                 <div class="row">
                   <div class="col-lg-2">
-                    <%= image_tag consultant.image.url(:medium), class: "img-responsive" %>
+                    <%= image_tag ct.image.url(:medium), class: "img-responsive" %>
                   </div>
                   <div class="col-lg-10">
-                    <%= link_to consultant.fullName, "/profile/"+consultant.id.to_s %><br>
+                    <%= link_to ct.fullName, '/profile/'+ct.id.to_s %>
                   </div>
-                </div>
+                  <br><br>
+              </div>
               <% end %>
+              <br>
+               <%= link_to 'Ver más', '/chapter_users/' + @chapter.id.to_s %>
             </div>
+            
           <% end %>
         </div>
         <div class="row">
@@ -125,4 +126,4 @@
 <% end %>
 
 </div>
-</div>
+

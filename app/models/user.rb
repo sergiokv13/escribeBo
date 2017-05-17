@@ -26,8 +26,9 @@ class User < ActiveRecord::Base
   has_many :chapter_user_follows
   has_many :campaments_user_follows
 
-  validates :cellphone, phone: true
-  validates :phone, phone: { possible: true, types: [:voip, :mobile] }
+  validates :registration_form, presence: true
+  validates :iniciacion, presence: true
+  
 
 
   validates :email, presence: true
@@ -47,6 +48,22 @@ class User < ActiveRecord::Base
   validates :chapter_id, presence: true
 
   validates :role, presence: true
+
+  after_create :welcome_msg
+
+  def welcome_msg
+    msg = Inbox.new
+    msg.subject = "Bienvenido!"
+    msg.content = "Hola DeMolay! Bienvenido al sistema de Demolay. Esperamos que tu participación sea activa y que tu experiencia satisfactira. Saludos!"
+    msg.user1_id = 1
+    msg.user2_id = self.id
+    msg.seen = false
+    msg.inbox_hidden = false
+    msg.save
+  end
+
+
+
 
   def getAge
     now = Time.now.utc.to_date

@@ -1,16 +1,4 @@
 <%= bootstrap_form_for @transaction, html: { multipart: true } do |f| %>
-  <% if @transaction.errors.any? %>
-    <div id="error_explanation">
-      <h3><%= pluralize(@transaction.errors.count, "error") %> no permitió crear esta transacción</h3>
-
-      <ul>
-      <% @transaction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
     <%= f.text_field :name , :label => "Nombre de transacción"%>
   </div>

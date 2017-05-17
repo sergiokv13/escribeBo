@@ -1,0 +1,53 @@
+
+         <%if current_user.is_oficial %>
+          <%= link_to 'Crear anuncio de Oficialia Ejecutiva', new_oficer_an_path, :class => "btn btn-success"  %>
+        <%end%>
+        <h1>Anuncios</h1>
+
+        <div class="table-responsive">
+        <table class="table table-hover table-striped table-bordered">
+          <thead>
+            <tr>
+              <% if current_user.is_oficial %>
+                <th></th>
+              <% end %>
+              <th>Titulo</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @oficer_ans.order(:deadline).reverse.each do |oficer_an| %>
+              <tr>
+                <% if current_user.is_oficial %>
+                  <td>
+                     <div class="dropdown config-bt">
+                      <span id="dLabel" class="dropdown-toggle glyphicon glyphicon-wrench" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                      </span>
+                      <ul class="dropdown-menu" aria-labelledby="dLabel">
+                          <li><%= link_to 'Ver', oficer_an %></li>
+                          <li><%= link_to 'Editar', edit_oficer_an_path(oficer_an) %></li>
+                          <li><%= link_to 'Elimiar', oficer_an, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar el anuncio?' } %></li>
+                      </ul>
+                    </div>
+                  </td>
+                <% end %>
+                <td><a href="/oficer_ans/<%= oficer_an.id %>"><%= oficer_an.title%> </a></td>
+                <% if oficer_an.state %>
+                  <td>Corriendo</td>
+                <% else %>
+                  <% if current_user.is_oficial %>
+                    <td> <a href="/oficer_ans/<%=oficer_an.id%>/edit">Finalizada</a> </td>
+                  <%else%>
+                    <td> Finalizada</td>
+                  <%end%>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <center><%= will_paginate @users , :previous_label => "Anterior", :next_label => "Siguiente" %></center>
+        <br>
+      </div>
+

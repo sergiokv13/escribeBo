@@ -1,5 +1,4 @@
 
-  <div class="jumbotron">
     <h1 class="center-title">Listado de usuarios</h1>
       <div class="col-lg-12">
         <a href="/newUser" class="btn btn-success">Crear Usuario</a>
@@ -67,11 +66,15 @@
           </div>
         </div>
       </div>
+<<<<<<< HEAD
 
       <div class="apple_pagination">
         <%= will_paginate @users, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
       </div>
   </div>
+=======
+      <%= will_paginate @users %>
+>>>>>>> 6deff896cc7b63399060dc105baf434c335c26e8
 
 
 <script type="text/javascript">

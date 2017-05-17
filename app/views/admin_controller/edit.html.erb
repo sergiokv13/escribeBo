@@ -1,13 +1,13 @@
 
-  <div class="jumbotron">
-    <div class="row">
+  <div class="row">
       <% if request.env['PATH_INFO'].split("/").last == "edit" %>
         <h1 class="center-title">Editar Usuario</h1>
       <% else %>
         <h1 class="center-title">Crear Usuario</h1>
       <% end %>
       <div class="col-lg-2"></div>
-      <div class="col-lg-8">
+      <div class="col-lg-8"></div>
+  </div>
   <div class="row">
   <%= bootstrap_form_for @user, url: "/updateUser", method: "post", multipart: true do |f| %>
         <div class="form-group col-lg-12">
@@ -161,10 +161,8 @@
           <%= link_to "Atrás", '/users', class: "btn btn-danger" %>
         </div>
       <% end %>
-      </div>
-      </div>
-    </div>
   </div>
+
 
 
 <script type="text/javascript">
