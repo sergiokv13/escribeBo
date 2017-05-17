@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: [:show, :edit, :update, :destroy, :sleep]
+  before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
   def follow_chapter
     user = User.find(params[:user_id])
@@ -175,15 +175,6 @@ class ChaptersController < ApplicationController
     end
   end
 
-  def sleep
-    if current_user.is_oficial
-      @chapter.sleep = true
-      
-      @chapter.save
-      redirect_to :back
-    end
-  end
-
   def wake
     if current_user.is_oficial
       @chapter = Chapter.find(params[:id])
@@ -206,6 +197,6 @@ class ChaptersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chapter_params
-      params.require(:chapter).permit(:chapter_name, :number, :chapter_type,:campament_id,:image)
+      params.require(:chapter).permit(:chapter_name, :number, :chapter_type,:campament_id,:image, :sleep)
     end
 end

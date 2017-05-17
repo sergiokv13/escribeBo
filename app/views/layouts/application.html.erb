@@ -99,7 +99,7 @@
                       <li><a href="/profile/<%=current_user.id.to_s%>">Perfil</a></li>
                       <li><a href="/users/edit">Editar Perfil</a></li>
                       <% if current_user.is_oficial %>
-                        
+                        <li><a href="/reiniciar_gestion">Reiniciar Gestión</a></li>
                         <li><a href="/reports">Reportes</a></li>
                       <%end%>
                       <li><%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete) %></li>
