@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   resource :passwords
 
   get "/update_chapters" => "admin_controller#update_chapters"
+
+  get "/update_chapters_transfer" => "profiles#update_chapters"
+
   get "/update_user_field" => "inboxes#update_user_field"
+
+  get "/search_name" => "charges#search_name"
 
   get '/update_chapters_for_filter' => "admin_controller#update_chapters_for_filter"
 
@@ -89,5 +94,11 @@ Rails.application.routes.draw do
   get '/block_user/:id' => 'admin_controller#block_user'
   get '/unblock_user/:id' => 'admin_controller#unblock_user'
   get '/chapters/wake/:id' => 'chapters#wake'
+
+  get '/follow_chapter/:user_id/:chapter_id' => 'chapters#follow_chapter'
+  get '/unfollow_chapter/:user_id/:chapter_id' => 'chapters#unfollow_chapter'
+
+  get '/follow_campament/:user_id/:campament_id' => 'campaments#follow_campament'
+  get '/unfollow_campament/:user_id/:campament_id' => 'campaments#unfollow_campament'
 
 end

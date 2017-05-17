@@ -13,6 +13,7 @@
               <% end %>
               <th>Titulo</th>
               <th>Estado</th>
+              <th>Fecha de finalización</th>
             </tr>
           </thead>
 
@@ -42,12 +43,15 @@
                     <td> Finalizada</td>
                   <%end%>
                 <% end %>
+                <td><center><%=oficer_an.deadline%><center></td>
               </tr>
             <% end %>
           </tbody>
         </table>
         <br>
-        <center><%= will_paginate @users , :previous_label => "Anterior", :next_label => "Siguiente" %></center>
+          <div class="apple_pagination">
+            <%= will_paginate @oficer_ans, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+          </div>
         <br>
       </div>
 

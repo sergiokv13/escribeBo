@@ -282,12 +282,23 @@
       <div class="modal-body">
         <%= form_tag('/transfer_user', :method => :post) do %>
           <label>Campamento</label>
+
+          
+
+
           <input type="hidden" name="id" value="<%= @user.id %>">
           <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, 'id', 'name'), class: "form-control", :prompt => "Seleccionar filtro") %><br>
           <label>Capítulo</label>
-          <%= select_tag(:chapter_id, options_from_collection_for_select(Chapter.all, 'id', 'chapter_name'), class: "form-control", :prompt => "Seleccionar filtro") %><br>
+
+          <div id="chapterDiv">
+            <%= render :partial => 'chapters', :object => @chapters ,label: "Capítulo"%>
+          </div>
+
+          
           <%= submit_tag("Transeferir", class: "btn-block btn btn-primary") %>
         <% end %>
+
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
@@ -295,3 +306,18 @@
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 </div>
+
+<script type="text/javascript">
+  $( "#campament_id" ).change(function() {
+    var campament = $("#campament_id").val();
+    jQuery.ajax({
+      url: "/update_chapters_transfer",
+      type: "GET",
+      data: {"campament" : campament},
+      dataType: "html",
+      success: function(data) {
+        jQuery('#chapterDiv').html(data);
+      }
+    });
+  });
+</script>

@@ -1,0 +1,5 @@
+<ul id="lista">
+	<% @users.each do |user| %>
+		<a href="#" id="sucesor" onclick="set_oficial('<%= user.id %>','<%= user.fullName %>')"><li><%= user.fullName %></li></a>
+	<% end %>
+</ul>

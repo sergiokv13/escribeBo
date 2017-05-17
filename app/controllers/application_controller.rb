@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
  	before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user!
+  before_filter :enabled?
+
+  def enabled?
+    if !current_user.nil?  
+      if !current_user.enabled
+        sign_out current_user
+        redirect_to "/users/sign_in"
+      end
+    end
+  end
 
 	def after_sign_in_path_for(resource)
     if current_user.sign_in_count == 1

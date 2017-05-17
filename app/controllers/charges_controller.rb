@@ -1,6 +1,17 @@
 class ChargesController < ApplicationController
   before_action :set_charge, only: [:show, :edit, :update, :destroy]
 
+  def search_name
+    name = params[:name].to_s
+    puts "======================================================"
+    if name == ""
+      @users = []
+    else
+      @users = User.where("name LIKE ? or lastname LIKE ? or full_name LIKE ? ","%#{name}%", "%#{name}%", "%#{name}%")
+    end
+    render :partial => "names", :object => @users
+  end
+
   # GET /charges
   # GET /charges.json
   def index
@@ -22,6 +33,7 @@ class ChargesController < ApplicationController
   end
 
   def drop_gestion
+    @users = []
     @posibles_oficiales =  User.where(:role=>"No Demolay")
   end
 

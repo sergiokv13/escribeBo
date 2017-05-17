@@ -1,7 +1,14 @@
 class ProfilesController < ApplicationController
+
+  def update_chapters
+    @chapters = Chapter.where(:campament_id => params[:campament], :chapter_type =>"Capitulo")
+    render :partial => "chapters", :object => @chapters
+  end
+  
   def profile
     @premiacion = UserPremiation.new
     @user = User.find(params[:id])
+    @chapters = Chapter.where(:chapter_type =>"Capitulo").all
   end
 
   def asignar_grado_demolay

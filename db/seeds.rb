@@ -218,4 +218,3 @@ Charge.create(title:"Oficial Ejecutivo", user_id: '1',campament_id:"1",ente:"Gab
 
 
 
-

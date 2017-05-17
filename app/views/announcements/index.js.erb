@@ -1,0 +1,7 @@
+$('#my-posts-main').append('<%= j render partial: "publications", collection: @publicaciones_para_mostrar %>');
+<% if @publicaciones_para_mostrar.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @publicaciones_para_mostrar %>');
+<% else %>
+  $(window).off('scroll');
+  $('.pagination').remove();
+<% end %>

@@ -1,6 +1,25 @@
 class CampamentsController < ApplicationController
   before_action :set_campament, only: [:show, :edit, :update, :destroy]
 
+  def follow_campament
+    user = User.find(params[:user_id])
+    campament = Campament.find(params[:campament_id])
+    follow = CampamentsUserFollow.new
+    follow.user_id = user.id
+    follow.campament_id = campament.id
+    follow.number_views = campament.announcements.count
+    follow.save
+    redirect_to '/campaments/' + campament.id.to_s
+  end
+
+  def unfollow_campament
+    user = User.find(params[:user_id])
+    campament = Campament.find(params[:campament_id])
+    follow = user.campaments_user_follows.find_by(campament_id: campament.id)
+    follow.destroy
+    redirect_to '/campaments/' + campament.id.to_s
+  end
+
   # GET /campaments
   # GET /campaments.json
   def index
@@ -10,6 +29,15 @@ class CampamentsController < ApplicationController
   # GET /campaments/1
   # GET /campaments/1.json
   def show
+
+    if current_user.campaments_user_follows.count != 0
+      follow = current_user.campaments_user_follows.find_by(campament_id: @campament.id)
+      if !follow.nil?
+        follow.number_views = @campament.announcements.count
+        follow.save
+      end
+    end
+
     @publicaciones_para_mostrar = Array.new
     publicaciones = @campament.announcements
     if current_user.is_oficial

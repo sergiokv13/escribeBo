@@ -75,6 +75,7 @@
           </div>
         </div>
       </div>
-      <center>
-        <%= will_paginate @users, :next_label => "Siguiente", :previous_label => "Anterior" %>
-      </center>
+      <div class="apple_pagination">
+        <%= will_paginate @users, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+      </div>
+

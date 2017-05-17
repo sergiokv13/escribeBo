@@ -48,5 +48,7 @@
           <br>
         </div>
         <center>
-        <%= will_paginate @transactions, :next_label => "Siguiente", :previous_label => "Anterior" %>
-      </center>
+          <div class="apple_pagination">
+            <%= will_paginate @transactions, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+          </div>
+          </center>

@@ -1,7 +1,18 @@
 <%= form_tag("/update_reiniciar_gestion",method:"post") do %>
 		<div class="form-group">
 	      <%= label_tag :Oficial_ejecutivo %>
-	      <%= select_tag(:id_oficial, options_from_collection_for_select(@posibles_oficiales,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar Oficial Ejecutivo") %>
+	      <%= text_field_tag(:nombre, "",class: "form-control") %>
+
+	      <div id="chapterDiv">
+            <%= render :partial => 'names', :object => @users ,label: "Nombre"%>
+          </div>
+
+          <div hidden="true">
+          	<%= text_field_tag(:id_oficial) %>
+          </div>
+          	
+
+	      
 	    </div>
 	   	
 
@@ -28,4 +39,27 @@
 	      <%= submit_tag "Reiniciar gestión", class: "btn btn-danger" %>
 	    </div>
 <%end%>
+
+<script type="text/javascript">
+  $( "#nombre" ).keyup(function() {
+  	console.log("Click");
+    var nombre = $("#nombre").val();
+    jQuery.ajax({
+      url: "/search_name",
+      type: "GET",
+      data: {"name" : nombre},
+      dataType: "html",
+      success: function(data) {
+        jQuery('#chapterDiv').html(data);
+      }
+    });
+  });
+
+  function set_oficial(id,name) {
+     jQuery('#id_oficial').val(id);
+     jQuery('#nombre').val(name);
+     $("#lista").hide();
+  }
+</script>
+
 

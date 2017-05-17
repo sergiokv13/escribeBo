@@ -13,6 +13,25 @@
   </div>
    <h2 class="center-title">Departamentos</h2>
   <div class="row">
+<<<<<<< HEAD
+    <% @campaments.each_with_index do |campament,i| %>
+      <% if i%3 == 0 %>
+        <div class="row">
+          <div class="col-lg-12">
+            <br>
+          </div>
+
+        </div>
+      <% end %>
+          <div class="col-lg-4">
+            <a class="image_link" href="/campaments/<%=campament.id%>">
+              <div class="image_name"><%=campament.name %></div>
+              <img class="img-responsive" src="<%=campament.image.url%>">
+            </a>
+          </div>
+    <% end %>
+
+=======
     <% @campaments.each_with_index do |chapter,i| %>
       <% if i != 0 %>
           <div class="col-lg-4" style="margin-bottom: 100px;">
@@ -22,6 +41,7 @@
             </a>
           </div>
       <%end%>
+>>>>>>> 6deff896cc7b63399060dc105baf434c335c26e8
 
     <% end %>
   </div>
