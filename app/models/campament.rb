@@ -7,6 +7,7 @@ class Campament < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
   validates :name, :presence => true
+  validates :image, :presence => true
 
   def drop_gestion
     self. president = nil

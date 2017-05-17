@@ -1,5 +1,5 @@
 
-      <h1>Usuarios a aprobar</h1>
+      <h1 class="text-center">Usuarios a aprobar</h1>
       <div class="table-responsive">
         <table class="table table-hover table-striped table-bordered">
           <tbody>
@@ -26,8 +26,12 @@
           </tbody>
         </table>
       </div>
+      <div class="apple_pagination">
+        <%= will_paginate @users_to_approve, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+      </div>
 
-      <h1>Grados a aprobar</h1>
+
+      <h1 class="text-center">Grados a aprobar</h1>
       <div class="table-responsive">
         <table class="table table-hover table-striped table-bordered">
           <tbody>
@@ -59,4 +63,7 @@
             <% end %>
           </tbody>
         </table>
+      </div>
+      <div class="apple_pagination">
+        <%= will_paginate @degrees_to_approve, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
       </div>

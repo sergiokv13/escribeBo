@@ -1,35 +1,35 @@
 <%= bootstrap_form_for @transaction, html: { multipart: true } do |f| %>
-  <div class="field">
+  <div class="form-group">
     <%= f.text_field :name , :label => "Nombre de transacción"%>
   </div>
 
   <% if current_user.is_oficial %>
-    <div class="field">
+    <div class="form-group">
       <%= f.select :transaction_type, options_for_select([['Ingreso', 'Ingreso'], ['Egreso', 'Egreso']]), :label => "Tipo de transacción" %>
     </div>
   <% else %>
-    <div class="field">
+    <div class="form-group">
       <%= f.select :transaction_type, options_for_select(['Ingreso', 'Ingreso']), :label => "Tipo de transacción" %>
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.select :concept_type, options_for_select([['Iniciación','Iniciación'],['Elevación','Elevación'],['Investidura','Investidura'],['Investidura Chevalier','Investidura Chevalier'],['DeMolay Card','DeMolay Card'],['Consultor','Consultor'],['Premiación','Premiación'],['Otro','Otro']]), :label => "Concepto"  %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.text_area :description , :label => "Descripción"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.number_field :mount , :label => "Monto"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.file_field :image , :label => "Comprobante"%>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.text_field :receipt_number , :label => "Numero de Comprobante"%>
   </div>
 

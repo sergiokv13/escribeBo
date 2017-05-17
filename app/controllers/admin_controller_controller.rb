@@ -132,6 +132,8 @@ class AdminControllerController < ApplicationController
 			@users_to_approve = User.all_to_be
 			@degrees_to_approve = Degree.all_to_be
 		end
+		@users_to_approve = @users_to_approve.paginate(:page => params[:page], :per_page => 5)
+		@degrees_to_approve = @degrees_to_approve.paginate(:page => params[:page], :per_page => 5)
 	end
 
 	def approve

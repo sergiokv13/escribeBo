@@ -33,6 +33,9 @@
             </tbody>
           </table>
         </div>
+        <div class="apple_pagination">
+            <%= will_paginate @inboxes, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
+        </div>
 
         <h1 class="center-title">Enviados</h1>
         <div class="table-responsive">
@@ -61,11 +64,13 @@
                   <td><%= inbox.created_at.to_date %></td>
                   <td><%= inbox.visto %></td>
                   <td><%= link_to 'Ver', inbox %></td>
-
                 </tr>
               <% end %>
             </tbody>
           </table>
+        </div>
+        <div class="apple_pagination">
+            <%= will_paginate @enviados, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
         </div>
 
 

@@ -1,5 +1,5 @@
 
- <h2 class="text-center">Jurisdicción</h2>
+ <h1 class="text-center">Jurisdicción</h1>
   <div class="row">
    <div class="col-lg-4"></div>
     <div class="col-lg-4">
@@ -13,7 +13,7 @@
   </div>
    <h2 class="center-title">Departamentos</h2>
   <div class="row">
-<<<<<<< HEAD
+
     <% @campaments.each_with_index do |campament,i| %>
       <% if i%3 == 0 %>
         <div class="row">
@@ -31,18 +31,5 @@
           </div>
     <% end %>
 
-=======
-    <% @campaments.each_with_index do |chapter,i| %>
-      <% if i != 0 %>
-          <div class="col-lg-4" style="margin-bottom: 100px;">
-            <a class="image_link" href="/campaments/<%=chapter.id%>">
-              <div class="image_name"><%=chapter.name%></div>
-              <img class="img-responsive" src="<%=chapter.image.url%>">
-            </a>
-          </div>
-      <%end%>
->>>>>>> 6deff896cc7b63399060dc105baf434c335c26e8
-
-    <% end %>
   </div>
 
