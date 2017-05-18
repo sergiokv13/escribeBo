@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :campaments_user_follows
 
   #validates :registration_form, presence: true
-  validates :iniciacion, presence: true
+  #validates :iniciacion, presence: true
   
 
 
