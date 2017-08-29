@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   end
 
   def show_cellphone
-    if !self.cellphone.nil?
+    if !self.cellphone.nil? and self.phone.length > 1
       cellular = self.cellphone.to_s
       cellular.insert(0,"+")
       cellular.insert(4,"-")
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   end
 
   def show_phone
-    if !self.phone.nil?
+    if !self.phone.nil? and self.phone.length > 1
       phone_number = self.phone.to_s
       phone_number.insert(0,"+")
       phone_number.insert(4,"-")
@@ -422,5 +422,6 @@ class User < ActiveRecord::Base
     end
     return res
   end
+
 
 end

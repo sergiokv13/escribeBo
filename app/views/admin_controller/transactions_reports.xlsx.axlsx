@@ -6,14 +6,14 @@ wb.styles do |style|
 
   wb.add_worksheet(name: "Transacciones") do |sheet|
 
-    sheet.add_row ["Nombre", "Monto", "Estado", "Concepto", "Número de comprobante", "Fecha"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+    sheet.add_row ["Nombre", "Monto", "Tipo", "Estado", "Concepto", "Número de comprobante", "Fecha"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
 
     @final_transactions.each do |transaction|
       approved = "Pendiente"
       if transaction.aproved
         approved = "Aprobada"
       end
-      sheet.add_row [transaction.name, transaction.mount, approved, transaction.concept_type, transaction.receipt_number, transaction.created_at.to_date]
+      sheet.add_row [transaction.name, transaction.mount, transaction.transaction_type, approved, transaction.concept_type, transaction.receipt_number, transaction.created_at.to_date]
     end
   end
 end
