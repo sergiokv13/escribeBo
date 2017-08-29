@@ -63,4 +63,17 @@ class Chapter < ActiveRecord::Base
     self.save
   end
 
+  def self.autoridades
+    autoridades = Array.new
+    Chapter.all.each do |c|
+      if !c.chapter_consultant_president.nil?
+        autoridades.push(User.find(c.chapter_consultant_president))
+      end
+      if !c.chapter_president.nil?
+        autoridades.push(User.find(c.chapter_president))
+      end
+      autoridades
+    end
+  end
+
 end
