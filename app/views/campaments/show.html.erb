@@ -40,9 +40,9 @@
           <%end%>
           <center>
              <% if current_user.follows_campament(@campament.id) %>
-              <a href="/unfollow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-danger btn-block">Seguir</a>
+              <a href="/unfollow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-success btn-block">Seguir</a>
             <% else %>
-              <a href="/follow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-success btn-block">Dejar de seguir</a>
+              <a href="/follow_campament/<%= current_user.id %>/<%= @campament.id %>" class="btn btn-danger btn-block">Dejar de seguir</a>
             <% end %><br><br>
           </center>
       </div>
