@@ -4,22 +4,22 @@
 		
 				<%= form_tag("/update_gestion/"+@chapter.id.to_s,method:"post") do %>
 					<div class="form-group">
-					<% if @chapter.chapter_type == "Capitulo" %>
+					<% if @chapter.chapter_type == "Capítulo" %>
 				      	<%= label_tag :Maestro_Consejero %>
 				    <%end%>
 				    <% if @chapter.chapter_type == "Priorato" %>
 				      	<%= label_tag :Ilustre_Comendador_Caballero %>
 				    <%end%>
 				    <% if @chapter.chapter_type == "Corte" %>
-				      	<%= label_tag :Gran_Comendador_Chevallier %>
+				      	<%= label_tag :Gran_Comendador_chevalier %>
 				    <%end%>
 
-				      <%= select_tag(:id_encargado, options_from_collection_for_select(@posibles_encargados,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar encargado") %>
+				      <%= select_tag(:id_encargado, options_from_collection_for_select(@posibles_encargados,'id', 'fullName'), :onclick =>  "verify();", :onclick =>  "verify1();",class: "form-control",:prompt => "Seleccionar encargado") %>
 
 				   </div>
 				   <div class="form-group">
 				      <%= label_tag :presidente_consejo_consultivo %>
-				      <%= select_tag(:presidente_consejo_consultivo , options_from_collection_for_select(@posibles_presidente,'id', 'fullName'), class: "form-control",:prompt => "Seleccionar presidente") %>
+				      <%= select_tag(:presidente_consejo_consultivo , options_from_collection_for_select(@posibles_presidente,'id', 'fullName'), :onclick =>  "verify();", :onclick =>  "verify();", class: "form-control",:prompt => "Seleccionar presidente") %>
 				   </div>
 				    <div class="actions" onmouseover="checkFields()">
 		    	      <%= submit_tag "Actualizar gestión", class: "btn btn-success", id: "boton" %>
@@ -31,16 +31,16 @@
 
 
 <script type="text/javascript">
+	function verify(){
+		$('#boton').attr('value', 'Actualizar');
+		$('#boton').removeClass( "btn-danger" ).addClass( "btn-success" );
+		$('#boton').removeAttr('disabled');
+	}
 	function checkFields() {
 		if ($('#id_encargado').val().length == 0 || $('#presidente_consejo_consultivo').val().length == 0){
 			$('#boton').attr('disabled', 'disabled');
 			$('#boton').attr('value', 'Todos los campos son obligatorios');
 			$('#boton').removeClass( "btn-success" ).addClass( "btn-danger" );
-		}
-		if ($('#id_encargado').val().length > 0 && $('#presidente_consejo_consultivo').val().length > 0){
-			$('#boton').attr('value', 'Actualizar');
-			$('#boton').removeClass( "btn-danger" ).addClass( "btn-success" );
-			$('#boton').removeAttr('disabled');
 		}
 	}
 </script>

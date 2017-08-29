@@ -1,6 +1,11 @@
 <div class="form-group"><label class="control-label" for="user_chapter_id">(*) Capítulo</label>
 <select class="form-control" name="user[chapter_id]" id="user_chapter_id">
-	<option value="">Seleccionar capítulo</option>
+	<% if @user.chapter != nil%>
+		<option value=""><%=@user.chapter.chapter_name%></option>
+	<% else %>
+		<option value="">Seleccionar capítulo</option>
+	<% end %>
+
 	<% @chapters.each do |chapter| %>
 		<% if chapter.id == @chapter %>
 			<option selected="selected" value="<%=chapter.id%>"><%=chapter.chapter_name%></option>

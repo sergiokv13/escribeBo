@@ -14,7 +14,8 @@
    <h2 class="center-title">Departamentos</h2>
   <div class="row">
 
-    <% @campaments.each_with_index do |campament,i| %>
+    <% @users = @campaments.where("id not in (?)", 1).map.each_with_index do |campament,i| %>
+
       <% if i%3 == 0 %>
         <div class="row">
           <div class="col-lg-12">

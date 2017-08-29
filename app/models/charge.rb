@@ -24,7 +24,7 @@ class Charge < ActiveRecord::Base
   end
 
   def self.drop_capitulo(gestion)
-    charges = Charge.where(:ente => "Capitulo")
+    charges = Charge.where(:ente => "Capítulo")
     history(gestion,charges)
   end
 

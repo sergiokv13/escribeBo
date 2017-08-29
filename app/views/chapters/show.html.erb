@@ -7,7 +7,7 @@
               <ul class="dropdown-menu" aria-labelledby="dLabel">
                   <li> <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s%></li>
                   <li> <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path%></li>
-                  <li><%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, data: { confirm: '¿Está seguro que desea poner en sueño este ente?' } %></li>
+                  <li><%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, data: { confirm: '¿Está seguro que desea poner en sueño este cuerpo DeMolay?' } %></li>
               </ul>
         </span>
       <% end %>
@@ -29,7 +29,7 @@
           <p>Este es un <%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolay activos.</p>
 
           <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
-            <% if @chapter.chapter_type == "Capitulo" %>
+            <% if @chapter.chapter_type == "Capítulo" %>
                 <p>El Maestro Consejero es <%= link_to @chapter.chapter_president.fullName, '/profile/'+@chapter.chapter_president.id.to_s %> y el Presidente del consejo consultivo es <%= link_to @chapter.chapter_consultant_president.fullName, '/profile/'+@chapter.chapter_consultant_president.id.to_s %>.</p>
               <% end %>
               <% if @chapter.chapter_type == "Priorato" %>
@@ -60,7 +60,7 @@
         <% if @chapter.chapter_type == "Corte" %>
           <h3>Chevaliers</h3>
         <% end %>
-        <% if @chapter.chapter_type == "Capitulo" %>
+        <% if @chapter.chapter_type == "Capítulo" %>
           <h3>Algunos miembros</h3>
         <% end %>
         <% @chapter.chapter_users.take(6).each do |dm| %>
@@ -145,7 +145,7 @@
        <div class="col-lg-4">
         <h3>El capitulo esta en sueños.</h3>
         <% if current_user.is_oficial %>
-          <a href="/chapters/wake/<%=@chapter.id%>">Despertar Capitulo</a>
+          <a href="/chapters/wake/<%=@chapter.id%>">Despertar Capítulo</a>
         <% end %>
       </div>
 </div>

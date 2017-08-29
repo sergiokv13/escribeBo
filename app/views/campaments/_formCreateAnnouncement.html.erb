@@ -7,7 +7,7 @@
           <div class="col-lg-12">
             <div class="form-group">
               <%= label_tag "Título" %><br>
-              <%= text_field_tag :subject, nil, class: "form-control" , required: true, placeholder: "Ingresa el título" %>
+              <%= text_field_tag :subject, nil, :onclick =>  "verify();", class: "form-control" , required: true, placeholder: "Ingresa el título" %>
             </div>
           </div>
         </div>
@@ -16,7 +16,7 @@
           <div class="col-lg-12">
             <div class="form-group">
               <%= label_tag "Contenido" %><br>
-              <%= text_area_tag :content, nil, class: "form-control", rows: "7" , required: true, placeholder: "Escribe aquí el contenido de tu publicación" %>
+              <%= text_area_tag :content, nil, :onclick =>  "verify();", class: "form-control", rows: "7" , required: true, placeholder: "Escribe aquí el contenido de tu publicación" %>
             </div>
           </div>
         </div>
@@ -41,7 +41,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel"><h3>Dirijido a:</h3></h4>
+                  <h4 class="modal-title" id="myModalLabel"><h3>Dirigido a:</h3></h4>
                 </div>
                 <div class="modal-body">
                   <div class="col-lg-6">
@@ -49,8 +49,8 @@
                        <%= label_tag 'grados_iniciatico', 'Iniciático'%>
                        <%= check_box_tag 'degrees[degree][]', "Iniciatico",id:'grados_iniciatico'%><br/>
 
-                      <%= label_tag 'grados_demolay', 'Demolay'%>
-                      <%= check_box_tag 'degrees[degree][]', "Demolay", id:'grados_demolay'%><br/>
+                      <%= label_tag 'grados_demolay', 'DeMolay'%>
+                      <%= check_box_tag 'degrees[degree][]', "DeMolay", id:'grados_demolay'%><br/>
 
                       <%= label_tag 'grados_consultor', 'Consultor'%>
                       <%= check_box_tag 'degrees[degree][]', "Consultor", id:'grados_consultor'%><br/>
@@ -109,16 +109,17 @@
 </div>
 
 <script type="text/javascript">
+  function verify() {
+    $('#boton').attr('value', 'Publicar');
+    $('#boton').removeClass( "btn-danger" ).addClass( "btn-success" );
+    $('#boton').removeAttr('disabled');
+  }
+
   function checkFields() {
     if ($('#subject').val().length == 0 || $('#content').val().length == 0){
       $('#boton').attr('disabled', 'disabled');
-      $('#boton').attr('value', 'Todos los campos son obligatorios');
+      $('#boton').attr('value', 'Titulo y contenido son obligatorios');
       $('#boton').removeClass( "btn-success" ).addClass( "btn-danger" );
-    }
-    if ($('#subject').val().length > 0 && $('#content').val().length > 0){
-      $('#boton').attr('value', 'Publicar');
-      $('#boton').removeClass( "btn-danger" ).addClass( "btn-success" );
-      $('#boton').removeAttr('disabled');
     }
   }
 </script>

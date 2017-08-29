@@ -23,11 +23,11 @@ city[9] = " Tarija "
 city[10] = " Beni "
 
 
-#Capitulos
+#Capítulos
 #1-27
 for c in 2..10
 	for i in 1..3
-		Chapter.create(chapter_name:"Capitulo" + city[c] + i.to_s,chapter_type:"Capitulo",campament_id: c, number: c.to_s+"-"+i.to_s)
+		Chapter.create(chapter_name:"Capítulo" + city[c] + i.to_s,chapter_type:"Capítulo",campament_id: c, number: c.to_s+"-"+i.to_s)
 	end
 end
 #Prioratos
@@ -47,7 +47,7 @@ for c in 2..10
 end
 
 
-User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'administrador',name:'Oficial',lastname:'Ejecutivo',demolayID:'1',role:'No Demolay',ci:'1234567', chapter_id:'1', campament_id:'1', president_aproved:true, deputy_aproved:true, oficial_aproved:true, cellphone: '59179777396', phone: '59144229865')
+User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'administrador',name:'Oficial',lastname:'Ejecutivo',demolayID:'1',role:'Trabajador adulto',ci:'1234567', chapter_id:'1', campament_id:'1', president_aproved:true, deputy_aproved:true, oficial_aproved:true, cellphone: '59179777396', phone: '59144229865')
 
 ids_capitulo = Array.new
 ids_capitulo[2] = [1,2,3]
@@ -82,7 +82,7 @@ ids_courte[8] = 52
 ids_courte[9] = 53
 ids_courte[10] = 54
 
-#Users Demolays
+#Users DeMolays
 #1 - 1801
 
 user_id = 1
@@ -103,7 +103,7 @@ for i in 2..10
 				lastname: lerolero_lastname,
 				full_name: lerolero_fullname,
 				demolayID:c,
-				role:'Demolay',
+				role:'DeMolay',
 				ci: Faker::Number.number(10),
 				chapter_id: chapter_id,
 				priory_id: priory_id,
@@ -125,7 +125,7 @@ for i in 2..10
 			oficial_aproved: true
 		)
 		Degree.create(
-				title: "Demolay",
+				title: "DeMolay",
 				user_id: user_id,
 				chapter_id: chapter_id,
 				president_aproved: true,
@@ -141,7 +141,7 @@ for i in 2..10
 				oficial_aproved: true
 		)
 		Degree.create(
-				title: "Chevallier",
+				title: "chevalier",
 				user_id: user_id,
 				chapter_id: court_id,
 				president_aproved: true,
@@ -152,7 +152,7 @@ for i in 2..10
 end
 
 
-#Users Demolays
+#Users DeMolays
 #1801 - X
 for i in 2..10
 	for c in 1..20
@@ -167,7 +167,7 @@ for i in 2..10
 				name: Faker::Name.first_name ,
 				lastname: Faker::Name.last_name,
 				demolayID:c,
-				role:'No Demolay',
+				role:'Trabajador adulto',
 				ci: Faker::Number.number(10),
 				chapter_id: chapter_id,
 				campament_id:i,

@@ -6,7 +6,7 @@ wb.styles do |style|
 
   wb.add_worksheet(name: "Usuarios") do |sheet|
 
-    sheet.add_row ["Nombre completo", "Correo Electrónico", "Demolay ID", "CI", "Edad", "Fecha de Nacimiento", "Dirección", "Celular", "Teléfono"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+    sheet.add_row ["Nombre completo", "Correo Electrónico", "DeMolay ID", "CI", "Edad", "Fecha de Nacimiento", "Dirección", "Celular", "Teléfono"], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
 
     if @demolay_users != [] and !@demolay_users.nil?
 
@@ -21,7 +21,7 @@ wb.styles do |style|
 
     if @no_demolay_users != [] and !@no_demolay_users.nil?
 
-      sheet.add_row ["USUARIOS NO DEMOLAY", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+      sheet.add_row ["USUARIOS Trabajador adulto", "", "", "", "", "", "", "", ""], style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
 
       @no_demolays_users.each do |user|
         sheet.add_row [user.fullName, user.email, user.demolayID, user.ci, user.getAge, user.birth_date, user.adress, user.cellphone, user.phone]

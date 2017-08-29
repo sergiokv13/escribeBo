@@ -240,7 +240,6 @@ ActiveRecord::Schema.define(version: 20170517080835) do
     t.date     "birth_date"
     t.boolean  "assurance"
     t.string   "adress"
-    t.string   "city"
     t.string   "cellphone"
     t.string   "phone"
     t.integer  "godfather_id"

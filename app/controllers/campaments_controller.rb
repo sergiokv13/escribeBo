@@ -71,9 +71,14 @@ class CampamentsController < ApplicationController
 
   def gestion
     @campament = Campament.find(params[:id])
-    @posibles_delegados =  User.where(:role=>"No Demolay").where(:campament_id => @campament.id).all
+    @posibles_delegados =  User.where(:role=>"Trabajador adulto").where(:campament_id => @campament.id).all
     @posibles_maestros =  Array.new
-    User.where(role: "Demolay").where(campament_id: @campament.id).each do |u|
+    if @campament.id == 1
+       for_repeat = User.where(role: "DeMolay")
+    else
+      for_repeat = User.where(role: "DeMolay").where(campament_id: @campament.id)
+    end
+    for_repeat.each do |u|
       if u.is_degree_demolay
         @posibles_maestros.push(u)
       end
@@ -83,8 +88,7 @@ class CampamentsController < ApplicationController
 
   def update_gestion
     @campament = Campament.find(params[:id])
-    puts @campament.id
-    if params[:id_maestro] != ""
+    
       @encargado = User.find(params[:id_maestro])
       @campament.maestro_consejero = @encargado
       @campament.save
@@ -94,17 +98,18 @@ class CampamentsController < ApplicationController
       @charge.title = "Maestro Consejero"
       @charge.campament = @campament
       @charge.save
-    end
-    @conPresident = User.find(params[:id_delegado])
-    @campament.president = @conPresident
-    @campament.save
-    @charge = Charge.new
-    @charge.ente = "Campamento"
-    @charge.user = @conPresident
-    @charge.title = "Delegado Regional"
-    @charge.campament = @campament
-    @charge.save
-    redirect_to "/campaments/"+@campament.id.to_s
+      if params[:id] == 1
+        @conPresident = User.find(params[:id_delegado])
+        @campament.president = @conPresident
+        @campament.save
+        @charge = Charge.new
+        @charge.ente = "Campamento"
+        @charge.user = @conPresident
+        @charge.title = "Delegado Regional"
+        @charge.campament = @campament
+        @charge.save
+      end
+      redirect_to "/campaments/"+@campament.id.to_s
   end
 
 

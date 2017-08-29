@@ -24,7 +24,7 @@ class ChaptersController < ApplicationController
   # GET /chapters.json
   def index
     @chapters = Chapter.all
-    @capitulos = Chapter.where(:chapter_type => "Capitulo")
+    @capitulos = Chapter.where(:chapter_type => "Capítulo")
     @prioratos = Chapter.where(:chapter_type => "Priorato")
     @cortes = Chapter.where(:chapter_type => "Corte")
   end
@@ -83,7 +83,7 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @posibles_encargados =  Array.new
       @chapter.chapter_users.each do |demolay|
-        if demolay.tiene_el_grado("Demolay")
+        if demolay.tiene_el_grado("DeMolay")
           @posibles_encargados.push(demolay)
         end
       end
@@ -103,9 +103,9 @@ class ChaptersController < ApplicationController
       @charge = Charge.new
       @charge.user = @encargado
 
-      if @chapter.chapter_type == "Capitulo"
+      if @chapter.chapter_type == "Capítulo"
         @charge.title = "Maestro Consejero"
-        @charge.ente = "Capitulo"
+        @charge.ente = "Capítulo"
       end
       if @chapter.chapter_type == "Priorato"
         @charge.title = "Ilustre Comendador Caballero"

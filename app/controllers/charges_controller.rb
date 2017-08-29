@@ -34,7 +34,7 @@ class ChargesController < ApplicationController
 
   def drop_gestion
     @users = []
-    @posibles_oficiales =  User.where(:role=>"No Demolay")
+    @posibles_oficiales =  User.where(:role=>"Trabajador adulto")
   end
 
   def update_drop_gestion

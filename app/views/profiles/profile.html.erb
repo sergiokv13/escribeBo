@@ -86,7 +86,7 @@
          <%= user_premiacion.premiacion.title %> en <%= user_premiacion.premiacion.date_of %> <br>
       <% end %>
       <% if @user.user_premiations.empty? == true %>
-        No hay ninguna premiación registrado registrado.
+        No hay ninguna premiación registrada.
       <%end%>
     </div>
     <div class="col-lg-9">
@@ -130,10 +130,10 @@
       <div class="modal-body">
         <%= bootstrap_form_tag url: "/add_premiacion" do |f| %>
           <div class="form-group">
-            <%= f.select :premiacion_id, options_for_select(Premiacion.all.map{ |p| [p.title, p.id] }) %>
+            <%= f.select :premiacion_id, options_for_select(Premiacion.all.map{ |p| [p.title, p.id] }), :onclick =>  "verify2();" %>
           </div>
           <div class="form-group">
-            <%= f.date_field :date_of , class:"form-control" %>
+            <%= f.date_field :date_of , :onclick =>  "verify2();",class:"form-control" %>
           </div>
           <div class="form-group" hidden="true">
             <%= f.text_field :user_id, value: @user.id%>
@@ -163,8 +163,8 @@
         <h4 class="modal-title">Otorgar grado a <%=@user.fullName%></h4>
       </div>
       <div class="modal-body">
-        <%if @user.role == "Demolay"%>
-          <% if @user.tendra_el_grado("Demolay") %>
+        <%if @user.role == "DeMolay"%>
+          <% if @user.tendra_el_grado("DeMolay") %>
             <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block disabled"%>
           <%else%>
              <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
@@ -182,7 +182,7 @@
             <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
           <%end%>
 
-          <% if @user.tendra_el_grado("Senior Demolay") %>
+          <% if @user.tendra_el_grado("Senior DeMolay") %>
             <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
           <%else%>
             <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
@@ -218,11 +218,10 @@
               <% if @user.chapter != nil %>
                 <strong>Chapter:</strong> <%=@user.chapter.chapter_name%><br>
               <% end %>
-              <strong>Provincia:</strong> <%=@user.city%><br>
               <strong>Dirección:</strong> <%=@user.adress%><br>
               <strong>Teléfono Fijo:</strong> <%=@user.phone%><br>
               <strong>Teléfono Celular:</strong> <%=@user.cellphone%><br>
-            <% if @user.role == "Demolay"%>
+            <% if @user.role == "DeMolay"%>
                <strong>Seguro: </strong> <%=@user.assurance%><br>
                 <strong>Padrino: </strong> <%=@user.godfather_id%><br>
                 <strong>Iniciacion:</strong> <%=@user.iniciacion%><br>
@@ -257,7 +256,7 @@
       </div>
       <div class="modal-body">
               <strong>Formularios de grados</strong>
-               <% if @user.role == "Demolay" %>
+               <% if @user.role == "DeMolay" %>
                   <%= link_to "Iniciación en " + @user.chapter.chapter_name.to_s,@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block", data: { no_turbolink: true } %>
                <%end%>
                  <% @user.degrees.each do |degree| %>
@@ -285,13 +284,13 @@
       </div>
       <div class="modal-body">
         <%= form_tag('/transfer_user', :method => :post) do %>
-          <label>Campamento</label>
+          <label>Departamento</label>
 
           
 
 
           <input type="hidden" name="id" value="<%= @user.id %>">
-          <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, 'id', 'name'), class: "form-control", :prompt => "Seleccionar filtro") %><br>
+          <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, 'id', 'name'), :onclick =>  "verify1();", class: "form-control", :prompt => "Seleccionar filtro") %><br>
           <label>Capítulo</label>
 
           <div id="chapterDiv">
@@ -316,30 +315,29 @@
 </div>
 
 <script type="text/javascript">
-
+  function verify1(){
+    $('#boton').attr('value', 'Transferir');
+    $('#boton').removeClass( "btn-danger" ).addClass( "btn-primary" );
+    $('#boton').removeAttr('disabled');
+  }
   function checkFields() {
     if ($('#campament_id').val().length == 0 || $('#chapter_id').val().length == 0){
       $('#boton').attr('disabled', 'disabled');
       $('#boton').attr('value', 'Todos los campos son obligatorios');
       $('#boton').removeClass( "btn-primary" ).addClass( "btn-danger" );
     }
-    if ($('#campament_id').val().length > 0 && $('#chapter_id').val().length > 0){
-      $('#boton').attr('value', 'Transferir');
-      $('#boton').removeClass( "btn-danger" ).addClass( "btn-primary" );
-      $('#boton').removeAttr('disabled');
-    }
   };
 
+  function verify2(){
+    $('#boton2').attr('value', 'Transferir');
+    $('#boton2').removeClass( "btn-danger" ).addClass( "btn-primary" );
+    $('#boton2').removeAttr('disabled');
+  }
   function checkFields2() {
-    if ($('#_premiacion_id').val() == "" || $('#date_of').val() == ""){
+    if ($('#premiacion_id').val() == "" || $('#date_of').val() == ""){
       $('#boton2').attr('disabled', 'disabled');
       $('#boton2').attr('value', 'Todos los campos son obligatorios');
       $('#boton2').removeClass( "btn-primary" ).addClass( "btn-danger" );
-    }
-    if ($('#_premiacion_id').val().length != "" && $('#date_of').val() != ""){
-      $('#boton2').attr('value', 'Transferir');
-      $('#boton2').removeClass( "btn-danger" ).addClass( "btn-primary" );
-      $('#boton2').removeAttr('disabled');
     }
   };
 

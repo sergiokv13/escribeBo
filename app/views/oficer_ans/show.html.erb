@@ -23,7 +23,7 @@
       <center>
       <% if current_user.is_oficial %>
       	<%= link_to 'Editar', edit_oficer_an_path(@oficer_an), class: "btn btn-primary" %> 
-      	 <%= link_to 'Elimiar', @oficer_an, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar el anuncio?' }, class: "btn btn-danger"  %><br><br>
+      	 <%= link_to 'Eliminar', @oficer_an, method: :delete, data: { confirm: 'Estas seguro que deseas eliminar el anuncio?' }, class: "btn btn-danger"  %><br><br>
 
         <%= link_to 'Atras', :back , class: "btn btn-danger" %>
        <% else %>

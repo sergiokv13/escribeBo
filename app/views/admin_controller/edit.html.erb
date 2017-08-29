@@ -2,6 +2,11 @@
   <div class="row">
       <% if request.env['PATH_INFO'].split("/").last == "edit" %>
         <h1 class="center-title">Editar Usuario</h1>
+        <center>
+          Pertenece al campamento: <strong><%=@user.campament.name%></strong> <br>
+          Pertenece al capitulo: <strong><%=@user.chapter.chapter_name%></strong> <br>
+          <info>Para cambiar, favor realizar una transferencia.</info>
+        </center>
       <% else %>
         <h1 class="center-title">Crear Usuario</h1>
       <% end %>
@@ -39,21 +44,7 @@
 
           <%= f.text_field :demolayID, class: "form-control" ,label: "Id en DeMolay internacional", placeholder: "Ingresa tu Id DeMolay internacional"%>
         </div>
-        <div class="clear"></div>
-        <div class="form-group  col-lg-4">
-
-          <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), class: "form-control",:prompt => "Seleccionar Departamento",label: "(*) Departamento")%>
-        </div>
-
-        <div class="form-group  col-lg-4" id="chapterDiv">
-          <%= render :partial => 'chapters', :object => @chapters, :locals=>{:f=>f} ,label: "Capitulo"%>
-        </div>
-
-        <div class="form-group col-lg-4">
-
-          <%= f.text_field :city, class: "form-control",label: "Provincia" %>
-        </div>
-
+       
         <div class="clear"></div>
         <div class="form-group col-lg-4">
           <%= f.text_field :adress, class: "form-control",label: "Dirección" %>
@@ -153,7 +144,8 @@
         </span>
 
         <div class="form-group col-lg-12">
-          <%= f.file_field :registration_form, class: "form-control" ,label: "PDF de afilicación"%>
+          <%= f.file_field :registration_form, class: "form-control" ,label: "ZIP de afiliación"%>
+          <info>Dejar vacio para no cambiar el anterior.</info>
         </div>
         <div class="clear"></div>
         <div class="actions">
@@ -169,12 +161,12 @@
   $('#para_consultor').hide()
 
   $( "#user_role" ).change(function() {
-     if ($("#user_role").val() == "No Demolay")
+     if ($("#user_role").val() == "Trabajador adulto")
       {
         $('#para_demolay').hide(300);
         $('#para_consultor').show(300);
       }
-      if ($("#user_role").val() == "Demolay")
+      if ($("#user_role").val() == "DeMolay")
       {
         $('#para_consultor').hide(300);
         $('#para_demolay').show(300);

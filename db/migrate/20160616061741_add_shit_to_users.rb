@@ -3,7 +3,6 @@ class AddShitToUsers < ActiveRecord::Migration
     add_column :users, :birth_date, :date
     add_column :users, :assurance, :boolean
     add_column :users, :adress, :string
-    add_column :users, :city, :string
     add_column :users, :cellphone, :string
     add_column :users, :phone, :string
     add_reference :users, :godfather, index: true, foreign_key: true

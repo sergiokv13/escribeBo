@@ -33,7 +33,8 @@
 
                   <li><a title="Departamentos" href="/campaments"> <span  id="gly-menu" class="glyphicon glyphicon-th-large" aria-hidden="true"></span></a></li>
                   <li>
-                      <a title="Camopamentos" href="/chapters" > <span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                      <a title="
+                      Cuerpos DeMolay" href="/chapters" > <span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
                    
                   </li>
                 <%else%>
@@ -151,7 +152,7 @@
                     <a class="side-font" href="/campaments/<%= f.campament_id %>" data-no-turbolink><%= current_user.campament.name %> <%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
                   <% end %>
                   <% if current_user.campaments_user_follows.all.empty? %>
-                    <span class="side-font">No sigues ningun campamento. Puedes explorar <a href="/campaments">aca.</a></span>
+                    <span class="side-font">No sigues ningun campamento. Puedes explorar <a href="/campaments">aquí.</a></span>
                   <% end %>
                 <h3>Últimos mensajes</h3>
                   <% current_user.inboxes.each do |inbox| %>

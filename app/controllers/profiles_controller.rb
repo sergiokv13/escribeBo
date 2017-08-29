@@ -1,14 +1,14 @@
 class ProfilesController < ApplicationController
 
   def update_chapters
-    @chapters = Chapter.where(:campament_id => params[:campament], :chapter_type =>"Capitulo")
+    @chapters = Chapter.where(:campament_id => params[:campament], :chapter_type =>"Capítulo")
     render :partial => "chapters", :object => @chapters
   end
   
   def profile
     @premiacion = UserPremiation.new
     @user = User.find(params[:id])
-    @chapters = Chapter.where(:chapter_type =>"Capitulo").all
+    @chapters = Chapter.where(:chapter_type =>"Capítulo").all
   end
 
   def asignar_grado_demolay
@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
 
   def update_asignar_grado_demolay
     @degree = Degree.new
-    @degree.title = "Demolay"
+    @degree.title = "DeMolay"
     @degree.image = params[:image]
     @degree.chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
@@ -78,7 +78,7 @@ class ProfilesController < ApplicationController
 
   def update_asignar_senior_demolay
     @degree = Degree.new
-    @degree.title = "Senior Demolay"
+    @degree.title = "Senior DeMolay"
     @degree.image = params[:image]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false

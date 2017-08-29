@@ -46,7 +46,7 @@ class Chapter < ActiveRecord::Base
   end
 
   def chapter_users
-    if self.chapter_type == "Capitulo"
+    if self.chapter_type == "Capítulo"
         return self.demolays
     end
     if self.chapter_type == "Priorato"

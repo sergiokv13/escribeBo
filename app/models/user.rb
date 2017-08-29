@@ -54,7 +54,7 @@ class User < ActiveRecord::Base
   def welcome_msg
     msg = Inbox.new
     msg.subject = "Bienvenido!"
-    msg.content = "Hola DeMolay! Bienvenido al sistema de Demolay. Esperamos que tu participación sea activa y que tu experiencia satisfactira. Saludos!"
+    msg.content = "Hola DeMolay! Bienvenido al sistema de DeMolay. Esperamos que tu participación sea activa y que tu experiencia satisfactira. Saludos!"
     msg.user1_id = 1
     msg.user2_id = self.id
     msg.seen = false
@@ -119,7 +119,7 @@ class User < ActiveRecord::Base
   end
 
   def set_first_degree
-    if role == "Demolay"
+    if role == "DeMolay"
       degree = Degree.new
       degree.title = "Iniciatico"
       degree.user_id = id
@@ -249,7 +249,7 @@ class User < ActiveRecord::Base
 
   def is_degree_demolay
     if !self.degrees.empty?
-      if self.degrees.find_by(title: "Demolay") != nil
+      if self.degrees.find_by(title: "DeMolay") != nil
         true
       else
         false
