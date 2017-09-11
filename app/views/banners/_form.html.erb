@@ -1,0 +1,24 @@
+<%= bootstrap_form_for @banner, html: { multipart: true } do |f| %>
+  <% if @banner.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+
+      <ul>
+      <% @banner.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :description, label: "Descripción" %>
+  </div>
+  <div class="field">
+    <%= f.file_field :pic, label: "Imagen" %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Subir" %>
+    <%= link_to 'Atrás', banners_path, class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Publicación Inicial</h1>
+
+
+<% if @banners.count == 1 %>
+  <h3>Descripción</h3>
+  <p>
+    <%= @banners.first.description %>
+  </p>
+  <p>
+    <img src="<%= @banners.first.pic.url %>" class="img-responsive">
+  </p>
+  <p>
+    <center>
+      <%= link_to 'Editar', edit_banner_path(@banners.first), class: "btn btn-primary" %>
+      <%= link_to 'Borrar', @banners.first, method: :delete, data: { confirm: 'Está seguro?' }, class: "btn btn-danger" %>
+    </center>
+  </p>
+<% end %>
+
+<% if @banners.count < 1 %>
+  <%= link_to 'Nuevo Banner', new_banner_path, class: "btn btn-success" %>
+<% end %>

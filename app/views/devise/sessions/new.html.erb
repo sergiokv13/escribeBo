@@ -1,7 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-8">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+
+      <% if Banner.all.count > 0 %>
+        <h1><%= Banner.all.first.description %></h1>
+        <img src="<%= Banner.all.first.pic.url %>" class="img-responsive">
+      <% end %>
+
       <h2 class="center-title">Iniciar sesión</h2>
       <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">

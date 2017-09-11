@@ -105,6 +105,7 @@
                       <% if current_user.is_oficial %>
                         <li><a href="/reiniciar_gestion">Reiniciar Gestión</a></li>
                         <li><a href="/reports">Reportes</a></li>
+                        <li><a href="/banners">Publicación Inicial</a></li>
                       <%end%>
                       <li><%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete) %></li>
                     </ul>

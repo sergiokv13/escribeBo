@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517080835) do
+ActiveRecord::Schema.define(version: 20170911173707) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20170517080835) do
 
   add_index "announcements", ["campament_id"], name: "index_announcements_on_campament_id"
   add_index "announcements", ["chapter_id"], name: "index_announcements_on_chapter_id"
+
+  create_table "banners", force: :cascade do |t|
+    t.text     "description"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "pic_file_name"
+    t.string   "pic_content_type"
+    t.integer  "pic_file_size"
+    t.datetime "pic_updated_at"
+  end
 
   create_table "campaments", force: :cascade do |t|
     t.string   "name"
@@ -240,6 +250,7 @@ ActiveRecord::Schema.define(version: 20170517080835) do
     t.date     "birth_date"
     t.boolean  "assurance"
     t.string   "adress"
+    t.string   "city"
     t.string   "cellphone"
     t.string   "phone"
     t.integer  "godfather_id"
