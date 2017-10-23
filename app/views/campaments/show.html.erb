@@ -32,15 +32,15 @@
       <div class="col-lg-5 col-md-6 col-xs-12 col-sm-6">
           <h2>Información</h2>
           <% if @campament.id != 1 %>
-            <p>Este es un el campamento del Departamento de <%= @campament.name %></p>
+            <p>Departamento de <%= @campament.name %></p>
           <%else%>
             <p>Esta es la Jurisdicción de <%= @campament.name %></p>
           <%end%>
           <% if @campament.president!=nil && @campament.maestro_consejero!=nil%>
               <% if @campament.id != 1 %>
-              <p>El Maestro Consejero Departamental es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Delegado Regional es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.</p>
+              <p>El Maestre Consejero Departamental es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Delegado Regional es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.</p>
             <% else %>
-              <p>El Maestro Consejero Nacional es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Oficial Ejecutivo es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.</p>
+              <p>El Maestre Consejero Nacional es <%= link_to @campament.maestro_consejero.fullName, '/profile/' + @campament.maestro_consejero.id.to_s %> y el Oficial Ejecutivo es <%= link_to @campament.president.fullName, '/profile/' + @campament.president.id.to_s %>.</p>
             <% end %>
           <%else%>
              <p><strong>La gestión no fue actualizada.</strong></p>

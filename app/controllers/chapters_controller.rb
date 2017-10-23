@@ -104,7 +104,7 @@ class ChaptersController < ApplicationController
       @charge.user = @encargado
 
       if @chapter.chapter_type == "Capítulo"
-        @charge.title = "Maestro Consejero"
+        @charge.title = "Maestre Consejero"
         @charge.ente = "Capítulo"
       end
       if @chapter.chapter_type == "Priorato"

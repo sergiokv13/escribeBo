@@ -95,7 +95,7 @@ class CampamentsController < ApplicationController
       @charge = Charge.new
       @charge.ente = "Campamento"
       @charge.user = @encargado
-      @charge.title = "Maestro Consejero"
+      @charge.title = "Maestre Consejero"
       @charge.campament = @campament
       @charge.save
       if params[:id] == 1

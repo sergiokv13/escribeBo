@@ -352,7 +352,7 @@ class AdminControllerController < ApplicationController
 				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.is_over(initial_age) and user.is_under(final_age)}
 			end
 			if master == 1
-				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestro Consejero") and user.is_over(initial_age) and user.is_under(final_age)}
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestre Consejero") and user.is_over(initial_age) and user.is_under(final_age)}
 			end
 			if presidente_consejo == 1
 				@master_users = User.all.select{|user| user.tiene_el_cargo("Presidente Consejo Consultivo") and user.is_over(initial_age) and user.is_under(final_age)}
@@ -379,7 +379,7 @@ class AdminControllerController < ApplicationController
 				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if master == 1
-				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestro Consejero") and user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestre Consejero") and user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
 			end
 			if presidente_consejo == 1
 				@master_users = User.all.select{|user| user.tiene_el_cargo("Presidente Consejo Consultivo") and user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
@@ -407,7 +407,7 @@ class AdminControllerController < ApplicationController
 				@consultants_users = User.all.select{|user| user.tiene_el_grado("Consultor") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age) }
 			end
 			if master == 1
-				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestro Consejero") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
+				@master_users = User.all.select{|user| user.tiene_el_cargo("Maestre Consejero") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age)}
 			end
 			if presidente_consejo == 1
 				@master_users = User.all.select{|user| user.tiene_el_cargo("Presidente Consejo Consultivo") and !user.enabled and user.is_over(initial_age) and user.is_under(final_age)}

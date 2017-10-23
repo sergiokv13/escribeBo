@@ -12,11 +12,11 @@
 	   </div>
 	   	<div class="form-group">
 	   	<% if @campament.id == 1 %>
-	       	<%= label_tag :maestro_consejero_nacional %>
+	       	<%= label_tag :maestre_consejero_nacional %>
 	    <% else %>
-	    	<%= label_tag :maestro_consejero_departamental %>
+	    	<%= label_tag :maestre_consejero_departamental %>
 	    <% end %>
-	      <%= select_tag(:id_maestro, options_from_collection_for_select(@posibles_maestros,'id', 'fullName'), :onclick =>  "verify();", class: "form-control",:prompt => "Seleccionar Maestro Consejero") %>
+	      <%= select_tag(:id_maestro, options_from_collection_for_select(@posibles_maestros,'id', 'fullName'), :onclick =>  "verify();", class: "form-control",:prompt => "Seleccionar Maestre Consejero") %>
 	   	</div>
 	    <div class="actions" onclick="checkFields()">
 	      <%= submit_tag "Actualizar gestión", class: "btn btn-success", id: "boton" %>

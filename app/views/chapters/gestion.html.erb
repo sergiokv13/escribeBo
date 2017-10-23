@@ -5,7 +5,7 @@
 				<%= form_tag("/update_gestion/"+@chapter.id.to_s,method:"post") do %>
 					<div class="form-group">
 					<% if @chapter.chapter_type == "Capítulo" %>
-				      	<%= label_tag :Maestro_Consejero %>
+				      	<%= label_tag :Maestre_Consejero %>
 				    <%end%>
 				    <% if @chapter.chapter_type == "Priorato" %>
 				      	<%= label_tag :Ilustre_Comendador_Caballero %>

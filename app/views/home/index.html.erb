@@ -1,5 +1,7 @@
 
         <h2>Bienvenido <%= current_user.fullName %></h2>
+
+      
         <h3>Mis entes</h3>
         <a href="/chapters/<%= current_user.campament.id%>">Departamento de <%= current_user.campament.name %></a><br>
         <a href="/chapters/<%= current_user.chapter.id%>"><%= current_user.chapter.chapter_name %></a><br>
