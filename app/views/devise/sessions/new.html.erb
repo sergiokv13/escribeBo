@@ -8,6 +8,12 @@
         <img src="<%= Banner.all.first.pic.url %>" class="img-responsive">
       <% end %>
 
+      <div class="googleCalendar">
+
+          <iframe src="https://calendar.google.com/calendar/embed?title=Orden%20DeMolay%20-%20Jurisdicci%C3%B3n%20Bolivia&amp;showCalendars=0&amp;showTz=0&amp;height=500&amp;wkst=1&amp;hl=es&amp;bgcolor=%23ffffff&amp;src=eventos.dm.bolivia%40gmail.com&amp;color=%23A32929&amp;src=es.bo%23holiday%40group.v.calendar.google.com&amp;color=%230D7813&amp;ctz=America%2FLa_Paz" style="border-width:0" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+
       <h2 class="center-title">Iniciar sesión</h2>
       <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
@@ -22,6 +28,18 @@
           <%= f.submit "Iniciar Sesión" %>
         </div>
       <% end %>
+      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+      <%= link_to "Olvidé mi contraseña", new_password_path(resource_name) %><br />
+    <% end -%>
+
+    <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+      <%= link_to "No recibí correo electrónico de confirmación", new_confirmation_path(resource_name) %><br />
+    <% end -%>
+
+    <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+      <%= link_to "No recibí correo electrónico con instrucciones de desbloqueo", new_unlock_path(resource_name) %><br />
+    <% end -%>
+
     </div>
   </div>
 </div>

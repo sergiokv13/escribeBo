@@ -7,7 +7,8 @@
               <ul class="dropdown-menu" aria-labelledby="dLabel">
                   <li> <%= link_to 'Gestionar ' + @chapter.chapter_name, '/gestion/' + @chapter.id.to_s%></li>
                   <li> <%= link_to 'Editar ' + @chapter.chapter_name, edit_chapter_path%></li>
-                  <li><%= link_to 'Poner en sueños el ' + @chapter.chapter_name, @chapter, method: :delete, data: { confirm: '¿Está seguro que desea poner en sueño este cuerpo DeMolay?' } %></li>
+                  <li><%= link_to 'Poner en sueños.', @chapter, method: :delete, data: { confirm: '¿Está seguro que desea poner en sueño este cuerpo DeMolay?' } %></li>
+                  <li><a href="/destroy_chapter/<%=@chapter.id%>" onclick="return confirm('¿Está seguro que desea eliminar este cuerpo DeMolay?')">Eliminar</a></li>
               </ul>
         </span>
       <% end %>

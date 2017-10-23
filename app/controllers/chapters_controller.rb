@@ -179,6 +179,19 @@ class ChaptersController < ApplicationController
     end
   end
 
+  def real_destroy
+    if @current_user.is_oficial
+      @chapter = Chapter.find(params[:id])
+      @chapter.destroy
+      respond_to do |format|
+        format.html { redirect_to campaments_url, notice: 'Chapter was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to :back
+    end
+  end
+
   def wake
     if current_user.is_oficial
       @chapter = Chapter.find(params[:id])

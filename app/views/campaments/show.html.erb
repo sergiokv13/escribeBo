@@ -7,6 +7,13 @@
               <ul class="dropdown-menu" aria-labelledby="dLabel">
                     <li> <%= link_to 'Gestionar', '/campaments/gestion/' + @campament.id.to_s %></li>
                     <li> <%= link_to 'Editar', '/campaments/' + @campament.id.to_s + '/edit'%></li>
+                    <% if @campament.id != 1 %>
+                      <% if @campament.chapters.count == 0 %>
+                        <li><%= link_to 'Eliminar', @campament, method: :delete, data: { confirm: '¿Está seguro que desea eliminar el campamento?' } %></li>
+                      <% else %>
+                        <li><a href="#">Borrar los entes del campamento para poder eliminarlo.</a></li>
+                      <% end%>
+                    <% end %>
               </ul>
         </span>
       <% end %>

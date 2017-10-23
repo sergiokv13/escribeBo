@@ -13,7 +13,7 @@
 
           
 
-          <% if current_user.is_oficial %>
+          <% if current_user.is_oficial && current_user != @user %>
           <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal">Premiaciones</button>
             <% if @user.account_active? %>
               <%= link_to "Bloquear Usuario", "/block_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :charges
   resource :passwords
 
+
   get "/update_chapters" => "admin_controller#update_chapters"
 
   get "/update_chapters_transfer" => "profiles#update_chapters"
@@ -99,6 +100,8 @@ Rails.application.routes.draw do
 
   get '/follow_chapter/:user_id/:chapter_id' => 'chapters#follow_chapter'
   get '/unfollow_chapter/:user_id/:chapter_id' => 'chapters#unfollow_chapter'
+  get "/destroy_chapter/:id" => "chapters#real_destroy"
+
 
   get '/follow_campament/:user_id/:campament_id' => 'campaments#follow_campament'
   get '/unfollow_campament/:user_id/:campament_id' => 'campaments#unfollow_campament'
