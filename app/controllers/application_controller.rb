@@ -28,6 +28,6 @@ class ApplicationController < ActionController::Base
 	def configure_permitted_parameters
 	  devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name,:lastname,:demolayID,:role, :email, :ci, :password, :password_confirmation, :remember_me, :chapter_id, :priory_id, :court_id) }
 	  devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:login, :username, :email, :password, :remember_me, :chapter_id, :priory_id, :court_id) }
-	  devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name,:image,:lastname,:demolayID,:email,:ci,:password,:password_confirmation,:current_password,:birth_dateimiento,:adress,:phone,:cellphone,:father_name,:father_adress,:father_mail,:mather_name,:mather_adress,:mather_mail,:estado_civil,:nombre_esposa,:taller_nombre,:taller_numero)}
+	  devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:name,:image,:lastname,:demolayID,:email,:ci,:password,:password_confirmation,:current_password,:birth_date,:adress,:phone,:cellphone,:father_name,:father_adress,:father_mail,:mather_name,:mather_adress,:mather_mail,:estado_civil,:nombre_esposa,:taller_nombre,:taller_numero)}
 	end
 end

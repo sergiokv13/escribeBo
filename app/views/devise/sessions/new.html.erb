@@ -11,7 +11,7 @@
       <h2 class="center-title">Iniciar sesión</h2>
       <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.email_field :email, autofocus: true, label: "Correo Electrónico" %>
+          <%= f.email_field :email, label: "Correo Electrónico" %>
         </div>
 
         <div class="field">
