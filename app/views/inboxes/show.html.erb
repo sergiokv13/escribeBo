@@ -3,7 +3,7 @@
       <h1 class="center-title"><%= @inbox.subject %></h1>
 
       <p>
-        <%= @inbox.content %>
+        <%= raw(auto_link(@inbox.content)) %>
       </p>
 
       <p>

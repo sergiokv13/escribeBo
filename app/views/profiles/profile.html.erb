@@ -46,7 +46,7 @@
       <hr class="divider">
       <% @user.degrees.each do |degree| %>
       <% if degree.aproved %>
-        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a> otorgado en fecha <%= degree.created_at %><br>
+        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a> otorgado en fecha <%= degree.date || degree.created_at %><br>
         <% end %>
       <% end %>
       <% if @user.degrees.empty? == true %>
@@ -130,9 +130,11 @@
       <div class="modal-body">
         <%= bootstrap_form_tag url: "/add_premiacion" do |f| %>
           <div class="form-group">
+            <%= f.label :premiacion_id, 'Premiación' %>
             <%= f.select :premiacion_id, options_for_select(Premiacion.all.map{ |p| [p.title, p.id] }), :onclick =>  "verify2();" %>
           </div>
           <div class="form-group">
+            <%= f.label :date_of, 'Fecha' %>
             <%= f.date_field :date_of , :onclick =>  "verify2();",class:"form-control" %>
           </div>
           <div class="form-group" hidden="true">
@@ -141,7 +143,7 @@
 
           <div class="actions">
             <div onmouseover="checkFields2()">
-              <%= f.submit "Premiar", class: "btn btn-block btn-success",id: "boton2" %>
+              <%= f.submit "Conferir", class: "btn btn-block btn-success",id: "boton2" %>
             </div>  
             
           </div>
@@ -328,7 +330,7 @@
   };
 
   function verify2(){
-    $('#boton2').attr('value', 'Transferir');
+    $('#boton2').attr('value', 'Conferir');
     $('#boton2').removeClass( "btn-danger" ).addClass( "btn-primary" );
     $('#boton2').removeAttr('disabled');
   }

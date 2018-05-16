@@ -8,15 +8,17 @@
         <%if publicacion.chapter!=nil%>
            - <a href="/chapters/<%=publicacion.chapter.id%>"><%=publicacion.chapter.chapter_name%></a>
         <%end%>
-        <h3 ><%=publicacion.subject%></h3>
+        <h3 >publicacion.subject</h3>
         <p>
-          <%=publicacion.content%>
+          <%=raw(auto_link(publicacion.subject))%>
         </p>
         <% if publicacion.image.url != "/images/original/missing.png"%>
           <center>
             <div class="row">
               <div class=col-lg-2>
+              <% if publicacion.image.image.exists? %>
                 <img src="<%= publicacion.image.url %>" class="img-responsive">
+              <% end %>
               </div>
             </div>
           </center>
@@ -29,5 +31,4 @@
       </div>
     </div>
   <%end%>
-
 

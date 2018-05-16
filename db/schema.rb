@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170911173707) do
+ActiveRecord::Schema.define(version: 20180516145341) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -144,6 +144,7 @@ ActiveRecord::Schema.define(version: 20170911173707) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.text     "reject_note"
+    t.datetime "date"
   end
 
   add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id"

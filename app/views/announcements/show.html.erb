@@ -1,8 +1,10 @@
 
         <h1 class="center-title"><%= @announcement.subject %></h1>
-        <%= image_tag @announcement.image, class: "img-responsive" %>
+          <% if @announcement.image.exists? %>
+            <img src="<%= @announcement.image.url %>" class="img-responsive">
+          <% end %>
         <p>
-          <%= @announcement.content %>
+          <%= raw(auto_link(@announcement.content)) %>
         </p>
 
 

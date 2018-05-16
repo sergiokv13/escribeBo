@@ -10,10 +10,13 @@
 	   </div>
 
 	    <div class="form-group">
-	       <div class="form-group">
-		    <%= file_field_tag :image %>
-		  </div>
-	   </div>
+        <%= file_field_tag :image %>
+     </div>
+
+      <div class="form-group">
+        <%= label_tag :fecha %>
+        <%= date_field :date_of, class: "form-control" %>
+      </div>
 
 	    <div class="actions">
 	      <%= submit_tag "Volver Senior DeMolay al usuario", class: "btn btn-success" %>

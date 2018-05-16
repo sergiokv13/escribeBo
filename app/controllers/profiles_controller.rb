@@ -20,6 +20,7 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "DeMolay"
     @degree.image = params[:image]
+    @degree.date = params[:date_of]
     @degree.chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
@@ -38,6 +39,7 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Caballero"
     @degree.image = params[:image]
+    @degree.date = params[:date_of]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.chapter = @chapter
     @degree.president_aproved = false
@@ -59,6 +61,7 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Chevalier"
     @degree.image = params[:image]
+    @degree.date = params[:date_of]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
@@ -80,6 +83,7 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Senior DeMolay"
     @degree.image = params[:image]
+    @degree.date = params[:date_of]
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false

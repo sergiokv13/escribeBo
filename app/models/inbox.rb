@@ -5,7 +5,6 @@ class Inbox < ActiveRecord::Base
   validates :subject, :content, :user2_id, presence: true
   validates :subject, :content, length: { minimum: 4 }
   validates :subject, length: { maximum: 50 }
-  validates :content, length: { maximum: 300 }
   validates :user2_id, :presence => true
 
   has_attached_file :inbox_att
