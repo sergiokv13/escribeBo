@@ -7,9 +7,9 @@
         <%if publicacion.chapter!=nil%>
            - <a href="/chapters/<%=publicacion.chapter.id%>"><%=publicacion.chapter.chapter_name%></a>
         <%end%>
-        <h2 ><%=publicacion.subject%></h2>
+        <h3 ><%=publicacion.subject%></h3>
         <p>
-          <%=publicacion.content%>
+          <%=raw(auto_link(publicacion.content))%>
         </p>
         <% if publicacion.image.url != "/images/original/missing.png"%>
           <center>

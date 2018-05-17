@@ -10,7 +10,7 @@
         <%end%>
         <h3 >publicacion.subject</h3>
         <p>
-          <%=raw(auto_link(publicacion.subject))%>
+          <%=raw(auto_link(publicacion.content))%>
         </p>
         <% if publicacion.image.url != "/images/original/missing.png"%>
           <center>
@@ -25,7 +25,7 @@
        <% end %>
        <br>
         <strong>Publicado el: </strong><%= publicacion.created_at.to_date %>
-          <% if (@chapter.chapter_president != nil && @chapter.chapter_president.id == current_user.id)  or (@chapter.chapter_consultant_president != nil && @chapter.chapter_consultant_president.id == current_user.id ) or current_user.is_oficial %>
+          <% if (publicacion.campament.president_id != nil && publicacion.campament.president_id == current_user.id)  or (publicacion.campament.maestro_consejero_id != nil && publicacion.campament.maestro_consejero_id == current_user.id ) or current_user.is_oficial %>
             <br><%= link_to 'Borrar publicación', publicacion, method: :delete, data: { confirm: '¿Está seguro que desea borrar esta publicación?'} %>
           <% end %>
       </div>
