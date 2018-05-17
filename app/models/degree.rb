@@ -4,8 +4,7 @@ class Degree < ActiveRecord::Base
 
 
   has_attached_file :image
-  #validates_attachment_content_type :image, :content_type => [ "application/zip"]
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates_attachment_content_type :image, :content_type => [ "application/zip"]
 
   def aproved
     return (self.president_aproved == true && self.deputy_aproved && self.oficial_aproved)
