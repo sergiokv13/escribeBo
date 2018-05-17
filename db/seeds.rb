@@ -49,6 +49,7 @@ end
 
 User.create(email:"oficial@mail.com",birth_date: '12/12/12', password:'administrador',name:'Oficial',lastname:'Ejecutivo',demolayID:'1',role:'Trabajador adulto',ci:'1234567', chapter_id:'1', campament_id:'1', president_aproved:true, deputy_aproved:true, oficial_aproved:true, cellphone: '59179777396', phone: '59144229865')
 
+=begin
 ids_capitulo = Array.new
 ids_capitulo[2] = [1,2,3]
 ids_capitulo[3] = [4,5,6]
@@ -217,4 +218,4 @@ Charge.create(title:"Oficial Ejecutivo", user_id: '1',campament_id:"1",ente:"Gab
 
 
 
-
+=end
