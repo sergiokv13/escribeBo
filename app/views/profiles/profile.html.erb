@@ -46,7 +46,7 @@
       <hr class="divider">
       <% @user.degrees.each do |degree| %>
       <% if degree.aproved %>
-        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a> otorgado en fecha <%= degree.date || degree.created_at %><br>
+        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a> otorgado en fecha <%= (degree.date || degree.created_at).to_date %> <% if current_user.is_oficial%> <a href="/degrees/<%=degree.id%>">Ver ficha</a><%end%><br>
         <% end %>
       <% end %>
       <% if @user.degrees.empty? == true %>
@@ -130,12 +130,12 @@
       <div class="modal-body">
         <%= bootstrap_form_tag url: "/add_premiacion" do |f| %>
           <div class="form-group">
-            <%= f.label :premiacion_id, 'Premiación' %>
-            <%= f.select :premiacion_id, options_for_select(Premiacion.all.map{ |p| [p.title, p.id] }), :onclick =>  "verify2();" %>
+           
+            <%= f.select :premiacion_id, options_for_select(Premiacion.all.map{ |p| [p.title, p.id] }), :onclick =>  "verify2();", label: "Premiación" %>
           </div>
           <div class="form-group">
-            <%= f.label :date_of, 'Fecha' %>
-            <%= f.date_field :date_of , :onclick =>  "verify2();",class:"form-control" %>
+            
+            <%= f.date_field :date_of , :onclick =>  "verify2();",class:"form-control", label: "Fecha" %>
           </div>
           <div class="form-group" hidden="true">
             <%= f.text_field :user_id, value: @user.id%>

@@ -17,16 +17,19 @@ class ProfilesController < ApplicationController
   end
 
   def update_asignar_grado_demolay
+    byebug
     @degree = Degree.new
     @degree.title = "DeMolay"
     @degree.image = params[:image]
-    @degree.date = params[:date_of]
+    @degree.date = Date.parse(params[:date_of].first.last)
     @degree.chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
     @degree.oficial_aproved = false
     @degree.user_id = params[:id]
-    @degree.save
+    if !@degree.save
+      flash[:notice] = "Los datos estan incorrectos. Recuerda que solo puedes subir Zip."
+    end
     redirect_to '/profile/'+params[:id]
   end
 
@@ -39,7 +42,7 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Caballero"
     @degree.image = params[:image]
-    @degree.date = params[:date_of]
+    @degree.date = Date.parse(params[:date_of].first.last)
     @chapter = Chapter.find(params[:chapter_id])
     @degree.chapter = @chapter
     @degree.president_aproved = false
@@ -48,7 +51,9 @@ class ProfilesController < ApplicationController
     @chapter.knights.push(User.find(params[:id]))
     @degree.user_id = params[:id]
     @chapter.save
-    @degree.save
+    if !@degree.save
+      flash[:notice] = "Los datos estan incorrectos. Recuerda que solo puedes subir Zip."
+    end
     redirect_to '/profile/'+params[:id]
   end
 
@@ -61,7 +66,7 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Chevalier"
     @degree.image = params[:image]
-    @degree.date = params[:date_of]
+    @degree.date = Date.parse(params[:date_of].first.last)
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
@@ -70,7 +75,9 @@ class ProfilesController < ApplicationController
     @chapter.chevaliers.push(User.find(params[:id]))
     @degree.user_id = params[:id]
     @chapter.save
-    @degree.save
+    if !@degree.save
+      flash[:notice] = "Los datos estan incorrectos. Recuerda que solo puedes subir Zip."
+    end
     redirect_to '/profile/'+params[:id]
   end
 
@@ -83,7 +90,7 @@ class ProfilesController < ApplicationController
     @degree = Degree.new
     @degree.title = "Senior DeMolay"
     @degree.image = params[:image]
-    @degree.date = params[:date_of]
+    @degree.date = Date.parse(params[:date_of].first.last)
     @chapter = Chapter.find(params[:chapter_id])
     @degree.president_aproved = false
     @degree.deputy_aproved = false
@@ -92,7 +99,9 @@ class ProfilesController < ApplicationController
     @chapter.chevaliers.push(User.find(params[:id]))
     @degree.user_id = params[:id]
     @chapter.save
-    @degree.save
+    if !@degree.save
+      flash[:notice] = "Los datos estan incorrectos. Recuerda que solo puedes subir Zip."
+    end
     redirect_to '/profile/'+params[:id]
   end
 
@@ -106,6 +115,7 @@ class ProfilesController < ApplicationController
     @chapter =  Chapter.find(params[:chapter_id])
     @degree = Degree.new
     @degree.title = "Consultor"
+    @degree.date = Date.parse(params[:date_of].first.last)
     @degree.image = params[:image]
     @degree.president_aproved = false
     @degree.deputy_aproved = false
@@ -114,7 +124,9 @@ class ProfilesController < ApplicationController
     @chapter.consultants.push(@user)
     @chapter.save
     @degree.user = @user
-    @degree.save
+    if !@degree.save
+      flash[:notice] = "Los datos estan incorrectos. Recuerda que solo puedes subir Zip."
+    end
     redirect_to "/profile/"+@user.id.to_s
   end
 

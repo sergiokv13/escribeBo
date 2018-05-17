@@ -54,11 +54,9 @@ class DegreesController < ApplicationController
   # DELETE /degrees/1
   # DELETE /degrees/1.json
   def destroy
+    user_id = @degree.user_id
     @degree.destroy
-    respond_to do |format|
-      format.html { redirect_to degrees_url, notice: 'Degree was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to ('/profile/' + user_id.to_s)
   end
 
   private
