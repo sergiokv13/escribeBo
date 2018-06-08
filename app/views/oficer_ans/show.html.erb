@@ -3,7 +3,7 @@
       <h1 class="center-title"><%= @oficer_an.title %></h1>
 
       <p>
-        <%= @oficer_an.text %>
+         <%= raw(auto_link(@oficer_an.text)) %> 
       </p>
       <p>
          <strong>Fecha de finalización:</strong>

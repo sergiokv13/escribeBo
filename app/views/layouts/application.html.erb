@@ -57,7 +57,7 @@
                     <span class="side-font">No sigues ningun Departamento. Puedes explorar <a href="/campaments">aquí.</a></span>
                   <% end %>
                 <h3>Últimos mensajes</h3>
-                  <% current_user.inboxes.each do |inbox| %>
+                  <% current_user.visible_inboxes.each do |inbox| %>
                     <a class="side-font" href="/profile/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
                     <span class="side-font"><%= truncate(inbox.content.html_safe, length: 50) %></span>
                     <a class="side-font" href="/inboxes/<%= inbox.id %>">Ver más</a><br />
@@ -81,7 +81,7 @@
                 <% if !OficerAn.all.order(:deadline).reverse.empty? %>
                   <% OficerAn.all.each do |of| %>
                     <% if of.state %>
-                      <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%=of.text.first(65)%>... </span><br />
+                      <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%= raw(auto_link(of.text.first(65))) %>... </span><br />
                     <%end%>
                   <% end %>
                 <% else %>
@@ -125,7 +125,7 @@
                   <% if !OficerAn.all.order(:deadline).reverse.empty? %>
                     <% OficerAn.all.each do |of| %>
                       <% if of.state %>
-                        <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%=of.text.first(65)%>... </span><br />
+                        <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%= raw(auto_link(of.text.first(65))) %>... </span><br />
                       <%end%>
                     <% end %>
                   <% else %>

@@ -35,7 +35,7 @@
                 <% end %>
                 <td><a href="/oficer_ans/<%= oficer_an.id %>"><%= oficer_an.title%> </a></td>
                 <% if oficer_an.state %>
-                  <td>Corriendo</td>
+                  <td>Vigente</td>
                 <% else %>
                   <% if current_user.is_oficial %>
                     <td> <a href="/oficer_ans/<%=oficer_an.id%>/edit">Finalizada</a> </td>

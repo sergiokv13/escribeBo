@@ -7,11 +7,15 @@
       </p>
 
       <p>
-        <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
+        Enviado por: <%= link_to @inbox.user1.fullName, '/profile/' + @inbox.user1.id.to_s %>
+      </p>
+
+      <p>
+        Enviado a: <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
       </p>
 
       <% if @inbox.inbox_att.exists? %>
-        <span class="glyphicon glyphicon-paperclip"></span> <%= link_to 'Ver adjunto', @inbox.inbox_att.url, target: 'blank' %>
+        <span class="glyphicon glyphicon-paperclip"></span> <%= link_to 'Descargar adjunto', @inbox.inbox_att.url, target: 'blank' %>
       <% end %>
 
       <p>

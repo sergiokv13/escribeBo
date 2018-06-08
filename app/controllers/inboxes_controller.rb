@@ -5,7 +5,7 @@ class InboxesController < ApplicationController
   # GET /inboxes.json
   def index
     @inboxes = current_user.visible_inboxes.order(created_at: :desc)
-    @enviados = current_user.sent.order(created_at: :desc)
+    @enviados = current_user.visible_sent.order(created_at: :desc)
     @inboxes = @inboxes.paginate(:page => params[:page], :per_page => 5)
     @enviados = @enviados.paginate(:page => params[:page], :per_page => 5)
   end
@@ -92,7 +92,13 @@ class InboxesController < ApplicationController
 
   def deleteInbox
     inbox = Inbox.find(params[:id])
-    inbox.hide
+    inbox.hide_for_receiver
+    redirect_to inboxes_url
+  end
+
+  def delete_for_sender
+    inbox = Inbox.find(params[:id])
+    inbox.hide_for_sender
     redirect_to inboxes_url
   end
 

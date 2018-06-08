@@ -78,6 +78,7 @@ Rails.application.routes.draw do
   #get '/reports' => 'transactions#reports'
   post '/generateReport' => 'transactions#generateReport'
   get '/deleteInbox/:id' => 'inboxes#deleteInbox'
+  get '/delete_for_sender/:id' => 'inboxes#delete_for_sender'
   get '/chapter_aprovals' => 'admin_controller#chapter_aprovals'
   get '/aprove_publication/:id' => 'admin_controller#aprove_publication'
   get '/chapter_users/:id/:type' => 'chapters#chapter_users'

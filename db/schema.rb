@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180607214309) do
+ActiveRecord::Schema.define(version: 20180608154432) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20180607214309) do
     t.string   "inbox_att_content_type"
     t.integer  "inbox_att_file_size"
     t.datetime "inbox_att_updated_at"
+    t.boolean  "inbox_hidden_sender"
   end
 
   add_index "inboxes", ["user1_id"], name: "index_inboxes_on_user1_id"

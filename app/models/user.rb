@@ -64,6 +64,7 @@ class User < ActiveRecord::Base
     msg.user2_id = self.id
     msg.seen = false
     msg.inbox_hidden = false
+    msg.inbox_hidden_sender = true
     msg.save
   end
 
@@ -117,6 +118,10 @@ class User < ActiveRecord::Base
 
   def visible_inboxes
     self.inboxes.where(inbox_hidden: false)
+  end
+
+  def visible_sent
+    self.sent.where(inbox_hidden_sender: (false || nil) ) 
   end
 
   def active_for_authentication?

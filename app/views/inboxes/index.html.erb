@@ -6,7 +6,6 @@
             <thead>
               <tr>
                 <th>Título</th>
-                <th>Contenido</th>
                 <th>Recibido de</th>
                 <th>Fecha</th>
                 <th>Visto</th>
@@ -22,7 +21,6 @@
                   <tr class="danger">
                 <% end %>
                   <td><%= inbox.subject %></td>
-                  <td><%= raw(auto_link(inbox.content)) %></td>
                   <td><%= link_to inbox.user1.fullName, '/profile/' + inbox.user1.id.to_s %></td>
                   <td><%= inbox.created_at.to_date %></td>
                   <td><%= inbox.visto %></td>
@@ -43,7 +41,6 @@
             <thead>
               <tr>
                 <th>Título</th>
-                <th>Contenido</th>
                 <th>Enviado a</th>
                 <th>Fecha</th>
                 <th>Visto</th>
@@ -59,11 +56,11 @@
                   <tr class="danger">
                 <% end %>
                   <td><%= inbox.subject %></td>
-                  <td><%= inbox.content %></td>
                   <td><%= link_to inbox.user2.fullName, '/profile/' + inbox.user2.id.to_s %></td>
                   <td><%= inbox.created_at.to_date %></td>
                   <td><%= inbox.visto %></td>
                   <td><%= link_to 'Ver', inbox %></td>
+                  <td><%= link_to 'Borrar', '/delete_for_sender/' + inbox.id.to_s %></td>
                 </tr>
               <% end %>
             </tbody>

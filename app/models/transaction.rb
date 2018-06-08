@@ -7,6 +7,7 @@ class Transaction < ActiveRecord::Base
 	validates_with AttachmentPresenceValidator, attributes: :image
 
   has_attached_file :plantilla
+  do_not_validate_attachment_file_type :plantilla
 
   validates :name, :presence => true
   validates :description, :presence => true

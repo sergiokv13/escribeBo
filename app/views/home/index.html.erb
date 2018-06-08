@@ -28,7 +28,7 @@
           </div>
           <div class="col-lg-6">
             <h3>Últimos mensajes recibidos</h3>
-            <% current_user.inboxes.last(3).each do |message| %>
+            <% current_user.visible_inboxes.last(3).each do |message| %>
               <div class="row">
                 <div class="col-lg-12" style="text-align:justify">
                   <h4><%= message.subject %></h4>
