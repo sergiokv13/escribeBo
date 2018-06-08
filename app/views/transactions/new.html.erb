@@ -1,6 +1,12 @@
 
       <div class="row">
         <h1 class="center-title">Registrar Transacción</h1>
+        <h2 class="center-title">(En moneda Nacional)</h2>
+        <% if !CurrentFee.get.nil? %>
+        <center>
+          <img src="<%=CurrentFee.get.image%>">
+        </center>
+        <% end %>
         <%= render 'form' %>
       </div>
 

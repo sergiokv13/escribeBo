@@ -2,10 +2,20 @@
 
 
       <h1 class="center-title"><%= @transaction.name %></h1>
-
+<center>
       <p>
         <strong>Concepto</strong><br>
         <%= @transaction.concept_type %>
+      </p>
+
+
+      <p>
+        <strong>Ente</strong><br>
+        <% if !@transaction.chapter.nil? %>
+          <a href="/chapters/<%=@transaction.chapter_id%>"> <%= @transaction.chapter.chapter_name %> </a>
+        <% else %>
+          No se registro el Ente.
+        <% end %>
       </p>
 
       <p>
@@ -20,7 +30,7 @@
 
       <p>
         <strong>Monto</strong><br>
-        Bs. <%= @transaction.mount %>
+        Bs. <%= @transaction.float_amount || @transaction.mount %>
       </p>
 
       <p>
@@ -42,9 +52,12 @@
         <div class="col-lg-3"></div>
       </div>
 
+      <% if !@transaction.plantilla.blank? %>
+        <li><%= link_to "Descargar plantilla", @transaction.plantilla.url, target: "_blank",  data: { no_turbolink: true } , class: "btn btn-success" %></li>
+      <% end %><br>
+
       <center>
         <%= link_to 'Atrás', :back, class: "btn btn-danger" %>
       </center>
 
-
-
+</center>

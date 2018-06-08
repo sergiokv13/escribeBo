@@ -9,16 +9,15 @@
 	      <%= select_tag(:chapter_id, options_from_collection_for_select(@opciones_capitulo,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
 	   </div>
 
-	   <small>Solo se acepta ZIP</small>
-	   <div class="form-group">
-        <%= file_field_tag :image %>
-     </div>
-
       <div class="form-group">
-        <%= label_tag "Fecha" %>
+        <%= label_tag "Fecha*" %><br>
         <%= date_field :date_of, class: "form-control" %>
       </div>
 
+      <small>Solo se acepta ZIP/RAR</small>
+        <div class="form-group">
+          <%= file_field_tag :image %>
+        </div>
 
 	    <div class="actions">
 	      <%= submit_tag "Volver DeMolay al usuario", class: "btn btn-success" %>

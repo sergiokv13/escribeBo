@@ -1,0 +1,36 @@
+<img src="<%=@user.image.url%>" class="img-responsive">
+<strong><%=@user.role%></strong><br>
+<% if @user.aproved %>
+  <a class="btn btn-primary btn-block" href="/inboxes/new/<%=@user.id%>">Enviar mensaje</a>
+
+    <% if current_user.is_aprovator %>
+      <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal4">Ver Formularios</button>
+
+      <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal2">Grados</button>
+    <% end %>
+    <% if current_user.is_oficial && current_user != @user %>
+    <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal">Premiaciones</button>
+      <% if @user.account_active? %>
+        <%= link_to "Bloquear Usuario", "/block_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
+      <% end %>
+      <% if !@user.account_active? %>
+        <%= link_to "Desbloquear Usuario", "/unblock_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
+      <% end %>
+    <%end%>
+
+
+  <%else%>
+    <% if current_user.is_oficial %>
+      <%= link_to "Aprobar", "/approve/"+@user.id.to_s, class: "btn btn-success btn-block" %><br>
+      <%= link_to "Rechazar", "/reject/"+@user.id.to_s, class: "btn btn-danger btn-block" %><br>
+    <%end%>
+  <%end%>
+  <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver más Información</button>
+  
+  <% if current_user.is_oficial %>
+    <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#myModal5">Transferir usuario</button>
+  <% end %>
+  
+  <% if current_user.id == @user.id %>
+    <a href="/users/edit" class="btn btn-primary btn-block">Editar Información</a>
+  <% end %>

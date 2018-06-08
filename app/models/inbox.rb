@@ -8,7 +8,7 @@ class Inbox < ActiveRecord::Base
   validates :user2_id, :presence => true
 
   has_attached_file :inbox_att
-  validates_attachment_content_type :inbox_att, :content_type => ["application/zip"]
+  validates_attachment_content_type :inbox_att, :content_type => ["application/zip", "application/rar"]
 
   def hide
     self.inbox_hidden = true

@@ -9,7 +9,7 @@
 	      <%= select_tag(:chapter_id, options_from_collection_for_select(@opciones_capitulo,'id', 'chapter_name'), class: "form-control",:prompt => "Seleccionar capitulo") %>
 	   </div>
 
-	   <small>Solo se acepta ZIP</small>
+	   <small>Solo se acepta ZIP/RAR</small>
 	   <div class="form-group">
 	       <div class="form-group">
 		    <%= file_field_tag :image %>

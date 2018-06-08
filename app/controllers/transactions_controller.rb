@@ -22,6 +22,8 @@ class TransactionsController < ApplicationController
     @transaction = Transaction.new
     @types = [['Ingreso', 'Ingreso'], ['Egreso', 'Egreso']]
     @concepts = [['Iniciación','Iniciación'],['Elevación','Elevación'],['Investidura','Investidura'],['Investidura Chevalier','Investidura Chevalier'],['DeMolay Card','DeMolay Card'],['Consultor','Consultor'],['Premiación','Premiación'],['Otro','Otro']]
+    @chapters = Chapter.all.map{|k| [k.chapter_name,k.id]}
+    @chapters.push(["Otro", nil])
   end
 
   # GET /transactions/1/edit
@@ -111,9 +113,9 @@ class TransactionsController < ApplicationController
       if t.created_at.to_date >= @start and t.created_at.to_date <= @end
         @transactions.push(t)
         if t.transaction_type == "Ingreso"
-          @total += t.mount
+          @total += (t.float_amount || t.mount)
         else
-          @total -= t.mount
+          @total -= (t.float_amount || t.mount)
         end
       end
     end
@@ -132,6 +134,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:name, :description, :mount, :image, :transaction_type,:concept_type, :receipt_number)
+      params.require(:transaction).permit(:chapter_id,:float_amount,:plantilla,:name, :description, :mount, :image, :transaction_type,:concept_type, :receipt_number)
     end
 end

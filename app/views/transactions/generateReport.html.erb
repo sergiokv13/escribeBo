@@ -7,6 +7,9 @@
                 Nombre
               </th>
               <th>
+                Ente
+              </th>
+              <th>
                 Descripcion
               </th>
               <th>
@@ -23,13 +26,20 @@
                     <%= link_to transaction.name, transaction_path(transaction) %>
                   </td>
                   <td>
+                     <% if !transaction.chapter.nil? %>
+                      <a href="/chapters/<%=transaction.chapter_id%>"> <%= transaction.chapter.chapter_name %> </a>
+                    <% else %>
+                      No se registro el Ente.
+                    <% end %>
+                  </td>
+                  <td>
                     <%= transaction.description %>
                   </td>
                   <td>
                     <%= transaction.transaction_type %>
                   </td>
                   <td>
-                    Bs. <%= transaction.mount %>
+                    Bs. <%= transaction.float_amount || transaction.mount %>
                   </td>
                 </tr>
               <% end %>

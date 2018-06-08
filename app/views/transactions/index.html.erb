@@ -8,6 +8,7 @@
               <tr>
                 <td>Tipo</td>
                 <th>Nombre</th>
+                <th>Ente</th>
                 <th>Descripción</th>
                 <th>Monto</th>
                 <th>Usuario</th>
@@ -21,8 +22,15 @@
                 <tr>
                   <td><%= transaction.transaction_type %></td>
                   <td><%= transaction.name %></td>
+                  <td>
+                    <% if !transaction.chapter.nil? %>
+                      <a href="/chapters/<%=transaction.chapter_id%>"> <%= transaction.chapter.chapter_name %> </a>
+                    <% else %>
+                      No se registro el Ente.
+                    <% end %>
+                  </td>
                   <td><%= transaction.description %></td>
-                  <td>Bs. <%= transaction.mount %></td>
+                  <td>Bs. <%= transaction.float_amount || transaction.mount %></td>
                   <td><%= transaction.user.fullName %></td>
                   <td><%= transaction.status %></td>
                   <% if current_user.is_oficial and !transaction.aproved? %>

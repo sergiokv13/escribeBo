@@ -83,8 +83,12 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.find(params[:id])
     @posibles_encargados =  Array.new
       @chapter.chapter_users.each do |demolay|
-        if demolay.tiene_el_grado("DeMolay")
-          @posibles_encargados.push(demolay)
+        if @chapter.chapter_type == "Capítulo"
+          if demolay.tiene_el_grado("DeMolay")
+            @posibles_encargados.push(demolay)
+          end
+        else
+           @posibles_encargados.push(demolay)
         end
       end
     @posibles_presidente =  @chapter.consultants
@@ -184,7 +188,7 @@ class ChaptersController < ApplicationController
       @chapter = Chapter.find(params[:id])
       @chapter.destroy
       respond_to do |format|
-        format.html { redirect_to campaments_url, notice: 'Chapter was successfully destroyed.' }
+        format.html { redirect_to campaments_url, notice: 'El ente fue eliminado.' }
         format.json { head :no_content }
       end
     else

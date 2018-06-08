@@ -22,7 +22,7 @@
                   <tr class="danger">
                 <% end %>
                   <td><%= inbox.subject %></td>
-                  <td><%= inbox.content %></td>
+                  <td><%= raw(auto_link(inbox.content)) %></td>
                   <td><%= link_to inbox.user1.fullName, '/profile/' + inbox.user1.id.to_s %></td>
                   <td><%= inbox.created_at.to_date %></td>
                   <td><%= inbox.visto %></td>

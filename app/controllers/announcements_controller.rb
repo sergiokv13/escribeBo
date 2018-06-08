@@ -50,7 +50,7 @@ class AnnouncementsController < ApplicationController
     @announcement.oficial_aproved = false
     respond_to do |format|
       if @announcement.save
-        format.html { redirect_to @announcement, notice: 'Announcement was successfully created.' }
+        format.html { redirect_to @announcement, notice: 'El anuncio se creo correctamente.' }
         format.json { render :show, status: :created, location: @announcement }
       else
         format.html { render :new }
@@ -64,7 +64,7 @@ class AnnouncementsController < ApplicationController
   def update
     respond_to do |format|
       if @announcement.update(announcement_params)
-        format.html { redirect_to @announcement, notice: 'Announcement was successfully updated.' }
+        format.html { redirect_to @announcement, notice: 'El anuncio se edito correctamente.' }
         format.json { render :show, status: :ok, location: @announcement }
       else
         format.html { render :edit }
@@ -92,8 +92,12 @@ class AnnouncementsController < ApplicationController
     @charges.push("Diputado")
     @announcement.degrees = @degrees.join(',')
     @announcement.charges = @charges.join(',')
-    @announcement.save
-    redirect_to '/chapters/'+ params[:id]
+    if @announcement.save
+      redirect_to '/chapters/'+ params[:id]
+    else
+      flash[:notice] = "El formato de la imagen es incorrecto."
+      redirect_to '/chapters/'+ params[:id]
+    end
   end
 
   def  createFromCampament
@@ -114,15 +118,19 @@ class AnnouncementsController < ApplicationController
     @charges.push("Diputado")
     @announcement.degrees = @degrees.join(',')
     @announcement.charges = @charges.join(',')
-    @announcement.save
-    redirect_to '/campaments/'+ params[:id]
+    if @announcement.save
+      redirect_to '/chapters/'+ params[:id]
+    else
+      flash[:notice] = "El formato de la imagen es incorrecto."
+      redirect_to '/chapters/'+ params[:id]
+    end
   end
   # DELETE /announcements/1
   # DELETE /announcements/1.json
   def destroy
     @announcement.destroy
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Announcement was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'El anuncio se borro correctamente.' }
       format.json { head :no_content }
     end
   end

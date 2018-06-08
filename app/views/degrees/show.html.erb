@@ -22,6 +22,9 @@
 		<% if !@degree.aproved %>
 			<%= link_to "Aprobar", "/approve_degree/"+@degree.id.to_s, class: "btn btn-success" %>
 		<% elsif ( current_user.is_oficial) %>
-			<%= link_to 'Quitar Grado',  @degree,  method: :delete, data: { confirm: 'Esta seguro? El grado sera eliminado' }, class: "btn btn-danger" %>
+			<% if @degree.title != "Iniciatico"%>
+				<%= link_to 'Quitar Grado',  @degree,  method: :delete, data: { confirm: 'Esta seguro? El grado sera eliminado' }, class: "btn btn-danger" %>
+			<% end %>
+
 		<% end %>
 		</center>

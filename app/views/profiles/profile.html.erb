@@ -2,51 +2,15 @@
   <div class="row">
     <h2 ><%= @user.fullName %></h2>
     <div class="col-lg-3 text-center">
-      <img src="<%=@user.image.url%>" class="img-responsive">
-      <strong><%=@user.role%></strong><br>
-      <% if @user.aproved %>
-        <a class="btn btn-primary btn-block" href="/inboxes/new/<%=@user.id%>">Enviar mensaje</a>
-
-          <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal4">Ver Formularios</button>
-
-          <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal2">Grados</button>
-
-          
-
-          <% if current_user.is_oficial && current_user != @user %>
-          <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal">Premiaciones</button>
-            <% if @user.account_active? %>
-              <%= link_to "Bloquear Usuario", "/block_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
-            <% end %>
-            <% if !@user.account_active? %>
-              <%= link_to "Desbloquear Usuario", "/unblock_user/"+@user.id.to_s, class: "btn btn-primary btn-block" %>
-            <% end %>
-          <%end%>
-
-
-        <%else%>
-          <% if current_user.is_oficial %>
-            <%= link_to "Aprobar", "/approve/"+@user.id.to_s, class: "btn btn-success btn-block" %><br>
-            <%= link_to "Rechazar", "/reject/"+@user.id.to_s, class: "btn btn-danger btn-block" %><br>
-          <%end%>
-        <%end%>
-        <button class="btn btn-primary  btn-block" type="button" data-toggle="modal" data-target="#myModal3">Ver más Información</button>
-        
-        <% if current_user.is_oficial %>
-          <button class="btn btn-primary btn-block" type="button" data-toggle="modal" data-target="#myModal5">Transferir usuario</button>
-        <% end %>
-        
-        <% if current_user.id == @user.id %>
-          <a href="/users/edit" class="btn btn-primary btn-block">Editar Información</a>
-        <% end %>
+      <%= render "menu_de_usuarios" %>
     </div>
 
     <div class="col-lg-3  text-center">
       <h3>Grados</h3>
       <hr class="divider">
-      <% @user.degrees.each do |degree| %>
+      <% @user.degrees.sort_by {|obj| obj.date || @user.iniciacion}.each do |degree| %>
       <% if degree.aproved %>
-        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a> otorgado en fecha <%= (degree.date || degree.created_at).to_date %> <% if current_user.is_oficial%> <a href="/degrees/<%=degree.id%>">Ver ficha</a><%end%><br>
+        Tiene el grado de <%= degree.title %> en <a href="/chapters/<%= degree.chapter.id %>" data-no-turbolink> <%= degree.chapter.chapter_name %> </a> otorgado en fecha <%= (degree.date || @user.iniciacion || degree.created_at).to_date %> <% if current_user.is_oficial%> <a href="/degrees/<%=degree.id%>">Ver ficha</a><%end%><br>
         <% end %>
       <% end %>
       <% if @user.degrees.empty? == true %>
@@ -157,202 +121,12 @@
 </div>
 
 
-<div id="myModal2" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Otorgar grado a <%=@user.fullName%></h4>
-      </div>
-      <div class="modal-body">
-        <%if @user.role == "DeMolay"%>
-          <% if @user.tendra_el_grado("DeMolay") %>
-            <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block disabled"%>
-          <%else%>
-             <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
-          <%end%>
+<%= render "asignar_grado_modal" %>
 
-          <% if @user.tendra_el_grado("Caballero") %>
-            <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled"%>
-          <%else%>
-          <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block"%>
-           <%end%>
+<%= render "informacion_modal" %>
 
-          <% if @user.tendra_el_grado("Chevalier") %>
-            <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
-          <%else%>
-            <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
-          <%end%>
+<%= render  "formulario_de_grados_modal" %>
 
-          <% if @user.tendra_el_grado("Senior DeMolay") %>
-            <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
-          <%else%>
-            <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
-          <%end%>
+<%= render "transferir_usuario_modal" %>
 
-        <%else%>
-
-
-            <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block"%>
-
-
-
-        <%end%>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-</div>
-
-<div id="myModal3" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Más información de <%=@user.fullName%></h4>
-      </div>
-      <div class="modal-body">
-              <strong>DeMolay Id: </strong> <%=@user.demolayID%><br>
-              <strong>Departamento:</strong> <%=@user.campament.name%><br>
-              <% if @user.chapter != nil %>
-                <strong>Chapter:</strong> <%=@user.chapter.chapter_name%><br>
-              <% end %>
-              <strong>Dirección:</strong> <%=@user.adress%><br>
-              <strong>Teléfono Fijo:</strong> <%=@user.phone%><br>
-              <strong>Teléfono Celular:</strong> <%=@user.cellphone%><br>
-            <% if @user.role == "DeMolay"%>
-               <strong>Seguro: </strong> <%=@user.assurance%><br>
-                <strong>Padrino: </strong> <%=@user.godfather_id%><br>
-                <strong>Iniciacion:</strong> <%=@user.iniciacion%><br>
-                <strong>Nombre del padre:</strong> <%=@user.father_name%><br>
-                <strong>Información del padre:</strong> <%=@user.father_info%><br>
-                <strong>Dirección del padre:</strong> <%=@user.father_adress%><br>
-                <strong>Correo electrónico del padre:</strong> <%=@user.father_mail%><br>
-                <strong>Nombre de la madre:</strong> <%=@user.mather_name%><br>
-                <strong>Dirección de la madre:</strong> <%=@user.mather_adress%><br>
-                <strong>Correo electrónico de la madre:</strong> <%=@user.mather_mail%><br>
-            <%else%>
-              <strong>Estado civíl:</strong> <%=@user.estado_civil%><br>
-              <strong>Nombre Esposa:</strong> <%=@user.nombre_esposa%><br>
-              <strong>Nombre del taller:</strong> <%=@user.taller_nombre%><br>
-              <strong>Numero del taller:</strong> <%=@user.taller_numero%><br>
-            <%end%>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-</div>
-
-<div id="myModal4" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Formularios de <%=@user.fullName%></h4>
-      </div>
-      <div class="modal-body">
-              <strong>Formularios de grados</strong>
-               <% if @user.role == "DeMolay" %>
-                  <%= link_to "Iniciación en " + @user.chapter.chapter_name.to_s,@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block", data: { no_turbolink: true } %>
-               <%end%>
-                 <% @user.degrees.each do |degree| %>
-                  <% if degree.aproved %>
-                 <% if degree.title!="Iniciatico"%>
-                  <%= link_to degree.title.to_s + " en " + degree.chapter.chapter_name.to_s,degree.image.url, target: "_blank" , class: "btn btn-primary btn-block"%>
-                  <%end%>
-                   <%end%>
-                 <%end%>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-</div>
-
-<div id="myModal5" class="modal fade" tabindex="-1" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Transferir a <%=@user.fullName%></h4>
-      </div>
-      <div class="modal-body">
-        <%= form_tag('/transfer_user', :method => :post) do %>
-          <label>Departamento</label>
-
-          
-
-
-          <input type="hidden" name="id" value="<%= @user.id %>">
-          <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, 'id', 'name'), :onclick =>  "verify1();", class: "form-control", :prompt => "Seleccionar filtro") %><br>
-          <label>Capítulo</label>
-
-          <div id="chapterDiv">
-            <%= render :partial => 'chapters', :object => @chapters ,label: "Capítulo"%>
-          </div>
-
-          <br>
-          
-          <div onmouseover="checkFields()">
-            <%= submit_tag("Transferir", class: "btn-block btn btn-primary", id: "boton") %>
-          </div>  
-            
-        <% end %>
-
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-</div>
-
-<script type="text/javascript">
-  function verify1(){
-    $('#boton').attr('value', 'Transferir');
-    $('#boton').removeClass( "btn-danger" ).addClass( "btn-primary" );
-    $('#boton').removeAttr('disabled');
-  }
-  function checkFields() {
-    if ($('#campament_id').val().length == 0 || $('#chapter_id').val().length == 0){
-      $('#boton').attr('disabled', 'disabled');
-      $('#boton').attr('value', 'Todos los campos son obligatorios');
-      $('#boton').removeClass( "btn-primary" ).addClass( "btn-danger" );
-    }
-  };
-
-  function verify2(){
-    $('#boton2').attr('value', 'Conferir');
-    $('#boton2').removeClass( "btn-danger" ).addClass( "btn-primary" );
-    $('#boton2').removeAttr('disabled');
-  }
-  function checkFields2() {
-    if ($('#premiacion_id').val() == "" || $('#date_of').val() == ""){
-      $('#boton2').attr('disabled', 'disabled');
-      $('#boton2').attr('value', 'Todos los campos son obligatorios');
-      $('#boton2').removeClass( "btn-primary" ).addClass( "btn-danger" );
-    }
-  };
-
-
-  $( "#campament_id" ).change(function() {
-    var campament = $("#campament_id").val();
-    jQuery.ajax({
-      url: "/update_chapters_transfer",
-      type: "GET",
-      data: {"campament" : campament},
-      dataType: "html",
-      success: function(data) {
-        jQuery('#chapterDiv').html(data);
-      }
-    });
-  });
-</script>
+<%= render "profile_scripts" %>

@@ -1,0 +1,41 @@
+<script type="text/javascript">
+  function verify1(){
+    $('#boton').attr('value', 'Transferir');
+    $('#boton').removeClass( "btn-danger" ).addClass( "btn-primary" );
+    $('#boton').removeAttr('disabled');
+  }
+  function checkFields() {
+    if ($('#campament_id').val().length == 0 || $('#chapter_id').val().length == 0){
+      $('#boton').attr('disabled', 'disabled');
+      $('#boton').attr('value', 'Todos los campos son obligatorios');
+      $('#boton').removeClass( "btn-primary" ).addClass( "btn-danger" );
+    }
+  };
+
+  function verify2(){
+    $('#boton2').attr('value', 'Conferir');
+    $('#boton2').removeClass( "btn-danger" ).addClass( "btn-primary" );
+    $('#boton2').removeAttr('disabled');
+  }
+  function checkFields2() {
+    if ($('#premiacion_id').val() == "" || $('#date_of').val() == ""){
+      $('#boton2').attr('disabled', 'disabled');
+      $('#boton2').attr('value', 'Todos los campos son obligatorios');
+      $('#boton2').removeClass( "btn-primary" ).addClass( "btn-danger" );
+    }
+  };
+
+
+  $( "#campament_id" ).change(function() {
+    var campament = $("#campament_id").val();
+    jQuery.ajax({
+      url: "/update_chapters_transfer",
+      type: "GET",
+      data: {"campament" : campament},
+      dataType: "html",
+      success: function(data) {
+        jQuery('#chapterDiv').html(data);
+      }
+    });
+  });
+</script>

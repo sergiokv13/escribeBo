@@ -1,11 +1,16 @@
 class Transaction < ActiveRecord::Base
 	belongs_to :user
+  belongs_to :chapter
+
 	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 	validates_with AttachmentPresenceValidator, attributes: :image
+
+  has_attached_file :plantilla
+
   validates :name, :presence => true
   validates :description, :presence => true
-  validates :mount, :presence => true
+  validates :float_amount, :presence => true
   validates :receipt_number, :presence => true
 
   
@@ -20,6 +25,7 @@ class Transaction < ActiveRecord::Base
 
   def aprove
     self.aproved = true
+    self.float_amount = 0
     self.save
   end
 
@@ -36,9 +42,9 @@ class Transaction < ActiveRecord::Base
     result = 0
     transactions.each do |transaction|
       if transaction.transaction_type == "Ingreso"
-        result += transaction.mount
+        result += transaction.float_amount || transaction.mount
       else
-        result -= transaction.mount
+        result -= transaction.float_amount || transaction.mount
       end
     end
     result

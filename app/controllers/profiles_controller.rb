@@ -17,7 +17,6 @@ class ProfilesController < ApplicationController
   end
 
   def update_asignar_grado_demolay
-    byebug
     @degree = Degree.new
     @degree.title = "DeMolay"
     @degree.image = params[:image]

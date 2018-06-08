@@ -27,7 +27,7 @@
 
       <div class="col-lg-8 col-md-12">
           <h2>Información</h2>
-          <p><%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.count %> DeMolay activos.</p>
+          <p><%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.select{|d| d.getAge < 21}.count %> DeMolay activos.</p>
 
           <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
             <% if @chapter.chapter_type == "Capítulo" %>
@@ -64,7 +64,7 @@
         <% if @chapter.chapter_type == "Capítulo" %>
           <h3>Algunos miembros</h3>
         <% end %>
-        <% @chapter.chapter_users.take(6).each do |dm| %>
+        <% @chapter.chapter_users.select{ |u| u.tiene_el_grado("Iniciatico") }.take(6).each do |dm| %>  
           <div class="row">
             <div class="col-lg-2">
               <%= image_tag dm.image.url(:medium), class: "img-responsive" %>
@@ -99,8 +99,8 @@
       <div class="col-lg-4 col-xs-12 col-md-12 info">
       <h3>Social</h3>
         <div class="row">
-          <% @chapter.chapter_users.all.reverse.take(36).each do |dm| %>
-            <div class="col-lg-2 col-xs-3 col-md-3" style="padding: 0; margin: 0;"><a href="/profile/<%=dm.id%>"><%= image_tag dm.image.url(:medium), class: "img-responsive" %></a></div>
+          <% @chapter.chapter_users.all.reverse.take(35).each do |dm| %>
+            <div class="col-lg-2 col-xs-3 col-md-3" style="padding: 0; margin: 0; width: 50px; height: 50px;"><a href="/profile/<%=dm.id%>"><%= image_tag dm.image.url(:medium), class: "img-responsive" %></a></div>
           <%end%>
         </div>
       </div> 

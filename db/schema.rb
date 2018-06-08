@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180516145341) do
+ActiveRecord::Schema.define(version: 20180607214309) do
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -130,6 +130,15 @@ ActiveRecord::Schema.define(version: 20180516145341) do
   add_index "charges_histories", ["chapter_id"], name: "index_charges_histories_on_chapter_id"
   add_index "charges_histories", ["user_id"], name: "index_charges_histories_on_user_id"
 
+  create_table "current_fees", force: :cascade do |t|
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
   create_table "degrees", force: :cascade do |t|
     t.string   "title"
     t.integer  "user_id"
@@ -192,8 +201,8 @@ ActiveRecord::Schema.define(version: 20180516145341) do
     t.text     "description"
     t.integer  "mount"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -202,6 +211,12 @@ ActiveRecord::Schema.define(version: 20180516145341) do
     t.string   "transaction_type"
     t.text     "concept_type"
     t.string   "receipt_number"
+    t.string   "plantilla_file_name"
+    t.string   "plantilla_content_type"
+    t.integer  "plantilla_file_size"
+    t.datetime "plantilla_updated_at"
+    t.float    "float_amount"
+    t.integer  "chapter_id"
   end
 
   create_table "user_premiations", force: :cascade do |t|

@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get '/set_current_fee' => "current_fees#set_current_fee"
+  post '/update_current_fee' => "current_fees#update_current_fee"
   get '/newUser' => "admin_controller#newUser"
   post '/createUser' => "admin_controller#createUser"
   post '/updateUser' => "admin_controller#updateUser"
@@ -105,5 +107,7 @@ Rails.application.routes.draw do
 
   get '/follow_campament/:user_id/:campament_id' => 'campaments#follow_campament'
   get '/unfollow_campament/:user_id/:campament_id' => 'campaments#unfollow_campament'
+
+  match '*unmatched_route' => 'application#not_found', via: :all
 
 end

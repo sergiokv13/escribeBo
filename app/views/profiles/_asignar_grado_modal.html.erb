@@ -1,0 +1,46 @@
+<div id="myModal2" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Otorgar grado a <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+        <%if @user.role == "DeMolay"%>
+          <% if @user.tendra_el_grado("DeMolay") %>
+            <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block disabled"%>
+          <%else%>
+             <%= link_to "Dar grado DeMolay", "/asignar_grado_demolay/"+@user.id.to_s ,class:"btn btn-primary  btn-block"%>
+          <%end%>
+
+          <% if @user.tendra_el_grado("Caballero") %>
+            <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled"%>
+          <%else%>
+          <%= link_to "Dar Grado Caballero", "/asignar_grado_caballero/"+@user.id.to_s,class:"btn btn-primary  btn-block"%>
+           <%end%>
+
+          <% if @user.tendra_el_grado("Chevalier") %>
+            <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
+          <%else%>
+            <%= link_to "Dar Grado Chevalier", "/asignar_grado_chevalier/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+          <%end%>
+
+          <% if @user.tendra_el_grado("Senior DeMolay") %>
+            <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block disabled" %>
+          <%else%>
+            <%= link_to "Dar Senior DeMolay", "/asignar_senior_demolay/"+@user.id.to_s,class:"btn btn-primary  btn-block" %>
+          <%end%>
+
+        <%else%>
+
+
+            <%= link_to "Asignar como consultor", "/asignar_consultor/"+@user.id.to_s, class:"btn btn-primary  btn-block"%>
+
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>

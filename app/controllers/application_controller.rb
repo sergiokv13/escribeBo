@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def not_found
+    flash[:notice] = "La página solicitada no existe!"
+    redirect_to ('/')
+  end
+
   protected
 
 	def configure_permitted_parameters

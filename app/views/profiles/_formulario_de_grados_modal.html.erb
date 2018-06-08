@@ -1,0 +1,30 @@
+<div id="myModal4" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Formularios de <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+              <strong>Formularios de grados</strong>
+               <% if @user.role == "DeMolay" %>
+                  <%= link_to "Iniciación en " + @user.chapter.chapter_name.to_s,@user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block", data: { no_turbolink: true } %>
+               <% else %>
+                  <%= link_to "Formulario de registro", @user.registration_form.url, target: "_blank" , class: "btn btn-primary btn-block", data: { no_turbolink: true } %>
+               <%end%>
+
+                 <% @user.degrees.each do |degree| %>
+                  <% if degree.aproved %>
+                 <% if degree.title!="Iniciatico"%>
+                  <%= link_to degree.title.to_s + " en " + degree.chapter.chapter_name.to_s,degree.image.url, target: "_blank" , class: "btn btn-primary btn-block"%>
+                  <%end%>
+                   <%end%>
+                 <%end%>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>

@@ -18,16 +18,26 @@
   </div>
 
   <div class="form-group">
+    <%= f.select :chapter_id, options_for_select(@chapters), :label => "Entidad"  %>
+  </div>
+
+  <div class="form-group">
     <%= f.text_area :description , :label => "Descripción", placeholder: "Ingresa la descripción de la transacción, no olvide ningun detalle relevante" %>
   </div>
 
   <div class="form-group">
-    <%= f.number_field :mount , :label => "Monto", placeholder: "Ingresa el monto total" %>
+    <%= f.number_field :float_amount , :label => "Monto (en Bs.)", placeholder: "Ingresa el monto total", step: :any %>
   </div>
 
   <div class="form-group">
-    <%= f.file_field :image , :label => "Comprobante"%>
+    <%= f.file_field :image , :label => "Comprobante en imagen"%>
   </div>
+
+
+  <div class="form-group">
+    <%= f.file_field :plantilla , :label => "Plantilla en excel (No es necesario en Premiaciones y Otros)."%>
+  </div>
+
 
   <div class="form-group">
     <%= f.text_field :receipt_number , :label => "Numero de Comprobante", placeholder: "Asegurate de no ingresarlo incorrectamente" %>

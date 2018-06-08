@@ -1,0 +1,41 @@
+<div id="myModal3" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Más información de <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+              <strong>DeMolay Id: </strong> <%=@user.demolayID%><br>
+              <strong>Departamento:</strong> <%=@user.campament.name%><br>
+              <% if @user.chapter != nil %>
+                <strong>Chapter:</strong> <%=@user.chapter.chapter_name%><br>
+              <% end %>
+              <strong>Dirección:</strong> <%=@user.adress%><br>
+              <strong>Teléfono Fijo:</strong> <%=@user.phone%><br>
+              <strong>Teléfono Celular:</strong> <%=@user.cellphone%><br>
+            <% if @user.role == "DeMolay"%>
+               <strong>Seguro: </strong> <%=@user.assurance%><br>
+                <strong>Padrino: </strong> <%=@user.godfather_id%><br>
+                <strong>Iniciacion:</strong> <%=@user.iniciacion%><br>
+                <strong>Nombre del padre:</strong> <%=@user.father_name%><br>
+                <strong>Información del padre:</strong> <%=@user.father_info%><br>
+                <strong>Dirección del padre:</strong> <%=@user.father_adress%><br>
+                <strong>Correo electrónico del padre:</strong> <%=@user.father_mail%><br>
+                <strong>Nombre de la madre:</strong> <%=@user.mather_name%><br>
+                <strong>Dirección de la madre:</strong> <%=@user.mather_adress%><br>
+                <strong>Correo electrónico de la madre:</strong> <%=@user.mather_mail%><br>
+            <%else%>
+              <strong>Estado civíl:</strong> <%=@user.estado_civil%><br>
+              <strong>Nombre Esposa:</strong> <%=@user.nombre_esposa%><br>
+              <strong>Nombre del taller:</strong> <%=@user.taller_nombre%><br>
+              <strong>Numero del taller:</strong> <%=@user.taller_numero%><br>
+            <%end%>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>

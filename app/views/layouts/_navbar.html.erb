@@ -1,0 +1,115 @@
+
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" data-no-turbolink><img src="/assets/logo-01.png" id="logo"></a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <% if user_signed_in?%>
+              <ul class="nav navbar-nav navbar-right">
+                <% if !current_user.is_oficial%>
+
+                  <li><a title="Departamentos" href="/campaments"> <span  id="gly-menu" class="glyphicon glyphicon-th-large" aria-hidden="true"></span></a></li>
+                  <li>
+                      <a title="
+                      Cuerpos DeMolay" href="/chapters" > <span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span></a>
+                   
+                  </li>
+                <%else%>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+
+                      <span  id="gly-menu" class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+
+                    <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <a href="/campaments">Departamentos</a>
+                      </li>
+                      <li><a href="/campaments/new">Crear Departamento</a></li>
+                    </ul>
+                  </li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span  id="gly-menu" class="glyphicon glyphicon-th" aria-hidden="true"></span><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/chapters" data-turbolinks="false">Cuerpos DeMolay</a></li>
+                      <li><a href="/chapters/new">Crear Cuerpo</a></li>
+                      <% if current_user.announcements_to_aprove.count != 0 %>
+                        <li><a href="/chapter_aprovals">Aprobaciones (<%= current_user.announcements_to_aprove.count %>)</a></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <%end%>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/oficer_ans">Anuncios de Oficialia Ejecutiva</a></li>
+                      <li><a href="/inboxes">Ver mensajes</a></li>
+                      <li><%= link_to 'Enviar mensaje', new_inbox_path %></li>
+                    </ul>
+                  </li>
+
+                <% if ( current_user.tiene_el_cargo("Oficial Ejecutivo") || current_user.tiene_el_cargo("Delegado Regional") || current_user.tiene_el_cargo("Presidente Consejo Consultivo") || current_user.tiene_el_cargo("Maestre Consejero") )%>
+                 
+                   <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-credit-card" aria-hidden="true"></span><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/mis_transacciones">Mis transacciones</a></li>
+                      <li><a href="/transactions/new">Crear transacción</a></li>
+                      <% if current_user.is_oficial %>
+                        <li><a href="/pendingTransactions">Pendientes</a></li>
+                        <li><a href="/aprovedTransactions">Archivadas</a></li>
+                        <li><a href="/set_current_fee">Cuadro de Tasas</a></li>
+                      <% end %>
+
+                    </ul>
+                  </li>
+
+                <% end%>
+
+                <% if ( current_user.tiene_el_cargo("Oficial Ejecutivo") || current_user.tiene_el_cargo("Delegado Regional") || current_user.tiene_el_cargo("Presidente Consejo Consultivo") )%>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span  id="gly-menu" class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="/users">Usuarios <span class="sr-only">(current)</span></a></li>
+                        <% if current_user.is_aprovator %>
+                          <li><a href="/approvals">Aprobaciones (<%= current_user.number_of_approvals %>)</a></li>
+                        <% end %>
+                        <li><a href="/premiacions">Premios </a></li>
+                      </ul>
+
+                  </li>
+                 <%end%>
+
+                 <li class="dropdown">
+                  <% if user_signed_in? %>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.fullName %><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/profile/<%=current_user.id.to_s%>">Perfil</a></li>
+                      <li><a href="/users/edit">Editar Perfil</a></li>
+                      <% if current_user.is_oficial %>
+                        <li><a href="/reiniciar_gestion">Reiniciar Gestión</a></li>
+                        <li><a href="/reports">Reportes</a></li>
+                        <li><a href="/banners">Publicación Inicial</a></li>
+                      <%end%>
+                      <li><%= link_to('Cerrar Sesión', destroy_user_session_path, :method => :delete) %></li>
+                    </ul>
+                  <% else %>
+                    <li><a href="/users/sign_in">Iniciar Sesion <span class="sr-only">(current)</span></a></li>
+                  <% end %>
+                </li>
+
+            <% end %>
+
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>

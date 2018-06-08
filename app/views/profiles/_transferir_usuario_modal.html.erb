@@ -1,0 +1,38 @@
+<div id="myModal5" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Transferir a <%=@user.fullName%></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag('/transfer_user', :method => :post) do %>
+          <label>Departamento</label>
+
+          
+
+
+          <input type="hidden" name="id" value="<%= @user.id %>">
+          <%= select_tag(:campament_id, options_from_collection_for_select(Campament.all, 'id', 'name'), :onclick =>  "verify1();", class: "form-control", :prompt => "Seleccionar filtro") %><br>
+          <label>Capítulo</label>
+
+          <div id="chapterDiv">
+            <%= render :partial => 'chapters', :object => @chapters ,label: "Capítulo"%>
+          </div>
+
+          <br>
+          
+          <div onmouseover="checkFields()">
+            <%= submit_tag("Transferir", class: "btn-block btn btn-primary", id: "boton") %>
+          </div>  
+            
+        <% end %>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>

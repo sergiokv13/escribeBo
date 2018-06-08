@@ -117,9 +117,19 @@ class AdminControllerController < ApplicationController
 
 	def search
 		search = params[:search]
-		@users = User.where("name LIKE ? or lastname LIKE ? or full_name LIKE ? or ci LIKE ? ","%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+		@users = []
+		@entes = []
+
+		if !search.blank?
+			search_array = search.gsub(/\s+/m, ' ').strip.split(" ")
+			search_array.each do |search|
+				@users = User.where(
+					"name LIKE ? or lastname LIKE ? or ci LIKE ? ", "%#{search}%", "%#{search}%", "%#{search}%"
+				) if @users.empty?
+			end
+			@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
+		end
 		@users = @users.paginate(page: params[:page], per_page: 10)
-		@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
 	end
 
 	def approvals
