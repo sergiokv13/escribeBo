@@ -16,7 +16,7 @@
 	    <% else %>
 	    	<%= label_tag :maestre_consejero_departamental %>
 	    <% end %>
-	      <%= select_tag(:id_maestro, options_from_collection_for_select(@posibles_maestros,'id', 'fullName'), :onclick =>  "verify();", class: "form-control",:prompt => "Seleccionar Maestre Consejero") %>
+	      <%= select_tag(:id_maestro, options_from_collection_for_select(@posibles_maestros,'id', 'fullname_plus_age'), :onclick =>  "verify();", class: "form-control",:prompt => "Seleccionar Maestre Consejero") %>
 	   	</div>
 	    <div class="actions" onclick="checkFields()">
 	      <%= submit_tag "Actualizar gestión", class: "btn btn-success", id: "boton" %>

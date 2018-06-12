@@ -159,6 +159,14 @@ class User < ActiveRecord::Base
     name+" "+lastname
   end
 
+  def fullname_plus_age
+    if getAge >= 21
+      return fullName + " - Es mayor de 21"
+    else
+      return fullName + " - Es menor de 21"
+    end
+  end
+
 
 
   def enabled

@@ -27,7 +27,7 @@
 
       <div class="col-lg-8 col-md-12">
           <h2>Información</h2>
-          <p><%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @chapter.demolays.select{|d| d.getAge < 21}.count %> DeMolay activos.</p>
+          <p><%= @chapter.chapter_type %> del Departamento <%= link_to @chapter.campament.name, "/campaments/"+@chapter.campament.id.to_s %>, creado el año <%= @chapter.created_at.year %>. Actualmente cuenta con <%= @active_demolays %> DeMolay activos.</p>
 
           <% if @chapter.chapter_president!=nil && @chapter.chapter_consultant_president!=nil %>
             <% if @chapter.chapter_type == "Capítulo" %>

@@ -32,6 +32,18 @@ class ChaptersController < ApplicationController
   # GET /chapters/1
   # GET /chapters/1.json
   def show
+    if @chapter.chapter_type == "Capítulo"
+      @active_demolays = @chapter.demolays.select{|d| d.getAge < 21}.count
+    end
+
+    if @chapter.chapter_type == "Priorato"
+      @active_demolays = @chapter.knights.select{|d| d.getAge < 21}.count
+    end
+
+        if @chapter.chapter_type == "Corte"
+      @active_demolays = @chapter.chevaliers.select{|d| d.getAge < 21}.count
+    end
+
     if current_user.chapter_user_follows.count != 0
       follow = current_user.chapter_user_follows.find_by(chapter_id: @chapter.id)
       if !follow.nil?

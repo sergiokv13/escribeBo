@@ -14,7 +14,7 @@
 				      	<%= label_tag :Gran_Comendador_chevalier %>
 				    <%end%>
 
-				      <%= select_tag(:id_encargado, options_from_collection_for_select(@posibles_encargados,'id', 'fullName'), :onclick =>  "verify();", :onclick =>  "verify1();",class: "form-control",:prompt => "Seleccionar encargado") %>
+				      <%= select_tag(:id_encargado, options_from_collection_for_select(@posibles_encargados,'id', 'fullname_plus_age'), :onclick =>  "verify();", :onclick =>  "verify1();",class: "form-control",:prompt => "Seleccionar encargado") %>
 
 				   </div>
 				   <div class="form-group">

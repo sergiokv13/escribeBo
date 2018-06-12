@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   get 'home/index'
 
+  get '/delete_user/:id' => "admin_controller#delete_user"
+
   devise_for :users
 
   devise_scope :user do

@@ -1,4 +1,15 @@
 class AdminControllerController < ApplicationController
+	def delete_user
+		if current_user.is_oficial
+			@user = User.find(params[:id])
+			flash[:notice] = "El usuario #{@user.fullName} fue borrado exitosamente"
+			User.delete(params[:id])
+			redirect_to '/users'
+		else
+			flash[:notice] = "No tienes los permisos para realizar esta acción."
+			redirect_to '/'
+		end
+	end
 
 	def newUser
 		@user = User.new

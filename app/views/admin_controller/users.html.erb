@@ -49,6 +49,9 @@
                           <% if current_user.is_oficial or current_user.id == user.id %>
                               <li><a href="/profile/<%= user.id %>"> Ver</a></li>
                               <li><%= link_to "Editar", '/users/' + user.id.to_s + '/edit' %></li>
+                              <% if current_user.id != user.id %>
+                                <li><%= link_to "Eliminar", '/delete_user/' + user.id.to_s, data:{ confirm: 'Estas seguro? Esta acción no puede ser revertida'}%></li>
+                              <% end %>
                           <% end %>
                         </ul>
                       </div>

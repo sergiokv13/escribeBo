@@ -25,7 +25,7 @@
         <% if charge.chapter != nil %>
           Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> otorgado el <%= charge.created_at %><br>
         <%else%>
-          Tiene el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> otorgado el <%= charge.created_at %><br>
+          Tiene el cargo de  <%= charge.title %> <%="Departamental" if charge.title == "Maestre Consejero" %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> otorgado el <%= charge.created_at %><br>
         <%end%>
       <% end %>
        <% if @user.charges.empty? == true && @user.charges_history.empty? == true%>
