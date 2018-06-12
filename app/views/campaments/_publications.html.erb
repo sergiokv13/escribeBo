@@ -16,7 +16,7 @@
         <center>
           <div class="row">
             <div class=col-lg-2>
-            <% if publicacion.image.exists? %>
+            <% if publicacion.image.image.exists? %>
               <img src="<%= publicacion.image.url %>" class="img-responsive">
             <% end %>
             </div>
