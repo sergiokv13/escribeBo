@@ -55,7 +55,12 @@ class DegreesController < ApplicationController
   # DELETE /degrees/1.json
   def destroy
     user_id = @degree.user_id
-    @degree.destroy
+    if current_user.is_oficial
+      @degree.destroy
+      flash[:notice] = "El grado fue removido."
+    else
+      flash[:notice] = "No tiene los permisos para realizar esta acción."
+    end
     redirect_to ('/profile/' + user_id.to_s)
   end
 

@@ -7,6 +7,17 @@ class PremiacionsController < ApplicationController
     @premiacions = Premiacion.all
   end
 
+  def quitar_premiacion
+    prem = UserPremiation.find(params[:id])
+    prem.destroy
+    if current_user.is_oficial
+      flash[:notice] = "La premiacion fue removida del usuario."
+    else
+      flash[:notice] = "No tiene los permisos para realizar esta acción."
+    end
+    redirect_to (:back)
+  end
+
   # GET /premiacions/1
   # GET /premiacions/1.json
   def show
@@ -25,12 +36,11 @@ class PremiacionsController < ApplicationController
   # POST /premiacions.json
   def create
     @premiacion = Premiacion.new(premiacion_params)
-
     if @premiacion.save
       redirect_to '/premiacions'
     else
       flash[:notice] = "La premiacion no pudo ser guardada."
-      redirect_to :back
+      redirect_to (:back)
     end
 
   end
@@ -40,7 +50,7 @@ class PremiacionsController < ApplicationController
   def update
     respond_to do |format|
       if @premiacion.update(premiacion_params)
-        format.html { redirect_to @premiacion, notice: 'Premiacion was successfully updated.' }
+        format.html { redirect_to @premiacion, notice: 'La premiación fue actualizada' }
         format.json { render :show, status: :ok, location: @premiacion }
       else
         format.html { render :edit }
@@ -52,11 +62,13 @@ class PremiacionsController < ApplicationController
   # DELETE /premiacions/1
   # DELETE /premiacions/1.json
   def destroy
-    @premiacion.destroy
-    respond_to do |format|
-      format.html { redirect_to premiacions_url, notice: 'Premiacion was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.is_oficial
+      @premiacion.destroy
+      flash[:notice] = "La premiación fue eliminada."
+    else
+      flash[:notice] = "No tiene los permisos para realizar esta operación."
     end
+    redirect_to :back
   end
 
   private

@@ -163,7 +163,7 @@ class User < ActiveRecord::Base
     if getAge >= 21
       return fullName + " - Es mayor de 21"
     else
-      return fullName + " - Es menor de 21"
+      return fullName
     end
   end
 

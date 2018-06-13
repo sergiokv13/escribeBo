@@ -11,9 +11,9 @@
       <table class="table table-bordered table-hover table-striped">
         <thead>
           <tr>
-            <th>Título</th>
-            <th>Fecha</th>
-            <th colspan="3"></th>
+            <th colspan="2"></th>
+            <th class="text-left">Título</th>
+            <th class="text-left">Fecha</th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +27,7 @@
                     <% if current_user.is_oficial %>
                         <li><a href="/premiacions/<%= premiacion.id %>"> Ver</a></li>
                         <li><%= link_to "Editar", '/premiacions/' + premiacion.id.to_s + '/edit' %></li>
+                        <li><%= link_to 'Eliminar',  premiacion,  method: :delete, data: { confirm: 'Esta seguro? La premiación sera eliminada' } %></li>
                     <% end %>
                   </ul>
                 </div>

@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   get '/delete_user/:id' => "admin_controller#delete_user"
 
+  get '/quitar_premiacion/:id' => "premiacions#quitar_premiacion"
+
   devise_for :users
 
   devise_scope :user do
