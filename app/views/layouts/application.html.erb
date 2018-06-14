@@ -58,7 +58,12 @@
                   <% end %>
                 <h3>Últimos mensajes</h3>
                   <% current_user.visible_inboxes.each do |inbox| %>
-                    <a class="side-font" href="/profile/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
+                    <% if inbox.user1 != nil %>
+                      <a class="side-font" href="/profile/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
+                    <% else %>
+                      Usuario eliminado:
+                    <% end  %>
+
                     <span class="side-font"><%= truncate(inbox.content.html_safe, length: 50) %></span>
                     <a class="side-font" href="/inboxes/<%= inbox.id %>">Ver más</a><br />
                   <% end %>
