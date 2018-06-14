@@ -15,10 +15,10 @@
       </p>
 
       <p>
-        <% if @inbox.user1 != nil %>
+        <% if @inbox.user2 != nil %>
           Enviado a: <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
         <% else %>
-          Enviado por: Usuario eliminado
+          Enviado a: Usuario eliminado
         <% end %>
       </p>
 

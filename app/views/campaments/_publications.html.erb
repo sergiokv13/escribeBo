@@ -1,8 +1,13 @@
 <% @publicaciones_para_mostrar.each do |publicacion| %>
   <div class="publicacion row">
     <div class="col-lg-12">
-      <img src="<%=publicacion.user.image%>" width="30px;">
-      <a href="/profile/<%=publicacion.user.id%>"><%= publicacion.user.fullName %></a> -
+       <% if publicacion.user != nil %>
+          <img src="<%=publicacion.user.image%>" width="30px;">
+          <a href="/profile/<%=publicacion.user.id%>"><%= publicacion.user.fullName %></a> 
+        <% else %>
+          Usuario eliminado
+        <% end %>
+        -
       <a href="/campaments/<%=publicacion.campament.id%>"><%=publicacion.campament.name%></a>
 
       <%if publicacion.chapter!=nil%>
