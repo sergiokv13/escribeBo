@@ -98,7 +98,7 @@ class CampamentsController < ApplicationController
       @charge.title = "Maestre Consejero"
       @charge.campament = @campament
       @charge.save
-      if params[:id] != 1
+      if @campament.id != 1
         @conPresident = User.find(params[:id_delegado])
         @campament.president = @conPresident
         @campament.save

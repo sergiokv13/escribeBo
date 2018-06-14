@@ -139,6 +139,7 @@ class AdminControllerController < ApplicationController
 				) if @users.empty?
 			end
 			@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
+			@campaments = Campament.where("name LIKE ?", "%#{search}%")
 		end
 		@users = @users.paginate(page: params[:page], per_page: 10)
 	end

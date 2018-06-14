@@ -23,15 +23,19 @@
       <hr class="divider">
       <% @user.charges.each do |charge| %>
         <% if charge.chapter != nil %>
-          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> otorgado el <%= charge.created_at %><br>
+          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> otorgado el <%= charge.created_at %>
         <%else%>
-          Tiene el cargo de  <%= charge.title %> <%="Departamental" if charge.title == "Maestre Consejero" %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> otorgado el <%= charge.created_at %><br>
+          Tiene el cargo de  <%= charge.title %> 
+
+            <%= ( charge.title == "Maestre Consejero" && charge.campament.id != 1 ) ? "Departamental" : "Nacional" %> 
+
+            en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> otorgado el <%= charge.created_at %>
         <%end%>
 
         <%if current_user.is_oficial%>
-          <%= link_to 'Quitar cargo',  charge,  method: :delete, data: { confirm: 'Esta seguro? El cargo sera removido.' } %></li>
+          <%= link_to 'Quitar cargo',  charge,  method: :delete, data: { confirm: 'Esta seguro? El cargo sera removido.' } %>
          <% end %>
-
+         <br>
       <% end %>
        <% if @user.charges.empty? == true && @user.charges_history.empty? == true%>
         No hay ningún cargo registrado.
@@ -41,7 +45,11 @@
         <% if charge.chapter != nil %>
           Tuvo el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> en la gestión <%=charge.gestion%><br>
         <%else%>
-          Tuvo el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
+          Tuvo el cargo de  <%= charge.title %> 
+
+          <%= ( charge.title == "Maestre Consejero" && charge.campament.id != 1 ) ? "Departamental" : "Nacional" %> 
+
+          en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
         <%end%>
       <% end %>
       <% if @user.charges_history.empty? == true && @user.charges_history.empty? == true%>
