@@ -135,11 +135,11 @@ class AdminControllerController < ApplicationController
 			search_array = search.gsub(/\s+/m, ' ').strip.split(" ")
 			search_array.each do |search|
 				@users = User.where(
-					"name LIKE ? or lastname LIKE ? or ci LIKE ? ", "%#{search}%", "%#{search}%", "%#{search}%"
+					"name ILIKE ? or lastname ILIKE ? or ci ILIKE ? ", "%#{search}%", "%#{search}%", "%#{search}%"
 				) if @users.empty?
 			end
-			@entes = Chapter.where("chapter_name LIKE ?","%#{search}%")
-			@campaments = Campament.where("name LIKE ?", "%#{search}%")
+			@entes = Chapter.where("chapter_name ILIKE ?","%#{search}%")
+			@campaments = Campament.where("name ILIKE ?", "%#{search}%")
 		end
 		@users = @users.paginate(page: params[:page], per_page: 10)
 	end
