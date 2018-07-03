@@ -1,7 +1,7 @@
 class AddAttributesToUsers < ActiveRecord::Migration
   def change
-    add_reference :users, :chapter, index: true, foreign_key: true
-    add_reference :users, :priory, index: true, foreign_key: true
-    add_reference :users, :court, index: true, foreign_key: true
+    add_column :users, :chapter_id, :integer
+    add_column :users, :priory_id, :integer
+    add_column :users, :court_id, :integer
   end
 end

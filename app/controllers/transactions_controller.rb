@@ -113,9 +113,9 @@ class TransactionsController < ApplicationController
       if t.created_at.to_date >= @start and t.created_at.to_date <= @end
         @transactions.push(t)
         if t.transaction_type == "Ingreso"
-          @total += (t.float_amount || t.mount)
+          @total += t.float_amount
         else
-          @total -= (t.float_amount || t.mount)
+          @total -= t.float_amount
         end
       end
     end
@@ -134,6 +134,6 @@ class TransactionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def transaction_params
-      params.require(:transaction).permit(:chapter_id,:float_amount,:plantilla,:name, :description, :mount, :image, :transaction_type,:concept_type, :receipt_number)
+      params.require(:transaction).permit(:chapter_id,:float_amount,:plantilla,:name, :description, :image, :transaction_type,:concept_type, :receipt_number)
     end
 end

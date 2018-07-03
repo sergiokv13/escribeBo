@@ -10,9 +10,14 @@
   <div class="form-group">
     <%= f.select(:campament_id, options_from_collection_for_select(@campaments,'id', 'name'), label: "Departamento") %>
   </div>
+
   <div class="form-group">
     <%= f.select(:chapter_type, options_for_select([["Capítulo", "Capítulo"],["Priorato", "Priorato"],["Corte", "Corte"]]), label: "Tipo") %>
   </div>
+
+  <div class="form-group">
+    <%= f.date_field :aniversary, class: "form-control", label: "Aniversario" %>
+   </div>
 
   <div class="form-group">
     <%= f.file_field :image, label: "Imagen" %>

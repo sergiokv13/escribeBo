@@ -1,11 +1,11 @@
-class AddShitToUsers < ActiveRecord::Migration
+class AddFieldsToUsers < ActiveRecord::Migration
   def change
     add_column :users, :birth_date, :date
     add_column :users, :assurance, :boolean
     add_column :users, :adress, :string
     add_column :users, :cellphone, :string
     add_column :users, :phone, :string
-    add_reference :users, :godfather, index: true, foreign_key: true
+    add_column :users, :godfather_id, :integer
     add_column :users, :iniciacion, :date
     add_column :users, :father_name, :string
     add_column :users, :father_info, :string
