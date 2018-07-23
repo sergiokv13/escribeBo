@@ -24,9 +24,9 @@ class ChaptersController < ApplicationController
   # GET /chapters.json
   def index
     @chapters = Chapter.all
-    @capitulos = Chapter.where(:chapter_type => "Capítulo")
-    @prioratos = Chapter.where(:chapter_type => "Priorato")
-    @cortes = Chapter.where(:chapter_type => "Corte")
+    @capitulos = Chapter.where(:chapter_type => "Capítulo").sort_by {|obj| obj.number}
+    @prioratos = Chapter.where(:chapter_type => "Priorato").sort_by {|obj| obj.number}
+    @cortes = Chapter.where(:chapter_type => "Corte").sort_by {|obj| obj.number}
   end
 
   # GET /chapters/1

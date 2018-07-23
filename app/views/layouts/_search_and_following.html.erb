@@ -1,0 +1,46 @@
+<div class="col-lg-2 col-xs-6 col-sm-6 col-md-6 ">
+  <% if !current_user.nil? %>
+      <div class="jumbotron nopadding">
+        <div class="row">
+
+            <br />
+              <div class="form side-font">
+                <%= form_tag("/search", method:"post") do %>
+                <div class="form-group">
+                  <%= text_field_tag :search, nil, class: "form-control", placeholder: "Buscar..." %>
+                </div>
+                  <%= submit_tag "Buscar", class: "btn btn-default btn-block" %>
+                <% end %>
+              </div>
+            <h3>Entidades que sigo</h3>
+            <% current_user.chapter_user_follows.each do |f| %>
+              <a class="side-font" href="/chapters/<%= f.chapter.id %>" data-no-turbolink><%= f.chapter.chapter_name %> (<%= f.chapter.announcements.count - f.number_views %>)</a><br />
+            <% end %>
+              <% if current_user.chapter_user_follows.all.empty? %>
+                <span class="side-font"> No sigues ningun Capítulo. Puedes explorar <a href="/chapters">aquí.</a></span>
+              <% end %>
+              <h3>Departamentos que sigo</h3>
+              <% current_user.campaments_user_follows.each do |f| %>
+                <a class="side-font" href="/campaments/<%= f.campament_id %>" data-no-turbolink><%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
+              <% end %>
+              <% if current_user.campaments_user_follows.all.empty? %>
+                <span class="side-font">No sigues ningun Departamento. Puedes explorar <a href="/campaments">aquí.</a></span>
+              <% end %>
+            <h3>Últimos mensajes</h3>
+              <% current_user.visible_inboxes.each do |inbox| %>
+                <% if inbox.user1 != nil %>
+                  <a class="side-font" href="/profile/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
+                <% else %>
+                  Usuario eliminado:
+                <% end  %>
+
+                <span class="side-font"><%= truncate(inbox.content.html_safe, length: 50) %></span>
+                <a class="side-font" href="/inboxes/<%= inbox.id %>">Ver más</a><br />
+              <% end %>
+              <% if current_user.inboxes.all.empty? %>
+                <span class="side-font">No tienes mensajes. Empieza a comunicarte.</span>
+              <% end %>
+          </div>
+      </div>
+  <% end %>
+</div>

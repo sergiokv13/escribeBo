@@ -1,0 +1,14 @@
+<div class="col-lg-8 col-xs-12 col-sm-12 col-md-12 col-lg-pull-2">
+  <div class="row">
+      <div class="jumbotron">
+
+        <% flash.each do |type, message| %>
+          <div class="alert alert-info alert-dismissable fade in">
+            <button class="close" data-dismiss="alert">×</button>
+            <%= message %>
+          </div>
+        <% end %>
+        <%= yield %>  
+      </div>
+  </div>
+</div>
