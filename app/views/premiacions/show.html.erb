@@ -6,14 +6,9 @@
 </p>
 
 <p>
-  <strong>Date of:</strong>
-  <%= @premiacion.date_of %>
+  <strong>Icon:</strong>
+ <img src="<%= @premiacion.icon %>">
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @premiacion.user %>
-</p>
-
-<%= link_to 'Edit', edit_premiacion_path(@premiacion) %> |
-<%= link_to 'Back', premiacions_path %>
+<%= link_to 'Editar', edit_premiacion_path(@premiacion) %> |
+<%= link_to 'Atras', premiacions_path %>

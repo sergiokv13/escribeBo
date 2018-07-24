@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180703151340) do
+ActiveRecord::Schema.define(version: 20180724124821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,8 +189,12 @@ ActiveRecord::Schema.define(version: 20180703151340) do
   create_table "premiacions", force: :cascade do |t|
     t.string   "title"
     t.date     "date_of"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -220,6 +224,7 @@ ActiveRecord::Schema.define(version: 20180703151340) do
     t.integer  "premiacion_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.date     "date_of"
   end
 
   add_index "user_premiations", ["premiacion_id"], name: "index_user_premiations_on_premiacion_id", using: :btree

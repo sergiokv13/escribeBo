@@ -79,6 +79,6 @@ class PremiacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def premiacion_params
-      params.require(:premiacion).permit(:title, :date_of, :user_id)
+      params.require(:premiacion).permit(:title, :icon, :user_id)
     end
 end

@@ -13,7 +13,7 @@
           <tr>
             <th colspan="2"></th>
             <th class="text-left">Título</th>
-            <th class="text-left">Fecha</th>
+            <th class="text-left">Icono</th>
           </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@
                 </div>
               </td>
               <td><%= premiacion.title %></td>
-              <td><%= premiacion.date_of %></td>
+              <td><img src="<%= premiacion.icon %>" width=20></td>
             </tr>
           <% end %>
         </tbody>

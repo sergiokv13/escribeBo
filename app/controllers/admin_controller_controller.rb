@@ -130,6 +130,7 @@ class AdminControllerController < ApplicationController
 		search = params[:search]
 		@users = []
 		@entes = []
+		@campaments = []
 
 		if !search.blank?
 			search_array = search.gsub(/\s+/m, ' ').strip.split(" ")
