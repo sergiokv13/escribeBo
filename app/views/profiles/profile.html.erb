@@ -60,7 +60,7 @@
       <h3>Premiaciones</h3>
       <hr class="divider">
       <% @user.user_premiations.each do |user_premiacion| %>
-         <img src="<%=user_premiacion.premiacion.icon(:thumb)%>" width=20> <%= user_premiacion.premiacion.title %> en <%= user_premiacion.date_of %> 
+         <img src="<%=user_premiacion.premiacion.icon(:thumb)%>" width=20> <%= user_premiacion.premiacion.title %> en <%= user_premiacion.date_of || user_premiacion.premiacion.date_of%> 
          <%if current_user.is_oficial%>
           <a href="/quitar_premiacion/<%=user_premiacion.id%>" onclick="return confirm('Esta seguro? La premiación sera removida.')">Quitar premiación</a>
          <% end %>
