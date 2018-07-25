@@ -56,7 +56,7 @@
           en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
 
           <%if current_user.is_oficial%>
-            <a href="/deleteChargeHistory/<%=charge.id%>"></a>
+            <a href="/deleteChargeHistory/<%=charge.id%>">Quitar cargo historico.</a>
           <% end %>
 
         <%end%>
