@@ -87,6 +87,7 @@ Rails.application.routes.draw do
   get '/aprove_publication/:id' => 'admin_controller#aprove_publication'
   get '/chapter_users/:id/:type' => 'chapters#chapter_users'
   get '/reiniciar_gestion' => "charges#drop_gestion"
+  get'/deleteChargeHistory/:id' => "charges#deleteChargeHistory"
   get '/filtered' => 'admin_controller#filtered'
   post '/update_reiniciar_gestion' => "charges#update_drop_gestion"
   get '/users/:id/edit' => 'admin_controller#edit'

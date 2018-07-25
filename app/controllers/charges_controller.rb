@@ -32,6 +32,13 @@ class ChargesController < ApplicationController
   def edit
   end
 
+  def deleteChargeHistory
+    ch = ChargesHistory.find(params[:id])
+    ch.destroy
+    flash[:notice] = "El cargo historico fue eliminado."
+    redirect_to :back
+  end
+
   def drop_gestion
     @users = []
     @posibles_oficiales =  User.where(:role=>"Trabajador adulto")

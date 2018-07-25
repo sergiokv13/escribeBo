@@ -39,6 +39,10 @@
       <% end %>
        <% if @user.charges.empty? == true && @user.charges_history.empty? == true%>
         No hay ningún cargo registrado.
+
+
+        
+
       <%end%>
        <hr class="divider">
       <% @user.charges_history.each do |charge| %>
@@ -50,6 +54,11 @@
           <%= ( charge.title == "Maestre Consejero" && charge.campament.id != 1 ) ? "Departamental" : "Nacional" %> 
 
           en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
+
+          <%if current_user.is_oficial%>
+            <a href="/deleteChargeHistory/<%=charge.id%>"></a>
+          <% end %>
+
         <%end%>
       <% end %>
       <% if @user.charges_history.empty? == true && @user.charges_history.empty? == true%>
