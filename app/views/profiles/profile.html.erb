@@ -58,7 +58,7 @@
           <%if current_user.is_oficial%>
             <a href="/deleteChargeHistory/<%=charge.id%>">Quitar cargo historico.</a>
           <% end %>
-
+         <br>
         <%end%>
       <% end %>
       <% if @user.charges_history.empty? == true && @user.charges_history.empty? == true%>
