@@ -77,7 +77,7 @@ class User < ActiveRecord::Base
   end
 
   def show_cellphone
-    if !self.cellphone.nil? and self.phone.length > 1
+    if !self.cellphone.nil? and self.cellphone.length > 1
       cellular = self.cellphone.to_s
       cellular.insert(0,"+")
       cellular.insert(4,"-")
@@ -332,11 +332,11 @@ class User < ActiveRecord::Base
     return hola!= nil
   end
 
-  def pendingTransactions
+  def pending_transactions
     self.transactions.where(aproved: false)
   end
 
-  def aprovedTransactions
+  def aproved_transactions
     self.transactions.where(aproved: true)
   end
 

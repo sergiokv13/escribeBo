@@ -14,14 +14,11 @@ class Transaction < ActiveRecord::Base
   validates :float_amount, :presence => true
   validates :receipt_number, :presence => true
 
+  scope :aproved_transactions, -> { where(aproved: true) }
+  scope :pending_transactions, -> { where(aproved: false) }
   
-
   def status
-    if self.aproved?
-      "Archivada"
-    else
-      "Pendiente"
-    end
+    if self.aproved? "Archivada" : "Pendiente"
   end
 
   def aprove
@@ -30,18 +27,30 @@ class Transaction < ActiveRecord::Base
     self.save
   end
 
-  def self.pendingTransactions
-    Transaction.where(aproved: false)
+  def self.types
+    [
+      ['Ingreso', 'Ingreso'], 
+      ['Egreso', 'Egreso']
+    ]
   end
 
-  def self.aprovedTransactions
-    Transaction.where(aproved: true)
+  def self.concepts
+    [
+      ['Iniciación','Iniciación'],
+      ['Elevación','Elevación'],
+      ['Investidura','Investidura'],
+      ['Investidura Chevalier','Investidura Chevalier'],
+      ['DeMolay Card','DeMolay Card'],
+      ['Consultor','Consultor'],
+      ['Premiación','Premiación'],
+      ['Otro','Otro']
+    ]
   end
+
 
   def self.balance
-    transactions = Transaction.aprovedTransactions
     result = 0
-    transactions.each do |transaction|
+    Transaction.aproved_transactions.each do |transaction|
       if transaction.transaction_type == "Ingreso"
         result += transaction.float_amount || transaction.mount
       else
