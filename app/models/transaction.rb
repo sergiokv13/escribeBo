@@ -18,7 +18,11 @@ class Transaction < ActiveRecord::Base
   scope :pending_transactions, -> { where(aproved: false) }
   
   def status
-    if self.aproved? "Archivada" : "Pendiente"
+    if self.aproved? 
+      return "Archivada" 
+    else 
+      return "Pendiente"
+    end
   end
 
   def aprove
