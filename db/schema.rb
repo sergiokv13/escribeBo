@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608154432) do
+ActiveRecord::Schema.define(version: 20180724124821) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "announcements", force: :cascade do |t|
     t.string   "subject"
@@ -31,8 +34,8 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.boolean  "oficial_aproved"
   end
 
-  add_index "announcements", ["campament_id"], name: "index_announcements_on_campament_id"
-  add_index "announcements", ["chapter_id"], name: "index_announcements_on_chapter_id"
+  add_index "announcements", ["campament_id"], name: "index_announcements_on_campament_id", using: :btree
+  add_index "announcements", ["chapter_id"], name: "index_announcements_on_chapter_id", using: :btree
 
   create_table "banners", force: :cascade do |t|
     t.text     "description"
@@ -56,9 +59,6 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.integer  "maestro_consejero_id"
   end
 
-  add_index "campaments", ["maestro_consejero_id"], name: "index_campaments_on_maestro_consejero_id"
-  add_index "campaments", ["president_id"], name: "index_campaments_on_president_id"
-
   create_table "campaments_user_follows", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "campament_id"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.datetime "updated_at",   null: false
   end
 
-  add_index "campaments_user_follows", ["campament_id"], name: "index_campaments_user_follows_on_campament_id"
-  add_index "campaments_user_follows", ["user_id"], name: "index_campaments_user_follows_on_user_id"
+  add_index "campaments_user_follows", ["campament_id"], name: "index_campaments_user_follows_on_campament_id", using: :btree
+  add_index "campaments_user_follows", ["user_id"], name: "index_campaments_user_follows_on_user_id", using: :btree
 
   create_table "chapter_user_follows", force: :cascade do |t|
     t.integer  "user_id"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.integer  "number_views"
   end
 
-  add_index "chapter_user_follows", ["chapter_id"], name: "index_chapter_user_follows_on_chapter_id"
-  add_index "chapter_user_follows", ["user_id"], name: "index_chapter_user_follows_on_user_id"
+  add_index "chapter_user_follows", ["chapter_id"], name: "index_chapter_user_follows_on_chapter_id", using: :btree
+  add_index "chapter_user_follows", ["user_id"], name: "index_chapter_user_follows_on_user_id", using: :btree
 
   create_table "chapters", force: :cascade do |t|
     t.string   "chapter_name"
@@ -96,11 +96,10 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.datetime "image_updated_at"
     t.integer  "number"
     t.boolean  "sleep"
+    t.date     "aniversary"
   end
 
-  add_index "chapters", ["campament_id"], name: "index_chapters_on_campament_id"
-  add_index "chapters", ["chapter_consultant_president_id"], name: "index_chapters_on_chapter_consultant_president_id"
-  add_index "chapters", ["chapter_president_id"], name: "index_chapters_on_chapter_president_id"
+  add_index "chapters", ["campament_id"], name: "index_chapters_on_campament_id", using: :btree
 
   create_table "charges", force: :cascade do |t|
     t.string   "title"
@@ -112,9 +111,9 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.string   "ente"
   end
 
-  add_index "charges", ["campament_id"], name: "index_charges_on_campament_id"
-  add_index "charges", ["chapter_id"], name: "index_charges_on_chapter_id"
-  add_index "charges", ["user_id"], name: "index_charges_on_user_id"
+  add_index "charges", ["campament_id"], name: "index_charges_on_campament_id", using: :btree
+  add_index "charges", ["chapter_id"], name: "index_charges_on_chapter_id", using: :btree
+  add_index "charges", ["user_id"], name: "index_charges_on_user_id", using: :btree
 
   create_table "charges_histories", force: :cascade do |t|
     t.string   "title"
@@ -126,9 +125,9 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.string   "gestion"
   end
 
-  add_index "charges_histories", ["campament_id"], name: "index_charges_histories_on_campament_id"
-  add_index "charges_histories", ["chapter_id"], name: "index_charges_histories_on_chapter_id"
-  add_index "charges_histories", ["user_id"], name: "index_charges_histories_on_user_id"
+  add_index "charges_histories", ["campament_id"], name: "index_charges_histories_on_campament_id", using: :btree
+  add_index "charges_histories", ["chapter_id"], name: "index_charges_histories_on_chapter_id", using: :btree
+  add_index "charges_histories", ["user_id"], name: "index_charges_histories_on_user_id", using: :btree
 
   create_table "current_fees", force: :cascade do |t|
     t.datetime "created_at",         null: false
@@ -156,12 +155,12 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.datetime "date"
   end
 
-  add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id"
-  add_index "degrees", ["user_id"], name: "index_degrees_on_user_id"
+  add_index "degrees", ["chapter_id"], name: "index_degrees_on_chapter_id", using: :btree
+  add_index "degrees", ["user_id"], name: "index_degrees_on_user_id", using: :btree
 
   create_table "inboxes", force: :cascade do |t|
     t.text     "subject"
-    t.string   "content"
+    t.text     "content"
     t.integer  "user1_id"
     t.integer  "user2_id"
     t.datetime "created_at",             null: false
@@ -174,9 +173,6 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.datetime "inbox_att_updated_at"
     t.boolean  "inbox_hidden_sender"
   end
-
-  add_index "inboxes", ["user1_id"], name: "index_inboxes_on_user1_id"
-  add_index "inboxes", ["user2_id"], name: "index_inboxes_on_user2_id"
 
   create_table "oficer_ans", force: :cascade do |t|
     t.string   "text"
@@ -193,14 +189,17 @@ ActiveRecord::Schema.define(version: 20180608154432) do
   create_table "premiacions", force: :cascade do |t|
     t.string   "title"
     t.date     "date_of"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "icon_file_name"
+    t.string   "icon_content_type"
+    t.integer  "icon_file_size"
+    t.datetime "icon_updated_at"
   end
 
   create_table "transactions", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "mount"
     t.integer  "user_id"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
@@ -225,10 +224,11 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.integer  "premiacion_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.date     "date_of"
   end
 
-  add_index "user_premiations", ["premiacion_id"], name: "index_user_premiations_on_premiacion_id"
-  add_index "user_premiations", ["user_id"], name: "index_user_premiations_on_user_id"
+  add_index "user_premiations", ["premiacion_id"], name: "index_user_premiations_on_premiacion_id", using: :btree
+  add_index "user_premiations", ["user_id"], name: "index_user_premiations_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                          default: "", null: false
@@ -287,13 +287,26 @@ ActiveRecord::Schema.define(version: 20180608154432) do
     t.boolean  "blocked"
   end
 
-  add_index "users", ["campament_id"], name: "index_users_on_campament_id"
-  add_index "users", ["chapter_consultant_id"], name: "index_users_on_chapter_consultant_id"
-  add_index "users", ["chapter_id"], name: "index_users_on_chapter_id"
-  add_index "users", ["court_id"], name: "index_users_on_court_id"
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["godfather_id"], name: "index_users_on_godfather_id"
-  add_index "users", ["priory_id"], name: "index_users_on_priory_id"
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["campament_id"], name: "index_users_on_campament_id", using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "announcements", "campaments"
+  add_foreign_key "announcements", "chapters"
+  add_foreign_key "campaments_user_follows", "campaments"
+  add_foreign_key "campaments_user_follows", "users"
+  add_foreign_key "chapter_user_follows", "chapters"
+  add_foreign_key "chapter_user_follows", "users"
+  add_foreign_key "chapters", "campaments"
+  add_foreign_key "charges", "campaments"
+  add_foreign_key "charges", "chapters"
+  add_foreign_key "charges", "users"
+  add_foreign_key "charges_histories", "campaments"
+  add_foreign_key "charges_histories", "chapters"
+  add_foreign_key "charges_histories", "users"
+  add_foreign_key "degrees", "chapters"
+  add_foreign_key "degrees", "users"
+  add_foreign_key "user_premiations", "premiacions"
+  add_foreign_key "user_premiations", "users"
+  add_foreign_key "users", "campaments"
 end

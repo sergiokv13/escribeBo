@@ -45,7 +45,7 @@
                     <% end %>
                   </td>
                   <td><%= transaction.description %></td>
-                  <td>Bs. <%= transaction.float_amount || transaction.mount %></td>
+                  <td>Bs. <%= transaction.float_amount%></td>
                   <td><%= link_to transaction.user.fullName, '/profile/'+transaction.user.id.to_s %></td>
                   <td><%= transaction.status %></td>
                   <td><%= transaction.created_at.to_date %></td>

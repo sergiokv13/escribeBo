@@ -1,7 +1,7 @@
 
     <h1 class="center-title">Cuerpos DeMolay</h1>
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <h2 class="center-title">Capítulos</h2>
       </div>
 
@@ -9,13 +9,13 @@
 
         <% if index%3==0 %>
           <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
               <br>
             </div>
           </div>
         <% end %>
 
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
           <a class="image_link" href="/chapters/<%=chapter.id%>" data-no-turbolink>
             <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
             <img class="img-responsive" src="<%=chapter.image.url%>">
@@ -24,15 +24,24 @@
       <%end%>
     </div>
 
-    <div class="row">
-      <div class="col-lg-12">
+   <div class="row">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <h2 class="center-title">Prioratos</h2>
       </div>
 
-      <% @prioratos.each do |chapter| %>
-        <div class="col-lg-4">
+      <% @prioratos.each_with_index do |chapter, index| %>
+
+        <% if index%3==0 %>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+              <br>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
           <a class="image_link" href="/chapters/<%=chapter.id%>" data-no-turbolink>
-          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
+            <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
             <img class="img-responsive" src="<%=chapter.image.url%>">
           </a>
         </div>
@@ -41,14 +50,23 @@
 
 
     <div class="row">
-      <div class="col-lg-12">
+      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
         <h2 class="center-title">Cortes</h2>
       </div>
 
-      <% @cortes.each do |chapter| %>
-        <div class="col-lg-4">
+      <% @cortes.each_with_index do |chapter, index| %>
+
+        <% if index%3==0 %>
+          <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+              <br>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="col-lg-4 col-md-4 col-xs-4 col-sm-4">
           <a class="image_link" href="/chapters/<%=chapter.id%>" data-no-turbolink>
-          <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
+            <div class="image_name"><%=chapter.chapter_name%> #<%=chapter.number%></div>
             <img class="img-responsive" src="<%=chapter.image.url%>">
           </a>
         </div>

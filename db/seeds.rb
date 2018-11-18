@@ -1,3 +1,5 @@
+=begin
+
 #Campamentos
 Campament.create(name: "Bolivia", president_id:"1")     #1
 Campament.create(name: "Cochabamba")                    #2
@@ -27,14 +29,14 @@ city[10] = " Beni "
 #1-27
 for c in 2..10#
 	for i in 1..3
-		Chapter.create(chapter_name:"Capítulo" + city[c] + i.to_s,chapter_type:"Capítulo",campament_id: c, number: c.to_s+"-"+i.to_s)
+		Chapter.create(chapter_name:"Capítulo" + city[c] + i.to_s,chapter_type:"Capítulo",campament_id: c, number: c.to_s+"-"+i.to_s, aniversary:'12/12/12')
 	end
 end
 #Prioratos
 #27-45
 for c in 2..10
 	for i in 1..2
-		Chapter.create(chapter_name:"Priorato" + city[c] + i.to_s,chapter_type:"Priorato",campament_id: c, number: c.to_s+"-"+i.to_s)
+		Chapter.create(chapter_name:"Priorato" + city[c] + i.to_s,chapter_type:"Priorato",campament_id: c, number: c.to_s+"-"+i.to_s, aniversary:'12/12/12')
 	end
 end
 
@@ -42,7 +44,7 @@ end
 #45-54
 for c in 2..10
 	for i in 1..1
-		Chapter.create(chapter_name:"Corte" + city[c] + i.to_s,chapter_type:"Corte",campament_id: c, number: c.to_s+"-"+i.to_s)
+		Chapter.create(chapter_name:"Corte" + city[c] + i.to_s,chapter_type:"Corte",campament_id: c, number: c.to_s+"-"+i.to_s, aniversary:'12/12/12')
 	end
 end
 
@@ -152,7 +154,7 @@ for i in 2..10
 	end
 end
 
-=begin
+
 #Users DeMolays
 #1801 - X
 for i in 2..10
@@ -213,6 +215,34 @@ for i in 2..10
 end
 
 =end
+
+Campament.create(name: "Bolivia", president_id:"1")
+Campament.create(name: "Cochabamba")
+Chapter.create(
+	chapter_name:"Fenix",
+	chapter_type:"Capítulo",
+	campament_id: 2, 
+	number: "75027",
+	aniversary: '12/12/12'
+)
+
+User.create(
+	email:"oe.dm.bolivia@gmail.com",
+	birth_date: '12/12/12', 
+	password:'administrador',
+	name:'Oficial',
+	lastname:'Ejecutivo',
+	demolayID:'1',
+	role:'Trabajador adulto',
+	ci:'1234567', 
+	chapter_id:'1', 
+	campament_id:'1', 
+	president_aproved:true, 
+	deputy_aproved:true, 
+	oficial_aproved:true, 
+	cellphone: '59179777396', 
+	phone: '59144229865'
+)
 
 #Charges
 Charge.create(title:"Oficial Ejecutivo", user_id: '1',campament_id:"1",ente:"Gabinete")

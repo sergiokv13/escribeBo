@@ -83,7 +83,7 @@ en:
               blank: "es obligatorio"
             description:
               blank: "es obligatorio"
-            mount:
+            float_amount:
               blank: "es obligatorio"
             receipt_number:
               blank: "es obligatorio"

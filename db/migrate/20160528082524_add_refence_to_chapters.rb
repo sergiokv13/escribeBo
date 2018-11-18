@@ -1,5 +1,5 @@
 class AddRefenceToChapters < ActiveRecord::Migration
   def change
-    add_reference :chapters, :chapter_consultant_president, index: true, foreign_key: true
+    add_column :chapters, :chapter_consultant_president_id, :integer
   end
 end

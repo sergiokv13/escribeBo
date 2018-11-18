@@ -7,11 +7,19 @@
       </p>
 
       <p>
-        Enviado por: <%= link_to @inbox.user1.fullName, '/profile/' + @inbox.user1.id.to_s %>
+        <% if @inbox.user1 != nil %>
+          Enviado por: <%= link_to @inbox.user1.fullName, '/profile/' + @inbox.user1.id.to_s %>
+        <% else %>
+          Enviado por: Usuario eliminado
+        <% end %>
       </p>
 
       <p>
-        Enviado a: <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
+        <% if @inbox.user2 != nil %>
+          Enviado a: <%= link_to @inbox.user2.fullName, '/profile/' + @inbox.user2.id.to_s %>
+        <% else %>
+          Enviado a: Usuario eliminado
+        <% end %>
       </p>
 
       <% if @inbox.inbox_att.exists? %>

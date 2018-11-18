@@ -13,16 +13,16 @@
             </th>
           </tr>
         </thead>
-        <% @users.each do |user| %>
           <tbody>
+            <% @users.each do |user| %>
             <tr>
               <td><%= user.fullName %></td>
               <td>
                 <%= link_to "Ver perfil", "/profile/"+user.id.to_s %>
               </td>
             </tr>
+            <% end %>
           </tbody>
-        <% end %>
       </table>
       <div class="apple_pagination">
         <%= will_paginate @users, :previous_label => 'Anterior', :next_label => 'Siguiente' %>
@@ -43,19 +43,46 @@
             </th>
           </tr>
         </thead>
-        <% @entes.each do |ente| %>
           <tbody>
-            <tr>
-              <td><%= ente.chapter_name %></td>
-              <td>
-                <%= link_to "Ver", "/chapters/"+ente.id.to_s %><br>
-              </td>
-            </tr>
+            <% @entes.each do |ente| %>
+              <tr>
+                <td><%= ente.chapter_name %></td>
+                <td>
+                  <%= link_to "Ver", "/chapters/"+ente.id.to_s %><br>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
-        <% end %>
       </table>
     </div>
-    <% @entes.each do |ente| %>
 
-    <% end %>
+    <hr class="divider">
+    <h3>Departamentos</h3>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>
+              Nombre
+            </th>
+            <th>
+              Operaciones
+            </th>
+          </tr>
+        </thead>
+          <tbody>
+            <% @campaments.each do |dep| %>
+            <tr>
+              <td><%= dep.name %></td>
+              <td>
+                <%= link_to "Ver", "/campament/"+dep.id.to_s %><br>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        
+      </table>
+    </div>
+
+
 

@@ -32,6 +32,13 @@ class ChargesController < ApplicationController
   def edit
   end
 
+  def deleteChargeHistory
+    ch = ChargesHistory.find(params[:id])
+    ch.destroy
+    flash[:notice] = "El cargo historico fue eliminado."
+    redirect_to :back
+  end
+
   def drop_gestion
     @users = []
     @posibles_oficiales =  User.where(:role=>"Trabajador adulto")
@@ -116,11 +123,14 @@ class ChargesController < ApplicationController
   # DELETE /charges/1
   # DELETE /charges/1.json
   def destroy
-    @charge.destroy
-    respond_to do |format|
-      format.html { redirect_to charges_url, notice: 'Charge was successfully destroyed.' }
-      format.json { head :no_content }
+    user_id = @charge.user_id
+    if current_user.is_oficial
+       @charge.destroy
+      flash[:notice] = "El cargo fue removido."
+    else
+      flash[:notice] = "No tiene los permisos para realizar esta acción."
     end
+    redirect_to ('/profile/' + user_id.to_s) 
   end
 
   private

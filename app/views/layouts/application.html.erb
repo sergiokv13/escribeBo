@@ -14,133 +14,24 @@
 
   <body>
     <header>
-      <div class="row" style="margin-bottom: -30px;">
-        <div class="col-lg-12">
-          <img src="/assets/cover.png" class="img-responsive">
-        </div>
-      </div>
+
+          <img src="/assets/cover.png" class="img-responsive" style="margin-bottom: -30px">
+
       <%= render "layouts/navbar"%>
     </header>
 
     <div class="container-fluid">
       <br />
       <div class="row no-gutter">
-      
 
+        <%= render :partial => "layouts/search_and_following"%>
 
-      <div class="col-lg-2 col-xs-12 col-sm-12 col-md-6">
-      <% if !current_user.nil? %>
-          <div class="jumbotron nopadding">
-            <div class="row">
+        <%= render :partial => "layouts/announcements"%>
 
-                <br />
-                  <div class="form side-font">
-                    <%= form_tag("/search", method:"post") do %>
-                    <div class="form-group">
-                      <%= text_field_tag :search, nil, class: "form-control", placeholder: "Buscar..." %>
-                    </div>
-                      <%= submit_tag "Buscar", class: "btn btn-default btn-block" %>
-                    <% end %>
-                  </div>
-                <h3>Entidades que sigo</h3>
-                <% current_user.chapter_user_follows.each do |f| %>
-                  <a class="side-font" href="/chapters/<%= f.chapter.id %>" data-no-turbolink><%= f.chapter.chapter_name %> (<%= f.chapter.announcements.count - f.number_views %>)</a><br />
-                <% end %>
-                  <% if current_user.chapter_user_follows.all.empty? %>
-                    <span class="side-font"> No sigues ningun Capítulo. Puedes explorar <a href="/chapters">aquí.</a></span>
-                  <% end %>
-                  <h3>Departamentos que sigo</h3>
-                  <% current_user.campaments_user_follows.each do |f| %>
-                    <a class="side-font" href="/campaments/<%= f.campament_id %>" data-no-turbolink><%= f.campament.name %> (<%= f.campament.announcements.count - f.number_views %>)</a><br />
-                  <% end %>
-                  <% if current_user.campaments_user_follows.all.empty? %>
-                    <span class="side-font">No sigues ningun Departamento. Puedes explorar <a href="/campaments">aquí.</a></span>
-                  <% end %>
-                <h3>Últimos mensajes</h3>
-                  <% current_user.visible_inboxes.each do |inbox| %>
-                    <a class="side-font" href="/profile/<%= inbox.user1.id %>"><%= inbox.user1.fullName %></a>:
-                    <span class="side-font"><%= truncate(inbox.content.html_safe, length: 50) %></span>
-                    <a class="side-font" href="/inboxes/<%= inbox.id %>">Ver más</a><br />
-                  <% end %>
-                  <% if current_user.inboxes.all.empty? %>
-                    <span class="side-font">No tienes mensajes. Empieza a comunicarte.</span>
-                  <% end %>
-              </div>
-          </div>
-      <% end %>
+        <%= render :partial => "layouts/main_partial" %>
+
       </div>
-
-
-
-      <div class="hidden-lg col-xs-12 col-sm-12 col-md-6" >
-        <%if current_user %>
-          <div class="jumbotron nopadding">
-            <div class="row ">
-              <div class="col-lg-12">
-                <a href="/oficer_ans" style="text-decoration: none;"><h3>Anuncios de Oficialía Ejecutiva</h3></a>
-                <% if !OficerAn.all.order(:deadline).reverse.empty? %>
-                  <% OficerAn.all.each do |of| %>
-                    <% if of.state %>
-                      <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%= raw(auto_link(of.text.first(65))) %>... </span><br />
-                    <%end%>
-                  <% end %>
-                <% else %>
-                  <span class="side-font"> No hay anuncios para la fecha.</span>
-                <%end%>
-              </div>
-            </div>
-          </div>
-           <%end%> 
-        </div>
-
-
-
-
-
-        <div class="col-lg-8 col-xs-12 col-sm-12 col-md-12">
-          <div class="row">
-              <div class="jumbotron">
-
-                <% flash.each do |type, message| %>
-                  <div class="alert alert-info alert-dismissable fade in">
-                    <button class="close" data-dismiss="alert">×</button>
-                    <%= message %>
-                  </div>
-                <% end %>
-                <%= yield %>  
-              </div>
-          </div>
-        </div>
-
-
-
-
-
-          <div class="col-lg-2 hidden-xs hidden-md hidden-sm" >
-          <%if current_user %>
-            <div class="jumbotron nopadding">
-              <div class="row ">
-                <div class="col-lg-12">
-                  <a href="/oficer_ans" style="text-decoration: none;"><h3>Anuncios de Oficialía Ejecutiva</h3></a>
-                  <% if !OficerAn.all.order(:deadline).reverse.empty? %>
-                    <% OficerAn.all.each do |of| %>
-                      <% if of.state %>
-                        <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%= raw(auto_link(of.text.first(65))) %>... </span><br />
-                      <%end%>
-                    <% end %>
-                  <% else %>
-                    <span class="side-font"> No hay anuncios para la fecha.</span>
-                  <%end%>
-                </div>
-              </div>
-            </div>
-             <%end%> 
-          </div>
-
-
-       
     </div>
-  </div>
 
   </body>
   <script type="text/javascript">

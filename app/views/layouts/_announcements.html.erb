@@ -1,0 +1,20 @@
+<div class="col-lg-2 col-xs-6 col-sm-6 col-md-6 col-lg-push-8" >
+<%if current_user %>
+  <div class="jumbotron nopadding">
+    <div class="row ">
+      <div class="col-lg-12">
+        <a href="/oficer_ans" style="text-decoration: none;"><h3>Anuncios de Oficialía Ejecutiva</h3></a>
+        <% if !OficerAn.all.order(:deadline).reverse.empty? %>
+          <% OficerAn.all.each do |of| %>
+            <% if of.state %>
+              <a href="/oficer_ans/<%=of.id%>" class="side-font"><%=of.title%></a><span class="side-font"> <%= raw(auto_link(of.text.first(65))) %>... </span><br />
+            <%end%>
+          <% end %>
+        <% else %>
+          <span class="side-font"> No hay anuncios para la fecha.</span>
+        <%end%>
+      </div>
+    </div>
+  </div>
+   <%end%> 
+</div>

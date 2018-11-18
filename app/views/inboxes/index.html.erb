@@ -21,7 +21,11 @@
                   <tr class="danger">
                 <% end %>
                   <td><%= inbox.subject %></td>
-                  <td><%= link_to inbox.user1.fullName, '/profile/' + inbox.user1.id.to_s %></td>
+                  <% if inbox.user1 != nil %>
+                    <td><%= link_to inbox.user1.fullName, '/profile/' + inbox.user1.id.to_s %></td>
+                  <%else%>
+                    <td>Usuario eliminado</td>
+                  <% end %>
                   <td><%= inbox.created_at.to_date %></td>
                   <td><%= inbox.visto %></td>
                   <td><%= link_to 'Ver', inbox %></td>
@@ -56,7 +60,11 @@
                   <tr class="danger">
                 <% end %>
                   <td><%= inbox.subject %></td>
-                  <td><%= link_to inbox.user2.fullName, '/profile/' + inbox.user2.id.to_s %></td>
+                  <% if inbox.user2 != nil %>
+                    <td><%= link_to inbox.user2.fullName, '/profile/' + inbox.user2.id.to_s %></td>
+                  <%else%>
+                    <td>Usuario eliminado</td>
+                  <% end %>
                   <td><%= inbox.created_at.to_date %></td>
                   <td><%= inbox.visto %></td>
                   <td><%= link_to 'Ver', inbox %></td>

@@ -1,5 +1,5 @@
 class AddMaestroToCampaments < ActiveRecord::Migration
   def change
-    add_reference :campaments, :maestro_consejero, index: true, foreign_key: true
+    add_column :campaments, :maestro_consejero_id, :integer
   end
 end

@@ -47,7 +47,7 @@
                       <% end %>
                     </td>
                     <td><%= transaction.description %></td>
-                    <td>Bs. <%= transaction.float_amount || transaction.mount %></td>
+                    <td>Bs. <%= transaction.float_amount %></td>
                     <td><%= transaction.user.fullName %></td>
                     <td><%= transaction.status %></td>
                     <td><%= transaction.created_at.to_date %></td>

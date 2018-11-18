@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   get '/delete_user/:id' => "admin_controller#delete_user"
 
+  get '/quitar_premiacion/:id' => "premiacions#quitar_premiacion"
+
   devise_for :users
 
   devise_scope :user do
@@ -85,6 +87,7 @@ Rails.application.routes.draw do
   get '/aprove_publication/:id' => 'admin_controller#aprove_publication'
   get '/chapter_users/:id/:type' => 'chapters#chapter_users'
   get '/reiniciar_gestion' => "charges#drop_gestion"
+  get'/deleteChargeHistory/:id' => "charges#deleteChargeHistory"
   get '/filtered' => 'admin_controller#filtered'
   post '/update_reiniciar_gestion' => "charges#update_drop_gestion"
   get '/users/:id/edit' => 'admin_controller#edit'

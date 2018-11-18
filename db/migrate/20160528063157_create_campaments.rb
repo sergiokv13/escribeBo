@@ -2,7 +2,7 @@ class CreateCampaments < ActiveRecord::Migration
   def change
     create_table :campaments do |t|
       t.string :name
-      t.references :president, index: true, foreign_key: true
+      t.integer :president_id
 
       t.timestamps null: false
     end

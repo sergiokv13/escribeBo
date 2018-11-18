@@ -140,6 +140,7 @@ class ProfilesController < ApplicationController
     user_premiation = UserPremiation.new
     user_premiation.user_id = user_id
     user_premiation.premiacion_id = premiacion
+    user_premiation.date_of = date_of_premiacion
     user_premiation.save
     redirect_to '/profile/' + user_id.to_s
   end

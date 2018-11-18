@@ -52,9 +52,9 @@ class Transaction < ActiveRecord::Base
     result = 0
     Transaction.aproved_transactions.each do |transaction|
       if transaction.transaction_type == "Ingreso"
-        result += transaction.float_amount || transaction.mount
+        result += transaction.float_amount 
       else
-        result -= transaction.float_amount || transaction.mount
+        result -= transaction.float_amount 
       end
     end
     result

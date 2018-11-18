@@ -23,20 +23,42 @@
       <hr class="divider">
       <% @user.charges.each do |charge| %>
         <% if charge.chapter != nil %>
-          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> otorgado el <%= charge.created_at %><br>
+          Tiene el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> otorgado el <%= charge.created_at %>
         <%else%>
-          Tiene el cargo de  <%= charge.title %> <%="Departamental" if charge.title == "Maestre Consejero" %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> otorgado el <%= charge.created_at %><br>
+          Tiene el cargo de  <%= charge.title %> 
+
+            <%= ( charge.title == "Maestre Consejero" && charge.campament.id != 1 ) ? "Departamental" : "Nacional" %> 
+
+            en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> otorgado el <%= charge.created_at %>
         <%end%>
+
+        <%if current_user.is_oficial%>
+          <%= link_to 'Quitar cargo',  charge,  method: :delete, data: { confirm: 'Esta seguro? El cargo sera removido.' } %>
+         <% end %>
+         <br>
       <% end %>
        <% if @user.charges.empty? == true && @user.charges_history.empty? == true%>
         No hay ningún cargo registrado.
+
+
+        
+
       <%end%>
        <hr class="divider">
       <% @user.charges_history.each do |charge| %>
         <% if charge.chapter != nil %>
           Tuvo el cargo de <%= charge.title %> en <a href="/chapters/<%= charge.chapter.id %>" data-no-turbolink><%= charge.chapter.chapter_name %> </a> en la gestión <%=charge.gestion%><br>
         <%else%>
-          Tuvo el cargo de  <%= charge.title %> en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
+          Tuvo el cargo de  <%= charge.title %> 
+
+          <%= ( charge.title == "Maestre Consejero" && charge.campament.id != 1 ) ? "Departamental" : "Nacional" %> 
+
+          en <a href="/campaments/<%= charge.campament.id %>"><%= charge.campament.name %></a> en la gestión <%=charge.gestion%> <br>
+
+          <%if current_user.is_oficial%>
+            <a href="/deleteChargeHistory/<%=charge.id%>">Quitar cargo historico.</a>
+          <% end %>
+         <br>
         <%end%>
       <% end %>
       <% if @user.charges_history.empty? == true && @user.charges_history.empty? == true%>
@@ -47,7 +69,11 @@
       <h3>Premiaciones</h3>
       <hr class="divider">
       <% @user.user_premiations.each do |user_premiacion| %>
-         <%= user_premiacion.premiacion.title %> en <%= user_premiacion.premiacion.date_of %> <br>
+         <img src="<%=user_premiacion.premiacion.icon(:thumb)%>" width=20> <%= user_premiacion.premiacion.title %> en <%= user_premiacion.date_of || user_premiacion.premiacion.date_of%> 
+         <%if current_user.is_oficial%>
+          <a href="/quitar_premiacion/<%=user_premiacion.id%>" onclick="return confirm('Esta seguro? La premiación sera removida.')">Quitar premiación</a>
+         <% end %>
+         <br>
       <% end %>
       <% if @user.user_premiations.empty? == true %>
         No hay ninguna premiación registrada.
