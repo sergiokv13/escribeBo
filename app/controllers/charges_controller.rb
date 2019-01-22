@@ -80,6 +80,10 @@ class ChargesController < ApplicationController
         cargo_oficial.campament_id = 1
         cargo_oficial.save
 
+        camp_bol = Campament.first
+        camp_bol.president = User.find(params[:id_oficial])
+        camp_bol.save
+
 
         flash[:notice] = "La gestion fue reiniciada."
         redirect_to "/"
